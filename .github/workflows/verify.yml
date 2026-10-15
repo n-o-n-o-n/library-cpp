@@ -1,0 +1,66 @@
+
+name: verify
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verify-main
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U online-judge-verify-helper
+          python -m pip install "setuptools<82"
+
+      - name: Install AtCoder Library
+        run: |
+          git clone --depth 1 \
+            https://github.com/atcoder/ac-library.git \
+            /tmp/ac-library
+
+      - name: Configure Linux environment
+        run: |
+          mkdir -p .verify-helper
+          cat > .verify-helper/config.toml <<'EOF'
+          [[languages.cpp.environments]]
+          CXX = "g++"
+          CXXFLAGS = ["-O2", "-std=c++23", "-I", "/tmp/ac-library"]
+          EOF
+
+      - name: Verify ACL installation
+        run: |
+          printf '#include <atcoder/math>\nint main() { return atcoder::pow_mod(2, 10, 1000) != 24; }\n' > /tmp/test_acl.cpp
+          g++ -std=c++23 -I /tmp/ac-library /tmp/test_acl.cpp -o /tmp/test_acl
+          /tmp/test_acl
+
+      - name: Run tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          ulimit -s 1048576
+          oj-verify all
