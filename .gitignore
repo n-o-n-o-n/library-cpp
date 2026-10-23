@@ -1,2 +1,4 @@
 *.exe
 *.out
+*template.md
+.verify-helper/config.toml
