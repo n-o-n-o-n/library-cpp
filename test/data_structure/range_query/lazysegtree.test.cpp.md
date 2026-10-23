@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/lazysegtree.hpp
     title: Lazysegtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   - icon: ':heavy_check_mark:'

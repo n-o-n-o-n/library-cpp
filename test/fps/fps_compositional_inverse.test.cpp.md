@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/power_projection.hpp
     title: src/fps/power_projection.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large
@@ -481,7 +481,7 @@ data:
   path: test/fps/fps_compositional_inverse.test.cpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/fps_compositional_inverse.test.cpp
 layout: document

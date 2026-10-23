@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/string/lcp_array.hpp
     title: src/string/lcp_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/string/suffix_array.hpp
     title: src/string/suffix_array.hpp
   _extendedRequiredBy: []

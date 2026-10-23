@@ -2,34 +2,34 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/tree/hash_on_tree.hpp
     title: src/tree/hash_on_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_div_sparse.test.cpp
     title: test/fps/fps_div_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/number_theory/discrete_logarithm.test.cpp
     title: test/math/number_theory/discrete_logarithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/number_theory/mod_inv.test.cpp
     title: test/math/number_theory/mod_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/hash_on_tree.test.cpp
     title: test/tree/hash_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/prufer_code.test.cpp
     title: test/tree/prufer_code.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/random/utility.hpp\"\n#include <cassert>\n#include <concepts>\n\
@@ -57,7 +57,7 @@ data:
   - src/random/sequence.hpp
   - src/tree/hash_on_tree.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/power_projection.test.cpp
   - test/fps/fps_div_sparse.test.cpp

@@ -2,154 +2,154 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps.hpp
     title: Formal Power Series
   - icon: ':warning:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_composition.hpp
     title: src/fps/fps_composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_pow.hpp
     title: src/fps/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_product.hpp
     title: src/fps/fps_product.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/multipoint_evaluation.hpp
     title: src/fps/multipoint_evaluation.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/multipoint_evaluation_geometric.hpp
     title: src/fps/multipoint_evaluation_geometric.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/polynomial_interpolation.hpp
     title: src/fps/polynomial_interpolation.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/polynomial_taylor_shift.hpp
     title: src/fps/polynomial_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/power_projection.hpp
     title: src/fps/power_projection.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/rational_sum.hpp
     title: src/fps/rational_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/subprod_tree.hpp
     title: src/fps/subprod_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/best_theorem.hpp
     title: src/graph/best_theorem.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/bmbm.hpp
     title: src/math/bmbm.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/bostan_mori.hpp
     title: src/math/bostan_mori.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
     title: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/partition.hpp
     title: src/math/enumerative_combinatorics/partition.hpp
   - icon: ':warning:'
     path: src/math/enumerative_combinatorics/power_sums.hpp
     title: src/math/enumerative_combinatorics/power_sums.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/prefix_binomial_sum.hpp
     title: src/math/enumerative_combinatorics/prefix_binomial_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/subset_sum.hpp
     title: src/math/enumerative_combinatorics/subset_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_composition.test.cpp
     title: test/fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_compositional_inverse.test.cpp
     title: test/fps/fps_compositional_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_div_sparse.test.cpp
     title: test/fps/fps_div_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_exp.test.cpp
     title: test/fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_inv.test.cpp
     title: test/fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_log.test.cpp
     title: test/fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_pow.test.cpp
     title: test/fps/fps_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_product.test.cpp
     title: test/fps/fps_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/multipoint_evaluation.test.cpp
     title: test/fps/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/multipoint_evaluation_geometric.test.cpp
     title: test/fps/multipoint_evaluation_geometric.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/polynomial_interpolation.test.cpp
     title: test/fps/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/polynomial_taylor_shift.test.cpp
     title: test/fps/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/best_theorem.test.cpp
     title: test/graph/best_theorem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/partition.test.cpp
     title: test/math/enumerative_combinatorics/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
     title: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/subset_sum.test.cpp
     title: test/math/enumerative_combinatorics/subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/math/enumerative_combinatorics/combination.hpp\"\n#include\
@@ -237,7 +237,7 @@ data:
   - src/math/enumerative_combinatorics/prefix_binomial_sum.hpp
   - src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/fps_log.test.cpp
   - test/fps/multipoint_evaluation.test.cpp

@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_composition.hpp
     title: src/fps/fps_composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_pow.hpp
     title: src/fps/fps_pow.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/polynomial_taylor_shift.hpp
     title: src/fps/polynomial_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/power_projection.hpp
     title: src/fps/power_projection.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []

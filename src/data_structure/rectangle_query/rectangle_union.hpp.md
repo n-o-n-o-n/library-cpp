@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/lazysegtree.hpp
     title: Lazysegtree
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data_structure/rectangle_query/rectangle_union.test.cpp
     title: test/data_structure/rectangle_query/rectangle_union.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/data_structure/rectangle_query/rectangle_union.hpp\"\
@@ -136,7 +136,7 @@ data:
   path: src/data_structure/rectangle_query/rectangle_union.hpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/rectangle_query/rectangle_union.test.cpp
 documentation_of: src/data_structure/rectangle_query/rectangle_union.hpp

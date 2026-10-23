@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/discrete_logarithm.hpp
     title: src/math/number_theory/discrete_logarithm.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/dynamic_modint.hpp
     title: src/modint/dynamic_modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/number_theory/mod_log.test.cpp
     title: test/math/number_theory/mod_log.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/math/number_theory/mod_log.hpp\"\n#include <cassert>\n\
@@ -100,7 +100,7 @@ data:
   path: src/math/number_theory/mod_log.hpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/number_theory/mod_log.test.cpp
 documentation_of: src/math/number_theory/mod_log.hpp

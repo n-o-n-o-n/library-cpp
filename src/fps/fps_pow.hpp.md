@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy:
   - icon: ':warning:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_pow.test.cpp
     title: test/fps/fps_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/fps/fps.hpp\"\n#include <vector>\n#line 2 \"src/math/enumerative_combinatorics/combination.hpp\"\
@@ -396,7 +396,7 @@ data:
   - src/fps/fps_all.hpp
   - src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/fps_pow.test.cpp
   - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp

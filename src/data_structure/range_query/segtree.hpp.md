@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
     title: Dynamic Rectangle Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/rectangle_sum.hpp
     title: src/data_structure/rectangle_query/rectangle_sum.hpp
   - icon: ':warning:'
@@ -21,18 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
     title: test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data_structure/rectangle_query/rectangle_sum.test.cpp
     title: test/data_structure/rectangle_query/rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/hld.test.cpp
     title: test/tree/hld.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/range_contour_aggregator.test.cpp
     title: test/tree/range_contour_aggregator.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/data_structure/range_query/segtree.hpp\"\n#include <vector>\n\
@@ -127,7 +127,7 @@ data:
   - src/string/numeric_rolling_hash_dynamic.hpp
   - src/string/rolling_hash_dynamic.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/range_query/segtree.test.cpp
   - test/data_structure/rectangle_query/rectangle_sum.test.cpp

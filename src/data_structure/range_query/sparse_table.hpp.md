@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/static_rmq.hpp
     title: src/data_structure/range_query/static_rmq.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/tree/static_tree.hpp
     title: Static Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/range_query/sparse_table.test.cpp
     title: test/data_structure/range_query/sparse_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/static_tree.jump.test.cpp
     title: test/tree/static_tree.jump.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/static_tree.lca.test.cpp
     title: test/tree/static_tree.lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/data_structure/range_query/sparse_table.hpp\"\n#include\
@@ -54,7 +54,7 @@ data:
   - src/data_structure/range_query/static_rmq.hpp
   - src/tree/static_tree.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/range_query/sparse_table.test.cpp
   - test/tree/static_tree.lca.test.cpp

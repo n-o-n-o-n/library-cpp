@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/best_theorem.hpp
     title: src/graph/best_theorem.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/matrix_tree_theorem.hpp
     title: src/graph/matrix_tree_theorem.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/matrix/matrix.hpp
     title: src/math/matrix/matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_eulerian_circuits
@@ -205,7 +205,7 @@ data:
   path: test/graph/best_theorem.test.cpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/best_theorem.test.cpp
 layout: document

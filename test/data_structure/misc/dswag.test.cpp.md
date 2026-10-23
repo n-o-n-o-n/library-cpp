@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/misc/dswag.hpp
     title: src/data_structure/misc/dswag.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   _extendedRequiredBy: []

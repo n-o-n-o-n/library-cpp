@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/disjoint_sparse_table.hpp
     title: src/data_structure/range_query/disjoint_sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/add.hpp
     title: src/monoid/add.hpp
   _extendedRequiredBy: []

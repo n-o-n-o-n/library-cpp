@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
   _extendedRequiredBy: []

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/rectangle_sum.hpp
     title: src/data_structure/rectangle_query/rectangle_sum.hpp
   - icon: ':question:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/add.hpp
     title: src/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -131,7 +131,7 @@ data:
   path: test/data_structure/rectangle_query/rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/rectangle_query/rectangle_sum.test.cpp
 layout: document

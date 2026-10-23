@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/directed_range_query.hpp
     title: Directed Range Query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/tree/hld.hpp
     title: Heavy Light Decomposition
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -256,7 +256,7 @@ data:
   path: test/tree/hld.test.cpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/hld.test.cpp
 layout: document

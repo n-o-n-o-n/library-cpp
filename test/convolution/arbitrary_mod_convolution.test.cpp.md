@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/arbitrary_mod_convolution.hpp
     title: src/convolution/arbitrary_mod_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/convolution.hpp
     title: src/convolution/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/ext_gcd.hpp
     title: Extended GCD
   - icon: ':heavy_check_mark:'
     path: src/math/number_theory/garner.hpp
     title: Garner
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []

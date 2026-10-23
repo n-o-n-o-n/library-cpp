@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/sparse_table.hpp
     title: src/data_structure/range_query/sparse_table.hpp
   - icon: ':heavy_check_mark:'

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/arbitrary_mod_convolution.hpp
     title: src/convolution/arbitrary_mod_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/convolution_ll.hpp
     title: src/convolution/convolution_ll.hpp
   _extendedVerifiedWith:
@@ -63,102 +63,102 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/range_query/segtree.test.cpp
     title: test/data_structure/range_query/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_composition.test.cpp
     title: test/fps/fps_composition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_compositional_inverse.test.cpp
     title: test/fps/fps_compositional_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_div_sparse.test.cpp
     title: test/fps/fps_div_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_exp.test.cpp
     title: test/fps/fps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_exp_sparse.test.cpp
     title: test/fps/fps_exp_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_inv.test.cpp
     title: test/fps/fps_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_inv_sparse.test.cpp
     title: test/fps/fps_inv_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_log.test.cpp
     title: test/fps/fps_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_log_sparse.test.cpp
     title: test/fps/fps_log_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_pow.test.cpp
     title: test/fps/fps_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_pow_sparse.test.cpp
     title: test/fps/fps_pow_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_product.test.cpp
     title: test/fps/fps_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/multipoint_evaluation.test.cpp
     title: test/fps/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/multipoint_evaluation_geometric.test.cpp
     title: test/fps/multipoint_evaluation_geometric.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/polynomial_interpolation.test.cpp
     title: test/fps/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/polynomial_taylor_shift.test.cpp
     title: test/fps/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/best_theorem.test.cpp
     title: test/graph/best_theorem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/matrix_tree_theorem.test.cpp
     title: test/graph/matrix_tree_theorem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/berlekamp_massey.test.cpp
     title: test/math/berlekamp_massey.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/partition.test.cpp
     title: test/math/enumerative_combinatorics/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
     title: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/subset_sum.test.cpp
     title: test/math/enumerative_combinatorics/subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/hld.test.cpp
     title: test/tree/hld.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/rerooting_dp.test.cpp
     title: test/tree/rerooting_dp.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#include\
@@ -244,7 +244,7 @@ data:
   - src/convolution/arbitrary_mod_convolution.hpp
   - src/convolution/convolution_ll.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/fps_log.test.cpp
   - test/fps/fps_exp_sparse.test.cpp

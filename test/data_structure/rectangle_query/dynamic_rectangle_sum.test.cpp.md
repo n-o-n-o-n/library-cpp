@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
   - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
     title: Dynamic Rectangle Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/rectangle_sum.hpp
     title: src/data_structure/rectangle_query/rectangle_sum.hpp
   - icon: ':question:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/add.hpp
     title: src/monoid/add.hpp
   _extendedRequiredBy: []

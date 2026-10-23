@@ -6,12 +6,12 @@ data:
     path: src/string/longest_common_substring.hpp
     title: src/string/longest_common_substring.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/string/lcp_array.test.cpp
     title: test/string/lcp_array.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/string/lcp_array.hpp\"\n#include <vector>\n#include\
@@ -42,7 +42,7 @@ data:
   requiredBy:
   - src/string/longest_common_substring.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/string/lcp_array.test.cpp
 documentation_of: src/string/lcp_array.hpp

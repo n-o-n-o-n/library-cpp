@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
     title: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/math/enumerative_combinatorics/prefix_binomial_sum.hpp\"\
@@ -82,7 +82,7 @@ data:
   path: src/math/enumerative_combinatorics/prefix_binomial_sum.hpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
 documentation_of: src/math/enumerative_combinatorics/prefix_binomial_sum.hpp

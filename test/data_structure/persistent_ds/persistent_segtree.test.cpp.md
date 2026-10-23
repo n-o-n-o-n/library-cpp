@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/add.hpp
     title: src/monoid/add.hpp
   _extendedRequiredBy: []

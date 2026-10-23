@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/matrix_tree_theorem.hpp
     title: src/graph/matrix_tree_theorem.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/matrix/matrix.hpp
     title: src/math/matrix/matrix.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/best_theorem.test.cpp
     title: test/graph/best_theorem.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/graph/best_theorem.hpp\"\n#include <vector>\n#line 2\
@@ -167,7 +167,7 @@ data:
   path: src/graph/best_theorem.hpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/best_theorem.test.cpp
 documentation_of: src/graph/best_theorem.hpp

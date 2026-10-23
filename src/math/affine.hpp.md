@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/range_query/segtree.test.cpp
     title: test/data_structure/range_query/segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/number_theory/discrete_logarithm.test.cpp
     title: test/math/number_theory/discrete_logarithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/hld.test.cpp
     title: test/tree/hld.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/math/affine.hpp\"\n\ntemplate<typename mint>\nstruct\
@@ -56,7 +56,7 @@ data:
   requiredBy:
   - src/monoid/range_affine_range_sum.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/range_query/dynamic_lazysegtree.test.cpp
   - test/data_structure/range_query/dynamic_segtree.test.cpp
