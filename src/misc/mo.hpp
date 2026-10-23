@@ -11,7 +11,7 @@ struct MO {
     template<typename EXL, typename EXR, typename SHL, typename SHR, typename O>
     void run(const EXL &exl, const EXR &exr, const SHL &shl, const SHR &shr, const O &out) {
         q = querys.size();
-        const int b = clamp(int(sqrtl(q * 0.66)), 1, n);
+        const int b = clamp(int(sqrtl(q * 0.66)), 1, max(1, n));
         vector<int> ord(q);
         iota(ord.begin(), ord.end(), 0);
         sort(ord.begin(), ord.end(), [&](int i, int j) {
