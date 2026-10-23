@@ -330,7 +330,7 @@ data:
     - icon: ':warning:'
       path: src/misc/base64.hpp
       title: src/misc/base64.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/misc/compress.hpp
       title: Compress
     - icon: ':warning:'
@@ -348,10 +348,10 @@ data:
     - icon: ':warning:'
       path: src/misc/inversion_number.hpp
       title: src/misc/inversion_number.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/misc/merge_and_unique.hpp
       title: Merge And Unique
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/misc/mo.hpp
       title: Mo
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
       title: Xor Shift
   - name: src/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/string/aho_corasick.hpp
       title: src/string/aho_corasick.hpp
     - icon: ':heavy_check_mark:'
@@ -727,7 +727,7 @@ data:
       title: test/math/number_theory/primitive_root.test.cpp
   - name: test/misc
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/misc/mo_static_range_count_distinct.test.cpp
       title: test/misc/mo_static_range_count_distinct.test.cpp
     - icon: ':heavy_check_mark:'
@@ -743,7 +743,7 @@ data:
       title: test/sample_test.test.cpp
   - name: test/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/string/aho_corasick.test.cpp
       title: test/string/aho_corasick.test.cpp
     - icon: ':heavy_check_mark:'

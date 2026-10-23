@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/rectangle_sum.hpp
     title: src/data_structure/rectangle_query/rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
   - icon: ':heavy_check_mark:'

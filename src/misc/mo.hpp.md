@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/misc/mo_static_range_count_distinct.test.cpp
     title: test/misc/mo_static_range_count_distinct.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/misc/mo.hpp\"\n#include <algorithm>\n#include <cmath>\n\
@@ -17,7 +17,7 @@ data:
     \ l, int r) { querys.emplace_back(l, r); }\n    template<typename EXL, typename\
     \ EXR, typename SHL, typename SHR, typename O>\n    void run(const EXL &exl, const\
     \ EXR &exr, const SHL &shl, const SHR &shr, const O &out) {\n        q = querys.size();\n\
-    \        const int b = clamp(int(sqrtl(q * 0.66)), 1, n);\n        vector<int>\
+    \        const int b = clamp(int(sqrtl(q * 0.66)), 1, max(1, n));\n        vector<int>\
     \ ord(q);\n        iota(ord.begin(), ord.end(), 0);\n        sort(ord.begin(),\
     \ ord.end(), [&](int i, int j) {\n            auto [li, ri] = querys[i];\n   \
     \         auto [lj, rj] = querys[j];\n            int bi = li / b, bj = lj / b;\n\
@@ -35,7 +35,7 @@ data:
     \ { querys.emplace_back(l, r); }\n    template<typename EXL, typename EXR, typename\
     \ SHL, typename SHR, typename O>\n    void run(const EXL &exl, const EXR &exr,\
     \ const SHL &shl, const SHR &shr, const O &out) {\n        q = querys.size();\n\
-    \        const int b = clamp(int(sqrtl(q * 0.66)), 1, n);\n        vector<int>\
+    \        const int b = clamp(int(sqrtl(q * 0.66)), 1, max(1, n));\n        vector<int>\
     \ ord(q);\n        iota(ord.begin(), ord.end(), 0);\n        sort(ord.begin(),\
     \ ord.end(), [&](int i, int j) {\n            auto [li, ri] = querys[i];\n   \
     \         auto [lj, rj] = querys[j];\n            int bi = li / b, bj = lj / b;\n\
@@ -51,8 +51,8 @@ data:
   isVerificationFile: false
   path: src/misc/mo.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-23 22:15:17+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/misc/mo_static_range_count_distinct.test.cpp
 documentation_of: src/misc/mo.hpp

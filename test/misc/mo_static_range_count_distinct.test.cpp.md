@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/compress.hpp
     title: Compress
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/mo.hpp
     title: Mo
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_count_distinct
@@ -48,12 +48,12 @@ data:
     \ EXL, typename EXR, typename SHL, typename SHR, typename O>\n    void run(const\
     \ EXL &exl, const EXR &exr, const SHL &shl, const SHR &shr, const O &out) {\n\
     \        q = querys.size();\n        const int b = clamp(int(sqrtl(q * 0.66)),\
-    \ 1, n);\n        vector<int> ord(q);\n        iota(ord.begin(), ord.end(), 0);\n\
-    \        sort(ord.begin(), ord.end(), [&](int i, int j) {\n            auto [li,\
-    \ ri] = querys[i];\n            auto [lj, rj] = querys[j];\n            int bi\
-    \ = li / b, bj = lj / b;\n            return bi == bj ? bi & 1 ? ri > rj : ri\
-    \ < rj : bi < bj;\n        });\n        int l = 0, r = 0;\n        for (int i\
-    \ : ord) {\n            auto [li, ri] = querys[i];\n            while (l > li)\
+    \ 1, max(1, n));\n        vector<int> ord(q);\n        iota(ord.begin(), ord.end(),\
+    \ 0);\n        sort(ord.begin(), ord.end(), [&](int i, int j) {\n            auto\
+    \ [li, ri] = querys[i];\n            auto [lj, rj] = querys[j];\n            int\
+    \ bi = li / b, bj = lj / b;\n            return bi == bj ? bi & 1 ? ri > rj :\
+    \ ri < rj : bi < bj;\n        });\n        int l = 0, r = 0;\n        for (int\
+    \ i : ord) {\n            auto [li, ri] = querys[i];\n            while (l > li)\
     \ exl(--l);\n            while (r < ri) exr(r++);\n            while (l < li)\
     \ shl(l++);\n            while (r > ri) shr(--r);\n            out(i);\n     \
     \   }\n    }\n    template<typename EX, typename SH, typename O>\n    void run(const\
@@ -86,8 +86,8 @@ data:
   isVerificationFile: true
   path: test/misc/mo_static_range_count_distinct.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-10-23 22:15:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/misc/mo_static_range_count_distinct.test.cpp
 layout: document
