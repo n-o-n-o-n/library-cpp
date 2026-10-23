@@ -63,4 +63,4 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           ulimit -s 1048576
-          oj-verify all
+          oj-verify all --timeout 3600
