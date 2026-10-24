@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-vector<int> prufer_code_compress(const vector<vector<int>> &t) {
+inline vector<int> prufer_code_compress(const vector<vector<int>> &t) {
     int n = t.size();
     if (n <= 2) return {};
     vector<int> deg(n);
@@ -32,7 +32,7 @@ vector<int> prufer_code_compress(const vector<vector<int>> &t) {
     return p;
 }
 
-vector<vector<int>> prufer_code_expansion(const vector<int> &p) {
+inline vector<vector<int>> prufer_code_expansion(const vector<int> &p) {
     int n = p.size() + 2;
     vector<int> deg(n, 1);
     for (int u : p) deg[u]++;
