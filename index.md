@@ -152,8 +152,14 @@ data:
   - name: src/data_structure/union_find
     pages:
     - icon: ':heavy_check_mark:'
+      path: src/data_structure/union_find/undoable_union_find.hpp
+      title: Undoable Union Find
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/union_find/union_find.hpp
-      title: src/data_structure/union_find/union_find.hpp
+      title: Union Find
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/union_find/weighted_union_find.hpp
+      title: Weighted Union Find
   - name: src/dp
     pages:
     - icon: ':heavy_check_mark:'
@@ -612,8 +618,14 @@ data:
   - name: test/data_structure/union_find
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/data_structure/union_find/undoable_union_find.test.cpp
+      title: test/data_structure/union_find/undoable_union_find.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/data_structure/union_find/union_find.test.cpp
       title: test/data_structure/union_find/union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/union_find/weighted_union_find.test.cpp
+      title: test/data_structure/union_find/weighted_union_find.test.cpp
   - name: test/fps
     pages:
     - icon: ':heavy_check_mark:'

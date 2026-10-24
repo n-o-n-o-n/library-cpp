@@ -16,6 +16,9 @@ data:
     path: test/data_structure/rectangle_query/rectangle_sum.test.cpp
     title: test/data_structure/rectangle_query/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/data_structure/union_find/weighted_union_find.test.cpp
+    title: test/data_structure/union_find/weighted_union_find.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/tree/range_contour_aggregator.test.cpp
     title: test/tree/range_contour_aggregator.test.cpp
   _isVerificationFailed: false
@@ -40,6 +43,7 @@ data:
   - test/data_structure/rectangle_query/rectangle_sum.test.cpp
   - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
   - test/data_structure/persistent_ds/persistent_segtree.test.cpp
+  - test/data_structure/union_find/weighted_union_find.test.cpp
   - test/tree/range_contour_aggregator.test.cpp
 documentation_of: src/monoid/add.hpp
 layout: document

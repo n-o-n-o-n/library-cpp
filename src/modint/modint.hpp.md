@@ -64,6 +64,9 @@ data:
     path: test/data_structure/range_query/segtree.test.cpp
     title: test/data_structure/range_query/segtree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/data_structure/union_find/weighted_union_find.test.cpp
+    title: test/data_structure/union_find/weighted_union_find.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_composition.test.cpp
     title: test/fps/fps_composition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -283,6 +286,7 @@ data:
   - test/data_structure/range_query/dualsegtree.test.cpp
   - test/data_structure/misc/dswag.test.cpp
   - test/data_structure/misc/swag.test.cpp
+  - test/data_structure/union_find/weighted_union_find.test.cpp
   - test/math/berlekamp_massey.test.cpp
   - test/math/bmbm.test.cpp
   - test/math/bostan_mori.test.cpp
