@@ -19,7 +19,7 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/tree/prufer_code.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n\n#line 2 \"src/tree/prufer_code.hpp\"\n#include <queue>\n#include <vector>\n\
-    using namespace std;\n\nvector<int> prufer_code_compress(const vector<vector<int>>\
+    using namespace std;\n\ninline vector<int> prufer_code_compress(const vector<vector<int>>\
     \ &t) {\n    int n = t.size();\n    if (n <= 2) return {};\n    vector<int> deg(n);\n\
     \    priority_queue<int, vector<int>, greater<int>> q;\n    for (int i = 0; i\
     \ < n; i++) {\n        deg[i] = t[i].size();\n        if (deg[i] == 1) {\n   \
@@ -28,7 +28,7 @@ data:
     \ q.pop();\n        for (int v : t[u]) {\n            if (deg[v] > 0) {\n    \
     \            p.push_back(v);\n                deg[v]--;\n                if (deg[v]\
     \ == 1) q.push(v);\n                break;\n            }\n        }\n       \
-    \ deg[u]--;\n    }\n    return p;\n}\n\nvector<vector<int>> prufer_code_expansion(const\
+    \ deg[u]--;\n    }\n    return p;\n}\n\ninline vector<vector<int>> prufer_code_expansion(const\
     \ vector<int> &p) {\n    int n = p.size() + 2;\n    vector<int> deg(n, 1);\n \
     \   for (int u : p) deg[u]++;\n    priority_queue<int, vector<int>, greater<int>>\
     \ q;\n    for (int i = 0; i < n; i++) {\n        if (deg[i] == 1) q.push(i);\n\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/tree/prufer_code.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-24 20:50:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/prufer_code.test.cpp

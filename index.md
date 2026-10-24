@@ -407,6 +407,9 @@ data:
       title: src/monoid/range_affine_range_sum.hpp
   - name: src/random
     pages:
+    - icon: ':warning:'
+      path: src/random/graph.hpp
+      title: src/random/graph.hpp
     - icon: ':heavy_check_mark:'
       path: src/random/sequence.hpp
       title: Random Sequence

@@ -4,7 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/random/utility.hpp
     title: Random Utility
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: src/random/graph.hpp
+    title: src/random/graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/set/median_set.test.cpp
@@ -66,7 +69,8 @@ data:
   - src/random/utility.hpp
   isVerificationFile: false
   path: src/random/sequence.hpp
-  requiredBy: []
+  requiredBy:
+  - src/random/graph.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: src/random/graph.hpp
+    title: src/random/graph.hpp
   - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
@@ -58,6 +61,7 @@ data:
   path: src/random/utility.hpp
   requiredBy:
   - src/random/sequence.hpp
+  - src/random/graph.hpp
   - src/tree/hash_on_tree.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
