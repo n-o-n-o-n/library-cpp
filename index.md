@@ -135,6 +135,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/data_structure/rectangle_query/rectangle_union.hpp
       title: src/data_structure/rectangle_query/rectangle_union.hpp
+  - name: src/data_structure/set
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/set/interval_map.hpp
+      title: Interval Map
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/set/interval_set.hpp
+      title: Interval Set
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/set/median_set.hpp
+      title: Median Set
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/set/top_k_set.hpp
+      title: Top K Set
   - name: src/data_structure/union_find
     pages:
     - icon: ':heavy_check_mark:'
@@ -581,6 +595,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data_structure/rectangle_query/rectangle_union.test.cpp
       title: test/data_structure/rectangle_query/rectangle_union.test.cpp
+  - name: test/data_structure/set
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/set/interval_map.test.cpp
+      title: test/data_structure/set/interval_map.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/set/interval_set.test.cpp
+      title: test/data_structure/set/interval_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/set/median_set.test.cpp
+      title: test/data_structure/set/median_set.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/set/top_k_set.test.cpp
+      title: test/data_structure/set/top_k_set.test.cpp
   - name: test/data_structure/union_find
     pages:
     - icon: ':heavy_check_mark:'

@@ -10,6 +10,9 @@ data:
     title: src/tree/hash_on_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/data_structure/set/median_set.test.cpp
+    title: test/data_structure/set/median_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_div_sparse.test.cpp
     title: test/fps/fps_div_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -61,6 +64,7 @@ data:
   verifiedWith:
   - test/fps/power_projection.test.cpp
   - test/fps/fps_div_sparse.test.cpp
+  - test/data_structure/set/median_set.test.cpp
   - test/math/number_theory/discrete_logarithm.test.cpp
   - test/math/number_theory/mod_inv.test.cpp
   - test/tree/hash_on_tree.test.cpp

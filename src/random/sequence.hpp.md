@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/data_structure/set/median_set.test.cpp
+    title: test/data_structure/set/median_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
   _isVerificationFailed: false
@@ -68,6 +71,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/power_projection.test.cpp
+  - test/data_structure/set/median_set.test.cpp
 documentation_of: src/random/sequence.hpp
 layout: document
 title: Random Sequence
