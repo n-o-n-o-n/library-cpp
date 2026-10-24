@@ -1,11 +1,14 @@
 #pragma once
 #include <cassert>
 #include <iterator>
+#include <numeric>
 #include <vector>
 using namespace std;
 
 struct union_find {
-    union_find(int n) : p(n, -1) {}
+    union_find(int n) : p(n, -1), cyc(n) {
+        iota(cyc.begin(), cyc.end(), 0);
+    }
     int leader(int u) {
         assert(0 <= u && u < ssize(p));
         return p[u] < 0 ? u : p[u] = leader(p[u]);
@@ -24,10 +27,21 @@ struct union_find {
         if (p[u] > p[v]) swap(u, v);
         p[u] += p[v];
         p[v] = u;
+        swap(cyc[u], cyc[v]);
     }
     int size(int u) {
         assert(0 <= u && u < ssize(p));
         return -p[leader(u)];
+    }
+    vector<int> group(int u) {
+        assert(0 <= u && u < ssize(p));
+        vector<int> res = {u};
+        int v = cyc[u];
+        while (v != u) {
+            res.push_back(v);
+            v = cyc[v];
+        }
+        return res;
     }
     vector<vector<int>> groups() {
         int n = p.size();
@@ -42,5 +56,5 @@ struct union_find {
         return res;
     }
 private:
-    vector<int> p;
+    vector<int> p, cyc;
 };
