@@ -233,6 +233,35 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/fps/subprod_tree.hpp
       title: src/fps/subprod_tree.hpp
+  - name: src/geometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/arg_sort.hpp
+      title: Arg Sort
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/circle.hpp
+      title: Circle
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/circumcircle_of_triangle.hpp
+      title: src/geometry/circumcircle_of_triangle.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/common.hpp
+      title: Common
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/convex_hull.hpp
+      title: Convex Hull
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/incircle_of_triangle.hpp
+      title: src/geometry/incircle_of_triangle.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/line.hpp
+      title: Line
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/polygon.hpp
+      title: Polygon
+    - icon: ':heavy_check_mark:'
+      path: src/geometry/segment.hpp
+      title: Segment
   - name: src/graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -682,6 +711,71 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/power_projection.test.cpp
       title: test/fps/power_projection.test.cpp
+  - name: test/geometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/arg_sort.test.cpp
+      title: test/geometry/arg_sort.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/circle_common_tangents.test.cpp
+      title: test/geometry/circle_common_tangents.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/circle_count_common_tangents.test.cpp
+      title: test/geometry/circle_count_common_tangents.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/circle_crosspoint_with_circle.test.cpp
+      title: test/geometry/circle_crosspoint_with_circle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/circle_crosspoint_with_line.test.cpp
+      title: test/geometry/circle_crosspoint_with_line.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/circle_tangent_points.test.cpp
+      title: test/geometry/circle_tangent_points.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/circumcircle_of_triangle.test.cpp
+      title: test/geometry/circumcircle_of_triangle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/common_ccw.test.cpp
+      title: test/geometry/common_ccw.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/convex_hull_aoj.test.cpp
+      title: test/geometry/convex_hull_aoj.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/convex_hull_yosupo.test.cpp
+      title: test/geometry/convex_hull_yosupo.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/incircle_of_triangle.test.cpp
+      title: test/geometry/incircle_of_triangle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/line_parallel_orthogonal.test.cpp
+      title: test/geometry/line_parallel_orthogonal.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/line_projection.test.cpp
+      title: test/geometry/line_projection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/line_reflection.test.cpp
+      title: test/geometry/line_reflection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/polygon_area.test.cpp
+      title: test/geometry/polygon_area.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/polygon_contain.test.cpp
+      title: test/geometry/polygon_contain.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/polygon_diam.test.cpp
+      title: test/geometry/polygon_diam.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/polygon_is_convex.test.cpp
+      title: test/geometry/polygon_is_convex.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/segment_crosspoint.test.cpp
+      title: test/geometry/segment_crosspoint.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/segment_dist.test.cpp
+      title: test/geometry/segment_dist.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/geometry/segment_intersect.test.cpp
+      title: test/geometry/segment_intersect.test.cpp
   - name: test/graph
     pages:
     - icon: ':heavy_check_mark:'
