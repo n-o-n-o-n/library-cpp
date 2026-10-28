@@ -189,8 +189,8 @@ data:
   timestamp: '2026-10-26 18:50:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/geometry/convex_hull_yosupo.test.cpp
   - test/geometry/convex_hull_aoj.test.cpp
+  - test/geometry/convex_hull_yosupo.test.cpp
 documentation_of: src/geometry/convex_hull.hpp
 layout: document
 title: Convex Hull

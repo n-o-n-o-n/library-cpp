@@ -53,8 +53,8 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/berlekamp_massey.test.cpp
   - test/math/bmbm.test.cpp
+  - test/math/berlekamp_massey.test.cpp
 documentation_of: src/math/berlekamp_massey.hpp
 layout: document
 redirect_from:

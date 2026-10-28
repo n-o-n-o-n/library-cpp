@@ -64,8 +64,8 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/misc/mo_static_range_count_distinct.test.cpp
   - test/data_structure/persistent_ds/persistent_segtree.test.cpp
+  - test/misc/mo_static_range_count_distinct.test.cpp
 documentation_of: src/misc/compress.hpp
 layout: document
 title: Compress

@@ -62,8 +62,8 @@ data:
   timestamp: '2026-10-24 16:40:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/misc/parallel_binary_search.test.cpp
   - test/data_structure/union_find/union_find.test.cpp
+  - test/misc/parallel_binary_search.test.cpp
 documentation_of: src/data_structure/union_find/union_find.hpp
 layout: document
 title: Union Find

@@ -47,17 +47,17 @@ data:
   isVerificationFile: false
   path: src/misc/merge_and_unique.hpp
   requiredBy:
-  - src/misc/inversion_number.hpp
-  - src/misc/compress.hpp
   - src/data_structure/rectangle_query/rectangle_sum.hpp
   - src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
+  - src/misc/compress.hpp
+  - src/misc/inversion_number.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/misc/mo_static_range_count_distinct.test.cpp
-  - test/data_structure/rectangle_query/rectangle_sum.test.cpp
-  - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
   - test/data_structure/persistent_ds/persistent_segtree.test.cpp
+  - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
+  - test/data_structure/rectangle_query/rectangle_sum.test.cpp
+  - test/misc/mo_static_range_count_distinct.test.cpp
 documentation_of: src/misc/merge_and_unique.hpp
 layout: document
 title: Merge And Unique

@@ -40,15 +40,15 @@ data:
   isVerificationFile: false
   path: src/math/number_theory/ext_gcd.hpp
   requiredBy:
-  - src/convolution/arbitrary_mod_convolution.hpp
+  - src/math/number_theory/mod_inv.hpp
   - src/math/number_theory/garner.hpp
   - src/math/number_theory/crt.hpp
-  - src/math/number_theory/mod_inv.hpp
+  - src/convolution/arbitrary_mod_convolution.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/convolution/arbitrary_mod_convolution.test.cpp
   - test/math/number_theory/mod_inv.test.cpp
+  - test/convolution/arbitrary_mod_convolution.test.cpp
 documentation_of: src/math/number_theory/ext_gcd.hpp
 layout: document
 title: Extended GCD

@@ -209,38 +209,38 @@ data:
   isVerificationFile: false
   path: src/geometry/common.hpp
   requiredBy:
-  - src/geometry/polygon.hpp
-  - src/geometry/incircle_of_triangle.hpp
-  - src/geometry/convex_hull.hpp
-  - src/geometry/circumcircle_of_triangle.hpp
-  - src/geometry/arg_sort.hpp
   - src/geometry/line.hpp
+  - src/geometry/polygon.hpp
+  - src/geometry/arg_sort.hpp
+  - src/geometry/convex_hull.hpp
   - src/geometry/segment.hpp
   - src/geometry/circle.hpp
+  - src/geometry/incircle_of_triangle.hpp
+  - src/geometry/circumcircle_of_triangle.hpp
   timestamp: '2026-10-26 18:50:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/geometry/line_projection.test.cpp
-  - test/geometry/polygon_area.test.cpp
-  - test/geometry/circle_crosspoint_with_circle.test.cpp
-  - test/geometry/line_reflection.test.cpp
-  - test/geometry/circle_crosspoint_with_line.test.cpp
-  - test/geometry/segment_crosspoint.test.cpp
-  - test/geometry/polygon_contain.test.cpp
-  - test/geometry/circumcircle_of_triangle.test.cpp
-  - test/geometry/incircle_of_triangle.test.cpp
-  - test/geometry/arg_sort.test.cpp
-  - test/geometry/segment_intersect.test.cpp
-  - test/geometry/segment_dist.test.cpp
   - test/geometry/circle_common_tangents.test.cpp
-  - test/geometry/polygon_diam.test.cpp
-  - test/geometry/line_parallel_orthogonal.test.cpp
-  - test/geometry/circle_count_common_tangents.test.cpp
-  - test/geometry/polygon_is_convex.test.cpp
-  - test/geometry/circle_tangent_points.test.cpp
-  - test/geometry/convex_hull_yosupo.test.cpp
-  - test/geometry/convex_hull_aoj.test.cpp
+  - test/geometry/circle_crosspoint_with_line.test.cpp
+  - test/geometry/segment_intersect.test.cpp
+  - test/geometry/polygon_contain.test.cpp
+  - test/geometry/polygon_area.test.cpp
+  - test/geometry/line_projection.test.cpp
+  - test/geometry/arg_sort.test.cpp
   - test/geometry/common_ccw.test.cpp
+  - test/geometry/polygon_diam.test.cpp
+  - test/geometry/circumcircle_of_triangle.test.cpp
+  - test/geometry/segment_crosspoint.test.cpp
+  - test/geometry/circle_tangent_points.test.cpp
+  - test/geometry/circle_crosspoint_with_circle.test.cpp
+  - test/geometry/segment_dist.test.cpp
+  - test/geometry/convex_hull_aoj.test.cpp
+  - test/geometry/polygon_is_convex.test.cpp
+  - test/geometry/line_reflection.test.cpp
+  - test/geometry/convex_hull_yosupo.test.cpp
+  - test/geometry/circle_count_common_tangents.test.cpp
+  - test/geometry/line_parallel_orthogonal.test.cpp
+  - test/geometry/incircle_of_triangle.test.cpp
 documentation_of: src/geometry/common.hpp
 layout: document
 title: Common

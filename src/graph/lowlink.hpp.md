@@ -143,8 +143,8 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/lowlink_bridge.test.cpp
   - test/graph/lowlink_articulation_point.test.cpp
+  - test/graph/lowlink_bridge.test.cpp
 documentation_of: src/graph/lowlink.hpp
 layout: document
 redirect_from:

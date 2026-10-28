@@ -97,8 +97,8 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/number_theory/discrete_logarithm.test.cpp
   - test/math/number_theory/mod_log.test.cpp
+  - test/math/number_theory/discrete_logarithm.test.cpp
 documentation_of: src/modint/dynamic_modint.hpp
 layout: document
 redirect_from:

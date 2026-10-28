@@ -51,14 +51,14 @@ data:
   isVerificationFile: false
   path: src/data_structure/range_query/sparse_table.hpp
   requiredBy:
-  - src/data_structure/range_query/static_rmq.hpp
   - src/tree/static_tree.hpp
+  - src/data_structure/range_query/static_rmq.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data_structure/range_query/sparse_table.test.cpp
   - test/tree/static_tree.lca.test.cpp
   - test/tree/static_tree.jump.test.cpp
+  - test/data_structure/range_query/sparse_table.test.cpp
 documentation_of: src/data_structure/range_query/sparse_table.hpp
 layout: document
 redirect_from:

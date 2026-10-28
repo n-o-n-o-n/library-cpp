@@ -251,13 +251,13 @@ data:
   timestamp: '2026-10-26 18:50:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/geometry/circle_crosspoint_with_circle.test.cpp
+  - test/geometry/circle_common_tangents.test.cpp
   - test/geometry/circle_crosspoint_with_line.test.cpp
   - test/geometry/circumcircle_of_triangle.test.cpp
-  - test/geometry/incircle_of_triangle.test.cpp
-  - test/geometry/circle_common_tangents.test.cpp
-  - test/geometry/circle_count_common_tangents.test.cpp
   - test/geometry/circle_tangent_points.test.cpp
+  - test/geometry/circle_crosspoint_with_circle.test.cpp
+  - test/geometry/circle_count_common_tangents.test.cpp
+  - test/geometry/incircle_of_triangle.test.cpp
 documentation_of: src/geometry/circle.hpp
 layout: document
 title: Circle

@@ -52,9 +52,9 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data_structure/range_query/dynamic_lazysegtree.test.cpp
   - test/data_structure/range_query/lazysegtree.test.cpp
   - test/data_structure/range_query/dualsegtree.test.cpp
+  - test/data_structure/range_query/dynamic_lazysegtree.test.cpp
 documentation_of: src/monoid/range_affine_range_sum.hpp
 layout: document
 redirect_from:

@@ -179,8 +179,8 @@ data:
   timestamp: '2026-10-26 18:50:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/geometry/segment_crosspoint.test.cpp
   - test/geometry/segment_intersect.test.cpp
+  - test/geometry/segment_crosspoint.test.cpp
   - test/geometry/segment_dist.test.cpp
 documentation_of: src/geometry/segment.hpp
 layout: document

@@ -220,12 +220,12 @@ data:
   timestamp: '2026-10-26 18:50:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/geometry/polygon_area.test.cpp
   - test/geometry/polygon_contain.test.cpp
+  - test/geometry/polygon_area.test.cpp
   - test/geometry/polygon_diam.test.cpp
+  - test/geometry/convex_hull_aoj.test.cpp
   - test/geometry/polygon_is_convex.test.cpp
   - test/geometry/convex_hull_yosupo.test.cpp
-  - test/geometry/convex_hull_aoj.test.cpp
 documentation_of: src/geometry/polygon.hpp
 layout: document
 title: Polygon

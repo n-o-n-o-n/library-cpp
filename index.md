@@ -929,3 +929,7 @@ data:
       title: test/tree/static_tree.lca.test.cpp
 layout: toppage
 ---
+## Reference
+
+- [Numbers](notes/numbers.html)
+- [Enumerative Combinatorics](notes/enumerative_combinatorics.html)
