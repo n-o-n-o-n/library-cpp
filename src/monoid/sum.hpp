@@ -1,7 +1,7 @@
 #pragma once
 
 template<typename T>
-struct add_monoid {
+struct sum_monoid {
     using S = T;
     static S op(S a, S b) { return a + b; }
     static S e() { return 0; }

@@ -2,7 +2,7 @@
 
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/data_structure/union_find/weighted_union_find.hpp"
-#include "../../../src/monoid/add.hpp"
+#include "../../../src/monoid/sum.hpp"
 
 using mint = modint<998244353>;
 
@@ -13,7 +13,7 @@ int main() {
     cin.tie(nullptr);
     int N, Q;
     cin >> N >> Q;
-    weighted_union_find<add_monoid<mint>> wuf(N);
+    weighted_union_find<sum_monoid<mint>> wuf(N);
     while (Q--) {
         int t, u, v;
         cin >> t >> u >> v;

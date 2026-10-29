@@ -2,7 +2,7 @@
 
 #include "../../../src/misc/compress.hpp"
 #include "../../../src/data_structure/persistent_ds/persistent_segtree.hpp"
-#include "../../../src/monoid/add.hpp"
+#include "../../../src/monoid/sum.hpp"
 
 #include <iostream>
 
@@ -19,7 +19,7 @@ int main() {
     int H = compress_inplace(Y, D, U);
     vector<vector<pair<int, int>>> inv(H);
     for (int i = 0; i < N; i++) inv[Y[i]].emplace_back(X[i], Z[i]);
-    persistent_segtree<add_monoid<long long>> seg(W);
+    persistent_segtree<sum_monoid<long long>> seg(W);
     vector<int> T(H);
     for (int y = 0, t = 0; y < H; y++) {
         T[y] = t;

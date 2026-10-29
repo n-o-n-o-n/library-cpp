@@ -26,7 +26,7 @@ int main() {
         vector<int> shl(N - 1);
         iota(shl.begin(), shl.end(), 1);
         shuffle(shl.begin(), shl.end(), rng::eng);
-        int K = rng::randint(0, 10);
+        int K = rng::randint(0, min(10, N - 1));
         for (int i = 0; i < K; i++) g_sub.emplace_back(shl[i], rng::randint(1, 998244352));
         for (auto [p, e] : g_sub) g[p] = e;
         assert((f / g).pre(N) == fps_div_sparse(f, g_sub));

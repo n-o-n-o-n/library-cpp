@@ -1,5 +1,6 @@
 #pragma once
-#include <numeric>
+#include <algorithm>
+#include <limits>
 using namespace std;
 
 template<typename T, T E = numeric_limits<T>::min()>

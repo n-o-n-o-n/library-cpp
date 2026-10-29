@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 
 #include "../../../src/data_structure/range_query/disjoint_sparse_table.hpp"
-#include "../../../src/monoid/add.hpp"
+#include "../../../src/monoid/sum.hpp"
 
 #include <iostream>
 
@@ -12,7 +12,7 @@ int main() {
     cin >> N >> Q;
     vector<long long> A(N);
     for (auto &e : A) cin >> e;
-    disjoint_sparse_table<add_monoid<long long>> st(A);
+    disjoint_sparse_table<sum_monoid<long long>> st(A);
     for (int l, r; Q--; ) {
         cin >> l >> r;
         cout << st.prod(l, r) << '\n';

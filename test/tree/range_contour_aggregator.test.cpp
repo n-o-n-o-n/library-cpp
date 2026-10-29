@@ -2,7 +2,7 @@
 
 #include "../../src/tree/range_contour_aggregator.hpp"
 #include "../../src/data_structure/range_query/segtree.hpp"
-#include "../../src/monoid/add.hpp"
+#include "../../src/monoid/sum.hpp"
 
 #include <iostream>
 
@@ -13,7 +13,7 @@ int main() {
     cin >> N >> Q;
     vector<int> A(N);
     for (auto &e : A) cin >> e;
-    range_contour_aggregator<segtree<add_monoid<long long>>> RCA(N);
+    range_contour_aggregator<segtree<sum_monoid<long long>>> RCA(N);
     for (int i = 1, u, v; i < N; i++) {
         cin >> u >> v;
         RCA.add_edge(u, v);
