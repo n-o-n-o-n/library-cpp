@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/math/number_theory/discrete_logarithm.hpp
     title: src/math/number_theory/discrete_logarithm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
   - icon: ':heavy_check_mark:'
     path: src/modint/dynamic_modint.hpp
     title: src/modint/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_inv_sparse.hpp
     title: src/fps/fps_inv_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   _extendedRequiredBy: []
@@ -27,44 +27,44 @@ data:
     \             if (0 < a && i + a < n) {\n                    g[i + a] -= g[i]\
     \ * c;\n                }\n            }\n        }\n    }\n    return g;\n}\n\
     #line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#line 4 \"src/modint/modint.hpp\"\
-    \nusing namespace std;\n\ntemplate<int MOD>\nstruct modint {\n    constexpr modint()\
-    \ : x(0) {}\n    constexpr modint(long long v) {\n        long long y = v % m();\n\
-    \        if (y < 0) y += m();\n        x = (unsigned int)(y);\n    }\n    static\
-    \ constexpr modint raw(int v) {\n        modint a;\n        a.x = v;\n       \
-    \ return a;\n    }\n    static constexpr int mod() { return m(); }\n    constexpr\
-    \ unsigned int val() const { return x; }\n    constexpr modint& operator++() {\n\
-    \        x++;\n        if (x == m()) x = 0;\n        return *this;\n    }\n  \
-    \  constexpr modint& operator--() {\n        if (x == 0) x = m();\n        x--;\n\
-    \        return *this;\n    }\n    constexpr modint operator++(int) {\n      \
-    \  modint res = *this;\n        ++*this;\n        return res;\n    }\n    constexpr\
-    \ modint operator--(int) {\n        modint res = *this;\n        --*this;\n  \
-    \      return res;\n    }\n    constexpr modint& operator+=(const modint &r) {\n\
-    \        x += r.x;\n        if (x >= m()) x -= m();\n        return *this;\n \
-    \   }\n    constexpr modint& operator-=(const modint &r) {\n        x -= r.x;\n\
-    \        if (x >= m()) x += m();\n        return *this;\n    }\n    constexpr\
-    \ modint& operator*=(const modint &r) {\n        unsigned long long y = x;\n \
-    \       y *= r.x;\n        x = (unsigned int)(y % m());\n        return *this;\n\
-    \    }\n    constexpr modint &operator/=(const modint &r) {\n        return *this\
-    \ = *this * r.inv();\n    }\n    friend constexpr modint operator+(const modint\
-    \ &a, const modint &b) {\n        return modint(a) += b;\n    }\n    friend constexpr\
-    \ modint operator-(const modint &a, const modint &b) {\n        return modint(a)\
-    \ -= b;\n    }\n    friend constexpr modint operator*(const modint &a, const modint\
-    \ &b) {\n        return modint(a) *= b;\n    }\n    friend constexpr modint operator/(const\
-    \ modint &a, const modint &b) {\n        return modint(a) /= b;\n    }\n    friend\
-    \ constexpr bool operator==(const modint &a, const modint &b) {\n        return\
-    \ a.x == b.x;\n    }\n    friend constexpr bool operator!=(const modint &a, const\
-    \ modint &b) {\n        return a.x != b.x;\n    }\n    constexpr modint operator+()\
-    \ const { return *this; }\n    constexpr modint operator-() const { return modint()\
-    \ - *this; }\n    constexpr modint pow(long long k) const {\n        assert(k\
-    \ >= 0);\n        modint a = *this;\n        modint res = 1;\n        while (k\
-    \ > 0) {\n            if (k & 1) res *= a;\n            a *= a;\n            k\
-    \ >>= 1;\n        }\n        return res;\n    }\n    constexpr modint inv() const\
-    \ {\n        long long a = x, b = m(), u = 1, v = 0;\n        while (b > 0) {\n\
-    \            long long t = a / b;\n            a -= t * b;\n            swap(a,\
-    \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n    static constexpr unsigned\
-    \ int m() { return MOD; }\n};\n#line 5 \"test/fps/fps_inv_sparse.test.cpp\"\n\n\
-    using mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \nusing namespace std;\n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr\
+    \ modint() : x(0) {}\n    template<typename T>\n    constexpr modint(T v) {\n\
+    \        int y = v % (int)mod();\n        if (y < 0) y += mod();\n        x =\
+    \ (unsigned int)y;\n    }\n    static constexpr modint raw(int v) {\n        modint\
+    \ a;\n        a.x = v;\n        return a;\n    }\n    static constexpr int mod()\
+    \ { return MOD; }\n    constexpr unsigned int val() const { return x; }\n    constexpr\
+    \ modint& operator++() {\n        x++;\n        if (x == mod()) x = 0;\n     \
+    \   return *this;\n    }\n    constexpr modint& operator--() {\n        if (x\
+    \ == 0) x = mod();\n        x--;\n        return *this;\n    }\n    constexpr\
+    \ modint operator++(int) {\n        modint res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    constexpr modint operator--(int) {\n        modint\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr modint&\
+    \ operator+=(const modint &r) {\n        x += r.x;\n        if (x >= mod()) x\
+    \ -= mod();\n        return *this;\n    }\n    constexpr modint& operator-=(const\
+    \ modint &r) {\n        x -= r.x;\n        if (x >= mod()) x += mod();\n     \
+    \   return *this;\n    }\n    constexpr modint& operator*=(const modint &r) {\n\
+    \        unsigned long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y\
+    \ % mod());\n        return *this;\n    }\n    constexpr modint &operator/=(const\
+    \ modint &r) {\n        return *this = *this * r.inv();\n    }\n    friend constexpr\
+    \ modint operator+(const modint &a, const modint &b) {\n        return modint(a)\
+    \ += b;\n    }\n    friend constexpr modint operator-(const modint &a, const modint\
+    \ &b) {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
+    \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
+    \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
+    \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
+    \ const modint &b) {\n        return a.x == b.x;\n    }\n    friend constexpr\
+    \ bool operator!=(const modint &a, const modint &b) {\n        return a.x != b.x;\n\
+    \    }\n    constexpr modint operator+() const { return *this; }\n    constexpr\
+    \ modint operator-() const { return modint() - *this; }\n    constexpr modint\
+    \ pow(long long k) const {\n        assert(k >= 0);\n        modint a = *this;\n\
+    \        modint res = 1;\n        while (k > 0) {\n            if (k & 1) res\
+    \ *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
+    \ res;\n    }\n    constexpr modint inv() const {\n        long long a = x, b\
+    \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
+    \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
+    \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
+    \    unsigned int x;\n};\n#line 5 \"test/fps/fps_inv_sparse.test.cpp\"\n\nusing\
+    \ mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, K;\n    cin >> N >> K;\n    vector<pair<int,\
     \ mint>> f_sub(K);\n    for (int i = 0; i < K; i++) {\n        int a, b;\n   \
     \     cin >> a >> b;\n        f_sub[i] = {a, mint::raw(b)};\n    }\n    auto f\
@@ -84,7 +84,7 @@ data:
   isVerificationFile: true
   path: test/fps/fps_inv_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/fps_inv_sparse.test.cpp

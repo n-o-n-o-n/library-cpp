@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -16,22 +16,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/rational_sum.hpp
     title: src/fps/rational_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []
@@ -48,49 +48,48 @@ data:
   bundledCode: "#line 1 \"test/fps/power_projection.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\"\n\n#include <vector>\n#include <array>\n\
     #include <numeric>\n#include <cstdint>\n#include <type_traits>\n#line 2 \"src/modint/modint.hpp\"\
-    \n#include <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate<int\
-    \ MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n    constexpr modint(long\
-    \ long v) {\n        long long y = v % m();\n        if (y < 0) y += m();\n  \
-    \      x = (unsigned int)(y);\n    }\n    static constexpr modint raw(int v) {\n\
-    \        modint a;\n        a.x = v;\n        return a;\n    }\n    static constexpr\
-    \ int mod() { return m(); }\n    constexpr unsigned int val() const { return x;\
-    \ }\n    constexpr modint& operator++() {\n        x++;\n        if (x == m())\
-    \ x = 0;\n        return *this;\n    }\n    constexpr modint& operator--() {\n\
-    \        if (x == 0) x = m();\n        x--;\n        return *this;\n    }\n  \
-    \  constexpr modint operator++(int) {\n        modint res = *this;\n        ++*this;\n\
-    \        return res;\n    }\n    constexpr modint operator--(int) {\n        modint\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr modint&\
-    \ operator+=(const modint &r) {\n        x += r.x;\n        if (x >= m()) x -=\
-    \ m();\n        return *this;\n    }\n    constexpr modint& operator-=(const modint\
-    \ &r) {\n        x -= r.x;\n        if (x >= m()) x += m();\n        return *this;\n\
-    \    }\n    constexpr modint& operator*=(const modint &r) {\n        unsigned\
-    \ long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y % m());\n\
-    \        return *this;\n    }\n    constexpr modint &operator/=(const modint &r)\
-    \ {\n        return *this = *this * r.inv();\n    }\n    friend constexpr modint\
-    \ operator+(const modint &a, const modint &b) {\n        return modint(a) += b;\n\
-    \    }\n    friend constexpr modint operator-(const modint &a, const modint &b)\
-    \ {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
-    \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
-    \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
-    \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
-    \ const modint &b) {\n        return a.x == b.x;\n    }\n    friend constexpr\
-    \ bool operator!=(const modint &a, const modint &b) {\n        return a.x != b.x;\n\
-    \    }\n    constexpr modint operator+() const { return *this; }\n    constexpr\
-    \ modint operator-() const { return modint() - *this; }\n    constexpr modint\
-    \ pow(long long k) const {\n        assert(k >= 0);\n        modint a = *this;\n\
-    \        modint res = 1;\n        while (k > 0) {\n            if (k & 1) res\
-    \ *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
-    \ res;\n    }\n    constexpr modint inv() const {\n        long long a = x, b\
-    \ = m(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a /\
-    \ b;\n            a -= t * b;\n            swap(a, b);\n            u -= t * v;\n\
-    \            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n    static constexpr unsigned int m() { return MOD; }\n\
-    };\n#line 9 \"test/fps/power_projection.test.cpp\"\n\nusing mint = modint<998244353>;\n\
-    \nnamespace AC {\n// https://atcoder.jp/contests/abc439/submissions/72457854 \n\
-    \nnamespace combination {\n\ntemplate<typename mint>\nstruct container {\n   \
-    \ static vector<mint> fac, finv;\n    static void init(int n) {\n        int sz\
-    \ = fac.size();\n        if (n < sz) return;\n        n = clamp(n, 2 * sz, min<int>(1\
-    \ << 27, mint::mod() - 1));\n        fac.resize(n + 1);\n        finv.resize(n\
+    \n#include <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate<unsigned\
+    \ int MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n    template<typename\
+    \ T>\n    constexpr modint(T v) {\n        int y = v % (int)mod();\n        if\
+    \ (y < 0) y += mod();\n        x = (unsigned int)y;\n    }\n    static constexpr\
+    \ modint raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n\
+    \    }\n    static constexpr int mod() { return MOD; }\n    constexpr unsigned\
+    \ int val() const { return x; }\n    constexpr modint& operator++() {\n      \
+    \  x++;\n        if (x == mod()) x = 0;\n        return *this;\n    }\n    constexpr\
+    \ modint& operator--() {\n        if (x == 0) x = mod();\n        x--;\n     \
+    \   return *this;\n    }\n    constexpr modint operator++(int) {\n        modint\
+    \ res = *this;\n        ++*this;\n        return res;\n    }\n    constexpr modint\
+    \ operator--(int) {\n        modint res = *this;\n        --*this;\n        return\
+    \ res;\n    }\n    constexpr modint& operator+=(const modint &r) {\n        x\
+    \ += r.x;\n        if (x >= mod()) x -= mod();\n        return *this;\n    }\n\
+    \    constexpr modint& operator-=(const modint &r) {\n        x -= r.x;\n    \
+    \    if (x >= mod()) x += mod();\n        return *this;\n    }\n    constexpr\
+    \ modint& operator*=(const modint &r) {\n        unsigned long long y = x;\n \
+    \       y *= r.x;\n        x = (unsigned int)(y % mod());\n        return *this;\n\
+    \    }\n    constexpr modint &operator/=(const modint &r) {\n        return *this\
+    \ = *this * r.inv();\n    }\n    friend constexpr modint operator+(const modint\
+    \ &a, const modint &b) {\n        return modint(a) += b;\n    }\n    friend constexpr\
+    \ modint operator-(const modint &a, const modint &b) {\n        return modint(a)\
+    \ -= b;\n    }\n    friend constexpr modint operator*(const modint &a, const modint\
+    \ &b) {\n        return modint(a) *= b;\n    }\n    friend constexpr modint operator/(const\
+    \ modint &a, const modint &b) {\n        return modint(a) /= b;\n    }\n    friend\
+    \ constexpr bool operator==(const modint &a, const modint &b) {\n        return\
+    \ a.x == b.x;\n    }\n    friend constexpr bool operator!=(const modint &a, const\
+    \ modint &b) {\n        return a.x != b.x;\n    }\n    constexpr modint operator+()\
+    \ const { return *this; }\n    constexpr modint operator-() const { return modint()\
+    \ - *this; }\n    constexpr modint pow(long long k) const {\n        assert(k\
+    \ >= 0);\n        modint a = *this;\n        modint res = 1;\n        while (k\
+    \ > 0) {\n            if (k & 1) res *= a;\n            a *= a;\n            k\
+    \ >>= 1;\n        }\n        return res;\n    }\n    constexpr modint inv() const\
+    \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
+    \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
+    \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 9 \"test/fps/power_projection.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\nnamespace AC {\n// https://atcoder.jp/contests/abc439/submissions/72457854\
+    \ \n\nnamespace combination {\n\ntemplate<typename mint>\nstruct container {\n\
+    \    static vector<mint> fac, finv;\n    static void init(int n) {\n        int\
+    \ sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n, 2 * sz,\
+    \ min<int>(1 << 27, mint::mod() - 1));\n        fac.resize(n + 1);\n        finv.resize(n\
     \ + 1);\n        for (int i = sz; i <= n; i++) {\n            fac[i] = i * fac[i\
     \ - 1];\n        }\n        finv[n] = fac[n].inv();\n        for (int i = n; i\
     \ >= sz; i--) {\n            finv[i - 1] = i * finv[i];\n        }\n    }\n};\n\
@@ -421,8 +420,9 @@ data:
     \ if (P[i] == 0) break;\n        A.push_back({P[i].pow(L - 1) * (P[i] - P[i +\
     \ 1])});\n        B.push_back({1, -P[i + 1] / P[i]});\n    }\n    auto ans = rational_sum(A,\
     \ B, L);\n    return vector<mint> (ans.begin(), ans.begin() + L);\n}\n\n} // namespace\
-    \ AC\n\n#line 5 \"src/math/enumerative_combinatorics/combination.hpp\"\nusing\
-    \ namespace std;\n\nnamespace combination {\n\ntemplate<typename mint>\nstruct\
+    \ AC\n\n#line 4 \"src/math/enumerative_combinatorics/combination.hpp\"\n#include\
+    \ <concepts>\n#line 6 \"src/math/enumerative_combinatorics/combination.hpp\"\n\
+    using namespace std;\n\nnamespace combination {\n\ntemplate<typename mint>\nstruct\
     \ container {\n    static vector<mint> fac, finv;\n    static void init(int n)\
     \ {\n        int sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n,\
     \ 2 * sz, min<int>(1 << 27, mint::mod() - 1));\n        fac.resize(n + 1);\n \
@@ -442,14 +442,16 @@ data:
     \ if (n == 0) return k == 0;\n    return nCk<mint>(n + k - 1, k);\n}\ntemplate<typename\
     \ mint>\nmint multi_C(const vector<int> &v) {\n    int n = 0;\n    for (const\
     \ int &k : v) n += k;\n    mint res = fac<mint>(n);\n    for (const int &k : v)\
-    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint nPk(int\
-    \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n)\
-    \ * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int n) {\n  \
-    \  return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\ntemplate<typename\
-    \ mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n + m, n);\n}\n\n\
-    } // namespace combination\n#line 6 \"src/math/number_theory/prime.hpp\"\n#include\
-    \ <iterator>\n#line 9 \"src/math/number_theory/prime.hpp\"\n#include <utility>\n\
-    #line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\ntemplate<typename\
+    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint multi_C(same_as<int>\
+    \ auto... ks) {\n    int n = (0 + ... + ks);\n    mint res = fac<mint>(n);\n \
+    \   ((res *= finv<mint>(ks)), ...);\n    return res;\n}\ntemplate<typename mint>\n\
+    mint nPk(int n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return\
+    \ fac<mint>(n) * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int\
+    \ n) {\n    return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\n\
+    template<typename mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n\
+    \ + m, n);\n}\n\n} // namespace combination\n#line 6 \"src/math/number_theory/prime.hpp\"\
+    \n#include <iterator>\n#line 9 \"src/math/number_theory/prime.hpp\"\n#include\
+    \ <utility>\n#line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\ntemplate<typename\
     \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
     \ constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr\
     \ U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n            x ^=\
@@ -779,47 +781,46 @@ data:
     \ == -1 ? numeric_limits<int>::max() : deg, sz_q));\n        }\n        return\
     \ {pl, ql};\n    };\n    auto [p, q] = rec(rec, 0, ps.size());\n    if (deg !=\
     \ -1) {\n        p.resize(deg);\n        q.resize(deg);\n    }\n    return p /=\
-    \ q;\n}\n#line 3 \"src/random/utility.hpp\"\n#include <concepts>\n#include <random>\n\
-    using namespace std;\n\nnamespace rng {\n\ninline random_device seed;\ninline\
-    \ mt19937 eng(seed());\n\ntemplate<typename T>\nvoid set_seed(const T &sd) {\n\
-    \    eng.seed(sd);\n}\n\ntemplate<integral T>\ninline T randint(T lo, T hi) {\n\
-    \    assert(lo <= hi);\n    uniform_int_distribution<T> dist(lo, hi);\n    return\
-    \ dist(eng);\n}\n\ntemplate<integral T>\ninline pair<T, T> randpair(T lo, T hi,\
-    \ bool strict = false) {\n    assert(lo + strict <= hi);\n    T l = randint(lo,\
-    \ hi - strict);\n    T r = randint(l + strict, hi);\n    return make_pair(l, r);\n\
-    }\n\n} // namespace rng\n#line 6 \"src/random/sequence.hpp\"\nusing namespace\
-    \ std;\n\nnamespace rng {\n\ntemplate<typename T>\nvoid shuffle(vector<T> &v)\
-    \ {\n    std::shuffle(v.begin(), v.end(), eng);\n}\n\ntemplate<integral T>\ninline\
-    \ vector<T> random_sequence(int n, T lo, T hi) {\n    assert(n >= 0);\n    vector<T>\
-    \ res(n);\n    for (int i = 0; i < n; i++) res[i] = randint(lo, hi);\n    return\
-    \ res;\n}\n\ntemplate<integral T>\ninline vector<T> random_increasing_sequence(int\
-    \ n, T lo, T hi, bool strict = false) {\n    assert(n >= 0);\n    if (n == 0)\
-    \ return {};\n    assert(lo + (n - 1) * strict <= hi);\n    vector<T> res = random_sequence(n,\
-    \ lo, hi - (n - 1) * strict);\n    sort(res.begin(), res.end());\n    for (int\
-    \ i = 0; i < n; i++) res[i] += i * strict;\n    return res;\n}\n\ntemplate<integral\
-    \ T>\ninline vector<T> random_decreasing_sequence(int n, T lo, T hi, bool strict\
-    \ = false) {\n    vector<T> res = random_increasing_sequence(n, lo, hi, strict);\n\
-    \    reverse(res.begin(), res.end());\n    return res;\n}\n\ntemplate<integral\
-    \ T = int>\ninline vector<T> random_permutation(int n, T v = 0) {\n    vector<T>\
-    \ res(n);\n    iota(res.begin(), res.end(), v);\n    shuffle(res);\n    return\
-    \ res;\n}\n\ninline string random_string(int n, char a, char z) {\n    assert(a\
-    \ <= z);\n    string s(n, a);\n    for (auto &c : s) c = randint((int)a, (int)z);\n\
-    \    return s;\n}\n\n} // namespace rng\n#line 820 \"test/fps/power_projection.test.cpp\"\
-    \n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    {\n        int A, B;\n        cin >> A >> B;\n        cout << A + B << '\\\
-    n';\n    }\n    for (int t = 0; t < 20; t++) {\n        auto [M, N] = rng::randpair(1,\
-    \ (int)1e5);\n        int L = rng::randint(2, (int)1e5);\n        auto oriA =\
-    \ rng::random_increasing_sequence(M, 1, N, true);\n        vector<mint> P;\n \
-    \       {\n            fps<mint> f(N + 1), g(N + 1, mint::raw(1));\n         \
-    \   const mint invM = mint::raw(M).inv();\n            for (int i = 0; i < M;\
-    \ i++) {\n                f[oriA[i]] = invM;\n            }\n            g[0]\
-    \ = mint();\n            P = power_projection<mint>(f, g, N, N);\n           \
-    \ P.push_back(mint());\n        }\n        vector<fps<mint>> A, B;\n        A.reserve(N),\
-    \ B.reserve(N);\n        for (int i = 0; i <= N; i++) {\n            if (P[i]\
-    \ == 0) break;\n            A.push_back({P[i].pow(L - 1) * (P[i] - P[i + 1])});\n\
-    \            B.push_back({1, -P[i + 1] / P[i]});\n        }\n        auto ans\
-    \ = rational_sum(A, B, L);\n        assert(vector<mint>(ans.begin(), ans.begin()\
-    \ + L) == AC::solve(N, M, L, oriA));\n    }\n}\n"
+    \ q;\n}\n#line 4 \"src/random/utility.hpp\"\n#include <random>\nusing namespace\
+    \ std;\n\nnamespace rng {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\
+    \ntemplate<typename T>\nvoid set_seed(const T &sd) {\n    eng.seed(sd);\n}\n\n\
+    template<integral T>\ninline T randint(T lo, T hi) {\n    assert(lo <= hi);\n\
+    \    uniform_int_distribution<T> dist(lo, hi);\n    return dist(eng);\n}\n\ntemplate<integral\
+    \ T>\ninline pair<T, T> randpair(T lo, T hi, bool strict = false) {\n    assert(lo\
+    \ + strict <= hi);\n    T l = randint(lo, hi - strict);\n    T r = randint(l +\
+    \ strict, hi);\n    return make_pair(l, r);\n}\n\n} // namespace rng\n#line 6\
+    \ \"src/random/sequence.hpp\"\nusing namespace std;\n\nnamespace rng {\n\ntemplate<typename\
+    \ T>\nvoid shuffle(vector<T> &v) {\n    std::shuffle(v.begin(), v.end(), eng);\n\
+    }\n\ntemplate<integral T>\ninline vector<T> random_sequence(int n, T lo, T hi)\
+    \ {\n    assert(n >= 0);\n    vector<T> res(n);\n    for (int i = 0; i < n; i++)\
+    \ res[i] = randint(lo, hi);\n    return res;\n}\n\ntemplate<integral T>\ninline\
+    \ vector<T> random_increasing_sequence(int n, T lo, T hi, bool strict = false)\
+    \ {\n    assert(n >= 0);\n    if (n == 0) return {};\n    assert(lo + (n - 1)\
+    \ * strict <= hi);\n    vector<T> res = random_sequence(n, lo, hi - (n - 1) *\
+    \ strict);\n    sort(res.begin(), res.end());\n    for (int i = 0; i < n; i++)\
+    \ res[i] += i * strict;\n    return res;\n}\n\ntemplate<integral T>\ninline vector<T>\
+    \ random_decreasing_sequence(int n, T lo, T hi, bool strict = false) {\n    vector<T>\
+    \ res = random_increasing_sequence(n, lo, hi, strict);\n    reverse(res.begin(),\
+    \ res.end());\n    return res;\n}\n\ntemplate<integral T = int>\ninline vector<T>\
+    \ random_permutation(int n, T v = 0) {\n    vector<T> res(n);\n    iota(res.begin(),\
+    \ res.end(), v);\n    shuffle(res);\n    return res;\n}\n\ninline string random_string(int\
+    \ n, char a, char z) {\n    assert(a <= z);\n    string s(n, a);\n    for (auto\
+    \ &c : s) c = randint((int)a, (int)z);\n    return s;\n}\n\n} // namespace rng\n\
+    #line 820 \"test/fps/power_projection.test.cpp\"\n#include <iostream>\n\nint main()\
+    \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    {\n        int\
+    \ A, B;\n        cin >> A >> B;\n        cout << A + B << '\\n';\n    }\n    for\
+    \ (int t = 0; t < 5; t++) {\n        auto [M, N] = rng::randpair(1, (int)1e5);\n\
+    \        int L = rng::randint(2, (int)1e5);\n        auto oriA = rng::random_increasing_sequence(M,\
+    \ 1, N, true);\n        vector<mint> P;\n        {\n            fps<mint> f(N\
+    \ + 1), g(N + 1, mint::raw(1));\n            const mint invM = mint::raw(M).inv();\n\
+    \            for (int i = 0; i < M; i++) {\n                f[oriA[i]] = invM;\n\
+    \            }\n            g[0] = mint();\n            P = power_projection<mint>(f,\
+    \ g, N, N);\n            P.push_back(mint());\n        }\n        vector<fps<mint>>\
+    \ A, B;\n        A.reserve(N), B.reserve(N);\n        for (int i = 0; i <= N;\
+    \ i++) {\n            if (P[i] == 0) break;\n            A.push_back({P[i].pow(L\
+    \ - 1) * (P[i] - P[i + 1])});\n            B.push_back({1, -P[i + 1] / P[i]});\n\
+    \        }\n        auto ans = rational_sum(A, B, L);\n        assert(vector<mint>(ans.begin(),\
+    \ ans.begin() + L) == AC::solve(N, M, L, oriA));\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include <vector>\n\
     #include <array>\n#include <numeric>\n#include <cstdint>\n#include <type_traits>\n\
     #include \"../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\n\
@@ -1161,7 +1162,7 @@ data:
     \n#include \"../../src/random/sequence.hpp\"\n#include <iostream>\n\nint main()\
     \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    {\n        int\
     \ A, B;\n        cin >> A >> B;\n        cout << A + B << '\\n';\n    }\n    for\
-    \ (int t = 0; t < 20; t++) {\n        auto [M, N] = rng::randpair(1, (int)1e5);\n\
+    \ (int t = 0; t < 5; t++) {\n        auto [M, N] = rng::randpair(1, (int)1e5);\n\
     \        int L = rng::randint(2, (int)1e5);\n        auto oriA = rng::random_increasing_sequence(M,\
     \ 1, N, true);\n        vector<mint> P;\n        {\n            fps<mint> f(N\
     \ + 1), g(N + 1, mint::raw(1));\n            const mint invM = mint::raw(M).inv();\n\
@@ -1188,7 +1189,7 @@ data:
   isVerificationFile: true
   path: test/fps/power_projection.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/power_projection.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
   - icon: ':heavy_check_mark:'

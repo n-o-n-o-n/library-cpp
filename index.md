@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/convolution/multiple_zmt.hpp
       title: src/convolution/multiple_zmt.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/convolution/ntt.hpp
       title: src/convolution/ntt.hpp
     - icon: ':heavy_check_mark:'
@@ -167,7 +167,7 @@ data:
       title: src/dp/monotone_minima.hpp
   - name: src/fps
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/fps/fps.hpp
       title: Formal Power Series
     - icon: ':warning:'
@@ -179,7 +179,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/fps/fps_compositional_inverse.hpp
       title: src/fps/fps_compositional_inverse.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: src/fps/fps_div_sparse.hpp
       title: src/fps/fps_div_sparse.hpp
     - icon: ':heavy_check_mark:'
@@ -188,7 +188,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/fps/fps_exp_sparse.hpp
       title: src/fps/fps_exp_sparse.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/fps/fps_inv.hpp
       title: src/fps/fps_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -313,7 +313,7 @@ data:
       title: src/math/bostan_mori_only_convolution.hpp
   - name: src/math/enumerative_combinatorics
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/math/enumerative_combinatorics/combination.hpp
       title: src/math/enumerative_combinatorics/combination.hpp
     - icon: ':heavy_check_mark:'
@@ -371,7 +371,7 @@ data:
     - icon: ':warning:'
       path: src/math/number_theory/mod_pow.hpp
       title: src/math/number_theory/mod_pow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/math/number_theory/prime.hpp
       title: Prime
   - name: src/misc
@@ -417,7 +417,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/modint/dynamic_modint.hpp
       title: src/modint/dynamic_modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/modint/modint.hpp
       title: src/modint/modint.hpp
   - name: src/monoid
@@ -442,10 +442,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/random/sequence.hpp
       title: Random Sequence
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/random/utility.hpp
       title: Random Utility
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/random/xor_shift.hpp
       title: Xor Shift
   - name: src/string
@@ -666,7 +666,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/fps/fps_compositional_inverse.test.cpp
       title: test/fps/fps_compositional_inverse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/fps/fps_div_sparse.test.cpp
       title: test/fps/fps_div_sparse.test.cpp
     - icon: ':heavy_check_mark:'

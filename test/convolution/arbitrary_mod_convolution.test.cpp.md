@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/convolution.hpp
     title: src/convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -16,13 +16,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/math/number_theory/garner.hpp
     title: Garner
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []
@@ -39,44 +39,44 @@ data:
     #define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \n\n#line 2 \"src/convolution/arbitrary_mod_convolution.hpp\"\n#include <vector>\n\
     #line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#include <cassert>\n\
-    using namespace std;\n\ntemplate<int MOD>\nstruct modint {\n    constexpr modint()\
-    \ : x(0) {}\n    constexpr modint(long long v) {\n        long long y = v % m();\n\
-    \        if (y < 0) y += m();\n        x = (unsigned int)(y);\n    }\n    static\
-    \ constexpr modint raw(int v) {\n        modint a;\n        a.x = v;\n       \
-    \ return a;\n    }\n    static constexpr int mod() { return m(); }\n    constexpr\
-    \ unsigned int val() const { return x; }\n    constexpr modint& operator++() {\n\
-    \        x++;\n        if (x == m()) x = 0;\n        return *this;\n    }\n  \
-    \  constexpr modint& operator--() {\n        if (x == 0) x = m();\n        x--;\n\
-    \        return *this;\n    }\n    constexpr modint operator++(int) {\n      \
-    \  modint res = *this;\n        ++*this;\n        return res;\n    }\n    constexpr\
-    \ modint operator--(int) {\n        modint res = *this;\n        --*this;\n  \
-    \      return res;\n    }\n    constexpr modint& operator+=(const modint &r) {\n\
-    \        x += r.x;\n        if (x >= m()) x -= m();\n        return *this;\n \
-    \   }\n    constexpr modint& operator-=(const modint &r) {\n        x -= r.x;\n\
-    \        if (x >= m()) x += m();\n        return *this;\n    }\n    constexpr\
-    \ modint& operator*=(const modint &r) {\n        unsigned long long y = x;\n \
-    \       y *= r.x;\n        x = (unsigned int)(y % m());\n        return *this;\n\
-    \    }\n    constexpr modint &operator/=(const modint &r) {\n        return *this\
-    \ = *this * r.inv();\n    }\n    friend constexpr modint operator+(const modint\
-    \ &a, const modint &b) {\n        return modint(a) += b;\n    }\n    friend constexpr\
-    \ modint operator-(const modint &a, const modint &b) {\n        return modint(a)\
-    \ -= b;\n    }\n    friend constexpr modint operator*(const modint &a, const modint\
-    \ &b) {\n        return modint(a) *= b;\n    }\n    friend constexpr modint operator/(const\
-    \ modint &a, const modint &b) {\n        return modint(a) /= b;\n    }\n    friend\
-    \ constexpr bool operator==(const modint &a, const modint &b) {\n        return\
-    \ a.x == b.x;\n    }\n    friend constexpr bool operator!=(const modint &a, const\
-    \ modint &b) {\n        return a.x != b.x;\n    }\n    constexpr modint operator+()\
-    \ const { return *this; }\n    constexpr modint operator-() const { return modint()\
-    \ - *this; }\n    constexpr modint pow(long long k) const {\n        assert(k\
-    \ >= 0);\n        modint a = *this;\n        modint res = 1;\n        while (k\
-    \ > 0) {\n            if (k & 1) res *= a;\n            a *= a;\n            k\
-    \ >>= 1;\n        }\n        return res;\n    }\n    constexpr modint inv() const\
-    \ {\n        long long a = x, b = m(), u = 1, v = 0;\n        while (b > 0) {\n\
-    \            long long t = a / b;\n            a -= t * b;\n            swap(a,\
-    \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n    static constexpr unsigned\
-    \ int m() { return MOD; }\n};\n#line 3 \"src/math/number_theory/prime.hpp\"\n\
-    #include <array>\n#line 5 \"src/math/number_theory/prime.hpp\"\n#include <cstdint>\n\
+    using namespace std;\n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr\
+    \ modint() : x(0) {}\n    template<typename T>\n    constexpr modint(T v) {\n\
+    \        int y = v % (int)mod();\n        if (y < 0) y += mod();\n        x =\
+    \ (unsigned int)y;\n    }\n    static constexpr modint raw(int v) {\n        modint\
+    \ a;\n        a.x = v;\n        return a;\n    }\n    static constexpr int mod()\
+    \ { return MOD; }\n    constexpr unsigned int val() const { return x; }\n    constexpr\
+    \ modint& operator++() {\n        x++;\n        if (x == mod()) x = 0;\n     \
+    \   return *this;\n    }\n    constexpr modint& operator--() {\n        if (x\
+    \ == 0) x = mod();\n        x--;\n        return *this;\n    }\n    constexpr\
+    \ modint operator++(int) {\n        modint res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    constexpr modint operator--(int) {\n        modint\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr modint&\
+    \ operator+=(const modint &r) {\n        x += r.x;\n        if (x >= mod()) x\
+    \ -= mod();\n        return *this;\n    }\n    constexpr modint& operator-=(const\
+    \ modint &r) {\n        x -= r.x;\n        if (x >= mod()) x += mod();\n     \
+    \   return *this;\n    }\n    constexpr modint& operator*=(const modint &r) {\n\
+    \        unsigned long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y\
+    \ % mod());\n        return *this;\n    }\n    constexpr modint &operator/=(const\
+    \ modint &r) {\n        return *this = *this * r.inv();\n    }\n    friend constexpr\
+    \ modint operator+(const modint &a, const modint &b) {\n        return modint(a)\
+    \ += b;\n    }\n    friend constexpr modint operator-(const modint &a, const modint\
+    \ &b) {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
+    \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
+    \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
+    \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
+    \ const modint &b) {\n        return a.x == b.x;\n    }\n    friend constexpr\
+    \ bool operator!=(const modint &a, const modint &b) {\n        return a.x != b.x;\n\
+    \    }\n    constexpr modint operator+() const { return *this; }\n    constexpr\
+    \ modint operator-() const { return modint() - *this; }\n    constexpr modint\
+    \ pow(long long k) const {\n        assert(k >= 0);\n        modint a = *this;\n\
+    \        modint res = 1;\n        while (k > 0) {\n            if (k & 1) res\
+    \ *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
+    \ res;\n    }\n    constexpr modint inv() const {\n        long long a = x, b\
+    \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
+    \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
+    \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
+    \    unsigned int x;\n};\n#line 3 \"src/math/number_theory/prime.hpp\"\n#include\
+    \ <array>\n#line 5 \"src/math/number_theory/prime.hpp\"\n#include <cstdint>\n\
     #include <iterator>\n#include <numeric>\n#include <type_traits>\n#include <utility>\n\
     #line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\ntemplate<typename\
     \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
@@ -332,7 +332,7 @@ data:
   isVerificationFile: true
   path: test/convolution/arbitrary_mod_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution/arbitrary_mod_convolution.test.cpp

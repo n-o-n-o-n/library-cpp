@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
   - icon: ':heavy_check_mark:'

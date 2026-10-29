@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/fps/fps_div_sparse.test.cpp
     title: test/fps/fps_div_sparse.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/fps/fps_div_sparse.hpp\"\n#include <cassert>\n#include\
@@ -30,7 +30,7 @@ data:
   path: src/fps/fps_div_sparse.hpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/fps/fps_div_sparse.test.cpp
 documentation_of: src/fps/fps_div_sparse.hpp

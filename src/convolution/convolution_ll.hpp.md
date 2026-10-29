@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/convolution.hpp
     title: src/convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []
@@ -32,73 +32,72 @@ data:
   bundledCode: "#line 2 \"src/convolution/convolution_ll.hpp\"\n#include <cassert>\n\
     #include <limits>\n#include <type_traits>\n#include <vector>\n#line 2 \"src/modint/modint.hpp\"\
     \n#include <algorithm>\n#line 4 \"src/modint/modint.hpp\"\nusing namespace std;\n\
-    \ntemplate<int MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n    constexpr\
-    \ modint(long long v) {\n        long long y = v % m();\n        if (y < 0) y\
-    \ += m();\n        x = (unsigned int)(y);\n    }\n    static constexpr modint\
-    \ raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n\
-    \    static constexpr int mod() { return m(); }\n    constexpr unsigned int val()\
-    \ const { return x; }\n    constexpr modint& operator++() {\n        x++;\n  \
-    \      if (x == m()) x = 0;\n        return *this;\n    }\n    constexpr modint&\
-    \ operator--() {\n        if (x == 0) x = m();\n        x--;\n        return *this;\n\
-    \    }\n    constexpr modint operator++(int) {\n        modint res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    constexpr modint operator--(int)\
-    \ {\n        modint res = *this;\n        --*this;\n        return res;\n    }\n\
-    \    constexpr modint& operator+=(const modint &r) {\n        x += r.x;\n    \
-    \    if (x >= m()) x -= m();\n        return *this;\n    }\n    constexpr modint&\
-    \ operator-=(const modint &r) {\n        x -= r.x;\n        if (x >= m()) x +=\
-    \ m();\n        return *this;\n    }\n    constexpr modint& operator*=(const modint\
-    \ &r) {\n        unsigned long long y = x;\n        y *= r.x;\n        x = (unsigned\
-    \ int)(y % m());\n        return *this;\n    }\n    constexpr modint &operator/=(const\
-    \ modint &r) {\n        return *this = *this * r.inv();\n    }\n    friend constexpr\
-    \ modint operator+(const modint &a, const modint &b) {\n        return modint(a)\
-    \ += b;\n    }\n    friend constexpr modint operator-(const modint &a, const modint\
-    \ &b) {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
-    \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
-    \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
-    \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
-    \ const modint &b) {\n        return a.x == b.x;\n    }\n    friend constexpr\
-    \ bool operator!=(const modint &a, const modint &b) {\n        return a.x != b.x;\n\
-    \    }\n    constexpr modint operator+() const { return *this; }\n    constexpr\
-    \ modint operator-() const { return modint() - *this; }\n    constexpr modint\
-    \ pow(long long k) const {\n        assert(k >= 0);\n        modint a = *this;\n\
-    \        modint res = 1;\n        while (k > 0) {\n            if (k & 1) res\
-    \ *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
-    \ res;\n    }\n    constexpr modint inv() const {\n        long long a = x, b\
-    \ = m(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a /\
-    \ b;\n            a -= t * b;\n            swap(a, b);\n            u -= t * v;\n\
-    \            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n    static constexpr unsigned int m() { return MOD; }\n\
-    };\n#line 3 \"src/math/number_theory/prime.hpp\"\n#include <array>\n#line 5 \"\
-    src/math/number_theory/prime.hpp\"\n#include <cstdint>\n#include <iterator>\n\
-    #include <numeric>\n#line 9 \"src/math/number_theory/prime.hpp\"\n#include <utility>\n\
-    #line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\ntemplate<typename\
-    \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
-    \ constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr\
-    \ U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n            x ^=\
-    \ x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n        } else\
-    \ {\n            x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x <<\
-    \ 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T lo, T\
-    \ hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n   \
-    \ U x;\n};\n#line 12 \"src/math/number_theory/prime.hpp\"\n\nusing namespace std;\n\
-    \nnamespace prime {\n\ntemplate<typename T>\nstruct montgomery_modint {\n    using\
-    \ U = conditional_t<(sizeof(T) <= 4), uint32_t, uint64_t>;\n    using W = conditional_t<(sizeof(T)\
-    \ <= 4), uint64_t, unsigned __int128>;\n    constexpr explicit montgomery_modint(U\
-    \ _mod, U v = 0) {\n        mod = _mod;\n        inv = get_inv_mod(mod);\n   \
-    \     r2 = get_r2(mod);\n        x = reduce(W(v % mod) * r2);\n    }\n    constexpr\
-    \ U modulus() const { return mod; }\n    constexpr U val() const { return reduce(x);\
-    \ }\n    constexpr U raw() const { return x; }\n    constexpr montgomery_modint\
-    \ make(U value) const {\n        montgomery_modint res = *this;\n        res.x\
-    \ = reduce(W(value % mod) * r2);\n        return res;\n    }\n    constexpr montgomery_modint&\
-    \ operator+=(const montgomery_modint& r) {\n        assert(mod == r.mod);\n  \
-    \      x = x >= mod - r.x ? x - (mod - r.x) : x + r.x;\n        return *this;\n\
-    \    }\n    constexpr montgomery_modint& operator-=(const montgomery_modint& r)\
-    \ {\n        assert(mod == r.mod);\n        x = x >= r.x ? x - r.x : mod - (r.x\
-    \ - x);\n        return *this;\n    }\n    constexpr montgomery_modint& operator*=(const\
-    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = reduce(W(x)\
-    \ * r.x);\n        return *this;\n    }\n    friend constexpr montgomery_modint\
-    \ operator+(montgomery_modint l, const montgomery_modint& r) { return l += r;\
-    \ }\n    friend constexpr montgomery_modint operator-(montgomery_modint l, const\
-    \ montgomery_modint& r) { return l -= r; }\n    friend constexpr montgomery_modint\
+    \ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n\
+    \    template<typename T>\n    constexpr modint(T v) {\n        int y = v % (int)mod();\n\
+    \        if (y < 0) y += mod();\n        x = (unsigned int)y;\n    }\n    static\
+    \ constexpr modint raw(int v) {\n        modint a;\n        a.x = v;\n       \
+    \ return a;\n    }\n    static constexpr int mod() { return MOD; }\n    constexpr\
+    \ unsigned int val() const { return x; }\n    constexpr modint& operator++() {\n\
+    \        x++;\n        if (x == mod()) x = 0;\n        return *this;\n    }\n\
+    \    constexpr modint& operator--() {\n        if (x == 0) x = mod();\n      \
+    \  x--;\n        return *this;\n    }\n    constexpr modint operator++(int) {\n\
+    \        modint res = *this;\n        ++*this;\n        return res;\n    }\n \
+    \   constexpr modint operator--(int) {\n        modint res = *this;\n        --*this;\n\
+    \        return res;\n    }\n    constexpr modint& operator+=(const modint &r)\
+    \ {\n        x += r.x;\n        if (x >= mod()) x -= mod();\n        return *this;\n\
+    \    }\n    constexpr modint& operator-=(const modint &r) {\n        x -= r.x;\n\
+    \        if (x >= mod()) x += mod();\n        return *this;\n    }\n    constexpr\
+    \ modint& operator*=(const modint &r) {\n        unsigned long long y = x;\n \
+    \       y *= r.x;\n        x = (unsigned int)(y % mod());\n        return *this;\n\
+    \    }\n    constexpr modint &operator/=(const modint &r) {\n        return *this\
+    \ = *this * r.inv();\n    }\n    friend constexpr modint operator+(const modint\
+    \ &a, const modint &b) {\n        return modint(a) += b;\n    }\n    friend constexpr\
+    \ modint operator-(const modint &a, const modint &b) {\n        return modint(a)\
+    \ -= b;\n    }\n    friend constexpr modint operator*(const modint &a, const modint\
+    \ &b) {\n        return modint(a) *= b;\n    }\n    friend constexpr modint operator/(const\
+    \ modint &a, const modint &b) {\n        return modint(a) /= b;\n    }\n    friend\
+    \ constexpr bool operator==(const modint &a, const modint &b) {\n        return\
+    \ a.x == b.x;\n    }\n    friend constexpr bool operator!=(const modint &a, const\
+    \ modint &b) {\n        return a.x != b.x;\n    }\n    constexpr modint operator+()\
+    \ const { return *this; }\n    constexpr modint operator-() const { return modint()\
+    \ - *this; }\n    constexpr modint pow(long long k) const {\n        assert(k\
+    \ >= 0);\n        modint a = *this;\n        modint res = 1;\n        while (k\
+    \ > 0) {\n            if (k & 1) res *= a;\n            a *= a;\n            k\
+    \ >>= 1;\n        }\n        return res;\n    }\n    constexpr modint inv() const\
+    \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
+    \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
+    \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 3 \"src/math/number_theory/prime.hpp\"\
+    \n#include <array>\n#line 5 \"src/math/number_theory/prime.hpp\"\n#include <cstdint>\n\
+    #include <iterator>\n#include <numeric>\n#line 9 \"src/math/number_theory/prime.hpp\"\
+    \n#include <utility>\n#line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\
+    \ntemplate<typename T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n\
+    \    constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n  \
+    \  constexpr U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n     \
+    \       x ^= x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n \
+    \       } else {\n            x ^= x << 13;\n            x ^= x >> 7;\n      \
+    \      x ^= x << 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T\
+    \ lo, T hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n\
+    \    U x;\n};\n#line 12 \"src/math/number_theory/prime.hpp\"\n\nusing namespace\
+    \ std;\n\nnamespace prime {\n\ntemplate<typename T>\nstruct montgomery_modint\
+    \ {\n    using U = conditional_t<(sizeof(T) <= 4), uint32_t, uint64_t>;\n    using\
+    \ W = conditional_t<(sizeof(T) <= 4), uint64_t, unsigned __int128>;\n    constexpr\
+    \ explicit montgomery_modint(U _mod, U v = 0) {\n        mod = _mod;\n       \
+    \ inv = get_inv_mod(mod);\n        r2 = get_r2(mod);\n        x = reduce(W(v %\
+    \ mod) * r2);\n    }\n    constexpr U modulus() const { return mod; }\n    constexpr\
+    \ U val() const { return reduce(x); }\n    constexpr U raw() const { return x;\
+    \ }\n    constexpr montgomery_modint make(U value) const {\n        montgomery_modint\
+    \ res = *this;\n        res.x = reduce(W(value % mod) * r2);\n        return res;\n\
+    \    }\n    constexpr montgomery_modint& operator+=(const montgomery_modint& r)\
+    \ {\n        assert(mod == r.mod);\n        x = x >= mod - r.x ? x - (mod - r.x)\
+    \ : x + r.x;\n        return *this;\n    }\n    constexpr montgomery_modint& operator-=(const\
+    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = x >= r.x\
+    \ ? x - r.x : mod - (r.x - x);\n        return *this;\n    }\n    constexpr montgomery_modint&\
+    \ operator*=(const montgomery_modint& r) {\n        assert(mod == r.mod);\n  \
+    \      x = reduce(W(x) * r.x);\n        return *this;\n    }\n    friend constexpr\
+    \ montgomery_modint operator+(montgomery_modint l, const montgomery_modint& r)\
+    \ { return l += r; }\n    friend constexpr montgomery_modint operator-(montgomery_modint\
+    \ l, const montgomery_modint& r) { return l -= r; }\n    friend constexpr montgomery_modint\
     \ operator*(montgomery_modint l, const montgomery_modint& r) { return l *= r;\
     \ }\n    friend constexpr bool operator==(const montgomery_modint& l, const montgomery_modint&\
     \ r) {\n        assert(l.mod == r.mod);\n        return l.x == r.x;\n    }\n \
@@ -338,7 +337,7 @@ data:
   isVerificationFile: false
   path: src/convolution/convolution_ll.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution/convolution_ll.test.cpp

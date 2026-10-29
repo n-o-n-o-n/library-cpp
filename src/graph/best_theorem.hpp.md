@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/graph/matrix_tree_theorem.hpp
     title: src/graph/matrix_tree_theorem.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
   - icon: ':heavy_check_mark:'
@@ -87,7 +87,8 @@ data:
     \ (int k = j; k < w; k++) {\n                    a[i][k] -= a[r][k] * cef;\n \
     \               }\n            }\n            r++;\n        }\n        return\
     \ r;\n    }\n};\n#line 2 \"src/math/enumerative_combinatorics/combination.hpp\"\
-    \n#include <algorithm>\n#line 5 \"src/math/enumerative_combinatorics/combination.hpp\"\
+    \n#include <algorithm>\n#line 4 \"src/math/enumerative_combinatorics/combination.hpp\"\
+    \n#include <concepts>\n#line 6 \"src/math/enumerative_combinatorics/combination.hpp\"\
     \nusing namespace std;\n\nnamespace combination {\n\ntemplate<typename mint>\n\
     struct container {\n    static vector<mint> fac, finv;\n    static void init(int\
     \ n) {\n        int sz = fac.size();\n        if (n < sz) return;\n        n =\
@@ -108,13 +109,15 @@ data:
     \ if (n == 0) return k == 0;\n    return nCk<mint>(n + k - 1, k);\n}\ntemplate<typename\
     \ mint>\nmint multi_C(const vector<int> &v) {\n    int n = 0;\n    for (const\
     \ int &k : v) n += k;\n    mint res = fac<mint>(n);\n    for (const int &k : v)\
-    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint nPk(int\
-    \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n)\
-    \ * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int n) {\n  \
-    \  return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\ntemplate<typename\
-    \ mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n + m, n);\n}\n\n\
-    } // namespace combination\n#line 4 \"src/graph/matrix_tree_theorem.hpp\"\n\n\
-    template<typename mint>\ninline mint matrix_tree_theorem_adjacency(const vector<vector<int>>\
+    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint multi_C(same_as<int>\
+    \ auto... ks) {\n    int n = (0 + ... + ks);\n    mint res = fac<mint>(n);\n \
+    \   ((res *= finv<mint>(ks)), ...);\n    return res;\n}\ntemplate<typename mint>\n\
+    mint nPk(int n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return\
+    \ fac<mint>(n) * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int\
+    \ n) {\n    return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\n\
+    template<typename mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n\
+    \ + m, n);\n}\n\n} // namespace combination\n#line 4 \"src/graph/matrix_tree_theorem.hpp\"\
+    \n\ntemplate<typename mint>\ninline mint matrix_tree_theorem_adjacency(const vector<vector<int>>\
     \ &a, int r = 0) {\n    int n = a.size();\n    if (n == 1) return 1;\n    auto\
     \ p = [&](int u) -> int {\n        return u - (u > r);\n    };\n    matrix<mint>\
     \ b(n - 1, n - 1);\n    for (int u = 0; u < n; u++) {\n        if (u == r) continue;\n\
@@ -166,7 +169,7 @@ data:
   isVerificationFile: false
   path: src/graph/best_theorem.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/best_theorem.test.cpp

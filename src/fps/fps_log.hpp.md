@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy:
@@ -57,7 +57,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"src/fps/fps.hpp\"\n#include <vector>\n#line 2 \"src/math/enumerative_combinatorics/combination.hpp\"\
-    \n#include <algorithm>\n#include <cassert>\n#line 5 \"src/math/enumerative_combinatorics/combination.hpp\"\
+    \n#include <algorithm>\n#include <cassert>\n#include <concepts>\n#line 6 \"src/math/enumerative_combinatorics/combination.hpp\"\
     \nusing namespace std;\n\nnamespace combination {\n\ntemplate<typename mint>\n\
     struct container {\n    static vector<mint> fac, finv;\n    static void init(int\
     \ n) {\n        int sz = fac.size();\n        if (n < sz) return;\n        n =\
@@ -78,13 +78,15 @@ data:
     \ if (n == 0) return k == 0;\n    return nCk<mint>(n + k - 1, k);\n}\ntemplate<typename\
     \ mint>\nmint multi_C(const vector<int> &v) {\n    int n = 0;\n    for (const\
     \ int &k : v) n += k;\n    mint res = fac<mint>(n);\n    for (const int &k : v)\
-    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint nPk(int\
-    \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n)\
-    \ * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int n) {\n  \
-    \  return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\ntemplate<typename\
-    \ mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n + m, n);\n}\n\n\
-    } // namespace combination\n#line 3 \"src/math/number_theory/prime.hpp\"\n#include\
-    \ <array>\n#line 5 \"src/math/number_theory/prime.hpp\"\n#include <cstdint>\n\
+    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint multi_C(same_as<int>\
+    \ auto... ks) {\n    int n = (0 + ... + ks);\n    mint res = fac<mint>(n);\n \
+    \   ((res *= finv<mint>(ks)), ...);\n    return res;\n}\ntemplate<typename mint>\n\
+    mint nPk(int n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return\
+    \ fac<mint>(n) * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int\
+    \ n) {\n    return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\n\
+    template<typename mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n\
+    \ + m, n);\n}\n\n} // namespace combination\n#line 3 \"src/math/number_theory/prime.hpp\"\
+    \n#include <array>\n#line 5 \"src/math/number_theory/prime.hpp\"\n#include <cstdint>\n\
     #include <iterator>\n#include <numeric>\n#include <type_traits>\n#include <utility>\n\
     #line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\ntemplate<typename\
     \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
@@ -372,7 +374,7 @@ data:
   - src/fps/fps_pow.hpp
   - src/fps/fps_all.hpp
   - src/fps/fps_compositional_inverse.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp

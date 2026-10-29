@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy:
@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/middle_product.hpp
     title: src/convolution/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: src/convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps.hpp
     title: Formal Power Series
   - icon: ':warning:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -117,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/fps_compositional_inverse.test.cpp
     title: test/fps/fps_compositional_inverse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/fps/fps_div_sparse.test.cpp
     title: test/fps/fps_div_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,9 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/math/number_theory/prime.hpp\"\n#include <algorithm>\n\
@@ -417,7 +417,7 @@ data:
   - src/convolution/convolution_ll.hpp
   - src/convolution/arbitrary_mod_convolution.hpp
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/bostan_mori.test.cpp
   - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
