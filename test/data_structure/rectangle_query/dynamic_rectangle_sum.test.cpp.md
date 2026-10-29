@@ -14,8 +14,8 @@ data:
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
   - icon: ':heavy_check_mark:'
-    path: src/monoid/add.hpp
-    title: src/monoid/add.hpp
+    path: src/monoid/sum.hpp
+    title: src/monoid/sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -133,12 +133,12 @@ data:
     \ = M::op(res[inv[i]], sub[j++]);\n                }\n            }\n        };\n\
     \        rec(rec, 0, sz);\n        return res;\n    }\nprivate:\n    int n, q;\n\
     \    vector<bool> types;\n    vector<tuple<T, T, S>> update_querys;\n    vector<tuple<T,\
-    \ T, T, T>> sum_querys;\n};\n#line 2 \"src/monoid/add.hpp\"\n\ntemplate<typename\
-    \ T>\nstruct add_monoid {\n    using S = T;\n    static S op(S a, S b) { return\
+    \ T, T, T>> sum_querys;\n};\n#line 2 \"src/monoid/sum.hpp\"\n\ntemplate<typename\
+    \ T>\nstruct sum_monoid {\n    using S = T;\n    static S op(S a, S b) { return\
     \ a + b; }\n    static S e() { return 0; }\n    static S inv(S x) { return -x;\
     \ }\n};\n#line 5 \"test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp\"\
     \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    dynamic_point_add_rectangle_sum<add_monoid<long\
+    \  cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    dynamic_point_add_rectangle_sum<sum_monoid<long\
     \ long >> rs(N, Q);\n    for (int i = 0; i < N; i++) {\n        int x, y, w;\n\
     \        cin >> x >> y >> w;\n        rs.add_update_query(x, y, w);\n    }\n \
     \   for (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n       \
@@ -149,9 +149,9 @@ data:
     n';\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
     \n\n#include \"../../../src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp\"\
-    \n#include \"../../../src/monoid/add.hpp\"\n\n#include <iostream>\n\nint main()\
+    \n#include \"../../../src/monoid/sum.hpp\"\n\n#include <iostream>\n\nint main()\
     \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n\
-    \    cin >> N >> Q;\n    dynamic_point_add_rectangle_sum<add_monoid<long long\
+    \    cin >> N >> Q;\n    dynamic_point_add_rectangle_sum<sum_monoid<long long\
     \ >> rs(N, Q);\n    for (int i = 0; i < N; i++) {\n        int x, y, w;\n    \
     \    cin >> x >> y >> w;\n        rs.add_update_query(x, y, w);\n    }\n    for\
     \ (int i = 0; i < Q; i++) {\n        int t;\n        cin >> t;\n        if (t\
@@ -165,11 +165,11 @@ data:
   - src/data_structure/rectangle_query/rectangle_sum.hpp
   - src/misc/merge_and_unique.hpp
   - src/data_structure/range_query/segtree.hpp
-  - src/monoid/add.hpp
+  - src/monoid/sum.hpp
   isVerificationFile: true
   path: test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 14:11:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp

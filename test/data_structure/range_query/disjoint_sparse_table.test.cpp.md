@@ -5,8 +5,8 @@ data:
     path: src/data_structure/range_query/disjoint_sparse_table.hpp
     title: src/data_structure/range_query/disjoint_sparse_table.hpp
   - icon: ':heavy_check_mark:'
-    path: src/monoid/add.hpp
-    title: src/monoid/add.hpp
+    path: src/monoid/sum.hpp
+    title: src/monoid/sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -40,29 +40,29 @@ data:
     \ 1]);\n                }\n                d[i][l] = d[0][l];\n              \
     \  for (int j = l + 1; j < n && j < k + len; j++) {\n                    d[i][j]\
     \ = M::op(d[i][j - 1], d[0][j]);\n                }\n            }\n        }\n\
-    \    }\n};\n#line 2 \"src/monoid/add.hpp\"\n\ntemplate<typename T>\nstruct add_monoid\
+    \    }\n};\n#line 2 \"src/monoid/sum.hpp\"\n\ntemplate<typename T>\nstruct sum_monoid\
     \ {\n    using S = T;\n    static S op(S a, S b) { return a + b; }\n    static\
     \ S e() { return 0; }\n    static S inv(S x) { return -x; }\n};\n#line 5 \"test/data_structure/range_query/disjoint_sparse_table.test.cpp\"\
     \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
     \  cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<long long>\
-    \ A(N);\n    for (auto &e : A) cin >> e;\n    disjoint_sparse_table<add_monoid<long\
+    \ A(N);\n    for (auto &e : A) cin >> e;\n    disjoint_sparse_table<sum_monoid<long\
     \ long>> st(A);\n    for (int l, r; Q--; ) {\n        cin >> l >> r;\n       \
     \ cout << st.prod(l, r) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n\n\
     #include \"../../../src/data_structure/range_query/disjoint_sparse_table.hpp\"\
-    \n#include \"../../../src/monoid/add.hpp\"\n\n#include <iostream>\n\nint main()\
+    \n#include \"../../../src/monoid/sum.hpp\"\n\n#include <iostream>\n\nint main()\
     \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n\
     \    cin >> N >> Q;\n    vector<long long> A(N);\n    for (auto &e : A) cin >>\
-    \ e;\n    disjoint_sparse_table<add_monoid<long long>> st(A);\n    for (int l,\
+    \ e;\n    disjoint_sparse_table<sum_monoid<long long>> st(A);\n    for (int l,\
     \ r; Q--; ) {\n        cin >> l >> r;\n        cout << st.prod(l, r) << '\\n';\n\
     \    }\n}"
   dependsOn:
   - src/data_structure/range_query/disjoint_sparse_table.hpp
-  - src/monoid/add.hpp
+  - src/monoid/sum.hpp
   isVerificationFile: true
   path: test/data_structure/range_query/disjoint_sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 14:11:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/disjoint_sparse_table.test.cpp

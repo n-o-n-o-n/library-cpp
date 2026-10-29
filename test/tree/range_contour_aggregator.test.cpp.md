@@ -5,8 +5,8 @@ data:
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
   - icon: ':heavy_check_mark:'
-    path: src/monoid/add.hpp
-    title: src/monoid/add.hpp
+    path: src/monoid/sum.hpp
+    title: src/monoid/sum.hpp
   - icon: ':heavy_check_mark:'
     path: src/tree/range_contour_aggregator.hpp
     title: src/tree/range_contour_aggregator.hpp
@@ -143,13 +143,13 @@ data:
     \ while ((r & -r) != r);\n        return 0;\n    }\n    template<typename C>\n\
     \    int min_left(const C &check) const {\n        return min_left(n, check);\n\
     \    }\nprivate:\n    int n, log, sz;\n    vector<S> d;\n    void update(int p)\
-    \ {\n        d[p] = M::op(d[2 * p], d[2 * p + 1]);\n    }\n};\n#line 2 \"src/monoid/add.hpp\"\
-    \n\ntemplate<typename T>\nstruct add_monoid {\n    using S = T;\n    static S\
+    \ {\n        d[p] = M::op(d[2 * p], d[2 * p + 1]);\n    }\n};\n#line 2 \"src/monoid/sum.hpp\"\
+    \n\ntemplate<typename T>\nstruct sum_monoid {\n    using S = T;\n    static S\
     \ op(S a, S b) { return a + b; }\n    static S e() { return 0; }\n    static S\
     \ inv(S x) { return -x; }\n};\n#line 6 \"test/tree/range_contour_aggregator.test.cpp\"\
     \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
     \  cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n\
-    \    for (auto &e : A) cin >> e;\n    range_contour_aggregator<segtree<add_monoid<long\
+    \    for (auto &e : A) cin >> e;\n    range_contour_aggregator<segtree<sum_monoid<long\
     \ long>>> RCA(N);\n    for (int i = 1, u, v; i < N; i++) {\n        cin >> u >>\
     \ v;\n        RCA.add_edge(u, v);\n    }\n    for (int i = 0; i < N; i++) {\n\
     \        RCA.set(i, A[i]);\n    }\n    while (Q--) {\n        int t;\n       \
@@ -159,9 +159,9 @@ data:
     \ l, r) << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
     \n\n#include \"../../src/tree/range_contour_aggregator.hpp\"\n#include \"../../src/data_structure/range_query/segtree.hpp\"\
-    \n#include \"../../src/monoid/add.hpp\"\n\n#include <iostream>\n\nint main() {\n\
+    \n#include \"../../src/monoid/sum.hpp\"\n\n#include <iostream>\n\nint main() {\n\
     \    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n    cin\
-    \ >> N >> Q;\n    vector<int> A(N);\n    for (auto &e : A) cin >> e;\n    range_contour_aggregator<segtree<add_monoid<long\
+    \ >> N >> Q;\n    vector<int> A(N);\n    for (auto &e : A) cin >> e;\n    range_contour_aggregator<segtree<sum_monoid<long\
     \ long>>> RCA(N);\n    for (int i = 1, u, v; i < N; i++) {\n        cin >> u >>\
     \ v;\n        RCA.add_edge(u, v);\n    }\n    for (int i = 0; i < N; i++) {\n\
     \        RCA.set(i, A[i]);\n    }\n    while (Q--) {\n        int t;\n       \
@@ -172,11 +172,11 @@ data:
   dependsOn:
   - src/tree/range_contour_aggregator.hpp
   - src/data_structure/range_query/segtree.hpp
-  - src/monoid/add.hpp
+  - src/monoid/sum.hpp
   isVerificationFile: true
   path: test/tree/range_contour_aggregator.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-29 14:11:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/range_contour_aggregator.test.cpp

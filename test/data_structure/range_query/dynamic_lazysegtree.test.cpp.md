@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -62,22 +62,20 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 2 \"src/monoid/range_affine_range_sum.hpp\"\n\
-    #include <utility>\n#line 2 \"src/math/affine.hpp\"\n\ntemplate<typename mint>\n\
-    struct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
+    \    unsigned int x;\n};\n#line 2 \"src/math/affine.hpp\"\n\ntemplate<typename\
+    \ mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
     \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
     \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
     \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
-    \    return affine(c, d);\n    }\n};\n#line 4 \"src/monoid/range_affine_range_sum.hpp\"\
-    \n\nusing namespace std;\n\ntemplate<typename mint, typename T = int>\nstruct\
-    \ range_affine_range_sum {\n    struct S {\n        mint x;\n        T l;\n  \
-    \      S(mint _x = 0, T _l = 0) : x(_x), l(_l) {}\n        int val() { return\
-    \ x.val(); }\n    };\n    static S op(S a, S b) {\n        return {a.x + b.x,\
-    \ a.l + b.l};\n    }\n    static S e() {\n        return {0, 0};\n    }\n    using\
-    \ F = affine<mint>;\n    static F comp(F f, F g) { return f(g); }\n    static\
-    \ F id() { return F(); }\n    static S map(F f, S x) {\n        x.x = f.a * x.x\
-    \ + f.b * x.l;\n        return x;\n    }\n    static S init(T l, T r) {\n    \
-    \    return S(0, r - l);\n    }\n};\n#line 3 \"src/data_structure/range_query/dynamic_lazysegtree.hpp\"\
+    \    return affine(c, d);\n    }\n};\n#line 3 \"src/monoid/range_affine_range_sum.hpp\"\
+    \n\ntemplate<typename mint, typename T = int>\nstruct range_affine_range_sum {\n\
+    \    struct S {\n        mint x;\n        T l;\n        S(mint _x = 0, T _l =\
+    \ 0) : x(_x), l(_l) {}\n        int val() { return x.val(); }\n    };\n    using\
+    \ F = affine<mint>;\n    static S op(S a, S b) { return {a.x + b.x, a.l + b.l};\
+    \ }\n    static S e() { return {0, 0}; }\n    static F comp(F f, F g) { return\
+    \ f(g); }\n    static F id() { return F(); }\n    static S map(F f, S x) {\n \
+    \       x.x = f.a * x.x + f.b * x.l;\n        return x;\n    }\n    static S init(T\
+    \ l, T r) { return S(0, r - l); }\n};\n#line 3 \"src/data_structure/range_query/dynamic_lazysegtree.hpp\"\
     \n#include <vector>\nusing namespace std;\n\ntemplate<typename ActMonoid, integral\
     \ T = int>\nstruct dynamic_lazysegtree {\n    using M = ActMonoid;\n    using\
     \ S = typename M::S;\n    using F = typename M::F;\n    dynamic_lazysegtree(T\
@@ -143,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/range_query/dynamic_lazysegtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-10-29 14:11:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/dynamic_lazysegtree.test.cpp

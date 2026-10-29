@@ -12,6 +12,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/rectangle_query/rectangle_union.test.cpp
     title: test/data_structure/rectangle_query/rectangle_union.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/monoid/range_add_range_max.test.cpp
+    title: test/monoid/range_add_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/monoid/range_add_range_min.test.cpp
+    title: test/monoid/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/monoid/range_add_range_sum.test.cpp
+    title: test/monoid/range_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/monoid/range_update_range_max.test.cpp
+    title: test/monoid/range_update_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/monoid/range_update_range_min.test.cpp
+    title: test/monoid/range_update_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/monoid/range_update_range_sum.test.cpp
+    title: test/monoid/range_update_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -151,6 +169,12 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/monoid/range_add_range_min.test.cpp
+  - test/monoid/range_update_range_min.test.cpp
+  - test/monoid/range_update_range_max.test.cpp
+  - test/monoid/range_add_range_max.test.cpp
+  - test/monoid/range_update_range_sum.test.cpp
+  - test/monoid/range_add_range_sum.test.cpp
   - test/data_structure/range_query/lazysegtree.test.cpp
   - test/data_structure/rectangle_query/rectangle_union.test.cpp
 documentation_of: src/data_structure/range_query/lazysegtree.hpp

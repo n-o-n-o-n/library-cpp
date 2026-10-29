@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -86,31 +86,29 @@ data:
     \ d[p - sz]);\n        }\n    }\n    void push(int p) {\n        all_apply(2 *\
     \ p, lz[p]);\n        all_apply(2 * p + 1, lz[p]);\n        lz[p] = M::id();\n\
     \    }\n    void inner_push(int p) {\n        for (int i = log; i >= 1; i--) push(p\
-    \ >> i);\n    }\n};\n#line 2 \"src/monoid/range_affine_range_sum.hpp\"\n#include\
-    \ <utility>\n#line 2 \"src/math/affine.hpp\"\n\ntemplate<typename mint>\nstruct\
-    \ affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const mint\
-    \ &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint &x) const\
-    \ {\n        return a * x + b;\n    }\n    affine operator()(const affine &f)\
-    \ const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n        return\
-    \ affine(c, d);\n    }\n};\n#line 4 \"src/monoid/range_affine_range_sum.hpp\"\n\
-    \nusing namespace std;\n\ntemplate<typename mint, typename T = int>\nstruct range_affine_range_sum\
-    \ {\n    struct S {\n        mint x;\n        T l;\n        S(mint _x = 0, T _l\
-    \ = 0) : x(_x), l(_l) {}\n        int val() { return x.val(); }\n    };\n    static\
-    \ S op(S a, S b) {\n        return {a.x + b.x, a.l + b.l};\n    }\n    static\
-    \ S e() {\n        return {0, 0};\n    }\n    using F = affine<mint>;\n    static\
-    \ F comp(F f, F g) { return f(g); }\n    static F id() { return F(); }\n    static\
-    \ S map(F f, S x) {\n        x.x = f.a * x.x + f.b * x.l;\n        return x;\n\
-    \    }\n    static S init(T l, T r) {\n        return S(0, r - l);\n    }\n};\n\
-    #line 6 \"test/data_structure/range_query/dualsegtree.test.cpp\"\n\nusing mint\
-    \ = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<range_affine_range_sum<mint>::S>\
-    \ init(N);\n    for (int i = 0, a; i < N; i++) {\n        cin >> a;\n        init[i]\
-    \ = range_affine_range_sum<mint>::S(a, 1);\n    }\n    dualsegtree<range_affine_range_sum<mint>>\
-    \ seg(init);\n    while (Q--) {\n        int t;\n        cin >> t;\n        if\
-    \ (t == 0) {\n            int l, r, a, b;\n            cin >> l >> r >> a >> b;\n\
-    \            seg.apply(l, r, affine<mint>(a, b));\n        } else {\n        \
-    \    int p;\n            cin >> p;\n            cout << seg.get(p).val() << '\\\
-    n';\n        }\n    }\n}\n"
+    \ >> i);\n    }\n};\n#line 2 \"src/math/affine.hpp\"\n\ntemplate<typename mint>\n\
+    struct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
+    \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
+    \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
+    \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
+    \    return affine(c, d);\n    }\n};\n#line 3 \"src/monoid/range_affine_range_sum.hpp\"\
+    \n\ntemplate<typename mint, typename T = int>\nstruct range_affine_range_sum {\n\
+    \    struct S {\n        mint x;\n        T l;\n        S(mint _x = 0, T _l =\
+    \ 0) : x(_x), l(_l) {}\n        int val() { return x.val(); }\n    };\n    using\
+    \ F = affine<mint>;\n    static S op(S a, S b) { return {a.x + b.x, a.l + b.l};\
+    \ }\n    static S e() { return {0, 0}; }\n    static F comp(F f, F g) { return\
+    \ f(g); }\n    static F id() { return F(); }\n    static S map(F f, S x) {\n \
+    \       x.x = f.a * x.x + f.b * x.l;\n        return x;\n    }\n    static S init(T\
+    \ l, T r) { return S(0, r - l); }\n};\n#line 6 \"test/data_structure/range_query/dualsegtree.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
+    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n    cin\
+    \ >> N >> Q;\n    vector<range_affine_range_sum<mint>::S> init(N);\n    for (int\
+    \ i = 0, a; i < N; i++) {\n        cin >> a;\n        init[i] = range_affine_range_sum<mint>::S(a,\
+    \ 1);\n    }\n    dualsegtree<range_affine_range_sum<mint>> seg(init);\n    while\
+    \ (Q--) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n        \
+    \    int l, r, a, b;\n            cin >> l >> r >> a >> b;\n            seg.apply(l,\
+    \ r, affine<mint>(a, b));\n        } else {\n            int p;\n            cin\
+    \ >> p;\n            cout << seg.get(p).val() << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
     \n\n#include \"../../../src/modint/modint.hpp\"\n#include \"../../../src/data_structure/range_query/dualsegtree.hpp\"\
     \n#include \"../../../src/monoid/range_affine_range_sum.hpp\"\n\nusing mint =\
@@ -131,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/range_query/dualsegtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-10-29 14:11:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/dualsegtree.test.cpp

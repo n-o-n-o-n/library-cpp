@@ -4,12 +4,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
   - icon: ':heavy_check_mark:'
-    path: src/monoid/add.hpp
-    title: src/monoid/add.hpp
+    path: src/monoid/sum.hpp
+    title: src/monoid/sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -88,13 +88,13 @@ data:
     \           tmp[leader(i)].push_back(i);\n        }\n        vector<vector<int>>\
     \ res;\n        for (auto v : tmp) {\n            if (v.size()) res.push_back(v);\n\
     \        }\n        return res;\n    }\nprivate:\n    int n;\n    vector<int>\
-    \ p, cyc;\n    vector<S> d;\n};\n#line 2 \"src/monoid/add.hpp\"\n\ntemplate<typename\
-    \ T>\nstruct add_monoid {\n    using S = T;\n    static S op(S a, S b) { return\
+    \ p, cyc;\n    vector<S> d;\n};\n#line 2 \"src/monoid/sum.hpp\"\n\ntemplate<typename\
+    \ T>\nstruct sum_monoid {\n    using S = T;\n    static S op(S a, S b) { return\
     \ a + b; }\n    static S e() { return 0; }\n    static S inv(S x) { return -x;\
     \ }\n};\n#line 6 \"test/data_structure/union_find/weighted_union_find.test.cpp\"\
     \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
     \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n    cin\
-    \ >> N >> Q;\n    weighted_union_find<add_monoid<mint>> wuf(N);\n    while (Q--)\
+    \ >> N >> Q;\n    weighted_union_find<sum_monoid<mint>> wuf(N);\n    while (Q--)\
     \ {\n        int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0) {\n\
     \            int x;\n            cin >> x;\n            cout << wuf.merge(v, u,\
     \ x) << '\\n';\n        } else {\n            if (wuf.same(u, v)) {\n        \
@@ -102,9 +102,9 @@ data:
     \          cout << -1 << '\\n';\n            }\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
     \n\n#include \"../../../src/modint/modint.hpp\"\n#include \"../../../src/data_structure/union_find/weighted_union_find.hpp\"\
-    \n#include \"../../../src/monoid/add.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \n#include \"../../../src/monoid/sum.hpp\"\n\nusing mint = modint<998244353>;\n\
     \n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    int N, Q;\n    cin >> N >> Q;\n    weighted_union_find<add_monoid<mint>>\
+    \    int N, Q;\n    cin >> N >> Q;\n    weighted_union_find<sum_monoid<mint>>\
     \ wuf(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
     \        if (t == 0) {\n            int x;\n            cin >> x;\n          \
     \  cout << wuf.merge(v, u, x) << '\\n';\n        } else {\n            if (wuf.same(u,\
@@ -114,11 +114,11 @@ data:
   dependsOn:
   - src/modint/modint.hpp
   - src/data_structure/union_find/weighted_union_find.hpp
-  - src/monoid/add.hpp
+  - src/monoid/sum.hpp
   isVerificationFile: true
   path: test/data_structure/union_find/weighted_union_find.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-10-29 14:11:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/union_find/weighted_union_find.test.cpp
