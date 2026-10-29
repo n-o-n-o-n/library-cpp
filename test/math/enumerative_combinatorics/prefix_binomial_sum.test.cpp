@@ -1,4 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/2206"
+#define PROBLEM "https://judge.yosupo.jp/problem/prefix_sum_of_binomial_coefficient"
 
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/math/enumerative_combinatorics/prefix_binomial_sum.hpp"
@@ -12,12 +12,9 @@ int main() {
     cin.tie(nullptr);
     int T;
     cin >> T;
-    prefix_binomial_sum<mint> C((int)2e5);
-    while (T--) {
-        int N, M;
-        cin >> N >> M;
-        mint ans = mint(2).pow(N) - 1;
-        ans *= C.get(N - 1, M - 1);
-        cout << ans.val() << '\n';
+    combination::prefix_binomial_sum<mint, 200000> C;
+    for (int N, K; T--; ) {
+        cin >> N >> K;
+        cout << C.get(N, K).val() << '\n';
     }
 }

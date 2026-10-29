@@ -1,6 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <cassert>
+#include <concepts>
 #include <vector>
 using namespace std;
 
@@ -64,6 +65,13 @@ mint multi_C(const vector<int> &v) {
     for (const int &k : v) n += k;
     mint res = fac<mint>(n);
     for (const int &k : v) res *= finv<mint>(k);
+    return res;
+}
+template<typename mint>
+mint multi_C(same_as<int> auto... ks) {
+    int n = (0 + ... + ks);
+    mint res = fac<mint>(n);
+    ((res *= finv<mint>(ks)), ...);
     return res;
 }
 template<typename mint>

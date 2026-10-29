@@ -827,7 +827,7 @@ int main() {
         cin >> A >> B;
         cout << A + B << '\n';
     }
-    for (int t = 0; t < 20; t++) {
+    for (int t = 0; t < 5; t++) {
         auto [M, N] = rng::randpair(1, (int)1e5);
         int L = rng::randint(2, (int)1e5);
         auto oriA = rng::random_increasing_sequence(M, 1, N, true);

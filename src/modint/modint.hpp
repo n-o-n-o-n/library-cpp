@@ -3,28 +3,29 @@
 #include <cassert>
 using namespace std;
 
-template<int MOD>
+template<unsigned int MOD>
 struct modint {
     constexpr modint() : x(0) {}
-    constexpr modint(long long v) {
-        long long y = v % m();
-        if (y < 0) y += m();
-        x = (unsigned int)(y);
+    template<typename T>
+    constexpr modint(T v) {
+        int y = v % (int)mod();
+        if (y < 0) y += mod();
+        x = (unsigned int)y;
     }
     static constexpr modint raw(int v) {
         modint a;
         a.x = v;
         return a;
     }
-    static constexpr int mod() { return m(); }
+    static constexpr int mod() { return MOD; }
     constexpr unsigned int val() const { return x; }
     constexpr modint& operator++() {
         x++;
-        if (x == m()) x = 0;
+        if (x == mod()) x = 0;
         return *this;
     }
     constexpr modint& operator--() {
-        if (x == 0) x = m();
+        if (x == 0) x = mod();
         x--;
         return *this;
     }
@@ -40,18 +41,18 @@ struct modint {
     }
     constexpr modint& operator+=(const modint &r) {
         x += r.x;
-        if (x >= m()) x -= m();
+        if (x >= mod()) x -= mod();
         return *this;
     }
     constexpr modint& operator-=(const modint &r) {
         x -= r.x;
-        if (x >= m()) x += m();
+        if (x >= mod()) x += mod();
         return *this;
     }
     constexpr modint& operator*=(const modint &r) {
         unsigned long long y = x;
         y *= r.x;
-        x = (unsigned int)(y % m());
+        x = (unsigned int)(y % mod());
         return *this;
     }
     constexpr modint &operator/=(const modint &r) {
@@ -89,7 +90,7 @@ struct modint {
         return res;
     }
     constexpr modint inv() const {
-        long long a = x, b = m(), u = 1, v = 0;
+        long long a = x, b = mod(), u = 1, v = 0;
         while (b > 0) {
             long long t = a / b;
             a -= t * b;
@@ -101,5 +102,4 @@ struct modint {
     }
 private:
     unsigned int x;
-    static constexpr unsigned int m() { return MOD; }
 };
