@@ -571,7 +571,7 @@ title: Formal Power Series
 
 形式的冪級数を扱うライブラリ.
 
-`inv`, `log`, `exp`, `pow`, `composition`, `compositional_inverse`, `taylor_shift`, `power_projection` を使うには, 各ヘッダまたは `fps_all.hpp` を `include` する.
+`inv`, `log`, `exp`, `pow`, `composition`, `compositional_inverse`, `taylor_shift`, `power_projection` を使うには, 各ヘッダ, または `fps_all.hpp` を `include` する.
 
 ## Constructor
 
@@ -582,7 +582,6 @@ fps<mint> f(vector<mint> v)
 
 - $n$ 個の零係数を持つ級数, または $v$ の係数を持つ級数を作る
 - `vector<mint>` のコンストラクタも使える
-- $O(n)$ または $O(|v|)$
 
 ## operator
 
