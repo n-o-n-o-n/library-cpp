@@ -41,10 +41,13 @@ data:
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/fps_all.test.cpp
+    title: test/fps/fps_all.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/fps/fps.hpp\"\n#include <vector>\n#line 2 \"src/math/enumerative_combinatorics/combination.hpp\"\
@@ -500,8 +503,9 @@ data:
   path: src/fps/fps_all.hpp
   requiredBy: []
   timestamp: '2026-10-29 12:38:21+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/fps/fps_all.test.cpp
 documentation_of: src/fps/fps_all.hpp
 layout: document
 redirect_from:

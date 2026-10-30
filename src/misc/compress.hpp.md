@@ -5,13 +5,16 @@ data:
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/inversion_number.hpp
     title: src/misc/inversion_number.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/persistent_ds/persistent_segtree.test.cpp
     title: test/data_structure/persistent_ds/persistent_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/misc/inversion_number.test.cpp
+    title: test/misc/inversion_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/misc/mo_static_range_count_distinct.test.cpp
     title: test/misc/mo_static_range_count_distinct.test.cpp
@@ -66,6 +69,7 @@ data:
   verifiedWith:
   - test/data_structure/persistent_ds/persistent_segtree.test.cpp
   - test/misc/mo_static_range_count_distinct.test.cpp
+  - test/misc/inversion_number.test.cpp
 documentation_of: src/misc/compress.hpp
 layout: document
 title: Compress

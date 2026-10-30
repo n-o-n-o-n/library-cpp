@@ -20,10 +20,13 @@ data:
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/fps_all.test.cpp
+    title: test/fps/fps_all.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/fps_composition.test.cpp
     title: test/fps/fps_composition.test.cpp
@@ -400,6 +403,7 @@ data:
   timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/fps/fps_all.test.cpp
   - test/fps/fps_composition.test.cpp
 documentation_of: src/fps/fps_composition.hpp
 layout: document

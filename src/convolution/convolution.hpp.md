@@ -34,6 +34,9 @@ data:
     path: test/convolution/middle_product.test.cpp
     title: test/convolution/middle_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/bostan_mori_only_convolution.test.cpp
+    title: test/math/bostan_mori_only_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
   _isVerificationFailed: false
@@ -268,6 +271,7 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/math/bostan_mori_only_convolution.test.cpp
   - test/convolution/arbitrary_mod_convolution.test.cpp
   - test/convolution/convolution.test.cpp
   - test/convolution/convolution_ll.test.cpp

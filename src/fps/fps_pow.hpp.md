@@ -26,13 +26,16 @@ data:
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
   - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/fps_all.test.cpp
+    title: test/fps/fps_all.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/fps_pow.test.cpp
     title: test/fps/fps_pow.test.cpp
@@ -401,6 +404,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
+  - test/fps/fps_all.test.cpp
   - test/fps/fps_pow.test.cpp
 documentation_of: src/fps/fps_pow.hpp
 layout: document

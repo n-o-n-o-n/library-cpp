@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/math/bostan_mori_only_convolution.test.cpp
+    title: test/math/bostan_mori_only_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/math/bostan_mori_only_convolution.hpp\"\n#include <cassert>\n\
@@ -43,8 +46,9 @@ data:
   path: src/math/bostan_mori_only_convolution.hpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/math/bostan_mori_only_convolution.test.cpp
 documentation_of: src/math/bostan_mori_only_convolution.hpp
 layout: document
 redirect_from:

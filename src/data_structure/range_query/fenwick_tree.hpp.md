@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/inversion_number.hpp
     title: src/misc/inversion_number.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/range_query/fenwick_tree.test.cpp
     title: test/data_structure/range_query/fenwick_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/misc/inversion_number.test.cpp
+    title: test/misc/inversion_number.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -64,6 +67,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/range_query/fenwick_tree.test.cpp
+  - test/misc/inversion_number.test.cpp
 documentation_of: src/data_structure/range_query/fenwick_tree.hpp
 layout: document
 redirect_from:

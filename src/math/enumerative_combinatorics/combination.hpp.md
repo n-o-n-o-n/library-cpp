@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
   - icon: ':heavy_check_mark:'
@@ -81,6 +81,9 @@ data:
     path: src/math/enumerative_combinatorics/subset_sum.hpp
     title: src/math/enumerative_combinatorics/subset_sum.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/fps_all.test.cpp
+    title: test/fps/fps_all.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/fps_composition.test.cpp
     title: test/fps/fps_composition.test.cpp
@@ -254,6 +257,7 @@ data:
   - test/math/enumerative_combinatorics/subset_sum.test.cpp
   - test/math/bmbm.test.cpp
   - test/fps/polynomial_taylor_shift.test.cpp
+  - test/fps/fps_all.test.cpp
   - test/fps/fps_log.test.cpp
   - test/fps/fps_exp.test.cpp
   - test/fps/polynomial_interpolation.test.cpp

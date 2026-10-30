@@ -11,10 +11,13 @@ data:
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/misc/inversion_number.test.cpp
+    title: test/misc/inversion_number.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/misc/inversion_number.hpp\"\n#include <vector>\n#line\
@@ -76,8 +79,9 @@ data:
   path: src/misc/inversion_number.hpp
   requiredBy: []
   timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/misc/inversion_number.test.cpp
 documentation_of: src/misc/inversion_number.hpp
 layout: document
 redirect_from:

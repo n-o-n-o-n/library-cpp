@@ -17,10 +17,13 @@ data:
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/fps_all.test.cpp
+    title: test/fps/fps_all.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/polynomial_taylor_shift.test.cpp
     title: test/fps/polynomial_taylor_shift.test.cpp
@@ -345,6 +348,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/polynomial_taylor_shift.test.cpp
+  - test/fps/fps_all.test.cpp
 documentation_of: src/fps/polynomial_taylor_shift.hpp
 layout: document
 redirect_from:

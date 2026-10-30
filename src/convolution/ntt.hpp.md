@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
   - icon: ':heavy_check_mark:'
@@ -112,6 +112,9 @@ data:
     path: test/convolution/relaxed_convolution.test.cpp
     title: test/convolution/relaxed_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/fps/fps_all.test.cpp
+    title: test/fps/fps_all.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/fps/fps_composition.test.cpp
     title: test/fps/fps_composition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,6 +159,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/bostan_mori_only_convolution.test.cpp
+    title: test/math/bostan_mori_only_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
@@ -506,7 +512,9 @@ data:
   - test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
   - test/math/enumerative_combinatorics/subset_sum.test.cpp
   - test/math/bmbm.test.cpp
+  - test/math/bostan_mori_only_convolution.test.cpp
   - test/fps/polynomial_taylor_shift.test.cpp
+  - test/fps/fps_all.test.cpp
   - test/fps/fps_log.test.cpp
   - test/fps/fps_exp.test.cpp
   - test/fps/polynomial_interpolation.test.cpp

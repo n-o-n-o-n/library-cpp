@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/misc/compress.hpp
     title: Compress
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/inversion_number.hpp
     title: src/misc/inversion_number.hpp
   _extendedVerifiedWith:
@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/rectangle_query/rectangle_sum.test.cpp
     title: test/data_structure/rectangle_query/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/misc/inversion_number.test.cpp
+    title: test/misc/inversion_number.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/misc/mo_static_range_count_distinct.test.cpp
     title: test/misc/mo_static_range_count_distinct.test.cpp
@@ -58,6 +61,7 @@ data:
   - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
   - test/data_structure/rectangle_query/rectangle_sum.test.cpp
   - test/misc/mo_static_range_count_distinct.test.cpp
+  - test/misc/inversion_number.test.cpp
 documentation_of: src/misc/merge_and_unique.hpp
 layout: document
 title: Merge And Unique

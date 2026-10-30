@@ -133,6 +133,9 @@ data:
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/bostan_mori_only_convolution.test.cpp
+    title: test/math/bostan_mori_only_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
   - icon: ':heavy_check_mark:'
@@ -259,6 +262,7 @@ data:
   - test/math/enumerative_combinatorics/subset_sum.test.cpp
   - test/math/bmbm.test.cpp
   - test/math/berlekamp_massey.test.cpp
+  - test/math/bostan_mori_only_convolution.test.cpp
   - test/fps/polynomial_taylor_shift.test.cpp
   - test/fps/fps_log.test.cpp
   - test/fps/fps_pow_sparse.test.cpp

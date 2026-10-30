@@ -20,13 +20,16 @@ data:
     path: src/random/xor_shift.hpp
     title: Xor Shift
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_all.hpp
     title: src/fps/fps_all.hpp
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/fps/fps_all.test.cpp
+    title: test/fps/fps_all.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/fps/fps_compositional_inverse.test.cpp
     title: test/fps/fps_compositional_inverse.test.cpp
@@ -433,6 +436,7 @@ data:
   timestamp: '2026-10-29 12:38:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/fps/fps_all.test.cpp
   - test/fps/power_projection.test.cpp
   - test/fps/fps_compositional_inverse.test.cpp
 documentation_of: src/fps/power_projection.hpp

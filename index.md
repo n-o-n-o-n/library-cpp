@@ -170,7 +170,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/fps/fps.hpp
       title: Formal Power Series
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/fps/fps_all.hpp
       title: src/fps/fps_all.hpp
     - icon: ':heavy_check_mark:'
@@ -308,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/math/bostan_mori.hpp
       title: src/math/bostan_mori.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/math/bostan_mori_only_convolution.hpp
       title: src/math/bostan_mori_only_convolution.hpp
   - name: src/math/enumerative_combinatorics
@@ -394,7 +394,7 @@ data:
     - icon: ':warning:'
       path: src/misc/fraction.hpp
       title: src/misc/fraction.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/misc/inversion_number.hpp
       title: src/misc/inversion_number.hpp
     - icon: ':heavy_check_mark:'
@@ -682,6 +682,9 @@ data:
   - name: test/fps
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/fps/fps_all.test.cpp
+      title: test/fps/fps_all.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/fps/fps_composition.test.cpp
       title: test/fps/fps_composition.test.cpp
     - icon: ':heavy_check_mark:'
@@ -837,6 +840,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/bostan_mori.test.cpp
       title: test/math/bostan_mori.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/bostan_mori_only_convolution.test.cpp
+      title: test/math/bostan_mori_only_convolution.test.cpp
   - name: test/math/enumerative_combinatorics
     pages:
     - icon: ':heavy_check_mark:'
@@ -885,6 +891,9 @@ data:
       title: test/math/number_theory/primitive_root.test.cpp
   - name: test/misc
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/misc/inversion_number.test.cpp
+      title: test/misc/inversion_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/misc/mo_static_range_count_distinct.test.cpp
       title: test/misc/mo_static_range_count_distinct.test.cpp
