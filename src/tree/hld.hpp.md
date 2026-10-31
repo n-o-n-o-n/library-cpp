@@ -21,61 +21,71 @@ data:
     \        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        assert(u\
     \ != v);\n        edges.emplace_back(u, v, w);\n        if (ssize(edges) + 1 ==\
     \ n) build();\n    }\n    int lca(int u, int v) {\n        assert(built);\n  \
-    \      assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        while\
-    \ (true) {\n            if (in[u] > in[v]) swap(u, v);\n            if (head[u]\
-    \ == head[v]) return u;\n            v = par[head[v]];\n        }\n        return\
-    \ -1;\n    }\n    void set(int u, const S &w) {\n        assert(built);\n    \
-    \    assert(0 <= u && u < n);\n        seg.set(idx(u), w);\n    }\n    void set(int\
-    \ u, int v, const S &w) {\n        assert(built);\n        assert(0 <= u && u\
-    \ < n);\n        assert(0 <= v && v < n);\n        assert(u != v);\n        seg.set(idx(u,\
-    \ v), w);\n    }\n    template<typename F>\n    void apply(int u, int v, const\
-    \ F &f) {\n        assert(built);\n        assert(0 <= u && u < n);\n        assert(0\
-    \ <= v && v < n);\n        for (auto [l, r] : path_decompose(u, v)) {\n      \
-    \      if (l > r) swap(l, r);\n            seg.apply(l, r, f);\n        }\n  \
-    \  }\n    template<typename F>\n    void subtree_apply(int u, const F &f) {\n\
-    \        assert(built);\n        assert(0 <= u && u < n);\n        seg.apply(in[u]\
-    \ + edge, out[u], f);\n    }\n    S get(int u) {\n        assert(built);\n   \
-    \     assert(0 <= u && u < n);\n        return seg.get(idx(u));\n    }\n    S\
-    \ get(int u, int v) {\n        assert(built);\n        assert(0 <= u && u < n);\n\
-    \        assert(0 <= v && v < n);\n        assert(u != v);\n        return seg.get(idx(u,\
-    \ v));\n    }\n    S prod(int u, int v) {\n        assert(built);\n        assert(0\
-    \ <= u && u < n);\n        assert(0 <= v && v < n);\n        S p = M::e();\n \
-    \       for (auto [l, r] : path_decompose(u, v)) {\n            p = M::op(p, inner_prod(l,\
-    \ r));\n        }\n        return p;\n    }\n    S subtree_prod(int u) {\n   \
-    \     assert(built);\n        assert(0 <= u && u < n);\n        return seg.prod(in[u]\
-    \ + edge, out[u]);\n    }\n    template<typename C>\n    int binary_search(int\
-    \ u, int v, const C &check) {\n        assert(built);\n        assert(0 <= u &&\
-    \ u < n);\n        assert(0 <= v && v < n);\n        S p = M::e();\n        for\
-    \ (auto [l, r] : path_decompose(u, v)) {\n            S np = M::op(p, inner_prod(l,\
-    \ r));\n            if (l < r) {\n                if (!check(np)) {\n        \
-    \            return check(M::op(p, seg.get(l))) ? inv[\n                     \
-    \   (commutative ? seg.max_right(l, [&](const S &x) {\n                      \
-    \      return check(M::op(p, x));\n                        }) : seg.max_right(l,\
-    \ false, [&](const S &x) {\n                            return check(M::op(p,\
-    \ x));\n                        })) - 1\n                    ] : u;\n        \
-    \        }\n                p = np;\n                u = inv[r - 1];\n       \
-    \     } else {\n                swap(l, r);\n                if (!check(np)) {\n\
-    \                    return check(M::op(p, seg.get(r - 1))) ? inv[\n         \
-    \               commutative ? seg.min_left(r, [&](const S &x) {\n            \
-    \                return check(M::op(p, x));\n                        }) : seg.min_left(r,\
-    \ true, [&](const S &x) {\n                            return check(M::op(p, x));\n\
-    \                        })\n                    ] : u;\n                }\n \
-    \               p = np;\n                u = inv[l];\n            }\n        }\n\
-    \        return v;\n    }\nprivate:\n    int n, r, id;\n    bool built;\n    SegTree\
-    \ seg;\n    vector<vector<int>> g;\n    vector<int> sub, depth, par, in, out,\
-    \ inv, head, heavy;\n    vector<tuple<int, int, S>> edges;\n    int idx(int u)\
-    \ const {\n        assert(built);\n        return in[u];\n    }\n    int idx(int\
-    \ u, int v) const {\n        assert(built);\n        return max(in[u], in[v]);\n\
-    \    }\n    S inner_prod(int l, int r) {\n        if (commutative && l > r) swap(l,\
-    \ r);\n        return seg.prod(l, r);\n    }\n    void dfs(int u, int p) {\n \
-    \       par[u] = p;\n        sub[u] = 1;\n        int sub_max = 0;\n        for\
-    \ (int v : g[u]) {\n            if (v != p) {\n                dfs(v, u);\n  \
-    \              sub[u] += sub[v];\n                if (sub[v] > sub_max) {\n  \
-    \                  sub_max = sub[v];\n                    heavy[u] = v;\n    \
-    \            }\n            }\n        }\n    }\n    void decompose(int u, int\
-    \ h) {\n        head[u] = h;\n        in[u] = id++;\n        inv[in[u]] = u;\n\
-    \        if (heavy[u] != -1) decompose(heavy[u], h);\n        for (int v : g[u])\
-    \ {\n            if (v != par[u] && v != heavy[u]) {\n                decompose(v,\
+    \      assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        return\
+    \ inner_query(u, v, [] (int, int, bool) {});\n    }\n    void set(int u, const\
+    \ S &w) {\n        assert(built);\n        assert(0 <= u && u < n);\n        seg.set(idx(u),\
+    \ w);\n    }\n    void set(int u, int v, const S &w) {\n        assert(built);\n\
+    \        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        assert(u\
+    \ != v);\n        seg.set(idx(u, v), w);\n    }\n    template<typename F>\n  \
+    \  void apply(int u, int v, const F &f) {\n        assert(built);\n        assert(0\
+    \ <= u && u < n);\n        assert(0 <= v && v < n);\n        inner_query(u, v,\
+    \ [&] (int l, int r, bool) {\n            if (l > r) swap(l, r);\n           \
+    \ seg.apply(l, r, f);\n        });\n    }\n    template<typename F>\n    void\
+    \ subtree_apply(int u, const F &f) {\n        assert(built);\n        assert(0\
+    \ <= u && u < n);\n        seg.apply(in[u] + edge, out[u], f);\n    }\n    S get(int\
+    \ u) {\n        assert(built);\n        assert(0 <= u && u < n);\n        return\
+    \ seg.get(idx(u));\n    }\n    S get(int u, int v) {\n        assert(built);\n\
+    \        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        assert(u\
+    \ != v);\n        return seg.get(idx(u, v));\n    }\n    S prod(int u, int v)\
+    \ {\n        assert(built);\n        assert(0 <= u && u < n);\n        assert(0\
+    \ <= v && v < n);\n        S pu = M::e(), pv = M::e();\n        inner_query(u,\
+    \ v, [&] (int l, int r, bool up) {\n            if (up) {\n                pu\
+    \ = M::op(pu, inner_prod(l, r));\n            } else {\n                pv = M::op(inner_prod(l,\
+    \ r), pv);\n            }\n        });\n        return M::op(pu, pv);\n    }\n\
+    \    S subtree_prod(int u) {\n        assert(built);\n        assert(0 <= u &&\
+    \ u < n);\n        return seg.prod(in[u] + edge, out[u]);\n    }\n    template<typename\
+    \ C>\n    int binary_search(int u, int v, const C &check) {\n        assert(built);\n\
+    \        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        vector<pair<int,\
+    \ int>> pl, pr;\n        inner_query(u, v, [&] (int l, int r, bool up) {\n   \
+    \         if (l == r) return;\n            (up ? pl : pr).emplace_back(l, r);\n\
+    \        });\n        reverse(pr.begin(), pr.end());\n        pl.insert(pl.end(),\
+    \ pr.begin(), pr.end());\n        S p = M::e();\n        for (auto [l, r] : pl)\
+    \ {\n            S np = M::op(p, inner_prod(l, r));\n            if (check(np))\
+    \ {\n                p = np;\n                u = l < r ? inv[r - 1] : (edge ?\
+    \ par[inv[r]] : inv[r]);\n                continue;\n            }\n         \
+    \   auto c = [&] (const S &x) { return check(M::op(p, x)); };\n            if\
+    \ (l < r) {\n                int k = [&] {\n                    if constexpr (commutative)\
+    \ {\n                        return seg.max_right(l, c);\n                   \
+    \ } else {\n                        return seg.max_right(l, false, c);\n     \
+    \               }\n                } ();\n                return k == l ? u :\
+    \ inv[k - 1];\n            } else {\n                int k = [&] {\n         \
+    \           if constexpr (commutative) {\n                        return seg.min_left(l,\
+    \ c);\n                    } else {\n                        return seg.min_left(l,\
+    \ true, c);\n                    }\n                } ();\n                return\
+    \ k == l ? u : (edge ? par[inv[k]] : inv[k]);\n            }\n        }\n    \
+    \    return v;\n    }\n    vector<pair<int, int>> path_decompose(int u, int v)\
+    \ {\n        assert(built);\n        assert(0 <= u && u < n);\n        assert(0\
+    \ <= v && v < n);\n        if (u == v) return {{u, v}};\n        int w = lca(u,\
+    \ v);\n        auto climb = [&] (int x, vector<pair<int, int>> &res) {\n     \
+    \       while (x != w) {\n                int y = head[x] == head[w] ? w : head[x];\n\
+    \                if (x != y) res.emplace_back(x, y);\n                if (y ==\
+    \ w) break;\n                res.emplace_back(y, par[y]);\n                x =\
+    \ par[y];\n            }\n        };\n        vector<pair<int, int>> pu, pv;\n\
+    \        climb(u, pu);\n        climb(v, pv);\n        reverse(pv.begin(), pv.end());\n\
+    \        for (auto [l, r] : pv) pu.emplace_back(r, l);\n        return pu;\n \
+    \   }\nprivate:\n    int n, r, id;\n    bool built;\n    SegTree seg;\n    vector<vector<int>>\
+    \ g;\n    vector<int> sub, depth, par, in, out, inv, head, heavy;\n    vector<tuple<int,\
+    \ int, S>> edges;\n    int idx(int u) const {\n        assert(built);\n      \
+    \  return in[u];\n    }\n    int idx(int u, int v) const {\n        assert(built);\n\
+    \        return max(in[u], in[v]);\n    }\n    void dfs(int u, int p) {\n    \
+    \    par[u] = p;\n        sub[u] = 1;\n        int sub_max = 0;\n        for (int\
+    \ v : g[u]) {\n            if (v != p) {\n                dfs(v, u);\n       \
+    \         sub[u] += sub[v];\n                if (sub[v] > sub_max) {\n       \
+    \             sub_max = sub[v];\n                    heavy[u] = v;\n         \
+    \       }\n            }\n        }\n    }\n    void decompose(int u, int h) {\n\
+    \        head[u] = h;\n        in[u] = id++;\n        inv[in[u]] = u;\n      \
+    \  if (heavy[u] != -1) decompose(heavy[u], h);\n        for (int v : g[u]) {\n\
+    \            if (v != par[u] && v != heavy[u]) {\n                decompose(v,\
     \ v);\n            }\n        }\n        out[u] = id;\n    }\n    void build()\
     \ {\n        g = vector<vector<int>>(n);\n        sub = depth = in = inv = out\
     \ = head = vector<int>(n);\n        par = heavy = vector<int>(n, -1);\n      \
@@ -84,21 +94,16 @@ data:
     \ r);\n        built = true;\n        if (edge) {\n            vector<S> a(n,\
     \ M::e());\n            for (const auto &[u, v, w] : edges) {\n              \
     \  a[idx(u, v)] = w;\n            }\n            seg = SegTree(a);\n        }\
-    \ else {\n            seg = SegTree(n);\n        }\n    }\n    vector<pair<int,\
-    \ int>> path_decompose(int u, int v) const {\n        assert(built);\n       \
-    \ assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        int hu =\
-    \ head[u], hv = head[v];\n        vector<pair<int, int>> resl, resr;\n       \
-    \ bool flip = true;\n        while (hu != hv) {\n            if (in[hu] > in[hv])\
-    \ {\n                flip = !flip;\n                swap(u, v);\n            \
-    \    swap(hu, hv);\n                swap(resl, resr);\n            }\n       \
-    \     resl.emplace_back(in[hv], in[v] + 1);\n            v = par[hv];\n      \
-    \      hu = head[u];\n            hv = head[v];\n        }\n        if (in[u]\
-    \ > in[v]) {\n            flip = !flip;\n            swap(u, v);\n           \
-    \ swap(resl, resr);\n        }\n        resl.emplace_back(in[u] + edge, in[v]\
-    \ + 1);\n        if (flip) swap(resl, resr);\n        reverse(resr.begin(), resr.end());\n\
-    \        vector<pair<int, int>> res;\n        for (auto [l, r] : resl) res.emplace_back(r,\
-    \ l);\n        for (auto [l, r] : resr) res.emplace_back(l, r);\n        return\
-    \ res;\n    }\n};\n"
+    \ else {\n            seg = SegTree(n);\n        }\n    }\n    template<typename\
+    \ F>\n    int inner_query(int u, int v, const F &f) {\n        while (head[u]\
+    \ != head[v]) {\n            if (in[head[u]] > in[head[v]]) {\n              \
+    \  f(in[u] + 1, in[head[u]], true);\n                u = par[head[u]];\n     \
+    \       } else {\n                f(in[head[v]], in[v] + 1, false);\n        \
+    \        v = par[head[v]];\n            }\n        }\n        if (in[u] >= in[v])\
+    \ {\n            f(in[u] + 1, in[v] + edge, true);\n            return v;\n  \
+    \      } else {\n            f(in[u] + edge, in[v] + 1, false);\n            return\
+    \ u;\n        }\n    }\n    S inner_prod(int l, int r) {\n        if (commutative\
+    \ && l > r) swap(l, r);\n        return seg.prod(l, r);\n    }\n};\n"
   code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
     using namespace std;\n\ntemplate<typename SegTree, bool edge, bool commutative>\n\
     struct heavy_light_decomposition {\n    using M = typename SegTree::M;\n    using\
@@ -109,61 +114,71 @@ data:
     \ < n);\n        assert(0 <= v && v < n);\n        assert(u != v);\n        edges.emplace_back(u,\
     \ v, w);\n        if (ssize(edges) + 1 == n) build();\n    }\n    int lca(int\
     \ u, int v) {\n        assert(built);\n        assert(0 <= u && u < n);\n    \
-    \    assert(0 <= v && v < n);\n        while (true) {\n            if (in[u] >\
-    \ in[v]) swap(u, v);\n            if (head[u] == head[v]) return u;\n        \
-    \    v = par[head[v]];\n        }\n        return -1;\n    }\n    void set(int\
-    \ u, const S &w) {\n        assert(built);\n        assert(0 <= u && u < n);\n\
-    \        seg.set(idx(u), w);\n    }\n    void set(int u, int v, const S &w) {\n\
-    \        assert(built);\n        assert(0 <= u && u < n);\n        assert(0 <=\
-    \ v && v < n);\n        assert(u != v);\n        seg.set(idx(u, v), w);\n    }\n\
-    \    template<typename F>\n    void apply(int u, int v, const F &f) {\n      \
-    \  assert(built);\n        assert(0 <= u && u < n);\n        assert(0 <= v &&\
-    \ v < n);\n        for (auto [l, r] : path_decompose(u, v)) {\n            if\
-    \ (l > r) swap(l, r);\n            seg.apply(l, r, f);\n        }\n    }\n   \
-    \ template<typename F>\n    void subtree_apply(int u, const F &f) {\n        assert(built);\n\
-    \        assert(0 <= u && u < n);\n        seg.apply(in[u] + edge, out[u], f);\n\
-    \    }\n    S get(int u) {\n        assert(built);\n        assert(0 <= u && u\
-    \ < n);\n        return seg.get(idx(u));\n    }\n    S get(int u, int v) {\n \
-    \       assert(built);\n        assert(0 <= u && u < n);\n        assert(0 <=\
-    \ v && v < n);\n        assert(u != v);\n        return seg.get(idx(u, v));\n\
-    \    }\n    S prod(int u, int v) {\n        assert(built);\n        assert(0 <=\
-    \ u && u < n);\n        assert(0 <= v && v < n);\n        S p = M::e();\n    \
-    \    for (auto [l, r] : path_decompose(u, v)) {\n            p = M::op(p, inner_prod(l,\
-    \ r));\n        }\n        return p;\n    }\n    S subtree_prod(int u) {\n   \
-    \     assert(built);\n        assert(0 <= u && u < n);\n        return seg.prod(in[u]\
-    \ + edge, out[u]);\n    }\n    template<typename C>\n    int binary_search(int\
-    \ u, int v, const C &check) {\n        assert(built);\n        assert(0 <= u &&\
-    \ u < n);\n        assert(0 <= v && v < n);\n        S p = M::e();\n        for\
-    \ (auto [l, r] : path_decompose(u, v)) {\n            S np = M::op(p, inner_prod(l,\
-    \ r));\n            if (l < r) {\n                if (!check(np)) {\n        \
-    \            return check(M::op(p, seg.get(l))) ? inv[\n                     \
-    \   (commutative ? seg.max_right(l, [&](const S &x) {\n                      \
-    \      return check(M::op(p, x));\n                        }) : seg.max_right(l,\
-    \ false, [&](const S &x) {\n                            return check(M::op(p,\
-    \ x));\n                        })) - 1\n                    ] : u;\n        \
-    \        }\n                p = np;\n                u = inv[r - 1];\n       \
-    \     } else {\n                swap(l, r);\n                if (!check(np)) {\n\
-    \                    return check(M::op(p, seg.get(r - 1))) ? inv[\n         \
-    \               commutative ? seg.min_left(r, [&](const S &x) {\n            \
-    \                return check(M::op(p, x));\n                        }) : seg.min_left(r,\
-    \ true, [&](const S &x) {\n                            return check(M::op(p, x));\n\
-    \                        })\n                    ] : u;\n                }\n \
-    \               p = np;\n                u = inv[l];\n            }\n        }\n\
-    \        return v;\n    }\nprivate:\n    int n, r, id;\n    bool built;\n    SegTree\
-    \ seg;\n    vector<vector<int>> g;\n    vector<int> sub, depth, par, in, out,\
-    \ inv, head, heavy;\n    vector<tuple<int, int, S>> edges;\n    int idx(int u)\
-    \ const {\n        assert(built);\n        return in[u];\n    }\n    int idx(int\
-    \ u, int v) const {\n        assert(built);\n        return max(in[u], in[v]);\n\
-    \    }\n    S inner_prod(int l, int r) {\n        if (commutative && l > r) swap(l,\
-    \ r);\n        return seg.prod(l, r);\n    }\n    void dfs(int u, int p) {\n \
-    \       par[u] = p;\n        sub[u] = 1;\n        int sub_max = 0;\n        for\
-    \ (int v : g[u]) {\n            if (v != p) {\n                dfs(v, u);\n  \
-    \              sub[u] += sub[v];\n                if (sub[v] > sub_max) {\n  \
-    \                  sub_max = sub[v];\n                    heavy[u] = v;\n    \
-    \            }\n            }\n        }\n    }\n    void decompose(int u, int\
-    \ h) {\n        head[u] = h;\n        in[u] = id++;\n        inv[in[u]] = u;\n\
-    \        if (heavy[u] != -1) decompose(heavy[u], h);\n        for (int v : g[u])\
-    \ {\n            if (v != par[u] && v != heavy[u]) {\n                decompose(v,\
+    \    assert(0 <= v && v < n);\n        return inner_query(u, v, [] (int, int,\
+    \ bool) {});\n    }\n    void set(int u, const S &w) {\n        assert(built);\n\
+    \        assert(0 <= u && u < n);\n        seg.set(idx(u), w);\n    }\n    void\
+    \ set(int u, int v, const S &w) {\n        assert(built);\n        assert(0 <=\
+    \ u && u < n);\n        assert(0 <= v && v < n);\n        assert(u != v);\n  \
+    \      seg.set(idx(u, v), w);\n    }\n    template<typename F>\n    void apply(int\
+    \ u, int v, const F &f) {\n        assert(built);\n        assert(0 <= u && u\
+    \ < n);\n        assert(0 <= v && v < n);\n        inner_query(u, v, [&] (int\
+    \ l, int r, bool) {\n            if (l > r) swap(l, r);\n            seg.apply(l,\
+    \ r, f);\n        });\n    }\n    template<typename F>\n    void subtree_apply(int\
+    \ u, const F &f) {\n        assert(built);\n        assert(0 <= u && u < n);\n\
+    \        seg.apply(in[u] + edge, out[u], f);\n    }\n    S get(int u) {\n    \
+    \    assert(built);\n        assert(0 <= u && u < n);\n        return seg.get(idx(u));\n\
+    \    }\n    S get(int u, int v) {\n        assert(built);\n        assert(0 <=\
+    \ u && u < n);\n        assert(0 <= v && v < n);\n        assert(u != v);\n  \
+    \      return seg.get(idx(u, v));\n    }\n    S prod(int u, int v) {\n       \
+    \ assert(built);\n        assert(0 <= u && u < n);\n        assert(0 <= v && v\
+    \ < n);\n        S pu = M::e(), pv = M::e();\n        inner_query(u, v, [&] (int\
+    \ l, int r, bool up) {\n            if (up) {\n                pu = M::op(pu,\
+    \ inner_prod(l, r));\n            } else {\n                pv = M::op(inner_prod(l,\
+    \ r), pv);\n            }\n        });\n        return M::op(pu, pv);\n    }\n\
+    \    S subtree_prod(int u) {\n        assert(built);\n        assert(0 <= u &&\
+    \ u < n);\n        return seg.prod(in[u] + edge, out[u]);\n    }\n    template<typename\
+    \ C>\n    int binary_search(int u, int v, const C &check) {\n        assert(built);\n\
+    \        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        vector<pair<int,\
+    \ int>> pl, pr;\n        inner_query(u, v, [&] (int l, int r, bool up) {\n   \
+    \         if (l == r) return;\n            (up ? pl : pr).emplace_back(l, r);\n\
+    \        });\n        reverse(pr.begin(), pr.end());\n        pl.insert(pl.end(),\
+    \ pr.begin(), pr.end());\n        S p = M::e();\n        for (auto [l, r] : pl)\
+    \ {\n            S np = M::op(p, inner_prod(l, r));\n            if (check(np))\
+    \ {\n                p = np;\n                u = l < r ? inv[r - 1] : (edge ?\
+    \ par[inv[r]] : inv[r]);\n                continue;\n            }\n         \
+    \   auto c = [&] (const S &x) { return check(M::op(p, x)); };\n            if\
+    \ (l < r) {\n                int k = [&] {\n                    if constexpr (commutative)\
+    \ {\n                        return seg.max_right(l, c);\n                   \
+    \ } else {\n                        return seg.max_right(l, false, c);\n     \
+    \               }\n                } ();\n                return k == l ? u :\
+    \ inv[k - 1];\n            } else {\n                int k = [&] {\n         \
+    \           if constexpr (commutative) {\n                        return seg.min_left(l,\
+    \ c);\n                    } else {\n                        return seg.min_left(l,\
+    \ true, c);\n                    }\n                } ();\n                return\
+    \ k == l ? u : (edge ? par[inv[k]] : inv[k]);\n            }\n        }\n    \
+    \    return v;\n    }\n    vector<pair<int, int>> path_decompose(int u, int v)\
+    \ {\n        assert(built);\n        assert(0 <= u && u < n);\n        assert(0\
+    \ <= v && v < n);\n        if (u == v) return {{u, v}};\n        int w = lca(u,\
+    \ v);\n        auto climb = [&] (int x, vector<pair<int, int>> &res) {\n     \
+    \       while (x != w) {\n                int y = head[x] == head[w] ? w : head[x];\n\
+    \                if (x != y) res.emplace_back(x, y);\n                if (y ==\
+    \ w) break;\n                res.emplace_back(y, par[y]);\n                x =\
+    \ par[y];\n            }\n        };\n        vector<pair<int, int>> pu, pv;\n\
+    \        climb(u, pu);\n        climb(v, pv);\n        reverse(pv.begin(), pv.end());\n\
+    \        for (auto [l, r] : pv) pu.emplace_back(r, l);\n        return pu;\n \
+    \   }\nprivate:\n    int n, r, id;\n    bool built;\n    SegTree seg;\n    vector<vector<int>>\
+    \ g;\n    vector<int> sub, depth, par, in, out, inv, head, heavy;\n    vector<tuple<int,\
+    \ int, S>> edges;\n    int idx(int u) const {\n        assert(built);\n      \
+    \  return in[u];\n    }\n    int idx(int u, int v) const {\n        assert(built);\n\
+    \        return max(in[u], in[v]);\n    }\n    void dfs(int u, int p) {\n    \
+    \    par[u] = p;\n        sub[u] = 1;\n        int sub_max = 0;\n        for (int\
+    \ v : g[u]) {\n            if (v != p) {\n                dfs(v, u);\n       \
+    \         sub[u] += sub[v];\n                if (sub[v] > sub_max) {\n       \
+    \             sub_max = sub[v];\n                    heavy[u] = v;\n         \
+    \       }\n            }\n        }\n    }\n    void decompose(int u, int h) {\n\
+    \        head[u] = h;\n        in[u] = id++;\n        inv[in[u]] = u;\n      \
+    \  if (heavy[u] != -1) decompose(heavy[u], h);\n        for (int v : g[u]) {\n\
+    \            if (v != par[u] && v != heavy[u]) {\n                decompose(v,\
     \ v);\n            }\n        }\n        out[u] = id;\n    }\n    void build()\
     \ {\n        g = vector<vector<int>>(n);\n        sub = depth = in = inv = out\
     \ = head = vector<int>(n);\n        par = heavy = vector<int>(n, -1);\n      \
@@ -172,26 +187,21 @@ data:
     \ r);\n        built = true;\n        if (edge) {\n            vector<S> a(n,\
     \ M::e());\n            for (const auto &[u, v, w] : edges) {\n              \
     \  a[idx(u, v)] = w;\n            }\n            seg = SegTree(a);\n        }\
-    \ else {\n            seg = SegTree(n);\n        }\n    }\n    vector<pair<int,\
-    \ int>> path_decompose(int u, int v) const {\n        assert(built);\n       \
-    \ assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        int hu =\
-    \ head[u], hv = head[v];\n        vector<pair<int, int>> resl, resr;\n       \
-    \ bool flip = true;\n        while (hu != hv) {\n            if (in[hu] > in[hv])\
-    \ {\n                flip = !flip;\n                swap(u, v);\n            \
-    \    swap(hu, hv);\n                swap(resl, resr);\n            }\n       \
-    \     resl.emplace_back(in[hv], in[v] + 1);\n            v = par[hv];\n      \
-    \      hu = head[u];\n            hv = head[v];\n        }\n        if (in[u]\
-    \ > in[v]) {\n            flip = !flip;\n            swap(u, v);\n           \
-    \ swap(resl, resr);\n        }\n        resl.emplace_back(in[u] + edge, in[v]\
-    \ + 1);\n        if (flip) swap(resl, resr);\n        reverse(resr.begin(), resr.end());\n\
-    \        vector<pair<int, int>> res;\n        for (auto [l, r] : resl) res.emplace_back(r,\
-    \ l);\n        for (auto [l, r] : resr) res.emplace_back(l, r);\n        return\
-    \ res;\n    }\n};"
+    \ else {\n            seg = SegTree(n);\n        }\n    }\n    template<typename\
+    \ F>\n    int inner_query(int u, int v, const F &f) {\n        while (head[u]\
+    \ != head[v]) {\n            if (in[head[u]] > in[head[v]]) {\n              \
+    \  f(in[u] + 1, in[head[u]], true);\n                u = par[head[u]];\n     \
+    \       } else {\n                f(in[head[v]], in[v] + 1, false);\n        \
+    \        v = par[head[v]];\n            }\n        }\n        if (in[u] >= in[v])\
+    \ {\n            f(in[u] + 1, in[v] + edge, true);\n            return v;\n  \
+    \      } else {\n            f(in[u] + edge, in[v] + 1, false);\n            return\
+    \ u;\n        }\n    }\n    S inner_prod(int l, int r) {\n        if (commutative\
+    \ && l > r) swap(l, r);\n        return seg.prod(l, r);\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: src/tree/hld.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-31 20:48:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree/hld.test.cpp

@@ -7,60 +7,59 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links:
-    - https://judge.yosupo.jp/submission/212769
+    links: []
   bundledCode: "#line 2 \"src/misc/fast_io.hpp\"\n#include <algorithm>\n#include <array>\n\
     #include <concepts>\n#include <cstring>\n#include <filesystem>\n#include <iostream>\n\
-    #include <vector>\nusing namespace std;\n\n// https://judge.yosupo.jp/submission/212769\n\
-    namespace fastio {\n\nstatic constexpr int buf_size = 1 << 21;\n\ninline struct\
-    \ fast_read {\n    fast_read() : fast_read(stdin) {}\n    fast_read(const filesystem::path\
-    \ &p) : fast_read(fopen(p.c_str(), \"r\")) {}\n    fast_read(FILE *_stream) :\
-    \ stream(_stream), start(buf.data()), end(start + buf_size), ptr(end) { load();\
-    \ }\n    ~fast_read() { if (stream != stdin) fclose(stream); }\n    fast_read(const\
-    \ fast_read &) = default;\n    fast_read &operator=(const fast_read &) = default;\n\
-    \    template<unsigned_integral T>\n    void operator()(T &x) {\n        skip_space();\n\
-    \        load<64>();\n        parse(x);\n    }\n    template<signed_integral T>\n\
-    \    void operator()(T &x) {\n        skip_space();\n        load<64>();\n   \
-    \     make_unsigned_t<T> y;\n        if (*ptr == '-') {\n            ptr++;\n\
-    \            parse(y);\n            y = -y;\n        } else {\n            parse(y);\n\
-    \        }\n        x = y;\n    }\n    void operator()(char &c) {\n        skip_space();\n\
-    \        load<64>();\n        c = *ptr++;\n    }\n    void operator()(string &s)\
-    \ {\n        s = \"\";\n        skip_space();\n        load<64>();\n        while\
-    \ (*ptr > ' ' && *ptr != '\\0') {\n            s.push_back(*ptr++);\n        }\n\
-    \        ptr++;\n    }\n    template<typename T>\n    void operator()(vector<T>\
-    \ &v) {\n        for (auto &e : v) (*this)(e);\n    }\n    template<typename...\
-    \ Ts> requires(sizeof...(Ts) != 1)\n    void operator() (Ts &... xs) {\n     \
-    \   ((*this)(xs), ...);\n    }\nprivate:\n    FILE *stream;\n    array<char, buf_size>\
-    \ buf{};\n    char *start, *end, *ptr;\n    void skip_space() {\n        while\
-    \ (*ptr <= ' ') ptr++;\n    }\n    template<int n = 0> void load() {\n       \
-    \ const auto i = end - ptr;\n        if (i <= n) {\n            ignore = fread(copy_n(ptr,\
-    \ i, start), 1, buf_size - i, stream);\n            ptr = start;\n        }\n\
-    \    }\n    template<unsigned_integral T>\n    void parse(T &x) {\n        typename\
-    \ common_type<T, uint64_t>::type y = 0;\n        while (true) {\n            uint64_t\
-    \ z;\n            memcpy(&z, ptr, 8);\n            if (!((z -= 0x3030303030303030)\
-    \ & 0x8080808080808080)) {\n                z = (z * 10 + (z >> 8)) & 0xff00ff00ff00ff;\n\
-    \                z = (z * 100 + (z >> 16)) & 0xffff0000ffff;\n               \
-    \ z = (z * 10000 + (z >> 32)) & 0xffffffff;\n                y = 100000000 * y\
-    \ + z;\n                ptr += 8;\n            } else {\n                break;\n\
-    \            }\n        }\n        {\n            uint32_t z;\n            memcpy(&z,\
-    \ ptr, 4);\n            if (!((z -= 0x30303030) & 0x80808080)) {\n           \
-    \     z = (z * 10 + (z >> 8)) & 0xff00ff;\n                z = (z * 100 + (z >>\
-    \ 16)) & 0xffff;\n                y = 10000 * y + z;\n                ptr += 4;\n\
-    \            }\n        }\n        {\n            uint16_t z;\n            memcpy(&z,\
-    \ ptr, 2);\n            if (!((z -= 0x3030) & 0x8080)) {\n                z =\
-    \ (z * 10 + (z >> 8)) & 0xff;\n                y = 100 * y + z;\n            \
-    \    ptr += 2;\n            }\n        }\n        if (' ' < *ptr) {\n        \
-    \    y *= 10;\n            y += *ptr++ - '0';\n        }\n        ptr++;\n   \
-    \     x = static_cast<T>(y);\n    }\n} Read;\n\ninline struct fast_write {\n \
-    \   fast_write() : fast_write(stdout) {}\n    fast_write(const filesystem::path\
-    \ &p) : fast_write(fopen(p.c_str(), \"w\")) {}\n    fast_write(FILE *_stream)\
-    \ : stream(_stream), start(buf.data()), end(start + buf_size), ptr(start) {}\n\
-    \    ~fast_write() {\n        flush();\n        if (stream != stdout) fclose(stream);\n\
-    \    }\n    fast_write(const fast_write &) = default;\n    fast_write &operator=(const\
-    \ fast_write &) = default;\n    template<unsigned_integral T>\n    void operator()(T\
-    \ x) {\n        flush<digits<T>>();\n        write(x);\n    }\n    template<signed_integral\
-    \ T>\n    void operator()(T x) {\n        flush<1 + digits<T>>();\n        make_unsigned_t<T>\
-    \ y = x;\n        if (x < 0) {\n            *ptr++ = '-';\n            write(static_cast<make_unsigned_t<T>>(-y));\n\
+    #include <vector>\nusing namespace std;\n\nnamespace fastio {\n\nstatic constexpr\
+    \ int buf_size = 1 << 21;\n\ninline struct fast_read {\n    fast_read() : fast_read(stdin)\
+    \ {}\n    fast_read(const filesystem::path &p) : fast_read(fopen(p.c_str(), \"\
+    r\")) {}\n    fast_read(FILE *_stream) : stream(_stream), start(buf.data()), end(start\
+    \ + buf_size), ptr(end) { load(); }\n    ~fast_read() { if (stream != stdin) fclose(stream);\
+    \ }\n    fast_read(const fast_read &) = default;\n    fast_read &operator=(const\
+    \ fast_read &) = default;\n    template<unsigned_integral T>\n    void operator()(T\
+    \ &x) {\n        skip_space();\n        load<64>();\n        parse(x);\n    }\n\
+    \    template<signed_integral T>\n    void operator()(T &x) {\n        skip_space();\n\
+    \        load<64>();\n        make_unsigned_t<T> y;\n        if (*ptr == '-')\
+    \ {\n            ptr++;\n            parse(y);\n            y = -y;\n        }\
+    \ else {\n            parse(y);\n        }\n        x = y;\n    }\n    void operator()(char\
+    \ &c) {\n        skip_space();\n        load<64>();\n        c = *ptr++;\n   \
+    \ }\n    void operator()(string &s) {\n        s = \"\";\n        skip_space();\n\
+    \        load<64>();\n        while (*ptr > ' ' && *ptr != '\\0') {\n        \
+    \    s.push_back(*ptr++);\n        }\n        ptr++;\n    }\n    template<typename\
+    \ T>\n    void operator()(vector<T> &v) {\n        for (auto &e : v) (*this)(e);\n\
+    \    }\n    template<typename... Ts> requires(sizeof...(Ts) != 1)\n    void operator()\
+    \ (Ts &... xs) {\n        ((*this)(xs), ...);\n    }\nprivate:\n    FILE *stream;\n\
+    \    array<char, buf_size> buf{};\n    char *start, *end, *ptr;\n    void skip_space()\
+    \ {\n        while (*ptr <= ' ') ptr++;\n    }\n    template<int n = 0> void load()\
+    \ {\n        const auto i = end - ptr;\n        if (i <= n) {\n            ignore\
+    \ = fread(copy_n(ptr, i, start), 1, buf_size - i, stream);\n            ptr =\
+    \ start;\n        }\n    }\n    template<unsigned_integral T>\n    void parse(T\
+    \ &x) {\n        typename common_type<T, uint64_t>::type y = 0;\n        while\
+    \ (true) {\n            uint64_t z;\n            memcpy(&z, ptr, 8);\n       \
+    \     if (!((z -= 0x3030303030303030) & 0x8080808080808080)) {\n             \
+    \   z = (z * 10 + (z >> 8)) & 0xff00ff00ff00ff;\n                z = (z * 100\
+    \ + (z >> 16)) & 0xffff0000ffff;\n                z = (z * 10000 + (z >> 32))\
+    \ & 0xffffffff;\n                y = 100000000 * y + z;\n                ptr +=\
+    \ 8;\n            } else {\n                break;\n            }\n        }\n\
+    \        {\n            uint32_t z;\n            memcpy(&z, ptr, 4);\n       \
+    \     if (!((z -= 0x30303030) & 0x80808080)) {\n                z = (z * 10 +\
+    \ (z >> 8)) & 0xff00ff;\n                z = (z * 100 + (z >> 16)) & 0xffff;\n\
+    \                y = 10000 * y + z;\n                ptr += 4;\n            }\n\
+    \        }\n        {\n            uint16_t z;\n            memcpy(&z, ptr, 2);\n\
+    \            if (!((z -= 0x3030) & 0x8080)) {\n                z = (z * 10 + (z\
+    \ >> 8)) & 0xff;\n                y = 100 * y + z;\n                ptr += 2;\n\
+    \            }\n        }\n        if (' ' < *ptr) {\n            y *= 10;\n \
+    \           y += *ptr++ - '0';\n        }\n        ptr++;\n        x = static_cast<T>(y);\n\
+    \    }\n} Read;\n\ninline struct fast_write {\n    fast_write() : fast_write(stdout)\
+    \ {}\n    fast_write(const filesystem::path &p) : fast_write(fopen(p.c_str(),\
+    \ \"w\")) {}\n    fast_write(FILE *_stream) : stream(_stream), start(buf.data()),\
+    \ end(start + buf_size), ptr(start) {}\n    ~fast_write() {\n        flush();\n\
+    \        if (stream != stdout) fclose(stream);\n    }\n    fast_write(const fast_write\
+    \ &) = default;\n    fast_write &operator=(const fast_write &) = default;\n  \
+    \  template<unsigned_integral T>\n    void operator()(T x) {\n        flush<digits<T>>();\n\
+    \        write(x);\n    }\n    template<signed_integral T>\n    void operator()(T\
+    \ x) {\n        flush<1 + digits<T>>();\n        make_unsigned_t<T> y = x;\n \
+    \       if (x < 0) {\n            *ptr++ = '-';\n            write(static_cast<make_unsigned_t<T>>(-y));\n\
     \        } else {\n            write(y);\n        }\n    }\n    void operator()(char\
     \ c) {\n        flush<1>();\n        *ptr++ = c;\n    }\n    void operator()(string_view\
     \ s) {\n        while (!s.empty()) {\n            flush<0>();\n            const\
@@ -114,56 +113,56 @@ data:
     \ fast_io\n"
   code: "#pragma once\n#include <algorithm>\n#include <array>\n#include <concepts>\n\
     #include <cstring>\n#include <filesystem>\n#include <iostream>\n#include <vector>\n\
-    using namespace std;\n\n// https://judge.yosupo.jp/submission/212769\nnamespace\
-    \ fastio {\n\nstatic constexpr int buf_size = 1 << 21;\n\ninline struct fast_read\
-    \ {\n    fast_read() : fast_read(stdin) {}\n    fast_read(const filesystem::path\
-    \ &p) : fast_read(fopen(p.c_str(), \"r\")) {}\n    fast_read(FILE *_stream) :\
-    \ stream(_stream), start(buf.data()), end(start + buf_size), ptr(end) { load();\
-    \ }\n    ~fast_read() { if (stream != stdin) fclose(stream); }\n    fast_read(const\
-    \ fast_read &) = default;\n    fast_read &operator=(const fast_read &) = default;\n\
-    \    template<unsigned_integral T>\n    void operator()(T &x) {\n        skip_space();\n\
-    \        load<64>();\n        parse(x);\n    }\n    template<signed_integral T>\n\
-    \    void operator()(T &x) {\n        skip_space();\n        load<64>();\n   \
-    \     make_unsigned_t<T> y;\n        if (*ptr == '-') {\n            ptr++;\n\
-    \            parse(y);\n            y = -y;\n        } else {\n            parse(y);\n\
-    \        }\n        x = y;\n    }\n    void operator()(char &c) {\n        skip_space();\n\
-    \        load<64>();\n        c = *ptr++;\n    }\n    void operator()(string &s)\
-    \ {\n        s = \"\";\n        skip_space();\n        load<64>();\n        while\
-    \ (*ptr > ' ' && *ptr != '\\0') {\n            s.push_back(*ptr++);\n        }\n\
-    \        ptr++;\n    }\n    template<typename T>\n    void operator()(vector<T>\
-    \ &v) {\n        for (auto &e : v) (*this)(e);\n    }\n    template<typename...\
-    \ Ts> requires(sizeof...(Ts) != 1)\n    void operator() (Ts &... xs) {\n     \
-    \   ((*this)(xs), ...);\n    }\nprivate:\n    FILE *stream;\n    array<char, buf_size>\
-    \ buf{};\n    char *start, *end, *ptr;\n    void skip_space() {\n        while\
-    \ (*ptr <= ' ') ptr++;\n    }\n    template<int n = 0> void load() {\n       \
-    \ const auto i = end - ptr;\n        if (i <= n) {\n            ignore = fread(copy_n(ptr,\
-    \ i, start), 1, buf_size - i, stream);\n            ptr = start;\n        }\n\
-    \    }\n    template<unsigned_integral T>\n    void parse(T &x) {\n        typename\
-    \ common_type<T, uint64_t>::type y = 0;\n        while (true) {\n            uint64_t\
-    \ z;\n            memcpy(&z, ptr, 8);\n            if (!((z -= 0x3030303030303030)\
-    \ & 0x8080808080808080)) {\n                z = (z * 10 + (z >> 8)) & 0xff00ff00ff00ff;\n\
-    \                z = (z * 100 + (z >> 16)) & 0xffff0000ffff;\n               \
-    \ z = (z * 10000 + (z >> 32)) & 0xffffffff;\n                y = 100000000 * y\
-    \ + z;\n                ptr += 8;\n            } else {\n                break;\n\
-    \            }\n        }\n        {\n            uint32_t z;\n            memcpy(&z,\
-    \ ptr, 4);\n            if (!((z -= 0x30303030) & 0x80808080)) {\n           \
-    \     z = (z * 10 + (z >> 8)) & 0xff00ff;\n                z = (z * 100 + (z >>\
-    \ 16)) & 0xffff;\n                y = 10000 * y + z;\n                ptr += 4;\n\
-    \            }\n        }\n        {\n            uint16_t z;\n            memcpy(&z,\
-    \ ptr, 2);\n            if (!((z -= 0x3030) & 0x8080)) {\n                z =\
-    \ (z * 10 + (z >> 8)) & 0xff;\n                y = 100 * y + z;\n            \
-    \    ptr += 2;\n            }\n        }\n        if (' ' < *ptr) {\n        \
-    \    y *= 10;\n            y += *ptr++ - '0';\n        }\n        ptr++;\n   \
-    \     x = static_cast<T>(y);\n    }\n} Read;\n\ninline struct fast_write {\n \
-    \   fast_write() : fast_write(stdout) {}\n    fast_write(const filesystem::path\
-    \ &p) : fast_write(fopen(p.c_str(), \"w\")) {}\n    fast_write(FILE *_stream)\
-    \ : stream(_stream), start(buf.data()), end(start + buf_size), ptr(start) {}\n\
-    \    ~fast_write() {\n        flush();\n        if (stream != stdout) fclose(stream);\n\
-    \    }\n    fast_write(const fast_write &) = default;\n    fast_write &operator=(const\
-    \ fast_write &) = default;\n    template<unsigned_integral T>\n    void operator()(T\
-    \ x) {\n        flush<digits<T>>();\n        write(x);\n    }\n    template<signed_integral\
-    \ T>\n    void operator()(T x) {\n        flush<1 + digits<T>>();\n        make_unsigned_t<T>\
-    \ y = x;\n        if (x < 0) {\n            *ptr++ = '-';\n            write(static_cast<make_unsigned_t<T>>(-y));\n\
+    using namespace std;\n\nnamespace fastio {\n\nstatic constexpr int buf_size =\
+    \ 1 << 21;\n\ninline struct fast_read {\n    fast_read() : fast_read(stdin) {}\n\
+    \    fast_read(const filesystem::path &p) : fast_read(fopen(p.c_str(), \"r\"))\
+    \ {}\n    fast_read(FILE *_stream) : stream(_stream), start(buf.data()), end(start\
+    \ + buf_size), ptr(end) { load(); }\n    ~fast_read() { if (stream != stdin) fclose(stream);\
+    \ }\n    fast_read(const fast_read &) = default;\n    fast_read &operator=(const\
+    \ fast_read &) = default;\n    template<unsigned_integral T>\n    void operator()(T\
+    \ &x) {\n        skip_space();\n        load<64>();\n        parse(x);\n    }\n\
+    \    template<signed_integral T>\n    void operator()(T &x) {\n        skip_space();\n\
+    \        load<64>();\n        make_unsigned_t<T> y;\n        if (*ptr == '-')\
+    \ {\n            ptr++;\n            parse(y);\n            y = -y;\n        }\
+    \ else {\n            parse(y);\n        }\n        x = y;\n    }\n    void operator()(char\
+    \ &c) {\n        skip_space();\n        load<64>();\n        c = *ptr++;\n   \
+    \ }\n    void operator()(string &s) {\n        s = \"\";\n        skip_space();\n\
+    \        load<64>();\n        while (*ptr > ' ' && *ptr != '\\0') {\n        \
+    \    s.push_back(*ptr++);\n        }\n        ptr++;\n    }\n    template<typename\
+    \ T>\n    void operator()(vector<T> &v) {\n        for (auto &e : v) (*this)(e);\n\
+    \    }\n    template<typename... Ts> requires(sizeof...(Ts) != 1)\n    void operator()\
+    \ (Ts &... xs) {\n        ((*this)(xs), ...);\n    }\nprivate:\n    FILE *stream;\n\
+    \    array<char, buf_size> buf{};\n    char *start, *end, *ptr;\n    void skip_space()\
+    \ {\n        while (*ptr <= ' ') ptr++;\n    }\n    template<int n = 0> void load()\
+    \ {\n        const auto i = end - ptr;\n        if (i <= n) {\n            ignore\
+    \ = fread(copy_n(ptr, i, start), 1, buf_size - i, stream);\n            ptr =\
+    \ start;\n        }\n    }\n    template<unsigned_integral T>\n    void parse(T\
+    \ &x) {\n        typename common_type<T, uint64_t>::type y = 0;\n        while\
+    \ (true) {\n            uint64_t z;\n            memcpy(&z, ptr, 8);\n       \
+    \     if (!((z -= 0x3030303030303030) & 0x8080808080808080)) {\n             \
+    \   z = (z * 10 + (z >> 8)) & 0xff00ff00ff00ff;\n                z = (z * 100\
+    \ + (z >> 16)) & 0xffff0000ffff;\n                z = (z * 10000 + (z >> 32))\
+    \ & 0xffffffff;\n                y = 100000000 * y + z;\n                ptr +=\
+    \ 8;\n            } else {\n                break;\n            }\n        }\n\
+    \        {\n            uint32_t z;\n            memcpy(&z, ptr, 4);\n       \
+    \     if (!((z -= 0x30303030) & 0x80808080)) {\n                z = (z * 10 +\
+    \ (z >> 8)) & 0xff00ff;\n                z = (z * 100 + (z >> 16)) & 0xffff;\n\
+    \                y = 10000 * y + z;\n                ptr += 4;\n            }\n\
+    \        }\n        {\n            uint16_t z;\n            memcpy(&z, ptr, 2);\n\
+    \            if (!((z -= 0x3030) & 0x8080)) {\n                z = (z * 10 + (z\
+    \ >> 8)) & 0xff;\n                y = 100 * y + z;\n                ptr += 2;\n\
+    \            }\n        }\n        if (' ' < *ptr) {\n            y *= 10;\n \
+    \           y += *ptr++ - '0';\n        }\n        ptr++;\n        x = static_cast<T>(y);\n\
+    \    }\n} Read;\n\ninline struct fast_write {\n    fast_write() : fast_write(stdout)\
+    \ {}\n    fast_write(const filesystem::path &p) : fast_write(fopen(p.c_str(),\
+    \ \"w\")) {}\n    fast_write(FILE *_stream) : stream(_stream), start(buf.data()),\
+    \ end(start + buf_size), ptr(start) {}\n    ~fast_write() {\n        flush();\n\
+    \        if (stream != stdout) fclose(stream);\n    }\n    fast_write(const fast_write\
+    \ &) = default;\n    fast_write &operator=(const fast_write &) = default;\n  \
+    \  template<unsigned_integral T>\n    void operator()(T x) {\n        flush<digits<T>>();\n\
+    \        write(x);\n    }\n    template<signed_integral T>\n    void operator()(T\
+    \ x) {\n        flush<1 + digits<T>>();\n        make_unsigned_t<T> y = x;\n \
+    \       if (x < 0) {\n            *ptr++ = '-';\n            write(static_cast<make_unsigned_t<T>>(-y));\n\
     \        } else {\n            write(y);\n        }\n    }\n    void operator()(char\
     \ c) {\n        flush<1>();\n        *ptr++ = c;\n    }\n    void operator()(string_view\
     \ s) {\n        while (!s.empty()) {\n            flush<0>();\n            const\
@@ -219,7 +218,7 @@ data:
   isVerificationFile: false
   path: src/misc/fast_io.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-31 20:48:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/misc/fast_io.hpp
