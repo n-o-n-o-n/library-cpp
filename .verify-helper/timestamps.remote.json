@@ -107,6 +107,7 @@
 "test/math/number_theory/primality_test.test.cpp": "2026-10-23 21:11:51 +0900",
 "test/math/number_theory/primitive_root.test.cpp": "2026-10-23 21:11:51 +0900",
 "test/misc/inversion_number.test.cpp": "2026-10-30 09:45:56 +0900",
+"test/misc/lis.test.cpp": "2026-10-31 09:19:34 +0900",
 "test/misc/mo_static_range_count_distinct.test.cpp": "2026-10-23 22:15:17 +0900",
 "test/misc/parallel_binary_search.test.cpp": "2026-10-24 16:40:15 +0900",
 "test/misc/two_sat.test.cpp": "2026-10-23 21:11:51 +0900",
