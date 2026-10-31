@@ -31,10 +31,11 @@ data:
     \        assert(0 <= l && l <= r && r <=n);\n        if (l == r) return M::e();\n\
     \        int i = bit_width(unsigned(r - l)) - 1;\n        return M::op(d[i][l],\
     \ d[i][r - (1 << i)]);\n    }\nprivate:\n    int n, b, e;\n    vector<vector<S>>\
-    \ d;\n    void build() {\n        b = bit_width(unsigned(n));\n        d.resize(b,\
-    \ vector<S>(n, M::e()));\n        for (int i = 1; i < b; i++) {\n            for\
-    \ (int j = 0; j + (1 << i) <=n; j++) {\n                d[i][j] = M::op(d[i -\
-    \ 1][j], d[i - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n};\n"
+    \ d;\n    void build() {\n        b = bit_width(unsigned(n));\n        d.resize(b);\n\
+    \        for (int i = 1; i < b; i++) {\n            int width = 1 << i;\n    \
+    \        d[i].assign(n - width + 1, M::e());\n            for (int j = 0; j +\
+    \ width <= n; j++) {\n                d[i][j] = M::op(d[i - 1][j], d[i - 1][j\
+    \ + (width >> 1)]);\n            }\n        }\n    }\n};\n"
   code: "#pragma once\n#include <bit>\n#include <cassert>\n#include <vector>\nusing\
     \ namespace std;\n\ntemplate<typename Monoid>\nstruct sparse_table {\n    using\
     \ M = Monoid;\n    using S = typename M::S;\n    sparse_table() = default;\n \
@@ -43,17 +44,17 @@ data:
     \        if (l == r) return M::e();\n        int i = bit_width(unsigned(r - l))\
     \ - 1;\n        return M::op(d[i][l], d[i][r - (1 << i)]);\n    }\nprivate:\n\
     \    int n, b, e;\n    vector<vector<S>> d;\n    void build() {\n        b = bit_width(unsigned(n));\n\
-    \        d.resize(b, vector<S>(n, M::e()));\n        for (int i = 1; i < b; i++)\
-    \ {\n            for (int j = 0; j + (1 << i) <=n; j++) {\n                d[i][j]\
-    \ = M::op(d[i - 1][j], d[i - 1][j + (1 << (i - 1))]);\n            }\n       \
-    \ }\n    }\n};"
+    \        d.resize(b);\n        for (int i = 1; i < b; i++) {\n            int\
+    \ width = 1 << i;\n            d[i].assign(n - width + 1, M::e());\n         \
+    \   for (int j = 0; j + width <= n; j++) {\n                d[i][j] = M::op(d[i\
+    \ - 1][j], d[i - 1][j + (width >> 1)]);\n            }\n        }\n    }\n};"
   dependsOn: []
   isVerificationFile: false
   path: src/data_structure/range_query/sparse_table.hpp
   requiredBy:
   - src/tree/static_tree.hpp
   - src/data_structure/range_query/static_rmq.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-31 13:28:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tree/static_tree.lca.test.cpp

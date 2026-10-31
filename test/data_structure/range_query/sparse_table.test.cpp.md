@@ -27,13 +27,14 @@ data:
     \ return M::e();\n        int i = bit_width(unsigned(r - l)) - 1;\n        return\
     \ M::op(d[i][l], d[i][r - (1 << i)]);\n    }\nprivate:\n    int n, b, e;\n   \
     \ vector<vector<S>> d;\n    void build() {\n        b = bit_width(unsigned(n));\n\
-    \        d.resize(b, vector<S>(n, M::e()));\n        for (int i = 1; i < b; i++)\
-    \ {\n            for (int j = 0; j + (1 << i) <=n; j++) {\n                d[i][j]\
-    \ = M::op(d[i - 1][j], d[i - 1][j + (1 << (i - 1))]);\n            }\n       \
-    \ }\n    }\n};\n#line 2 \"src/monoid/min.hpp\"\n#include <algorithm>\n#include\
-    \ <limits>\nusing namespace std;\n\ntemplate<typename T, T E = numeric_limits<T>::max()>\n\
-    struct min_monoid {\n    using S = T;\n    static S op(S a, S b) { return min(a,\
-    \ b); }\n    static S e() { return E; }\n};\n#line 5 \"test/data_structure/range_query/sparse_table.test.cpp\"\
+    \        d.resize(b);\n        for (int i = 1; i < b; i++) {\n            int\
+    \ width = 1 << i;\n            d[i].assign(n - width + 1, M::e());\n         \
+    \   for (int j = 0; j + width <= n; j++) {\n                d[i][j] = M::op(d[i\
+    \ - 1][j], d[i - 1][j + (width >> 1)]);\n            }\n        }\n    }\n};\n\
+    #line 2 \"src/monoid/min.hpp\"\n#include <algorithm>\n#include <limits>\nusing\
+    \ namespace std;\n\ntemplate<typename T, T E = numeric_limits<T>::max()>\nstruct\
+    \ min_monoid {\n    using S = T;\n    static S op(S a, S b) { return min(a, b);\
+    \ }\n    static S e() { return E; }\n};\n#line 5 \"test/data_structure/range_query/sparse_table.test.cpp\"\
     \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
     \  cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n\
     \    for (auto &e : A) cin >> e;\n    sparse_table<min_monoid<int>> st(A);\n \
@@ -52,7 +53,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/range_query/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 14:11:37+09:00'
+  timestamp: '2026-10-31 13:28:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/sparse_table.test.cpp
