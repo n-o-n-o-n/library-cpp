@@ -51,7 +51,7 @@ struct static_tree {
         assert(0 <= u && u < n);
         if (r == -1) {
             auto [kl, kr] = minmax(in[u], in[v]);
-            return get<2>(st.prod(kl, kr + 1));
+            return ord[id(kl, kr + 1)];
         }
         assert(0 <= r && r < n);
         return lca(u, v) ^ lca(v, r) ^ lca(r, u);
@@ -89,7 +89,7 @@ struct static_tree {
         if (r == u) return n;
         if (lca(u, r) != u) return sz[u];
         auto [kl, kr] = minmax(in[u], in[r]);
-        return n - sz[ord[1 - get<1>(st.prod(kl, kr + 1))]];
+        return n - sz[ord[1 + id(kl, kr + 1)]];
     }
     vector<int> path(int u, int v) const {
         assert(built);
@@ -142,20 +142,15 @@ struct static_tree {
         return res;
     }
 private:
-    struct Monoid {
-        using S = tuple<int, int, int>;
-        static S op(S a, S b) {
-            return min(a, b);
-        }
-        static S e() {
-            return make_tuple(1 << 30, 1 << 30, -1);
-        }
-    };
     int n, e, root;
     vector<vector<int>> g, list;
     bool built;
     vector<int> d, ord, in, sz;
-    static_rmq<Monoid> st;
+    static constexpr long long mask = (1LL << 32) - 1;
+    static_rmq<long long> st;
+    int id(int l, int r) const {
+        return int(mask ^ (st.prod(l, r) & mask));
+    }
     int dfs(int u, int p) {
         ord.push_back(u);
         list[d[u]].push_back(u);
@@ -177,15 +172,15 @@ private:
         list = vector<vector<int>>(n);
         dfs(root, root);
         in = vector<int>(n, -1);
-        st = static_rmq<Monoid>([&]{
-            vector<Monoid::S> a(ord.size());
+        st = static_rmq<long long>([&] {
+            vector<long long> a(ord.size());
             for (int i = 0; i < ssize(ord); i++) {
                 int u = ord[i];
                 if (in[u] == -1) in[u] = i;
-                a[i] = make_tuple(d[u], -i, u);
+                a[i] = ((long long)d[u] << 32) ^ mask ^ i;
             }
             return a;
-        }());
+        } ());
         built = true;
     }
 };

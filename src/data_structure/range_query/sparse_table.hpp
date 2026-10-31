@@ -21,10 +21,12 @@ private:
     vector<vector<S>> d;
     void build() {
         b = bit_width(unsigned(n));
-        d.resize(b, vector<S>(n, M::e()));
+        d.resize(b);
         for (int i = 1; i < b; i++) {
-            for (int j = 0; j + (1 << i) <=n; j++) {
-                d[i][j] = M::op(d[i - 1][j], d[i - 1][j + (1 << (i - 1))]);
+            int width = 1 << i;
+            d[i].assign(n - width + 1, M::e());
+            for (int j = 0; j + width <= n; j++) {
+                d[i][j] = M::op(d[i - 1][j], d[i - 1][j + (width >> 1)]);
             }
         }
     }
