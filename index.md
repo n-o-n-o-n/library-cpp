@@ -398,6 +398,9 @@ data:
       path: src/misc/inversion_number.hpp
       title: src/misc/inversion_number.hpp
     - icon: ':heavy_check_mark:'
+      path: src/misc/lis.hpp
+      title: src/misc/lis.hpp
+    - icon: ':heavy_check_mark:'
       path: src/misc/merge_and_unique.hpp
       title: Merge And Unique
     - icon: ':heavy_check_mark:'
@@ -894,6 +897,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/misc/inversion_number.test.cpp
       title: test/misc/inversion_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/misc/lis.test.cpp
+      title: test/misc/lis.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/misc/mo_static_range_count_distinct.test.cpp
       title: test/misc/mo_static_range_count_distinct.test.cpp
