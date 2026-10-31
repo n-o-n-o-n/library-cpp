@@ -8,7 +8,6 @@
 #include <vector>
 using namespace std;
 
-// https://judge.yosupo.jp/submission/212769
 namespace fastio {
 
 static constexpr int buf_size = 1 << 21;

@@ -25,12 +25,7 @@ struct heavy_light_decomposition {
         assert(built);
         assert(0 <= u && u < n);
         assert(0 <= v && v < n);
-        while (true) {
-            if (in[u] > in[v]) swap(u, v);
-            if (head[u] == head[v]) return u;
-            v = par[head[v]];
-        }
-        return -1;
+        return inner_query(u, v, [] (int, int, bool) {});
     }
     void set(int u, const S &w) {
         assert(built);
@@ -49,10 +44,10 @@ struct heavy_light_decomposition {
         assert(built);
         assert(0 <= u && u < n);
         assert(0 <= v && v < n);
-        for (auto [l, r] : path_decompose(u, v)) {
+        inner_query(u, v, [&] (int l, int r, bool) {
             if (l > r) swap(l, r);
             seg.apply(l, r, f);
-        }
+        });
     }
     template<typename F>
     void subtree_apply(int u, const F &f) {
@@ -76,11 +71,15 @@ struct heavy_light_decomposition {
         assert(built);
         assert(0 <= u && u < n);
         assert(0 <= v && v < n);
-        S p = M::e();
-        for (auto [l, r] : path_decompose(u, v)) {
-            p = M::op(p, inner_prod(l, r));
-        }
-        return p;
+        S pu = M::e(), pv = M::e();
+        inner_query(u, v, [&] (int l, int r, bool up) {
+            if (up) {
+                pu = M::op(pu, inner_prod(l, r));
+            } else {
+                pv = M::op(inner_prod(l, r), pv);
+            }
+        });
+        return M::op(pu, pv);
     }
     S subtree_prod(int u) {
         assert(built);
@@ -92,37 +91,65 @@ struct heavy_light_decomposition {
         assert(built);
         assert(0 <= u && u < n);
         assert(0 <= v && v < n);
+        vector<pair<int, int>> pl, pr;
+        inner_query(u, v, [&] (int l, int r, bool up) {
+            if (l == r) return;
+            (up ? pl : pr).emplace_back(l, r);
+        });
+        reverse(pr.begin(), pr.end());
+        pl.insert(pl.end(), pr.begin(), pr.end());
         S p = M::e();
-        for (auto [l, r] : path_decompose(u, v)) {
+        for (auto [l, r] : pl) {
             S np = M::op(p, inner_prod(l, r));
+            if (check(np)) {
+                p = np;
+                u = l < r ? inv[r - 1] : (edge ? par[inv[r]] : inv[r]);
+                continue;
+            }
+            auto c = [&] (const S &x) { return check(M::op(p, x)); };
             if (l < r) {
-                if (!check(np)) {
-                    return check(M::op(p, seg.get(l))) ? inv[
-                        (commutative ? seg.max_right(l, [&](const S &x) {
-                            return check(M::op(p, x));
-                        }) : seg.max_right(l, false, [&](const S &x) {
-                            return check(M::op(p, x));
-                        })) - 1
-                    ] : u;
-                }
-                p = np;
-                u = inv[r - 1];
+                int k = [&] {
+                    if constexpr (commutative) {
+                        return seg.max_right(l, c);
+                    } else {
+                        return seg.max_right(l, false, c);
+                    }
+                } ();
+                return k == l ? u : inv[k - 1];
             } else {
-                swap(l, r);
-                if (!check(np)) {
-                    return check(M::op(p, seg.get(r - 1))) ? inv[
-                        commutative ? seg.min_left(r, [&](const S &x) {
-                            return check(M::op(p, x));
-                        }) : seg.min_left(r, true, [&](const S &x) {
-                            return check(M::op(p, x));
-                        })
-                    ] : u;
-                }
-                p = np;
-                u = inv[l];
+                int k = [&] {
+                    if constexpr (commutative) {
+                        return seg.min_left(l, c);
+                    } else {
+                        return seg.min_left(l, true, c);
+                    }
+                } ();
+                return k == l ? u : (edge ? par[inv[k]] : inv[k]);
             }
         }
         return v;
+    }
+    vector<pair<int, int>> path_decompose(int u, int v) {
+        assert(built);
+        assert(0 <= u && u < n);
+        assert(0 <= v && v < n);
+        if (u == v) return {{u, v}};
+        int w = lca(u, v);
+        auto climb = [&] (int x, vector<pair<int, int>> &res) {
+            while (x != w) {
+                int y = head[x] == head[w] ? w : head[x];
+                if (x != y) res.emplace_back(x, y);
+                if (y == w) break;
+                res.emplace_back(y, par[y]);
+                x = par[y];
+            }
+        };
+        vector<pair<int, int>> pu, pv;
+        climb(u, pu);
+        climb(v, pv);
+        reverse(pv.begin(), pv.end());
+        for (auto [l, r] : pv) pu.emplace_back(r, l);
+        return pu;
     }
 private:
     int n, r, id;
@@ -138,10 +165,6 @@ private:
     int idx(int u, int v) const {
         assert(built);
         return max(in[u], in[v]);
-    }
-    S inner_prod(int l, int r) {
-        if (commutative && l > r) swap(l, r);
-        return seg.prod(l, r);
     }
     void dfs(int u, int p) {
         par[u] = p;
@@ -191,36 +214,27 @@ private:
             seg = SegTree(n);
         }
     }
-    vector<pair<int, int>> path_decompose(int u, int v) const {
-        assert(built);
-        assert(0 <= u && u < n);
-        assert(0 <= v && v < n);
-        int hu = head[u], hv = head[v];
-        vector<pair<int, int>> resl, resr;
-        bool flip = true;
-        while (hu != hv) {
-            if (in[hu] > in[hv]) {
-                flip = !flip;
-                swap(u, v);
-                swap(hu, hv);
-                swap(resl, resr);
+    template<typename F>
+    int inner_query(int u, int v, const F &f) {
+        while (head[u] != head[v]) {
+            if (in[head[u]] > in[head[v]]) {
+                f(in[u] + 1, in[head[u]], true);
+                u = par[head[u]];
+            } else {
+                f(in[head[v]], in[v] + 1, false);
+                v = par[head[v]];
             }
-            resl.emplace_back(in[hv], in[v] + 1);
-            v = par[hv];
-            hu = head[u];
-            hv = head[v];
         }
-        if (in[u] > in[v]) {
-            flip = !flip;
-            swap(u, v);
-            swap(resl, resr);
+        if (in[u] >= in[v]) {
+            f(in[u] + 1, in[v] + edge, true);
+            return v;
+        } else {
+            f(in[u] + edge, in[v] + 1, false);
+            return u;
         }
-        resl.emplace_back(in[u] + edge, in[v] + 1);
-        if (flip) swap(resl, resr);
-        reverse(resr.begin(), resr.end());
-        vector<pair<int, int>> res;
-        for (auto [l, r] : resl) res.emplace_back(r, l);
-        for (auto [l, r] : resr) res.emplace_back(l, r);
-        return res;
+    }
+    S inner_prod(int l, int r) {
+        if (commutative && l > r) swap(l, r);
+        return seg.prod(l, r);
     }
 };
