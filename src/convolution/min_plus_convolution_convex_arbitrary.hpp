@@ -1,7 +1,7 @@
 #pragma once
 #include <numeric>
 #include <vector>
-#include "../dp/monotone_minima.hpp"
+#include "../misc/monotone_minima.hpp"
 using namespace std;
 
 // a must be convex
