@@ -154,6 +154,21 @@ data:
     path: test/math/enumerative_combinatorics/subset_sum.test.cpp
     title: test/math/enumerative_combinatorics/subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_det.test.cpp
+    title: test/math/matrix/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_inv.test.cpp
+    title: test/math/matrix/matrix_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_pow.test.cpp
+    title: test/math/matrix/matrix_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_prod.test.cpp
+    title: test/math/matrix/matrix_prod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_rank.test.cpp
+    title: test/math/matrix/matrix_rank.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -262,6 +277,11 @@ data:
   - test/math/enumerative_combinatorics/subset_sum.test.cpp
   - test/math/bmbm.test.cpp
   - test/math/berlekamp_massey.test.cpp
+  - test/math/matrix/matrix_prod.test.cpp
+  - test/math/matrix/matrix_inv.test.cpp
+  - test/math/matrix/matrix_pow.test.cpp
+  - test/math/matrix/matrix_rank.test.cpp
+  - test/math/matrix/matrix_det.test.cpp
   - test/math/bostan_mori_only_convolution.test.cpp
   - test/fps/polynomial_taylor_shift.test.cpp
   - test/fps/fps_log.test.cpp

@@ -15,6 +15,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/matrix_tree_theorem.test.cpp
     title: test/graph/matrix_tree_theorem.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_det.test.cpp
+    title: test/math/matrix/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_inv.test.cpp
+    title: test/math/matrix/matrix_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_pow.test.cpp
+    title: test/math/matrix/matrix_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_prod.test.cpp
+    title: test/math/matrix/matrix_prod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/matrix/matrix_rank.test.cpp
+    title: test/math/matrix/matrix_rank.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -162,6 +177,11 @@ data:
   verifiedWith:
   - test/graph/best_theorem.test.cpp
   - test/graph/matrix_tree_theorem.test.cpp
+  - test/math/matrix/matrix_prod.test.cpp
+  - test/math/matrix/matrix_inv.test.cpp
+  - test/math/matrix/matrix_pow.test.cpp
+  - test/math/matrix/matrix_rank.test.cpp
+  - test/math/matrix/matrix_det.test.cpp
 documentation_of: src/math/matrix/matrix.hpp
 layout: document
 redirect_from:

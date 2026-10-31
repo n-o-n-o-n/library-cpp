@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/dp/monotone_minima.hpp
-    title: src/dp/monotone_minima.hpp
+    path: src/misc/monotone_minima.hpp
+    title: src/misc/monotone_minima.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -15,7 +15,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"src/convolution/min_plus_convolution_convex_arbitrary.hpp\"\
-    \n#include <numeric>\n#include <vector>\n#line 3 \"src/dp/monotone_minima.hpp\"\
+    \n#include <numeric>\n#include <vector>\n#line 3 \"src/misc/monotone_minima.hpp\"\
     \nusing namespace std;\n\ntemplate<typename F, typename C>\nvector<int> monotone_minima(int\
     \ h, int w, const F &f, const C &comp) {\n    vector<int> id(h, -1);\n    auto\
     \ rec = [&](const auto &rec, int il, int jl, int ir, int jr) -> void {\n     \
@@ -33,7 +33,7 @@ data:
     \ bool {\n        return x < y;\n    };\n    int n = a.size() + b.size() - 1;\n\
     \    auto id = monotone_minima(n, b.size(), f, comp);\n    vector<T> res(n);\n\
     \    for (int i = 0; i < n; i++) res[i] = f(i, id[i]);\n    return res;\n}\n"
-  code: "#pragma once\n#include <numeric>\n#include <vector>\n#include \"../dp/monotone_minima.hpp\"\
+  code: "#pragma once\n#include <numeric>\n#include <vector>\n#include \"../misc/monotone_minima.hpp\"\
     \nusing namespace std;\n\n// a must be convex\ntemplate<typename T>\nvector<T>\
     \ min_plus_convolution(const vector<T> &a, const vector<T> &b) {\n    static constexpr\
     \ T inf = numeric_limits<T>::max();\n    auto f = [&](int i, int j) -> T {\n \
@@ -43,11 +43,11 @@ data:
     \ comp);\n    vector<T> res(n);\n    for (int i = 0; i < n; i++) res[i] = f(i,\
     \ id[i]);\n    return res;\n}"
   dependsOn:
-  - src/dp/monotone_minima.hpp
+  - src/misc/monotone_minima.hpp
   isVerificationFile: false
   path: src/convolution/min_plus_convolution_convex_arbitrary.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-10-31 09:28:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution/min_plus_convolution_convex_arbitrary.test.cpp

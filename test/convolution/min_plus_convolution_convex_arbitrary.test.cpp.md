@@ -5,8 +5,8 @@ data:
     path: src/convolution/min_plus_convolution_convex_arbitrary.hpp
     title: src/convolution/min_plus_convolution_convex_arbitrary.hpp
   - icon: ':heavy_check_mark:'
-    path: src/dp/monotone_minima.hpp
-    title: src/dp/monotone_minima.hpp
+    path: src/misc/monotone_minima.hpp
+    title: src/misc/monotone_minima.hpp
   - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
@@ -23,7 +23,7 @@ data:
   bundledCode: "#line 1 \"test/convolution/min_plus_convolution_convex_arbitrary.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\
     \n\n#line 2 \"src/convolution/min_plus_convolution_convex_arbitrary.hpp\"\n#include\
-    \ <numeric>\n#include <vector>\n#line 3 \"src/dp/monotone_minima.hpp\"\nusing\
+    \ <numeric>\n#include <vector>\n#line 3 \"src/misc/monotone_minima.hpp\"\nusing\
     \ namespace std;\n\ntemplate<typename F, typename C>\nvector<int> monotone_minima(int\
     \ h, int w, const F &f, const C &comp) {\n    vector<int> id(h, -1);\n    auto\
     \ rec = [&](const auto &rec, int il, int jl, int ir, int jr) -> void {\n     \
@@ -94,12 +94,12 @@ data:
     }"
   dependsOn:
   - src/convolution/min_plus_convolution_convex_arbitrary.hpp
-  - src/dp/monotone_minima.hpp
+  - src/misc/monotone_minima.hpp
   - src/modint/modint.hpp
   isVerificationFile: true
   path: test/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-10-31 09:28:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution/min_plus_convolution_convex_arbitrary.test.cpp

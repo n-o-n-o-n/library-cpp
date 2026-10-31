@@ -160,11 +160,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/data_structure/union_find/weighted_union_find.hpp
       title: Weighted Union Find
-  - name: src/dp
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: src/dp/monotone_minima.hpp
-      title: src/dp/monotone_minima.hpp
   - name: src/fps
     pages:
     - icon: ':heavy_check_mark:'
@@ -406,6 +401,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/misc/mo.hpp
       title: Mo
+    - icon: ':heavy_check_mark:'
+      path: src/misc/monotone_minima.hpp
+      title: src/misc/monotone_minima.hpp
     - icon: ':heavy_check_mark:'
       path: src/misc/parallel_binary_search.hpp
       title: Parallel Binary Search
@@ -866,6 +864,23 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/enumerative_combinatorics/subset_sum.test.cpp
       title: test/math/enumerative_combinatorics/subset_sum.test.cpp
+  - name: test/math/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/matrix/matrix_det.test.cpp
+      title: test/math/matrix/matrix_det.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/matrix/matrix_inv.test.cpp
+      title: test/math/matrix/matrix_inv.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/matrix/matrix_pow.test.cpp
+      title: test/math/matrix/matrix_pow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/matrix/matrix_prod.test.cpp
+      title: test/math/matrix/matrix_prod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/math/matrix/matrix_rank.test.cpp
+      title: test/math/matrix/matrix_rank.test.cpp
   - name: test/math/number_theory
     pages:
     - icon: ':heavy_check_mark:'
