@@ -38,14 +38,17 @@ struct functional_graph {
     pair<int, int> binary_search(int u, const C &check) {
         assert(0 <= u && u < n);
         assert(check(u));
-        doubling(n + 1);
-        int k = 0;
-        while ((1 << k) <= n) k++;
+        doubling(n);
+        int log = 0;
+        while (n >> log) log++;
         int r = 0;
-        for (k-- ; k >= 0; k--) {
-            int v = f[k][u];
-            if (check(v)) u = v, r += 1 << k;
+        for (log--; log >= 0; log--) {
+            int len = 1 << log;
+            if (r > n - len) continue;
+            int v = f[log][u];
+            if (check(v)) u = v, r += len;
         }
+        if (r == n) return {-1, -1};
         return make_pair(r, u);
     }
 private:
