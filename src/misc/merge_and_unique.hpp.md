@@ -25,6 +25,12 @@ data:
     path: test/data_structure/rectangle_query/rectangle_sum.test.cpp
     title: test/data_structure/rectangle_query/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/graph/functional_graph.test.cpp
+    title: test/graph/functional_graph.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/graph/weighted_functional_graph.test.cpp
+    title: test/graph/weighted_functional_graph.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/misc/inversion_number.test.cpp
     title: test/misc/inversion_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,6 +63,8 @@ data:
   timestamp: '2026-10-23 21:11:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/graph/functional_graph.test.cpp
+  - test/graph/weighted_functional_graph.test.cpp
   - test/data_structure/persistent_ds/persistent_segtree.test.cpp
   - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
   - test/data_structure/rectangle_query/rectangle_sum.test.cpp

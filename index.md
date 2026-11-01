@@ -268,9 +268,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/graph/chromatic_number.hpp
       title: src/graph/chromatic_number.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/graph/functional_graph.hpp
-      title: src/graph/functional_graph.hpp
+      title: Functional Graph
     - icon: ':heavy_check_mark:'
       path: src/graph/hungarian.hpp
       title: Hungarian
@@ -289,6 +289,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/graph/scc.hpp
       title: src/graph/scc.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/graph/weighted_functional_graph.hpp
+      title: Weighted Functional Graph
   - name: src/math
     pages:
     - icon: ':heavy_check_mark:'
@@ -426,7 +429,7 @@ data:
     - icon: ':warning:'
       path: src/monoid/bracket.hpp
       title: src/monoid/bracket.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/monoid/max.hpp
       title: src/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -813,6 +816,9 @@ data:
       path: test/graph/chromatic_number.test.cpp
       title: test/graph/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/graph/functional_graph.test.cpp
+      title: test/graph/functional_graph.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/graph/hungarian.test.cpp
       title: test/graph/hungarian.test.cpp
     - icon: ':heavy_check_mark:'
@@ -830,6 +836,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graph/scc.test.cpp
       title: test/graph/scc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/weighted_functional_graph.test.cpp
+      title: test/graph/weighted_functional_graph.test.cpp
   - name: test/math
     pages:
     - icon: ':heavy_check_mark:'
