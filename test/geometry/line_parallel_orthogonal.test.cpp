@@ -1,8 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_A"
 
+#include "../../src/template.hpp"
 #include "../../src/geometry/line.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

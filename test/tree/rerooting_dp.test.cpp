@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_path_composite_sum"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/rerooting_dp.hpp"
 #include "../../src/modint/modint.hpp"
 
@@ -10,8 +11,6 @@ struct Monoid {
     static S op(S a, S b) { return {a.first + b.first, a.second + b.second}; }
     static S e() { return {0, 0}; }
 };
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

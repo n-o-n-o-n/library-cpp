@@ -1,7 +1,5 @@
 #pragma once
-#include <queue>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 inline vector<int> prufer_code_compress(const vector<vector<int>> &t) {
     int n = t.size();

@@ -1,12 +1,10 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename mint>
 vector<mint> fps_mul_sparse(const vector<mint> &f, const vector<pair<int, mint>> &g_sub) {
     int n = f.size(), m = 0;
-    for (auto [j, _] : g_sub) m = max(m, j);
+    for (auto [j, _] : g_sub) chmax(m, j);
     vector<mint> h(n + m);
     for (auto [j, b] : g_sub) {
         for (int i = 0; i < n; i++) h[i + j] += f[i] * b;

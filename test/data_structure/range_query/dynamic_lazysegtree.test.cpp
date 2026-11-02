@@ -1,12 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum_large_array"
 
+#include "../../../src/template.hpp"
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/monoid/range_affine_range_sum.hpp"
 #include "../../../src/data_structure/range_query/dynamic_lazysegtree.hpp"
 
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

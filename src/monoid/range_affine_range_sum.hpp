@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "../math/affine.hpp"
 
 template<typename mint, typename T = int>

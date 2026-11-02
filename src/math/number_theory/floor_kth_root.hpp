@@ -1,8 +1,5 @@
 #pragma once
-#include <cassert>
-#include <cmath>
-#include <numeric>
-using namespace std;
+#include "../../template.hpp"
 
 // floor( a^(1/k) )
 template<typename T>

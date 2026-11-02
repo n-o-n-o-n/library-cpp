@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 #include "multiple_zmt.hpp"
 
 template<typename mint>

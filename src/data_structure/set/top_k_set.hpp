@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <set>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T1, typename T2 = long long, typename Compare = less<T1>>
 struct top_k_set {

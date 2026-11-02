@@ -1,11 +1,7 @@
 #pragma once
-#include <cassert>
-#include <limits>
-#include <type_traits>
-#include <vector>
+#include "../template.hpp"
 #include "../modint/modint.hpp"
 #include "convolution.hpp"
-using namespace std;
 
 template<typename T, int K = 3>
 vector<T> convolution_ll(const vector<T> &f, const vector<T> &g) {

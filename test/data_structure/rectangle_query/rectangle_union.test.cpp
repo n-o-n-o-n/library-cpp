@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/area_of_union_of_rectangles"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/rectangle_query/rectangle_union.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

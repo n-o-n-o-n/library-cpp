@@ -1,9 +1,8 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "../fps/fps.hpp"
 #include "berlekamp_massey.hpp"
 #include "bostan_mori.hpp"
-using namespace std;
 
 template<typename mint>
 mint BMBM(const vector<mint> &x, long long k) {

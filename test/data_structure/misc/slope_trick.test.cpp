@@ -1,8 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1077"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/misc/slope_trick.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

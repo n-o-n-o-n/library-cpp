@@ -1,7 +1,6 @@
 #pragma once
-#include <array>
+#include "../template.hpp"
 #include "line.hpp"
-using namespace std;
 
 namespace geometry {
 

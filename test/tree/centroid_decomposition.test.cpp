@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/frequency_table_of_tree_distance"
 
+#include "../../src/template.hpp"
 #include "../../src/convolution/convolution_ll.hpp"
 #include "../../src/tree/centroid_decomposition.hpp"
 
 using ll = long long;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,9 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <stack>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename Monoid>
 struct dswag {

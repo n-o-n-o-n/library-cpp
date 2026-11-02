@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <set>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T1, typename T2 = long long>
 struct median_set {

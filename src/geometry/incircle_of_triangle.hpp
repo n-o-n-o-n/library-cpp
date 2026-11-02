@@ -1,7 +1,7 @@
 #pragma once
+#include "../template.hpp"
 #include "line.hpp"
 #include "circle.hpp"
-using namespace std;
 
 namespace geometry {
 

@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/range_contour_aggregator.hpp"
 #include "../../src/data_structure/range_query/segtree.hpp"
 #include "../../src/monoid/sum.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,9 +1,5 @@
 #pragma once
-#include <cassert>
-#include <numeric>
-#include <utility>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename Monoid, bool edge>
 struct weighted_functional_graph {

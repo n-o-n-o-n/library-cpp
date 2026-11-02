@@ -1,9 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2242"
 
+#include "../../src/template.hpp"
 #include "../../src/misc/compress.hpp"
 #include "../../src/graph/functional_graph.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

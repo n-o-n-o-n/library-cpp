@@ -1,7 +1,5 @@
 #pragma once
-#include <queue>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 struct bipartite_matching {
     int n, m;
@@ -24,7 +22,7 @@ private:
     vector<int> match, dist;
     vector<bool> vis, used;
     void bfs() {
-        dist = vector<int>(n, 1 << 30);
+        dist = vector<int>(n, inf<int>());
         queue<int> q;
         for (int i = 0; i < n; i++) {
             if (!used[i]) {
@@ -37,7 +35,7 @@ private:
             q.pop();
             for (int v : g[u]) {
                 int w = match[v];
-                if (0 <= w && dist[w] == 1 << 30) {
+                if (0 <= w && dist[w] == inf<int>()) {
                     dist[w] = dist[u] + 1;
                     q.push(w);
                 }

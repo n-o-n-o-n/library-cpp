@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "fps_log.hpp"
 #include "fps_exp.hpp"
 #include "power_projection.hpp"

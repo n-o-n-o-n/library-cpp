@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
 vector<T> even_distribution_array(const vector<T> &v) {

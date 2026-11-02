@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/hld.hpp"
 #include "../../src/data_structure/range_query/segtree.hpp"
 #include "../../src/data_structure/range_query/directed_range_query.hpp"
@@ -15,8 +16,6 @@ struct Monoid {
 };
 
 using SegTree = directed_range_query<segtree<Monoid>>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

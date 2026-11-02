@@ -1,9 +1,5 @@
 #pragma once
-#include <array>
-#include <cassert>
-#include <string>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 struct rolling_hash {
     static long long base, p, q;

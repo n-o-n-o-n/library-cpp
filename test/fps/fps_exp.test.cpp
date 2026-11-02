@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/exp_of_formal_power_series"
 
+#include "../../src/template.hpp"
 #include "../../src/fps/fps_exp.hpp"
 #include "../../src/modint/modint.hpp"
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

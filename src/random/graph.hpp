@@ -1,12 +1,8 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <set>
-#include <vector>
+#include "../template.hpp"
 #include "utility.hpp"
 #include "sequence.hpp"
 #include "../tree/prufer_code.hpp"
-using namespace std;
 
 namespace rng {
 

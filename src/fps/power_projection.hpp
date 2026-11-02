@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "fps_inv.hpp"
 
 // enumerate [x^n](f^k)g for k = 0,1,...,m-1

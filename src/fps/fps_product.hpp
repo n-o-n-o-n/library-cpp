@@ -1,9 +1,6 @@
 #pragma once
+#include "../template.hpp"
 #include "fps.hpp"
-#include <queue>
-#include <utility>
-#include <vector>
-using namespace std;
 
 template<typename mint>
 struct fps_product {

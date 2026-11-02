@@ -1,8 +1,6 @@
 #pragma once
-#include <cassert>
-#include <vector>
+#include "../../template.hpp"
 #include "../../random/xor_shift.hpp"
-using namespace std;
 
 template<typename T>
 struct treap {

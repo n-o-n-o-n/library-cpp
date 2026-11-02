@@ -1,8 +1,7 @@
 #define  PROBLEM "https://judge.yosupo.jp/problem/scc"
 
+#include "../../src/template.hpp"
 #include "../../src/graph/scc.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

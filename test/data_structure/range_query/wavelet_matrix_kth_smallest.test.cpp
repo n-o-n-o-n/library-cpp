@@ -1,8 +1,7 @@
 #define  PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/range_query/wavelet_matrix.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
+#include "../../template.hpp"
 #include "../../fps/fps.hpp"
-using namespace std;
 
 template<typename mint>
 vector<mint> stirling2(int n) {

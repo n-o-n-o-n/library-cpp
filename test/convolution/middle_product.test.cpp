@@ -1,12 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../src/template.hpp"
 #include "../../src/convolution/middle_product.hpp"
 #include "../../src/modint/modint.hpp"
 
 using mint = modint<998244353>;
 
-#include <iostream>
-#include <random>
 
 vector<mint> naive(vector<mint> f, vector<mint> g) {
     int n = f.size(), m = g.size();

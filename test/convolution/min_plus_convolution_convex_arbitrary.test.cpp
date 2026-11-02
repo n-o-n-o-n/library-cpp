@@ -1,9 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary"
 
+#include "../../src/template.hpp"
 #include "../../src/convolution/min_plus_convolution_convex_arbitrary.hpp"
-#include "../../src/modint/modint.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

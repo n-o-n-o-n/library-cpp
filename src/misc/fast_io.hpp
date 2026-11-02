@@ -1,12 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <array>
-#include <concepts>
-#include <cstring>
-#include <filesystem>
-#include <iostream>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 namespace fastio {
 

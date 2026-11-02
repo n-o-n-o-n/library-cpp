@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/jump_on_tree"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/static_tree.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

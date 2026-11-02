@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 inline int chromatic_number_adjacency(const vector<vector<int>> &a) {
     int n = a.size();

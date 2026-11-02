@@ -1,12 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence"
 
+#include "../../src/template.hpp"
 #include "../../src/modint/modint.hpp"
 #include "../../src/convolution/convolution.hpp"
 #include "../../src/math/bostan_mori_only_convolution.hpp"
 
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

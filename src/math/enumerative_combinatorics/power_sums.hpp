@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 #include "../../fps/fps_inv.hpp"
 

@@ -1,7 +1,5 @@
 #pragma once
-#include <string>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename S> 
 vector<int> manacher(vector<S> v, const S wildcard) {

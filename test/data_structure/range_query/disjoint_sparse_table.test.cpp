@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/range_query/disjoint_sparse_table.hpp"
 #include "../../../src/monoid/sum.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

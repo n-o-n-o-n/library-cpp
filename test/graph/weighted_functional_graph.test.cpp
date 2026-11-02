@@ -1,10 +1,9 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2242"
 
+#include "../../src/template.hpp"
 #include "../../src/graph/weighted_functional_graph.hpp"
 #include "../../src/misc/compress.hpp"
 #include "../../src/monoid/max.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

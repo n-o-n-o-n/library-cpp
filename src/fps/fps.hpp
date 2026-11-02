@@ -1,8 +1,7 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "../math/enumerative_combinatorics/combination.hpp"
 #include "../convolution/ntt.hpp"
-using namespace std;
 
 template<typename mint>
 struct fps : vector<mint> {
@@ -116,7 +115,7 @@ struct fps : vector<mint> {
         return *this = (*this) >> n;
     }
     fps pre(int n) const {
-        n = min(n, int(this->size()));
+        chmin(n, int(this->size()));
         return fps(this->begin(), this->begin() + n);
     }
     fps rev(int deg = -1) const {

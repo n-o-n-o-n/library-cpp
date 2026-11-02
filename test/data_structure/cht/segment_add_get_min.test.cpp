@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/cht/li_chao_tree.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);
@@ -30,7 +29,7 @@ int main() {
             lct.add_segment(u[i], v[i], c[i], d[i]);
         } else {
             auto ans = lct.get_min(x[i]);
-            if (ans == numeric_limits<long long>::max()) {
+            if (ans == inf<long long>()) {
                 cout << "INFINITY" << '\n';
             } else {
                 cout << ans << '\n';

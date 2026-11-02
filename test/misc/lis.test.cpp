@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/longest_increasing_subsequence"
 
+#include "../../src/template.hpp"
 #include "../../src/misc/lis.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

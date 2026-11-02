@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename mint>
 void subset_zmt(vector<mint> &f, bool moebius = false) {

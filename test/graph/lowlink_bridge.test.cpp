@@ -1,8 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_B"
 
+#include "../../src/template.hpp"
 #include "../../src/graph/lowlink.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

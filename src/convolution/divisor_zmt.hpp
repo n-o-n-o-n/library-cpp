@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename mint>
 void divisor_zmt(vector<mint> &f, bool moebius = false) {

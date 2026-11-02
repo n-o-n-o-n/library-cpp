@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cartesian_tree"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/cartesian_tree.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

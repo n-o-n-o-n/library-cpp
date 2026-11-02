@@ -1,9 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <concepts>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 namespace combination {
 

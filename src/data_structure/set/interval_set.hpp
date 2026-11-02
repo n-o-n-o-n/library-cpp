@@ -1,12 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <iterator>
-#include <limits>
-#include <set>
-#include <utility>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T>
 struct interval_set {
@@ -22,13 +15,13 @@ struct interval_set {
             auto pre = prev(it);
             if (l <= pre->r) {
                 l = pre->l;
-                r = max(r, pre->r);
+                chmax(r, pre->r);
                 del(pre->l, pre->r);
                 it = s.erase(pre);
             }
         }
         while (it != s.end() && it->l <= r) {
-            r = max(r, it->r);
+            chmax(r, it->r);
             del(it->l, it->r);
             it = s.erase(it);
         }
@@ -141,7 +134,7 @@ struct interval_set {
     }
 private:
     static constexpr T low = numeric_limits<T>::min();
-    static constexpr T inf = numeric_limits<T>::max();
+    static constexpr T inf = ::inf<T>();
     struct node {
         T l, r;
         node(T _l, T _r) : l(_l), r(_r) {}

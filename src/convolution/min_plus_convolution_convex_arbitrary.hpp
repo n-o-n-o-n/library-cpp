@@ -1,15 +1,12 @@
 #pragma once
-#include <numeric>
-#include <vector>
+#include "../template.hpp"
 #include "../misc/monotone_minima.hpp"
-using namespace std;
 
 // a must be convex
 template<typename T>
 vector<T> min_plus_convolution(const vector<T> &a, const vector<T> &b) {
-    static constexpr T inf = numeric_limits<T>::max();
     auto f = [&](int i, int j) -> T {
-        return i < j || (int)a.size() <= i - j ? inf : a[i - j] + b[j];
+        return i < j || (int)a.size() <= i - j ? numeric_limits<T>::max() : a[i - j] + b[j];
     };
     auto comp = [&](T x, T y) -> bool {
         return x < y;

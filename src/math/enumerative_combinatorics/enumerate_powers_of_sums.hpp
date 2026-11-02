@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
+#include "../../template.hpp"
 #include "../../fps/fps_log.hpp"
-using namespace std;
 
 // for k=0,...,K calculate sum[x in a] x^k 
 template<typename mint>

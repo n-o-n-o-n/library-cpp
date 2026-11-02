@@ -1,9 +1,8 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "../modint/modint.hpp"
 #include "convolution.hpp"
 #include "../math/number_theory/garner.hpp"
-using namespace std;
 
 template<typename mint>
 vector<mint> arbitrary_mod_convolution(const vector<mint> &f, const vector<mint> &g) {

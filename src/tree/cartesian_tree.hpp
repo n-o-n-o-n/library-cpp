@@ -1,7 +1,5 @@
 #pragma once
-#include <stack>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
 vector<int> cartesian_tree(const vector<T> &a) {

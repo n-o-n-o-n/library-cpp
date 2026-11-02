@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp"
 #include "../../../src/monoid/sum.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

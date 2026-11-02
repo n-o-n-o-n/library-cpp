@@ -1,8 +1,7 @@
 #pragma once
-#include <limits>
-using namespace std;
+#include "../template.hpp"
 
-template<typename T1, T1 E = numeric_limits<T1>::max(), typename T2 = int>
+template<typename T1, T1 E = inf<T1>(), typename T2 = int>
 struct range_update_range_sum {
     struct S {
         T1 x;

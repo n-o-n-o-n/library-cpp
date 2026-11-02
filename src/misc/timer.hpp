@@ -1,5 +1,4 @@
-#include <chrono>
-using namespace std;
+#include "../template.hpp"
 
 struct Timer {
     using T = chrono::high_resolution_clock::time_point;

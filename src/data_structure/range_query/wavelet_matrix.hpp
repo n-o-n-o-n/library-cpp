@@ -1,9 +1,5 @@
 #pragma once
-#include <cassert>
-#include <limits>
-#include <unordered_map>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T, int LOG = numeric_limits<T>::digits>
 struct wavelet_matrix {

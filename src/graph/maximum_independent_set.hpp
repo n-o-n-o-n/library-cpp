@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 inline vector<int> maximum_independent_set(const vector<vector<int>> &g) {
     int n = g.size();

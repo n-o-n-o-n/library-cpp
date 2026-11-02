@@ -1,8 +1,5 @@
 #pragma once
-#include <cassert>
-#include <numeric>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename Abelian_Group>
 struct weighted_union_find {

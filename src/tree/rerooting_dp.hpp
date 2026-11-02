@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename Monoid>
 struct rerooting_dp {

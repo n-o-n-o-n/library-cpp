@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "subprod_tree.hpp"
-using namespace std;
 
 template<typename mint>
 vector<mint> multipoint_evaluation(const fps<mint> &f, const vector<mint> &xs) {

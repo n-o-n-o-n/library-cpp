@@ -1,6 +1,5 @@
 #pragma once
-#include <unordered_set>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename ActSet>
 struct discrete_logarithm {

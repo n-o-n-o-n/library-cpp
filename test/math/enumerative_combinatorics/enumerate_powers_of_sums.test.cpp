@@ -1,9 +1,9 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1145"
 
+#include "../../../src/template.hpp"
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp"
 
-#include <iostream>
 
 using mint = modint<998244353>;
 

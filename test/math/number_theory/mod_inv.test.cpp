@@ -1,10 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../../src/template.hpp"
 #include "../../../src/math/number_theory/mod_inv.hpp"
 #include "../../../src/random/utility.hpp"
-
-#include <numeric>
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/set/interval_map.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

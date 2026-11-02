@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../src/template.hpp"
 #include "../../src/fps/fps_div_sparse.hpp"
 #include "../../src/fps/fps_inv.hpp"
 #include "../../src/modint/modint.hpp"
@@ -7,7 +8,6 @@
 using mint = modint<998244353>;
 
 #include "../../src/random/utility.hpp"
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

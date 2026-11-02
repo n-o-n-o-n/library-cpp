@@ -1,10 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_count_distinct"
 
+#include "../../src/template.hpp"
 #include "../../src/misc/compress.hpp"
 #include "../../src/misc/mo.hpp"
-
-#include <iostream>
-using namespace std;
 
 int main() {
     ios::sync_with_stdio(false);

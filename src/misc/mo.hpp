@@ -1,9 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cmath>
-#include <numeric>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 struct MO {
     MO(int _n, int _q = 0) : n(_n), q(_q) { querys.reserve(q); }

@@ -1,10 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include <vector>
-#include <array>
-#include <numeric>
-#include <cstdint>
-#include <type_traits>
+#include "../../src/template.hpp"
 #include "../../src/modint/modint.hpp"
 
 using mint = modint<998244353>;
@@ -817,7 +813,6 @@ vector<mint> solve(int N, int M, int L, vector<int> oriA) {
 #include "../../src/fps/power_projection.hpp"
 #include "../../src/fps/rational_sum.hpp"
 #include "../../src/random/sequence.hpp"
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

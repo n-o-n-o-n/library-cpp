@@ -1,12 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007"
 
+#include "../../src/template.hpp"
 #include "../../src/convolution/arbitrary_mod_convolution.hpp"
 #include "../../src/modint/modint.hpp"
 
 constexpr int mod = 1000000007;
 using mint = modint<mod>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

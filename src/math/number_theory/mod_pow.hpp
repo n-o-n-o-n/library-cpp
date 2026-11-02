@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <type_traits>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T1, typename T2 = long long>
 inline T1 mod_pow(T1 a, T2 n, T1 mod) {

@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large"
 
+#include "../../src/template.hpp"
 #include "../../src/fps/fps_compositional_inverse.hpp"
 #include "../../src/modint/modint.hpp"
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

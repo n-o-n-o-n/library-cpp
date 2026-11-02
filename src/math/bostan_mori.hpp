@@ -1,9 +1,7 @@
 #pragma once
-#include <cassert>
-#include <vector>
+#include "../template.hpp"
 #include "../fps/fps.hpp"
 #include "../fps/fps_inv.hpp"
-using namespace std;
 
 template<typename mint>
 mint Bostan_Mori(fps<mint> p, fps<mint> q, long long k) {

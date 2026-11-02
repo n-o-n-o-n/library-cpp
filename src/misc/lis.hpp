@@ -1,7 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
 vector<int> longest_increasing_subsequence(const vector<T> &v, bool strict = true) {

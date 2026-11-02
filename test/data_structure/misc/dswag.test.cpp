@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
 
+#include "../../../src/template.hpp"
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/math/affine.hpp"
 #include "../../../src/data_structure/misc/dswag.hpp"
@@ -11,8 +12,6 @@ struct Monoid {
     static S op(S f, S g) { return g(f); }
     static S e() { return S(); }
 };
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

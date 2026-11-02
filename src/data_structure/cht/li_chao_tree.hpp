@@ -1,9 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <limits>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T>
 struct li_chao_tree {
@@ -45,9 +41,9 @@ struct li_chao_tree {
         int p = lower_bound(xs.begin(), xs.end(), x) - xs.begin();
         assert(xs[p] == x);
         p += sz;
-        T res = inf;
+        T res = inf<T>();
         for (int i = 0; i <= log; i++) {
-            res = min(res, d[p >> i](x));
+            chmin(res, d[p >> i](x));
         }
         return res;
     }
@@ -63,9 +59,8 @@ private:
     vector<T> xs;
     vector<line> d;
     bool built;
-    static constexpr T inf = numeric_limits<T>::max();
     static constexpr line e() {
-        return line(0, inf);
+        return line(0, inf<T>());
     }
     void build() {
         if (built) return;

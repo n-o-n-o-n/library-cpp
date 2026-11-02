@@ -1,12 +1,6 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <tuple>
-#include <unordered_map>
-#include <utility>
-#include <vector>
+#include "../../template.hpp"
 #include "undoable_foldable_union_find.hpp"
-using namespace std;
 
 template<typename Abelian_Monoid>
 struct offline_dynamic_connectivity {

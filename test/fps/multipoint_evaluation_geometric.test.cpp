@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence"
 
+#include "../../src/template.hpp"
 #include "../../src/modint/modint.hpp"
 #include "../../src/fps/multipoint_evaluation_geometric.hpp"
 
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

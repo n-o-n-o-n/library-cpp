@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_fixed_k"
 
+#include "../../../src/template.hpp"
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/math/enumerative_combinatorics/stirling2_k_fixed.hpp"
 
-#include <iostream>
 
 using mint = modint<998244353>;
 

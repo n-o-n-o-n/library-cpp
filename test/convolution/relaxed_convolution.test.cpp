@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod"
 
+#include "../../src/template.hpp"
 #include "../../src/convolution/relaxed_convolution.hpp"
 #include "../../src/modint/modint.hpp"
 
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     int N, M;

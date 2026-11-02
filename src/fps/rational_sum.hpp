@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "fps.hpp"
 
 template<typename mint>
@@ -41,8 +42,8 @@ fps<mint> rational_sum(const vector<fps<mint>> &ps, const vector<fps<mint>> &qs,
             }
             pl.intt();
             ql.intt();
-            pl.resize(min(deg == -1 ? numeric_limits<int>::max() : deg, sz_p));
-            ql.resize(min(deg == -1 ? numeric_limits<int>::max() : deg, sz_q));
+            pl.resize(min(deg == -1 ? inf<int>() : deg, sz_p));
+            ql.resize(min(deg == -1 ? inf<int>() : deg, sz_q));
         }
         return {pl, ql};
     };

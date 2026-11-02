@@ -1,9 +1,5 @@
 #pragma once
-#include <cassert>
-#include <queue>
-#include <numeric>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 // https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8 
 
@@ -46,7 +42,7 @@ struct slope_trick {
         right_add += l;
     }
 private:
-    static constexpr T inf = numeric_limits<T>::max() / 3;
+    static constexpr T inf = ::inf<T>();
     T min_val, left_add, right_add;
     priority_queue<T, vector<T>, less<T>> left;
     priority_queue<T, vector<T>, greater<T>> right;

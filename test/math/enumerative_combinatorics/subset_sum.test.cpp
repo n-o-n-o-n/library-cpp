@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sharp_p_subset_sum"
 
+#include "../../../src/template.hpp"
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/math/enumerative_combinatorics/subset_sum.hpp"
 
-#include <iostream>
 
 using mint = modint<998244353>;
 

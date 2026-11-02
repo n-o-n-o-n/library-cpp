@@ -1,9 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <utility>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 struct lowlink {
     lowlink(int _n = 0, int m = 0) : n(_n), g(_n), built(false) {
@@ -126,13 +122,13 @@ private:
             if (ord[v] == -1) {
                 c++;
                 k = dfs(v, k, u);
-                low[u] = min(low[u], low[v]);
+                chmin(low[u], low[v]);
                 art |= (p != -1) && (low[v] >= ord[u]);
                 if (ord[u] < low[v]) {
                     bg.push_back(minmax(u, v));
                 }
             } else if (v != p || sec) {
-                low[u] = min(low[u], ord[v]);
+                chmin(low[u], ord[v]);
             } else {
                 sec = true;
             }

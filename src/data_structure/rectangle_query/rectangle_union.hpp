@@ -1,11 +1,6 @@
 #pragma once
-#include <algorithm>
-#include <limits>
-#include <tuple>
-#include <utility>
-#include <vector>
+#include "../../template.hpp"
 #include "../range_query/lazysegtree.hpp"
-using namespace std;
 
 template<typename T>
 struct rectangle_union {
@@ -50,12 +45,12 @@ private:
             if (a.first == b.first) return {a.first, a.second + b.second};
             return a.first < b.first ? a : b;
         }
-        static S e() { return {numeric_limits<int>::max(), 0}; }
+        static S e() { return {inf<int>(), 0}; }
         using F = int;
         static F comp(F f, F g) { return f + g; }
         static F id() { return 0; }
         static S map(F f, S x) {
-            if (x.first != numeric_limits<int>::max()) x.first += f;
+            if (x.first != inf<int>()) x.first += f;
             return x;
         }
     };

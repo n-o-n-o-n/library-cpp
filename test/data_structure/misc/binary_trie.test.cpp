@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/set_xor_min"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/misc/binary_trie.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

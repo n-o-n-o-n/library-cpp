@@ -1,11 +1,9 @@
 #define ERROR 0.000001
 
+#include "../../src/template.hpp"
 #include "../../src/geometry/circle.hpp"
 
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_E"
-
-#include <iomanip>
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

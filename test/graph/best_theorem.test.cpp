@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_eulerian_circuits"
 
+#include "../../src/template.hpp"
 #include "../../src/modint/modint.hpp"
 #include "../../src/graph/best_theorem.hpp"
 
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

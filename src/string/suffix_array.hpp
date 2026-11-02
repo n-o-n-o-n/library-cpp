@@ -1,8 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <string>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 // S[ sa[i-1] : N] < S[ sa[i] : N]
 // O(N log N)

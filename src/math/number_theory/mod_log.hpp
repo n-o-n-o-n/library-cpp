@@ -1,10 +1,7 @@
 #pragma once
-#include <cassert>
-#include <limits>
-#include <type_traits>
+#include "../../template.hpp"
 #include "../../modint/dynamic_modint.hpp"
 #include "discrete_logarithm.hpp"
-using namespace std;
 
 
 // O(sqrt{p})

@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set"
 
+#include "../../src/template.hpp"
 #include "../../src/graph/maximum_independent_set.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

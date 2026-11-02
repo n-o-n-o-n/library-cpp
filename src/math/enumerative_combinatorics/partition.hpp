@@ -1,4 +1,5 @@
 #pragma once
+#include "../../template.hpp"
 #include "../../fps/fps_inv.hpp"
 
 template<typename mint>

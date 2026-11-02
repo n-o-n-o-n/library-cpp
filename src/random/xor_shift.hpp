@@ -1,7 +1,5 @@
 #pragma once
-#include <cstdint>
-#include <type_traits>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
 struct xor_shift {

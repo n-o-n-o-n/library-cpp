@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "fps_inv.hpp"
 
 // https://judge.yosupo.jp/submission/307408

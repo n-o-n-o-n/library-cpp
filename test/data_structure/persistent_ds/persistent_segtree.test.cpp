@@ -1,10 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 
+#include "../../../src/template.hpp"
 #include "../../../src/misc/compress.hpp"
 #include "../../../src/data_structure/persistent_ds/persistent_segtree.hpp"
 #include "../../../src/monoid/sum.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

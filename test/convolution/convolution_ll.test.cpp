@@ -1,8 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1307"
 
+#include "../../src/template.hpp"
 #include "../../src/convolution/convolution_ll.hpp"
 
-#include <iostream>
 
 using ll = long long;
 

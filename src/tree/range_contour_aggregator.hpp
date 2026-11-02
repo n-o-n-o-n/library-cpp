@@ -1,9 +1,5 @@
 #pragma once
-#include <array>
-#include <cassert>
-#include <queue>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename SegTree>
 struct range_contour_aggregator {
@@ -183,8 +179,8 @@ private:
         built = true;
     }
     S inner_prod(int u, int c, int l, int r) const {
-        l = max(l, 0);
-        r = min(r, (int)seps[u][c].size() - 1);
+        chmax(l, 0);
+        chmin(r, (int)seps[u][c].size() - 1);
         return l < r ? segs[u][c].prod(seps[u][c][l], seps[u][c][r]) : M::e();
     }
 };

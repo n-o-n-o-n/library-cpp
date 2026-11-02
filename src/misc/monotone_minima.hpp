@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename F, typename C>
 vector<int> monotone_minima(int h, int w, const F &f, const C &comp) {

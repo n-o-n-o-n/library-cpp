@@ -1,7 +1,5 @@
 #pragma once
-#include <vector>
-#include <cassert>
-using namespace std;
+#include "../../template.hpp"
 
 template <typename Monoid>
 struct segtree {

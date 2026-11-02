@@ -1,11 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2786"
 
+#include "../../src/template.hpp"
 #include "../../src/data_structure/union_find/union_find.hpp"
 #include "../../src/misc/parallel_binary_search.hpp"
-
-#include <algorithm>
-#include <iostream>
-#include <numeric>
 
 int main() {
     ios::sync_with_stdio(false);

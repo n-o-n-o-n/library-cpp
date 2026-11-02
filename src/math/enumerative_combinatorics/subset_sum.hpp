@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
+#include "../../template.hpp"
 #include "../../fps/fps_exp.hpp"
-using namespace std;
 
 
 template<typename mint>

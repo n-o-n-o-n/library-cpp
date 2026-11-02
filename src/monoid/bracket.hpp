@@ -1,7 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <utility>
-using namespace std;
+#include "../template.hpp"
 
 struct Bracket {
     using S = pair<int, int>;

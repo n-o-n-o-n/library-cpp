@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/assignment"
 
+#include "../../src/template.hpp"
 #include "../../src/graph/hungarian.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

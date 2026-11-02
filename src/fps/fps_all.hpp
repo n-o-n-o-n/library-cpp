@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "fps.hpp"
 #include "fps_inv.hpp"
 #include "fps_log.hpp"

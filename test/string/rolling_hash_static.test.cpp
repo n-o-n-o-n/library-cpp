@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
+#include "../../src/template.hpp"
 #include "../../src/string/rolling_hash_static.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

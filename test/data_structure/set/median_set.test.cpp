@@ -1,15 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../../src/template.hpp"
 #include "../../../src/random/sequence.hpp"
 #include "../../../src/data_structure/set/median_set.hpp"
 
-#include <bits/stdc++.h>
 
 namespace AC {
 
 // https://atcoder.jp/contests/abc127/submissions/80286090
 
-using namespace std;
 
 // https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8
 

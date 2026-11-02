@@ -1,9 +1,6 @@
 #pragma once
-#include <array>
-#include <cassert>
-#include <vector>
+#include "../template.hpp"
 #include "../data_structure/range_query/segtree.hpp"
-using namespace std;
 
 struct rolling_hash {
     static long long base, p, q;

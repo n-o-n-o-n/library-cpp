@@ -1,8 +1,5 @@
 #pragma once
-#include <array>
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
 struct rolling_hash {

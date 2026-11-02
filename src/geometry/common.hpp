@@ -1,9 +1,5 @@
 #pragma once
-#include <cmath>
-#include <numeric>
-#include <type_traits>
-#include <utility>
-using namespace std;
+#include "../template.hpp"
 
 namespace geometry {
 
@@ -14,7 +10,7 @@ template<typename T>
 constexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }
 
 template<typename T>
-constexpr T inf() { return numeric_limits<T>::max(); }
+constexpr T inf() { return ::inf<T>(); }
 
 template<typename T>
 constexpr T PI() {

@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/chromatic_number"
 
+#include "../../src/template.hpp"
 #include "../../src/graph/chromatic_number.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

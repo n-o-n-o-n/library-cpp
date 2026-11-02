@@ -1,9 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_convex_hull"
 
+#include "../../src/template.hpp"
 #include "../../src/geometry/convex_hull.hpp"
-
-#include <iostream>
-#include <vector>
 
 int main() {
     ios::sync_with_stdio(false);

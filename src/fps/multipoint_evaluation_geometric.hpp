@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "fps.hpp"
-using namespace std;
 
 template<typename mint>
 vector<mint> multipoint_evaluation_geometric(const fps<mint> &f, int m, mint a, mint r) {

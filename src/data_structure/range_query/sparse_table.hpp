@@ -1,8 +1,5 @@
 #pragma once
-#include <bit>
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename Monoid>
 struct sparse_table {

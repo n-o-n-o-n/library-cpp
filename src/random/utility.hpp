@@ -1,8 +1,5 @@
 #pragma once
-#include <cassert>
-#include <concepts>
-#include <random>
-using namespace std;
+#include "../template.hpp"
 
 namespace rng {
 

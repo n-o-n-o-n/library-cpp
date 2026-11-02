@@ -1,6 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
+#include "../../template.hpp"
 #include "rectangle_sum.hpp"
 
 template<typename Abelian_Group, typename T = int>

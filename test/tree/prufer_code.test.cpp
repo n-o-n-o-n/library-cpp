@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/prufer_code.hpp"
 #include "../../src/random/utility.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

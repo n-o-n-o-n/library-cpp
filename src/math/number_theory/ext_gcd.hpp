@@ -1,6 +1,5 @@
 #pragma once
-#include <utility>
-using namespace std;
+#include "../../template.hpp"
 
 // find x, y s.t. ax + by = gcd(a, b) and return gcd(a, b)
 template<typename T>

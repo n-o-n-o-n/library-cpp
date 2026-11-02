@@ -1,9 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sort_points_by_argument"
 
+#include "../../src/template.hpp"
 #include "../../src/geometry/arg_sort.hpp"
-
-#include <algorithm>
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/predecessor_problem"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/range_query/binary_fenwick_tree.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

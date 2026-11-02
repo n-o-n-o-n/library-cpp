@@ -1,8 +1,5 @@
 #pragma once
-#include <cassert>
-#include <ranges>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename SegTree>
 struct directed_range_query {

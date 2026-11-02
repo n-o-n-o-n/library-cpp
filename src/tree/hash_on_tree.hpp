@@ -1,11 +1,6 @@
 #pragma once
-#include <algorithm>
-#include <array>
-#include <cassert>
-#include <numeric>
-#include <vector>
+#include "../template.hpp"
 #include "../random/utility.hpp"
-using namespace std;
 
 struct hash_on_tree {
     static long long base;
@@ -43,7 +38,7 @@ private:
             for (int v : g[u]) {
                 if (v != p) {
                     int d = dfs(dfs, v, u) + 1;
-                    md = max(md, d + 1);
+                    chmax(md, d + 1);
                     for (int j = 0; j < 3; j++) {
                         hs[u][j] = (hs[u][j] * (rd(d + 1) + hs[v][j])) % mod[j];
                     }

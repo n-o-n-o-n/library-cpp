@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 // for all m in [l, r), floor(n/m) = q
 template<typename T>

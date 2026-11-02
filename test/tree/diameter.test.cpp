@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/diameter.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

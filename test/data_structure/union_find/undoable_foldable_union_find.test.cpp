@@ -1,9 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/3164"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/union_find/undoable_foldable_union_find.hpp"
 #include "../../../src/monoid/sum.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,9 +1,7 @@
 #pragma once
-#include <algorithm>
-#include <limits>
-using namespace std;
+#include "../template.hpp"
 
-template<typename T, T E = numeric_limits<T>::min()>
+template<typename T, T E = (is_signed_v<T> ? -inf<T>() : T(0))>
 struct max_monoid {
     using S = T;
     static S op(S a, S b) { return max(a, b); }

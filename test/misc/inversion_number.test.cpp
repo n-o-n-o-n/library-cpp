@@ -1,8 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/5/ALDS1_5_D"
 
+#include "../../src/template.hpp"
 #include "../../src/misc/inversion_number.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

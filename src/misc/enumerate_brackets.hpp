@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 // n <= 15 が限界かな
 vector<string> enumerate_brackets(int n) {

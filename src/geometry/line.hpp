@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "common.hpp"
 
 namespace geometry {

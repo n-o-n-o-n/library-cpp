@@ -1,5 +1,5 @@
 #pragma once
-using namespace std;
+#include "../template.hpp"
 
 template<typename T1, typename T2 = int>
 struct range_add_range_sum {

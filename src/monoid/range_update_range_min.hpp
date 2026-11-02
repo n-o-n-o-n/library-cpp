@@ -1,9 +1,7 @@
 #pragma once
-#include <algorithm>
-#include <limits>
-using namespace std;
+#include "../template.hpp"
 
-template<typename T, T E = numeric_limits<T>::max()>
+template<typename T, T E = inf<T>()>
 struct range_update_range_min {
     using S = T;
     using F = T;

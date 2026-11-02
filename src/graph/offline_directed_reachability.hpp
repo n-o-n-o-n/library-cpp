@@ -1,11 +1,8 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
-struct offline_dag_reachability {
-    offline_dag_reachability(int _n) : n(_n), q(0), g(_n), g_rev(_n), qs(_n) {}
+struct offline_directed_reachability {
+    offline_directed_reachability(int _n) : n(_n), q(0), g(_n), g_rev(_n), qs(_n) {}
     void add_edge(int u, int v) {
         assert(0 <= u && u < n);
         assert(0 <= v && v < n);

@@ -1,7 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T, typename... Ts>
 vector<T> merge_and_unique(const vector<T> &a, const Ts &...z) {

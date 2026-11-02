@@ -1,7 +1,5 @@
 #pragma once
-#include <string>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
 vector<pair<T, int>> run_length_encoding(const vector<T> &v) {

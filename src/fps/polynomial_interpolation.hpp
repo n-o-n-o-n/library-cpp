@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "subprod_tree.hpp"
 
 template<typename mint>

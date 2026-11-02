@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 #include "divisor_zmt.hpp"
 
 template<typename mint>

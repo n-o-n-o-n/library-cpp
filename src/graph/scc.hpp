@@ -1,8 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 struct scc_graph {
     scc_graph(int _n = 0) : n(_n), g(_n), g_rev(_n) {}

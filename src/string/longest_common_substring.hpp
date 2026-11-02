@@ -1,9 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <string>
-#include <tuple>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 #include "suffix_array.hpp"
 #include "lcp_array.hpp"
 

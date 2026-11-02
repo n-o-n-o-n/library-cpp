@@ -1,10 +1,5 @@
 #pragma once
-#include <array>
-#include <cassert>
-#include <queue>
-#include <string>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<int size, char base>
 struct aho_corasick {

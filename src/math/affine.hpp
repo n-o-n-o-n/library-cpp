@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 
 template<typename mint>
 struct affine {

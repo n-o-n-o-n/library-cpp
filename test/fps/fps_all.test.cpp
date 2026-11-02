@@ -2,9 +2,8 @@
 
 // include して正しくコンパイルできるかをテスト
 // 中身は個別の test でチェック
+#include "../../src/template.hpp"
 #include "../../src/fps/fps_all.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,8 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename SegTree, bool edge, bool commutative>
 struct heavy_light_decomposition {

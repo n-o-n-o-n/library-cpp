@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <stack>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename Monoid>
 struct swag {

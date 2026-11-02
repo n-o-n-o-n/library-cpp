@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
+#include "../../../src/template.hpp"
 #include "../../../src/modint/modint.hpp"
 #include "../../../src/math/matrix/matrix.hpp"
 
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

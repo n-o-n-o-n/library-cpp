@@ -1,9 +1,6 @@
 #pragma once
-#include <cassert>
-#include <numeric>
-#include <vector>
+#include "../../template.hpp"
 #include "union_find.hpp"
-using namespace std;
 
 struct uf_merge_tree {
     uf_merge_tree(int _n = 0) : n(_n), c(_n), par(2 * _n, -1), top(_n), uf(_n) {

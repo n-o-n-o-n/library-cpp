@@ -1,9 +1,6 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <vector>
+#include "../template.hpp"
 #include "utility.hpp"
-using namespace std;
 
 namespace rng {
 

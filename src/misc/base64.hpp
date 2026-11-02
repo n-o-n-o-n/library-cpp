@@ -1,8 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <vector>
-#include <string>
-using namespace std;
+#include "../template.hpp"
 
 // https://nyaannyaan.github.io/library/misc/base64.hpp
 namespace base64 {
@@ -23,7 +20,7 @@ string encode(const vector<T> &v) {
     int n = v.size();
     if (n == 0) return "";
     T x = v[0], y = v[0];
-    for (const auto &e : v) x = min(x, e), y = max(y, e);
+    for (const auto &e : v) chmin(x, e), chmax(y, e);
     int b = max<int>(6, x < 0 ? sizeof(T) * 8 : (y == 0 ? 0 : 64 - __builtin_clzll(y)));
     string s((b * n + 11) / 6, 0);
     s[0] = b;

@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "../data_structure/range_query/fenwick_tree.hpp"
 #include "compress.hpp"
 

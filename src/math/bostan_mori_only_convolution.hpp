@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename mint, typename C>
 mint Bostan_Mori(vector<mint> p, vector<mint> q, long long k, const C &conv) {

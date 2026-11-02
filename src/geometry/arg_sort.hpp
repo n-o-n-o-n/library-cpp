@@ -1,9 +1,6 @@
 #pragma once
-#include <algorithm>
-#include <numeric>
-#include <vector>
+#include "../template.hpp"
 #include "common.hpp"
-using namespace std;
 
 namespace geometry {
 

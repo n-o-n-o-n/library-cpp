@@ -1,10 +1,5 @@
 #pragma once
-#include <cassert>
-#include <numeric>
-#include <stack>
-#include <tuple>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 struct undoable_union_find {
     undoable_union_find() = default;

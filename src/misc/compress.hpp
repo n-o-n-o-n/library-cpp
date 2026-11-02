@@ -1,8 +1,6 @@
 #pragma once
-#include <algorithm>
-#include <vector>
+#include "../template.hpp"
 #include "merge_and_unique.hpp"
-using namespace std;
 
 template<typename T>
 vector<int> compress(const vector<T> &v) {

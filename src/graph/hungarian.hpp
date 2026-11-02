@@ -1,10 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <limits>
-#include <utility>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
 vector<pair<int, int>> hungarian(const vector<vector<T>> &a) {
@@ -19,7 +14,7 @@ vector<pair<int, int>> hungarian(const vector<vector<T>> &a) {
         sort(res.begin(), res.end());
         return res;
     }
-    const T inf = numeric_limits<T>::max();
+    const T inf = ::inf<T>();
     vector<int> p(w + 1), way(w + 1);
     vector<T> u(h + 1), v(w + 1);
     for (int i = 1; i <= h; i++) {
@@ -34,8 +29,8 @@ vector<pair<int, int>> hungarian(const vector<vector<T>> &a) {
             for (int c = 1; c <= w; c++) {
                 if (used[c]) continue;
                 T cur = a[p[j] - 1][c - 1] - u[p[j]] - v[c];
-                if (cur < min_v[c]) min_v[c] = cur, way[c] = j;
-                if (min_v[c] < d) d = min_v[c], k = c;
+                if (chmin(min_v[c], cur)) way[c] = j;
+                if (chmin(d, min_v[c])) k = c;
             }
             for (int c = 0; c <= w; c++) {
                 if (used[c]) u[p[c]] += d, v[c] -= d;

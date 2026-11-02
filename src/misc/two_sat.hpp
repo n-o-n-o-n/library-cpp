@@ -1,8 +1,6 @@
 #pragma once
-#include <cassert>
-#include <vector>
+#include "../template.hpp"
 #include "../graph/scc.hpp"
-using namespace std;
 
 struct two_sat {
     two_sat() : two_sat(0) {}

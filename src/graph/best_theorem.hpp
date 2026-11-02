@@ -1,9 +1,8 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "../math/matrix/matrix.hpp"
 #include "../math/enumerative_combinatorics/combination.hpp"
 #include "matrix_tree_theorem.hpp"
-using namespace std;
 
 template<typename mint>
 inline mint best_theorem_adjacency(const vector<vector<int>> &a, bool edge_labeled = true) {

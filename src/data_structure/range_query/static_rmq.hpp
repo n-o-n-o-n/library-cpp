@@ -1,13 +1,9 @@
 #pragma once
-#include <cassert>
-#include <limits>
-#include <type_traits>
-#include <vector>
+#include "../../template.hpp"
 #include "sparse_table.hpp"
 #include "../../monoid/min.hpp"
-using namespace std;
 
-template<typename T, T inf = numeric_limits<T>::max()>
+template<typename T, T inf = ::inf<T>()>
 struct static_rmq {
     static_assert(is_integral_v<T>);
     static_rmq() = default;
@@ -22,7 +18,7 @@ struct static_rmq {
             return min(min(pref[r], suff[l]), st.prod(bl + 1, br));
         }
         T res = v[l];
-        for (int i = l + 1; i <= r; i++) res = min(res, v[i]);
+        for (int i = l + 1; i <= r; i++) chmin(res, v[i]);
         return res;
     }
 private:

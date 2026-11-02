@@ -1,9 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification"
 
+#include "../../src/template.hpp"
 #include "../../src/tree/hash_on_tree.hpp"
-
-#include <iostream>
-#include <map>
 
 int main() {
     ios::sync_with_stdio(false);

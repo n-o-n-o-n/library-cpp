@@ -1,8 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <numeric>
-using namespace std;
+#include "../template.hpp"
 
 // p / q
 template<typename T>

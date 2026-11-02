@@ -1,7 +1,5 @@
 #pragma once
-#include <vector>
-#include <queue>
-using namespace std;
+#include "../template.hpp"
 
 struct tree_matching {
     tree_matching(int n) : g(n) {}

@@ -1,7 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-using namespace std;
+#include "../template.hpp"
 
 template<unsigned int MOD>
 struct modint {

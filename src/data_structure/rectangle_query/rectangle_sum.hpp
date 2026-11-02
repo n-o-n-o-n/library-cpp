@@ -1,10 +1,7 @@
 #pragma once
-#include <cassert>
-#include <numeric>
-#include <vector>
+#include "../../template.hpp"
 #include "../../misc/merge_and_unique.hpp"
 #include "../range_query/segtree.hpp"
-using namespace std;
 
 template<typename Abelian_Group, typename T = int>
 struct rectangle_sum {

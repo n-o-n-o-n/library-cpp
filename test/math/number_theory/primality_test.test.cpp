@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/primality_test"
 
+#include "../../../src/template.hpp"
 #include "../../../src/math/number_theory/prime.hpp"
 
-#include <iostream>
 
 static_assert(prime::is_prime<int>(2147483647));
 static_assert(!prime::is_prime<unsigned>(3215031751U));

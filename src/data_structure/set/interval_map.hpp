@@ -1,13 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <iterator>
-#include <limits>
-#include <set>
-#include <tuple>
-#include <utility>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T, typename S>
 struct interval_map {
@@ -138,7 +130,7 @@ struct interval_map {
     }
 private:
     static constexpr T low = numeric_limits<T>::min();
-    static constexpr T inf = numeric_limits<T>::max();
+    static constexpr T inf = ::inf<T>();
     struct node {
         T l, r;
         S x;

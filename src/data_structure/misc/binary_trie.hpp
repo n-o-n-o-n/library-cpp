@@ -1,9 +1,5 @@
 #pragma once
-#include <array>
-#include <cassert>
-#include <vector>
-#include <limits>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename T, int LOG = numeric_limits<T>::digits>
 struct binary_trie {

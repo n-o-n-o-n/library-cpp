@@ -1,16 +1,7 @@
 #pragma once
-#include <algorithm>
-#include <array>
-#include <cassert>
-#include <cstdint>
-#include <iterator>
-#include <numeric>
-#include <type_traits>
-#include <utility>
-#include <vector>
+#include "../../template.hpp"
 #include "../../random/xor_shift.hpp"
 
-using namespace std;
 
 namespace prime {
 

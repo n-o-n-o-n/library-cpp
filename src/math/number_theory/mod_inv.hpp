@@ -1,8 +1,6 @@
 #pragma once
-#include <cassert>
-#include <type_traits>
+#include "../../template.hpp"
 #include "ext_gcd.hpp"
-using namespace std;
 
 template<typename T>
 inline T mod_inv(T a, T mod) {

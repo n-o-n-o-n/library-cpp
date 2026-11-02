@@ -1,9 +1,5 @@
 #pragma once
-#include <cassert>
-#include <iterator>
-#include <numeric>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 struct union_find {
     union_find(int n) : p(n, -1), cyc(n) {

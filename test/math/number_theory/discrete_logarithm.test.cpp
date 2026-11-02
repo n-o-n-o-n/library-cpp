@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
+#include "../../../src/template.hpp"
 #include "../../../src/random/utility.hpp"
 #include "../../../src/math/number_theory/prime.hpp"
 #include "../../../src/modint/dynamic_modint.hpp"
@@ -8,7 +9,6 @@
 
 using mint = modint;
 
-#include <iostream>
 
 // https://atcoder.jp/contests/abc270/submissions/62690414
 namespace AC {

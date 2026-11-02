@@ -1,6 +1,5 @@
 #pragma once
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 // 使い方はこれを参照: https://atcoder.jp/contests/past20-open/submissions/71648427 
 template<typename A, typename Q, typename R>

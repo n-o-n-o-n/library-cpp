@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 
+#include "../../src/template.hpp"
 #include "../../src/misc/two_sat.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,10 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <cassert>
-#include <iostream>
-#include <stack>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 #include "../data_structure/range_query/static_rmq.hpp"
 
 struct static_tree {

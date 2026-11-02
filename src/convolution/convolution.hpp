@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "ntt.hpp"
-using namespace std;
 
 template<typename mint>
 vector<mint> convolution(vector<mint> f, vector<mint> g, int deg = -1) {

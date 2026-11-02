@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/range_query/sparse_table.hpp"
 #include "../../../src/monoid/min.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/number_of_substrings"
 
+#include "../../src/template.hpp"
 #include "../../src/string/lcp_array.hpp"
 #include "../../src/string/suffix_array.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

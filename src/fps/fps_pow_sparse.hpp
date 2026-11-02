@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename mint>
 vector<mint> fps_pow_sparse(const vector<pair<int, mint>> &f_sub, int n, long long k) {

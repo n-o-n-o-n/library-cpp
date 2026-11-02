@@ -1,10 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <array>
-#include <cassert>
-#include <string>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<int size, char base>
 struct trie {

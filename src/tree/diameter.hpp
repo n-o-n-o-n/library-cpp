@@ -1,17 +1,11 @@
 #pragma once
-#include <algorithm>
-#include <limits>
-#include <queue>
-#include <utility>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename T>
-pair<T, vector<int>> diameter(const vector<vector<pair<int, T>>> &g) {
+inline pair<T, vector<int>> diameter(const vector<vector<pair<int, T>>> &g) {
     int n = g.size();
-    const T inf = numeric_limits<T>::max() / 2;
-    auto bfs = [&](int root) -> vector<T> {
-        vector<T> dist(n, inf);
+    auto bfs = [&] (int root) -> vector<T> {
+        vector<T> dist(n, inf<T>());
         dist[root] = 0;
         queue<int> q;
         q.push(root);
@@ -45,7 +39,7 @@ pair<T, vector<int>> diameter(const vector<vector<pair<int, T>>> &g) {
     return make_pair(diam, path);
 }
 
-pair<int, vector<int>> diameter(const vector<vector<int>> &g) {
+inline pair<int, vector<int>> diameter(const vector<vector<int>> &g) {
     int n = g.size();
     vector<vector<pair<int, int>>> tmp(n);
     for (int u = 0; u < n; u++) {

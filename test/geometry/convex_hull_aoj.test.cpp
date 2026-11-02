@@ -1,9 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A"
 
+#include "../../src/template.hpp"
 #include "../../src/geometry/convex_hull.hpp"
-
-#include <iostream>
-#include <vector>
 
 int main() {
     ios::sync_with_stdio(false);

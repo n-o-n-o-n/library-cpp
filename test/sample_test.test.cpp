@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
-#include <iostream>
-using namespace std;
+#include "../src/template.hpp"
 
 int main() {
     int A, B;

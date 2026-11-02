@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "../math/matrix/matrix.hpp"
 
 template<typename mint>

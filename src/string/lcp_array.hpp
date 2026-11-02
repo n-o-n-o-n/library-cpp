@@ -1,8 +1,5 @@
 #pragma once
-#include <vector>
-#include <algorithm>
-#include <string>
-using namespace std;
+#include "../template.hpp"
 
 
 // lcp[i] = lcp(S[ sa[i-1] : N ], S[ sa[i] : N ])

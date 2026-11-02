@@ -1,7 +1,5 @@
 #pragma once
-#include <cassert>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename ActMonoid, integral T = int>
 struct dynamic_lazysegtree {

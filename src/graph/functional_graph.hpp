@@ -1,8 +1,5 @@
 #pragma once
-#include <cassert>
-#include <numeric>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 struct functional_graph {
     functional_graph(int _n) : functional_graph(vector<int>(_n, -1)) {}

@@ -1,16 +1,15 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 
+#include "../../src/template.hpp"
 #include "../../src/data_structure/range_query/lazysegtree.hpp"
 #include "../../src/monoid/range_update_range_min.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int N, Q;
     cin >> N >> Q;
-    lazysegtree<range_update_range_min<int>> seg(N);
+    lazysegtree<range_update_range_min<int, numeric_limits<int>::max()>> seg(N);
     while (Q--) {
         int t, l, r;
         cin >> t >> l >> r;

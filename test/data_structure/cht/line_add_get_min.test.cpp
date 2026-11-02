@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/line_add_get_min"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/cht/li_chao_tree.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

@@ -1,7 +1,6 @@
 #pragma once
-#include <vector>
+#include "../template.hpp"
 #include "../math/number_theory/prime.hpp"
-using namespace std;
 
 template<typename mint>
 struct Number_Theoretic_Transform {

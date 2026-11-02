@@ -1,11 +1,6 @@
 #pragma once
-#include <cassert>
-#include <limits>
-#include <type_traits>
-#include <utility>
-#include <vector>
+#include "../../template.hpp"
 #include "ext_gcd.hpp"
-using namespace std;
 
 template<typename T>
 pair<T, T> crt(const vector<T> &rems, const vector<T> &mods) {

@@ -1,8 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/3017"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/set/interval_set.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

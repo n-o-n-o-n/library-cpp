@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "line.hpp"
 
 namespace geometry {
@@ -38,10 +39,10 @@ struct Segment {
         static_assert(is_floating_point_v<T>);
         if (intersect(s)) return 0;
         T res = inf<T>();
-        res = min(res, dist(s.a));
-        res = min(res, dist(s.b));
-        res = min(res, s.dist(a));
-        res = min(res, s.dist(b));
+        chmin(res, dist(s.a));
+        chmin(res, dist(s.b));
+        chmin(res, s.dist(a));
+        chmin(res, s.dist(b));
         return res;
     }
 private:

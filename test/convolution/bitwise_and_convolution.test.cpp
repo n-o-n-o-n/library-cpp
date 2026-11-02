@@ -1,11 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
 
+#include "../../src/template.hpp"
 #include "../../src/convolution/bitwise_and_convolution.hpp"
 #include "../../src/modint/modint.hpp"
 
 using mint = modint<998244353>;
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

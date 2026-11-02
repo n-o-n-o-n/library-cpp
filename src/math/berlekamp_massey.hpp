@@ -1,7 +1,5 @@
 #pragma once
-#include <algorithm>
-#include <vector>
-using namespace std;
+#include "../template.hpp"
 
 template<typename mint>
 vector<mint> Berlekamp_Massey(const vector<mint> &a) {

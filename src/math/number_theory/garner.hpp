@@ -1,8 +1,6 @@
 #pragma once
-#include <type_traits>
-#include <vector>
+#include "../../template.hpp"
 #include "ext_gcd.hpp"
-using namespace std;
 
 template<typename T>
 T garner(const vector<T> &rems, vector<T> mods, T mod) {

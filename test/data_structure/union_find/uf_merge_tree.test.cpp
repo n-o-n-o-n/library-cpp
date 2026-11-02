@@ -1,9 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
+#include "../../../src/template.hpp"
 #include "../../../src/data_structure/union_find/uf_merge_tree.hpp"
 #include "../../../src/tree/static_tree.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

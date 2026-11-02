@@ -1,11 +1,5 @@
 #pragma once
-#include <cassert>
-#include <iterator>
-#include <numeric>
-#include <tuple>
-#include <utility>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 template<typename Abelian_Monoid>
 struct undoable_foldable_union_find {

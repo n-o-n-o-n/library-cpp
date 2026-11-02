@@ -1,9 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 
+#include "../../src/template.hpp"
 #include "../../src/data_structure/range_query/lazysegtree.hpp"
 #include "../../src/monoid/range_update_range_max.hpp"
-
-#include <iostream>
 
 int main() {
     ios::sync_with_stdio(false);

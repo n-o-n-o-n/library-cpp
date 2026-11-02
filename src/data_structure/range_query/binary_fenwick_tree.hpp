@@ -1,8 +1,5 @@
 #pragma once
-#include <cassert>
-#include <numeric>
-#include <vector>
-using namespace std;
+#include "../../template.hpp"
 
 struct binary_fenwick_tree {
     binary_fenwick_tree() : binary_fenwick_tree(0) {}

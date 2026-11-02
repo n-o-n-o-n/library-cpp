@@ -1,4 +1,5 @@
 #pragma once
+#include "../template.hpp"
 #include "convolution.hpp"
 
 // h[k] = sum_i f[i+k]g[i]
