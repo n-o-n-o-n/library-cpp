@@ -1,30 +1,37 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/misc/parallel_binary_search.test.cpp
     title: test/misc/parallel_binary_search.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/past20-open/submissions/71648427
-  bundledCode: "#line 2 \"src/misc/parallel_binary_search.hpp\"\n#include <vector>\n\
-    using namespace std;\n\n// \u4F7F\u3044\u65B9\u306F\u3053\u308C\u3092\u53C2\u7167\
-    : https://atcoder.jp/contests/past20-open/submissions/71648427 \ntemplate<typename\
-    \ A, typename Q, typename R>\nvector<int> parallel_binary_search(int t, int q,\
-    \ const A &act, const Q &query, const R &reset) {\n    vector<int> l(q, -1), r(q,\
-    \ t);\n    for (int p = 1; p <= t; p *= 2) {\n        reset();\n        vector<int>\
-    \ m(q);\n        vector<vector<int>> qs(t);\n        for (int j = 0; j < q; j++)\
-    \ {\n            m[j] = (l[j] + r[j]) / 2;\n            qs[m[j]].push_back(j);\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/misc/parallel_binary_search.hpp\"\n\n// \u4F7F\u3044\u65B9\u306F\
+    \u3053\u308C\u3092\u53C2\u7167: https://atcoder.jp/contests/past20-open/submissions/71648427\
+    \ \ntemplate<typename A, typename Q, typename R>\nvector<int> parallel_binary_search(int\
+    \ t, int q, const A &act, const Q &query, const R &reset) {\n    vector<int> l(q,\
+    \ -1), r(q, t);\n    for (int p = 1; p <= t; p *= 2) {\n        reset();\n   \
+    \     vector<int> m(q);\n        vector<vector<int>> qs(t);\n        for (int\
+    \ j = 0; j < q; j++) {\n            m[j] = (l[j] + r[j]) / 2;\n            qs[m[j]].push_back(j);\n\
     \        }\n        for (int i = 0; i < t; i++) {\n            act(i);\n     \
     \       for (int j : qs[i]) (query(j) ? r[j] : l[j]) = m[j];\n        }\n    }\n\
     \    return r;\n}\n"
-  code: "#pragma once\n#include <vector>\nusing namespace std;\n\n// \u4F7F\u3044\u65B9\
-    \u306F\u3053\u308C\u3092\u53C2\u7167: https://atcoder.jp/contests/past20-open/submissions/71648427\
+  code: "#pragma once\n#include \"../template.hpp\"\n\n// \u4F7F\u3044\u65B9\u306F\
+    \u3053\u308C\u3092\u53C2\u7167: https://atcoder.jp/contests/past20-open/submissions/71648427\
     \ \ntemplate<typename A, typename Q, typename R>\nvector<int> parallel_binary_search(int\
     \ t, int q, const A &act, const Q &query, const R &reset) {\n    vector<int> l(q,\
     \ -1), r(q, t);\n    for (int p = 1; p <= t; p *= 2) {\n        reset();\n   \
@@ -33,12 +40,13 @@ data:
     \        }\n        for (int i = 0; i < t; i++) {\n            act(i);\n     \
     \       for (int j : qs[i]) (query(j) ? r[j] : l[j]) = m[j];\n        }\n    }\n\
     \    return r;\n}"
-  dependsOn: []
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/misc/parallel_binary_search.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/misc/parallel_binary_search.test.cpp
 documentation_of: src/misc/parallel_binary_search.hpp

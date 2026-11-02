@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
@@ -23,31 +26,34 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/data_structure/rectangle_query/rectangle_sum.hpp\"\n\
-    #include <cassert>\n#include <numeric>\n#include <vector>\n#line 2 \"src/misc/merge_and_unique.hpp\"\
-    \n#include <algorithm>\n#line 4 \"src/misc/merge_and_unique.hpp\"\nusing namespace\
-    \ std;\n\ntemplate<typename T, typename... Ts>\nvector<T> merge_and_unique(const\
-    \ vector<T> &a, const Ts &...z) {\n    vector<T> res = a;\n    (res.insert(res.end(),\
-    \ z.begin(), z.end()), ...);\n    sort(res.begin(), res.end());\n    res.erase(unique(res.begin(),\
-    \ res.end()), res.end());\n    return res;\n}\n#line 4 \"src/data_structure/range_query/segtree.hpp\"\
-    \nusing namespace std;\n\ntemplate <typename Monoid>\nstruct segtree {\n    using\
-    \ M = Monoid;\n    using S = typename M::S;\n    segtree() : segtree(0) {}\n \
-    \   segtree(int _n) : segtree(vector<S>(_n, M::e())) {}\n    segtree(const vector<S>\
-    \ &v) : n(v.size()) {\n        log = 1;\n        while ((1 << log) < n) log++;\n\
-    \        sz = 1 << log;\n        d = vector<S>(2 * sz, M::e());\n        for (int\
-    \ i = 0; i < n; i++) d[i + sz] = v[i];\n        for (int i = sz - 1; i >= 1; i--)\
-    \ update(i);\n    }\n    void set(int p, const S &x) {\n        assert(0 <= p\
-    \ && p < n);\n        p += sz;\n        d[p] = x;\n        for (int i = 1; i <=\
-    \ log; i++) update(p >> i);\n    }\n    void apply(int p, const S &x) {\n    \
-    \    assert(0 <= p && p < n);\n        set(p, M::op(x, d[p + sz]));\n    }\n \
-    \   S get(int p) const {\n        assert(0 <= p && p < n);\n        return d[p\
-    \ + sz];\n    }\n    S prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= n);\n        l += sz;\n        r += sz;\n        S pl = M::e(),\
-    \ pr = M::e();\n        while (l < r) {\n            if (l & 1) pl = M::op(pl,\
-    \ d[l++]);\n            if (r & 1) pr = M::op(d[--r], pr);\n            l >>=\
-    \ 1;\n            r >>= 1;\n        }\n        return M::op(pl, pr);\n    }\n\
-    \    S all_prod() const { return d[1]; }\n    template<typename C>\n    int max_right(int\
-    \ l, const C &check) const {\n        assert(0 <= l && l <= n);\n        assert(check(M::e()));\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/misc/merge_and_unique.hpp\"\n\ntemplate<typename T, typename...\
+    \ Ts>\nvector<T> merge_and_unique(const vector<T> &a, const Ts &...z) {\n    vector<T>\
+    \ res = a;\n    (res.insert(res.end(), z.begin(), z.end()), ...);\n    sort(res.begin(),\
+    \ res.end());\n    res.erase(unique(res.begin(), res.end()), res.end());\n   \
+    \ return res;\n}\n#line 3 \"src/data_structure/range_query/segtree.hpp\"\n\ntemplate\
+    \ <typename Monoid>\nstruct segtree {\n    using M = Monoid;\n    using S = typename\
+    \ M::S;\n    segtree() : segtree(0) {}\n    segtree(int _n) : segtree(vector<S>(_n,\
+    \ M::e())) {}\n    segtree(const vector<S> &v) : n(v.size()) {\n        log =\
+    \ 1;\n        while ((1 << log) < n) log++;\n        sz = 1 << log;\n        d\
+    \ = vector<S>(2 * sz, M::e());\n        for (int i = 0; i < n; i++) d[i + sz]\
+    \ = v[i];\n        for (int i = sz - 1; i >= 1; i--) update(i);\n    }\n    void\
+    \ set(int p, const S &x) {\n        assert(0 <= p && p < n);\n        p += sz;\n\
+    \        d[p] = x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n \
+    \   }\n    void apply(int p, const S &x) {\n        assert(0 <= p && p < n);\n\
+    \        set(p, M::op(x, d[p + sz]));\n    }\n    S get(int p) const {\n     \
+    \   assert(0 <= p && p < n);\n        return d[p + sz];\n    }\n    S prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        l +=\
+    \ sz;\n        r += sz;\n        S pl = M::e(), pr = M::e();\n        while (l\
+    \ < r) {\n            if (l & 1) pl = M::op(pl, d[l++]);\n            if (r &\
+    \ 1) pr = M::op(d[--r], pr);\n            l >>= 1;\n            r >>= 1;\n   \
+    \     }\n        return M::op(pl, pr);\n    }\n    S all_prod() const { return\
+    \ d[1]; }\n    template<typename C>\n    int max_right(int l, const C &check)\
+    \ const {\n        assert(0 <= l && l <= n);\n        assert(check(M::e()));\n\
     \        if (l == n) return l;\n        l += sz;\n        S p = M::e();\n    \
     \    do {\n            while (!(l & 1)) l >>= 1;\n            S np = M::op(p,\
     \ d[l]);\n            if (!check(np)) {\n                while (l < sz) {\n  \
@@ -69,21 +75,21 @@ data:
     \ while ((r & -r) != r);\n        return 0;\n    }\n    template<typename C>\n\
     \    int min_left(const C &check) const {\n        return min_left(n, check);\n\
     \    }\nprivate:\n    int n, log, sz;\n    vector<S> d;\n    void update(int p)\
-    \ {\n        d[p] = M::op(d[2 * p], d[2 * p + 1]);\n    }\n};\n#line 7 \"src/data_structure/rectangle_query/rectangle_sum.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename Abelian_Group, typename T = int>\n\
-    struct rectangle_sum {\n    using M = Abelian_Group;\n    using S = typename M::S;\n\
-    \    rectangle_sum(int n = 0, int q = 0) {\n        xs.reserve(n);\n        ys.reserve(n);\n\
-    \        ws.reserve(n);\n        xls.reserve(q);\n        yls.reserve(q);\n  \
-    \      xrs.reserve(q);\n        yrs.reserve(q);\n    }\n    void add_point(T x,\
-    \ T y, S w) {\n        xs.emplace_back(x);\n        ys.emplace_back(y);\n    \
-    \    ws.emplace_back(w);\n    }\n    void add_query(T xl, T yl, T xr, T yr) {\n\
-    \        xls.emplace_back(xl);\n        yls.emplace_back(yl);\n        xrs.emplace_back(xr);\n\
-    \        yrs.emplace_back(yr);\n    }\n    vector<S> solve() {\n        int n\
-    \ = xs.size(), q = xls.size();\n        if (n == 0 || q == 0) return vector<S>(q,\
-    \ M::e());\n        auto yb = merge_and_unique(ys);\n        vector<int> yi(n);\n\
-    \        for (int i = 0; i < n; i++) {\n            yi[i] = lower_bound(yb.begin(),\
-    \ yb.end(), ys[i]) - yb.begin();\n        }\n        vector<int> ord_pts(n), ord_query(2\
-    \ * q);\n        iota(ord_pts.begin(), ord_pts.end(), 0);\n        iota(ord_query.begin(),\
+    \ {\n        d[p] = M::op(d[2 * p], d[2 * p + 1]);\n    }\n};\n#line 5 \"src/data_structure/rectangle_query/rectangle_sum.hpp\"\
+    \n\ntemplate<typename Abelian_Group, typename T = int>\nstruct rectangle_sum {\n\
+    \    using M = Abelian_Group;\n    using S = typename M::S;\n    rectangle_sum(int\
+    \ n = 0, int q = 0) {\n        xs.reserve(n);\n        ys.reserve(n);\n      \
+    \  ws.reserve(n);\n        xls.reserve(q);\n        yls.reserve(q);\n        xrs.reserve(q);\n\
+    \        yrs.reserve(q);\n    }\n    void add_point(T x, T y, S w) {\n       \
+    \ xs.emplace_back(x);\n        ys.emplace_back(y);\n        ws.emplace_back(w);\n\
+    \    }\n    void add_query(T xl, T yl, T xr, T yr) {\n        xls.emplace_back(xl);\n\
+    \        yls.emplace_back(yl);\n        xrs.emplace_back(xr);\n        yrs.emplace_back(yr);\n\
+    \    }\n    vector<S> solve() {\n        int n = xs.size(), q = xls.size();\n\
+    \        if (n == 0 || q == 0) return vector<S>(q, M::e());\n        auto yb =\
+    \ merge_and_unique(ys);\n        vector<int> yi(n);\n        for (int i = 0; i\
+    \ < n; i++) {\n            yi[i] = lower_bound(yb.begin(), yb.end(), ys[i]) -\
+    \ yb.begin();\n        }\n        vector<int> ord_pts(n), ord_query(2 * q);\n\
+    \        iota(ord_pts.begin(), ord_pts.end(), 0);\n        iota(ord_query.begin(),\
     \ ord_query.end(), 0);\n        sort(ord_pts.begin(), ord_pts.end(), [&] (int\
     \ i, int j) { return xs[i] < xs[j]; });\n        sort(ord_query.begin(), ord_query.end(),\
     \ [&] (int i, int j) {\n            T xi = i < q ? xls[i] : xrs[i - q];\n    \
@@ -101,31 +107,31 @@ data:
     \   res[i] = M::op(res[i], seg.prod(yl, yr));\n            }\n        }\n    \
     \    return res;\n    }\nprivate:\n    vector<T> xs, ys, xls, yls, xrs, yrs;\n\
     \    vector<S> ws;\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <numeric>\n#include <vector>\n\
-    #include \"../../misc/merge_and_unique.hpp\"\n#include \"../range_query/segtree.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename Abelian_Group, typename T = int>\n\
-    struct rectangle_sum {\n    using M = Abelian_Group;\n    using S = typename M::S;\n\
-    \    rectangle_sum(int n = 0, int q = 0) {\n        xs.reserve(n);\n        ys.reserve(n);\n\
-    \        ws.reserve(n);\n        xls.reserve(q);\n        yls.reserve(q);\n  \
-    \      xrs.reserve(q);\n        yrs.reserve(q);\n    }\n    void add_point(T x,\
-    \ T y, S w) {\n        xs.emplace_back(x);\n        ys.emplace_back(y);\n    \
-    \    ws.emplace_back(w);\n    }\n    void add_query(T xl, T yl, T xr, T yr) {\n\
-    \        xls.emplace_back(xl);\n        yls.emplace_back(yl);\n        xrs.emplace_back(xr);\n\
-    \        yrs.emplace_back(yr);\n    }\n    vector<S> solve() {\n        int n\
-    \ = xs.size(), q = xls.size();\n        if (n == 0 || q == 0) return vector<S>(q,\
-    \ M::e());\n        auto yb = merge_and_unique(ys);\n        vector<int> yi(n);\n\
-    \        for (int i = 0; i < n; i++) {\n            yi[i] = lower_bound(yb.begin(),\
-    \ yb.end(), ys[i]) - yb.begin();\n        }\n        vector<int> ord_pts(n), ord_query(2\
-    \ * q);\n        iota(ord_pts.begin(), ord_pts.end(), 0);\n        iota(ord_query.begin(),\
-    \ ord_query.end(), 0);\n        sort(ord_pts.begin(), ord_pts.end(), [&] (int\
-    \ i, int j) { return xs[i] < xs[j]; });\n        sort(ord_query.begin(), ord_query.end(),\
-    \ [&] (int i, int j) {\n            T xi = i < q ? xls[i] : xrs[i - q];\n    \
-    \        T xj = j < q ? xls[j] : xrs[j - q];\n            return xi < xj;\n  \
-    \      });\n        segtree<M> seg(yb.size());\n        vector<S> res(q, M::e());\n\
-    \        int j = 0;\n        for (int i : ord_query) {\n            T x = (i <\
-    \ q ? xls[i] : xrs[i - q]);\n            while (j < n && xs[ord_pts[j]] < x) {\n\
-    \                seg.apply(yi[ord_pts[j]], ws[ord_pts[j]]);\n                j++;\n\
-    \            }\n            if (i < q) {\n                int yl = lower_bound(yb.begin(),\
+  code: "#pragma once\n#include \"../../template.hpp\"\n#include \"../../misc/merge_and_unique.hpp\"\
+    \n#include \"../range_query/segtree.hpp\"\n\ntemplate<typename Abelian_Group,\
+    \ typename T = int>\nstruct rectangle_sum {\n    using M = Abelian_Group;\n  \
+    \  using S = typename M::S;\n    rectangle_sum(int n = 0, int q = 0) {\n     \
+    \   xs.reserve(n);\n        ys.reserve(n);\n        ws.reserve(n);\n        xls.reserve(q);\n\
+    \        yls.reserve(q);\n        xrs.reserve(q);\n        yrs.reserve(q);\n \
+    \   }\n    void add_point(T x, T y, S w) {\n        xs.emplace_back(x);\n    \
+    \    ys.emplace_back(y);\n        ws.emplace_back(w);\n    }\n    void add_query(T\
+    \ xl, T yl, T xr, T yr) {\n        xls.emplace_back(xl);\n        yls.emplace_back(yl);\n\
+    \        xrs.emplace_back(xr);\n        yrs.emplace_back(yr);\n    }\n    vector<S>\
+    \ solve() {\n        int n = xs.size(), q = xls.size();\n        if (n == 0 ||\
+    \ q == 0) return vector<S>(q, M::e());\n        auto yb = merge_and_unique(ys);\n\
+    \        vector<int> yi(n);\n        for (int i = 0; i < n; i++) {\n         \
+    \   yi[i] = lower_bound(yb.begin(), yb.end(), ys[i]) - yb.begin();\n        }\n\
+    \        vector<int> ord_pts(n), ord_query(2 * q);\n        iota(ord_pts.begin(),\
+    \ ord_pts.end(), 0);\n        iota(ord_query.begin(), ord_query.end(), 0);\n \
+    \       sort(ord_pts.begin(), ord_pts.end(), [&] (int i, int j) { return xs[i]\
+    \ < xs[j]; });\n        sort(ord_query.begin(), ord_query.end(), [&] (int i, int\
+    \ j) {\n            T xi = i < q ? xls[i] : xrs[i - q];\n            T xj = j\
+    \ < q ? xls[j] : xrs[j - q];\n            return xi < xj;\n        });\n     \
+    \   segtree<M> seg(yb.size());\n        vector<S> res(q, M::e());\n        int\
+    \ j = 0;\n        for (int i : ord_query) {\n            T x = (i < q ? xls[i]\
+    \ : xrs[i - q]);\n            while (j < n && xs[ord_pts[j]] < x) {\n        \
+    \        seg.apply(yi[ord_pts[j]], ws[ord_pts[j]]);\n                j++;\n  \
+    \          }\n            if (i < q) {\n                int yl = lower_bound(yb.begin(),\
     \ yb.end(), yls[i]) - yb.begin();\n                int yr = lower_bound(yb.begin(),\
     \ yb.end(), yrs[i]) - yb.begin();\n                res[i] = M::op(res[i], M::inv(seg.prod(yl,\
     \ yr)));\n            } else {\n                i -= q;\n                int yl\
@@ -135,13 +141,14 @@ data:
     \    return res;\n    }\nprivate:\n    vector<T> xs, ys, xls, yls, xrs, yrs;\n\
     \    vector<S> ws;\n};"
   dependsOn:
+  - src/template.hpp
   - src/misc/merge_and_unique.hpp
   - src/data_structure/range_query/segtree.hpp
   isVerificationFile: false
   path: src/data_structure/rectangle_query/rectangle_sum.hpp
   requiredBy:
   - src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp

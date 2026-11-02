@@ -4,9 +4,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/geometry/arg_sort.hpp
     title: Arg Sort
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,41 +21,43 @@ data:
     links:
     - https://judge.yosupo.jp/problem/sort_points_by_argument
   bundledCode: "#line 1 \"test/geometry/arg_sort.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
-    \n\n#line 2 \"src/geometry/arg_sort.hpp\"\n#include <algorithm>\n#include <numeric>\n\
-    #include <vector>\n#line 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#line\
-    \ 4 \"src/geometry/common.hpp\"\n#include <type_traits>\n#include <utility>\n\
-    using namespace std;\n\nnamespace geometry {\n\ntemplate<typename T>\nusing W\
-    \ = conditional_t<is_integral_v<T>, conditional_t<sizeof(T) <= 4, long long, __int128_t>,\
-    \ T>;\n\ntemplate<typename T>\nconstexpr T eps() { return is_integral_v<T> ? T(0)\
-    \ : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max();\
-    \ }\n\ntemplate<typename T>\nconstexpr T PI() {\n    static_assert(is_floating_point_v<T>);\n\
-    \    return (T)acosl(-1);\n}\n\ntemplate<typename T>\ninline bool eq(T a, T b)\
-    \ {\n    if constexpr (is_integral_v<T>) {\n        return a == b;\n    } else\
-    \ {\n        return abs(a - b) < eps<T>();\n    }\n}\n\ntemplate<typename T>\n\
-    inline int sgn(T a) { return eq<T>(a, 0) ? 0 : a > 0 ? 1 : -1; }\n\ntemplate<typename\
-    \ T>\nstruct Point {\n    T x, y;\n    constexpr Point(T _x = 0, T _y = 0) : x(_x),\
-    \ y(_y) {}\n    constexpr Point(const pair<T, T> &pt) : x(pt.first), y(pt.second)\
-    \ {}\n    static constexpr Point inf_point() { return Point(inf<T>(), inf<T>());\
-    \ }\n    Point &operator+=(const Point &p) {\n        x += p.x;\n        y +=\
-    \ p.y;\n        return *this;\n    }\n    Point &operator-=(const Point &p) {\n\
-    \        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point\
-    \ &operator*=(const T &r) {\n        x *= r;\n        y *= r;\n        return\
-    \ *this;\n    }\n    Point &operator/=(const T &r) {\n        x /= r;\n      \
-    \  y /= r;\n        return *this;\n    }\n    Point operator+(const Point &p)\
-    \ const { return Point(*this) += p; }\n    Point operator-(const Point &p) const\
-    \ { return Point(*this) -= p; }\n    Point operator*(const T &r) const { return\
-    \ Point(*this) *= r; }\n    Point operator/(const T &r) const { return Point(*this)\
-    \ /= r; }\n    Point operator+() const { return *this; }\n    Point operator-()\
-    \ const { return Point() - *this; }\n    bool operator==(const Point &p) const\
-    \ { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const Point &p) const\
-    \ { return !this->operator==(p); }\n    bool operator<(const Point &p) const {\
-    \ return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const Point &p) const\
-    \ { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const Point &p)\
-    \ const { return this->operator==(p) || this->operator<(p); }\n    bool operator>=(const\
-    \ Point &p) const { return this->operator==(p) || this->operator>(p); }\n    friend\
-    \ Point operator*(T r, const Point &p) { return p * r; }\n    W<T> norm() const\
-    \ { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n        static_assert(is_floating_point_v<T>);\n\
-    \        return sqrtl(norm());\n    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
+    \n\n#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/geometry/common.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
+    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
+    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
+    \ T>\nconstexpr T inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr\
+    \ T PI() {\n    static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n\
+    }\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>)\
+    \ {\n        return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n\
+    \    }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ?\
+    \ 0 : a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n\
+    \    constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
+    \ pair<T, T> &pt) : x(pt.first), y(pt.second) {}\n    static constexpr Point inf_point()\
+    \ { return Point(inf<T>(), inf<T>()); }\n    Point &operator+=(const Point &p)\
+    \ {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point\
+    \ &operator-=(const Point &p) {\n        x -= p.x;\n        y -= p.y;\n      \
+    \  return *this;\n    }\n    Point &operator*=(const T &r) {\n        x *= r;\n\
+    \        y *= r;\n        return *this;\n    }\n    Point &operator/=(const T\
+    \ &r) {\n        x /= r;\n        y /= r;\n        return *this;\n    }\n    Point\
+    \ operator+(const Point &p) const { return Point(*this) += p; }\n    Point operator-(const\
+    \ Point &p) const { return Point(*this) -= p; }\n    Point operator*(const T &r)\
+    \ const { return Point(*this) *= r; }\n    Point operator/(const T &r) const {\
+    \ return Point(*this) /= r; }\n    Point operator+() const { return *this; }\n\
+    \    Point operator-() const { return Point() - *this; }\n    bool operator==(const\
+    \ Point &p) const { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const\
+    \ Point &p) const { return !this->operator==(p); }\n    bool operator<(const Point\
+    \ &p) const { return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const\
+    \ Point &p) const { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const\
+    \ Point &p) const { return this->operator==(p) || this->operator<(p); }\n    bool\
+    \ operator>=(const Point &p) const { return this->operator==(p) || this->operator>(p);\
+    \ }\n    friend Point operator*(T r, const Point &p) { return p * r; }\n    W<T>\
+    \ norm() const { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n \
+    \       static_assert(is_floating_point_v<T>);\n        return sqrtl(norm());\n\
+    \    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
     \        return atan2l(y, x);\n    }\n    Point unit() const {\n        return\
     \ (*this) / dist();\n    }\n    Point rotate(T rad) const {\n        static_assert(is_floating_point_v<T>);\n\
     \        T c = cosl(rad), s = sinl(rad);\n        T tx = x * c - y * s;\n    \
@@ -73,40 +78,40 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 6 \"src/geometry/arg_sort.hpp\"\
-    \nusing namespace std;\n\nnamespace geometry {\n\ntemplate<typename T>\nvector<int>\
-    \ arg_sort(const vector<Point<T>> &ps) {\n    vector<int> ord(ps.size());\n  \
-    \  iota(ord.begin(), ord.end(), 0);\n    auto half = [&] (const Point<T> &p) {\n\
-    \        return p.y > 0 || (p.y == 0 && p.x >= 0) ? 0 : 1;\n    };\n    sort(ord.begin(),\
-    \ ord.end(), [&](int i, int j) {\n        int a = half(ps[i]), b = half(ps[j]);\n\
-    \        if (a != b) return a < b;\n        W<T> cr = cross(ps[i], ps[j]);\n \
-    \       if (cr != 0) return cr > 0;\n        W<T> ni = norm(ps[i]), nj = norm(ps[j]);\n\
-    \        if (ni != nj) return ni < nj;\n        return i < j;\n    });\n    return\
-    \ ord;\n}\n\n}  // namespace geometry\n#line 4 \"test/geometry/arg_sort.test.cpp\"\
-    \n\n#line 6 \"test/geometry/arg_sort.test.cpp\"\n#include <iostream>\n\nint main()\
-    \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N;\n   \
-    \ cin >> N;\n    vector<geometry::Point<int>> Ps(N);\n    for (int i = 0; i <\
-    \ N; i++) cin >> Ps[i].x >> Ps[i].y;\n    auto ord = geometry::arg_sort<int>(Ps);\n\
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"src/geometry/arg_sort.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nvector<int> arg_sort(const vector<Point<T>>\
+    \ &ps) {\n    vector<int> ord(ps.size());\n    iota(ord.begin(), ord.end(), 0);\n\
+    \    auto half = [&] (const Point<T> &p) {\n        return p.y > 0 || (p.y ==\
+    \ 0 && p.x >= 0) ? 0 : 1;\n    };\n    sort(ord.begin(), ord.end(), [&](int i,\
+    \ int j) {\n        int a = half(ps[i]), b = half(ps[j]);\n        if (a != b)\
+    \ return a < b;\n        W<T> cr = cross(ps[i], ps[j]);\n        if (cr != 0)\
+    \ return cr > 0;\n        W<T> ni = norm(ps[i]), nj = norm(ps[j]);\n        if\
+    \ (ni != nj) return ni < nj;\n        return i < j;\n    });\n    return ord;\n\
+    }\n\n}  // namespace geometry\n#line 5 \"test/geometry/arg_sort.test.cpp\"\n\n\
+    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N;\n    cin >> N;\n    vector<geometry::Point<int>> Ps(N);\n    for (int i =\
+    \ 0; i < N; i++) cin >> Ps[i].x >> Ps[i].y;\n    auto ord = geometry::arg_sort<int>(Ps);\n\
     \    auto it = find_if(ord.begin(), ord.end(), [&] (int i) { return Ps[i].y <\
     \ 0; });\n    rotate(ord.begin(), it, ord.end());\n    for (int i = 0; i < N;\
     \ i++) {\n        cout << Ps[ord[i]].x << ' ' << Ps[ord[i]].y << '\\n';\n    }\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
-    \n\n#include \"../../src/geometry/arg_sort.hpp\"\n\n#include <algorithm>\n#include\
-    \ <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    int N;\n    cin >> N;\n    vector<geometry::Point<int>> Ps(N);\n    for (int\
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/geometry/arg_sort.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N;\n    cin >> N;\n    vector<geometry::Point<int>> Ps(N);\n    for (int\
     \ i = 0; i < N; i++) cin >> Ps[i].x >> Ps[i].y;\n    auto ord = geometry::arg_sort<int>(Ps);\n\
     \    auto it = find_if(ord.begin(), ord.end(), [&] (int i) { return Ps[i].y <\
     \ 0; });\n    rotate(ord.begin(), it, ord.end());\n    for (int i = 0; i < N;\
     \ i++) {\n        cout << Ps[ord[i]].x << ' ' << Ps[ord[i]].y << '\\n';\n    }\n\
     }\n"
   dependsOn:
+  - src/template.hpp
   - src/geometry/arg_sort.hpp
   - src/geometry/common.hpp
   isVerificationFile: true
   path: test/geometry/arg_sort.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/geometry/arg_sort.test.cpp

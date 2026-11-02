@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -11,8 +14,36 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/data_structure/range_query/dualsegtree.hpp\"\n#include\
-    \ <cassert>\n#include <vector>\nusing namespace std;\n\ntemplate<typename ActSet>\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/data_structure/range_query/dualsegtree.hpp\"\n\ntemplate<typename\
+    \ ActSet>\nstruct dualsegtree {\n    using M = ActSet;\n    using S = typename\
+    \ M::S;\n    using F = typename M::F;\n    dualsegtree() : dualsegtree(0) {}\n\
+    \    dualsegtree(int _n) : dualsegtree(vector<S>(_n, M::e())) {}\n    dualsegtree(const\
+    \ vector<S> &v) { init(v); }\n    void init(const vector<S> &v) {\n        n =\
+    \ v.size();\n        log = 0;\n        while ((1 << log) < n) log++;\n       \
+    \ sz = 1 << log;\n        d = vector<S>(sz, M::e());\n        for (int i = 0;\
+    \ i < n; i++) d[i] = v[i];\n        lz = vector<F>(sz, M::id());\n    }\n    void\
+    \ set(int p, const S &x) {\n        assert(0 <= p && p < n);\n        inner_push(p\
+    \ + sz);\n        d[p] = x;\n    }\n    void apply(int p, const F &f) {\n    \
+    \    assert(0 <= p && p < n);\n        p += sz;\n        inner_push(p);\n    \
+    \    all_apply(p, f);\n    }\n    void apply(int l, int r, const F &f) {\n   \
+    \     assert(0 <= l && l <= r && r <= n);\n        if (l == r) return;\n     \
+    \   l += sz, r += sz;\n        inner_push(l);\n        inner_push(r - 1);\n  \
+    \      while (l < r) {\n            if (l & 1) all_apply(l++, f);\n          \
+    \  if (r & 1) all_apply(--r, f);\n            l >>= 1;\n            r >>= 1;\n\
+    \        }\n    }\n    S get(int p) {\n        assert(0 <= p && p < n);\n    \
+    \    inner_push(p + sz);\n        return d[p];\n    }\nprivate:\n    int n, log,\
+    \ sz;\n    vector<S> d;\n    vector<F> lz;\n    void all_apply(int p, const F\
+    \ &f) {\n        if (p < sz) {\n            lz[p] = M::comp(f, lz[p]);\n     \
+    \   } else {\n            d[p - sz] = M::map(f, d[p - sz]);\n        }\n    }\n\
+    \    void push(int p) {\n        all_apply(2 * p, lz[p]);\n        all_apply(2\
+    \ * p + 1, lz[p]);\n        lz[p] = M::id();\n    }\n    void inner_push(int p)\
+    \ {\n        for (int i = log; i >= 1; i--) push(p >> i);\n    }\n};\n"
+  code: "#pragma once\n#include \"../../template.hpp\"\n\ntemplate<typename ActSet>\n\
     struct dualsegtree {\n    using M = ActSet;\n    using S = typename M::S;\n  \
     \  using F = typename M::F;\n    dualsegtree() : dualsegtree(0) {}\n    dualsegtree(int\
     \ _n) : dualsegtree(vector<S>(_n, M::e())) {}\n    dualsegtree(const vector<S>\
@@ -35,36 +66,13 @@ data:
     \ d[p - sz]);\n        }\n    }\n    void push(int p) {\n        all_apply(2 *\
     \ p, lz[p]);\n        all_apply(2 * p + 1, lz[p]);\n        lz[p] = M::id();\n\
     \    }\n    void inner_push(int p) {\n        for (int i = log; i >= 1; i--) push(p\
-    \ >> i);\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <vector>\nusing namespace std;\n\
-    \ntemplate<typename ActSet>\nstruct dualsegtree {\n    using M = ActSet;\n   \
-    \ using S = typename M::S;\n    using F = typename M::F;\n    dualsegtree() :\
-    \ dualsegtree(0) {}\n    dualsegtree(int _n) : dualsegtree(vector<S>(_n, M::e()))\
-    \ {}\n    dualsegtree(const vector<S> &v) { init(v); }\n    void init(const vector<S>\
-    \ &v) {\n        n = v.size();\n        log = 0;\n        while ((1 << log) <\
-    \ n) log++;\n        sz = 1 << log;\n        d = vector<S>(sz, M::e());\n    \
-    \    for (int i = 0; i < n; i++) d[i] = v[i];\n        lz = vector<F>(sz, M::id());\n\
-    \    }\n    void set(int p, const S &x) {\n        assert(0 <= p && p < n);\n\
-    \        inner_push(p + sz);\n        d[p] = x;\n    }\n    void apply(int p,\
-    \ const F &f) {\n        assert(0 <= p && p < n);\n        p += sz;\n        inner_push(p);\n\
-    \        all_apply(p, f);\n    }\n    void apply(int l, int r, const F &f) {\n\
-    \        assert(0 <= l && l <= r && r <= n);\n        if (l == r) return;\n  \
-    \      l += sz, r += sz;\n        inner_push(l);\n        inner_push(r - 1);\n\
-    \        while (l < r) {\n            if (l & 1) all_apply(l++, f);\n        \
-    \    if (r & 1) all_apply(--r, f);\n            l >>= 1;\n            r >>= 1;\n\
-    \        }\n    }\n    S get(int p) {\n        assert(0 <= p && p < n);\n    \
-    \    inner_push(p + sz);\n        return d[p];\n    }\nprivate:\n    int n, log,\
-    \ sz;\n    vector<S> d;\n    vector<F> lz;\n    void all_apply(int p, const F\
-    \ &f) {\n        if (p < sz) {\n            lz[p] = M::comp(f, lz[p]);\n     \
-    \   } else {\n            d[p - sz] = M::map(f, d[p - sz]);\n        }\n    }\n\
-    \    void push(int p) {\n        all_apply(2 * p, lz[p]);\n        all_apply(2\
-    \ * p + 1, lz[p]);\n        lz[p] = M::id();\n    }\n    void inner_push(int p)\
-    \ {\n        for (int i = log; i >= 1; i--) push(p >> i);\n    }\n};"
-  dependsOn: []
+    \ >> i);\n    }\n};"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/data_structure/range_query/dualsegtree.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/range_query/dualsegtree.test.cpp

@@ -7,9 +7,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/superset_zmt.hpp
     title: src/convolution/superset_zmt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,20 +25,22 @@ data:
     - https://judge.yosupo.jp/problem/bitwise_and_convolution
   bundledCode: "#line 1 \"test/convolution/bitwise_and_convolution.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n\n#line\
-    \ 2 \"src/convolution/bitwise_and_convolution.hpp\"\n#include <cassert>\n#include\
-    \ <vector>\nusing namespace std;\n#line 4 \"src/convolution/superset_zmt.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename mint>\nvoid superset_zmt(vector<mint>\
-    \ &f, bool moebius = false) {\n    int n = f.size();\n    assert((n & (n - 1))\
-    \ == 0);\n    for (int i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n;\
-    \ j++) {\n            if (i & j) continue;\n            f[j] += moebius ? -f[i\
-    \ | j] : f[i | j];\n        }\n    }\n}\n#line 6 \"src/convolution/bitwise_and_convolution.hpp\"\
-    \n\ntemplate<typename mint>\nvector<mint> bitwise_and_convolution(vector<mint>\
-    \ f, vector<mint> g) {\n    assert(f.size() == g.size());\n    int n = f.size();\n\
+    \ 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing\
+    \ ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/convolution/superset_zmt.hpp\"\
+    \n\ntemplate<typename mint>\nvoid superset_zmt(vector<mint> &f, bool moebius =\
+    \ false) {\n    int n = f.size();\n    assert((n & (n - 1)) == 0);\n    for (int\
+    \ i = 1; i < n; i <<= 1) {\n        for (int j = 0; j < n; j++) {\n          \
+    \  if (i & j) continue;\n            f[j] += moebius ? -f[i | j] : f[i | j];\n\
+    \        }\n    }\n}\n#line 4 \"src/convolution/bitwise_and_convolution.hpp\"\n\
+    \ntemplate<typename mint>\nvector<mint> bitwise_and_convolution(vector<mint> f,\
+    \ vector<mint> g) {\n    assert(f.size() == g.size());\n    int n = f.size();\n\
     \    assert((n & (n - 1)) == 0);\n    if (n == 0) return {};\n    superset_zmt(f);\n\
     \    superset_zmt(g);\n    for (int i = 0; i < n; i++) f[i] *= g[i];\n    superset_zmt(f,\
-    \ true);\n    return f;\n}\n#line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n\
-    #line 4 \"src/modint/modint.hpp\"\nusing namespace std;\n\ntemplate<unsigned int\
-    \ MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n    template<typename\
+    \ true);\n    return f;\n}\n#line 3 \"src/modint/modint.hpp\"\n\ntemplate<unsigned\
+    \ int MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n    template<typename\
     \ T>\n    constexpr modint(T v) {\n        int y = v % (int)mod();\n        if\
     \ (y < 0) y += mod();\n        x = (unsigned int)y;\n    }\n    static constexpr\
     \ modint raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n\
@@ -70,29 +75,30 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 5 \"test/convolution/bitwise_and_convolution.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
-    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N;\n    cin >>\
-    \ N;\n    vector<mint> A(1 << N), B(1 << N);\n    for (auto &e : A) { int x; cin\
-    \ >> x; e = x; }\n    for (auto &e : B) { int x; cin >> x; e = x; }\n    auto\
-    \ C = bitwise_and_convolution(A, B);\n    for (int i = 0; i < ssize(C); i++) cout\
-    \ << C[i].val() << \" \\n\"[i + 1 == ssize(C)];\n}\n"
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 6 \"test/convolution/bitwise_and_convolution.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    int N;\n    cin >> N;\n    vector<mint> A(1 << N),\
+    \ B(1 << N);\n    for (auto &e : A) { int x; cin >> x; e = x; }\n    for (auto\
+    \ &e : B) { int x; cin >> x; e = x; }\n    auto C = bitwise_and_convolution(A,\
+    \ B);\n    for (int i = 0; i < ssize(C); i++) cout << C[i].val() << \" \\n\"[i\
+    \ + 1 == ssize(C)];\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
-    \n\n#include \"../../src/convolution/bitwise_and_convolution.hpp\"\n#include \"\
-    ../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/convolution/bitwise_and_convolution.hpp\"\
+    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\
     \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N;\n    cin >> N;\n    vector<mint> A(1 << N), B(1 << N);\n    for (auto &e\
     \ : A) { int x; cin >> x; e = x; }\n    for (auto &e : B) { int x; cin >> x; e\
     \ = x; }\n    auto C = bitwise_and_convolution(A, B);\n    for (int i = 0; i <\
     \ ssize(C); i++) cout << C[i].val() << \" \\n\"[i + 1 == ssize(C)];\n}"
   dependsOn:
+  - src/template.hpp
   - src/convolution/bitwise_and_convolution.hpp
   - src/convolution/superset_zmt.hpp
   - src/modint/modint.hpp
   isVerificationFile: true
   path: test/convolution/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution/bitwise_and_convolution.test.cpp

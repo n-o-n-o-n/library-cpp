@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,12 +19,15 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_C
   bundledCode: "#line 1 \"test/geometry/common_ccw.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_C\"\n\n#line 2\
-    \ \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n#include\
-    \ <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace geometry\
-    \ {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T)\
-    \ <= 4, long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps()\
-    \ { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr\
-    \ T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename T>\nconstexpr\
+    \ \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing\
+    \ ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/geometry/common.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
+    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
+    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
+    \ T>\nconstexpr T inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr\
     \ T PI() {\n    static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n\
     }\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>)\
     \ {\n        return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n\
@@ -70,30 +76,32 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"test/geometry/common_ccw.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    geometry::Point<int> P0, P1;\n    cin >> P0.x >> P0.y\
-    \ >> P1.x >> P1.y;\n    int Q;\n    cin >> Q;\n    for (geometry::Point<int> P2;\
-    \ Q--; ) {\n        cin >> P2.x >> P2.y;\n        int t = geometry::ccw(P0, P1,\
-    \ P2);\n        if (t == 1) cout << \"COUNTER_CLOCKWISE\\n\";\n        else if\
-    \ (t == -1) cout << \"CLOCKWISE\\n\";\n        else if (t == 2) cout << \"ONLINE_BACK\\\
-    n\";\n        else if (t == -2) cout << \"ONLINE_FRONT\\n\";\n        else cout\
-    \ << \"ON_SEGMENT\\n\";\n    }\n}\n"
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 5 \"test/geometry/common_ccw.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  geometry::Point<int> P0, P1;\n    cin >> P0.x >> P0.y >> P1.x >> P1.y;\n  \
+    \  int Q;\n    cin >> Q;\n    for (geometry::Point<int> P2; Q--; ) {\n       \
+    \ cin >> P2.x >> P2.y;\n        int t = geometry::ccw(P0, P1, P2);\n        if\
+    \ (t == 1) cout << \"COUNTER_CLOCKWISE\\n\";\n        else if (t == -1) cout <<\
+    \ \"CLOCKWISE\\n\";\n        else if (t == 2) cout << \"ONLINE_BACK\\n\";\n  \
+    \      else if (t == -2) cout << \"ONLINE_FRONT\\n\";\n        else cout << \"\
+    ON_SEGMENT\\n\";\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_C\"\
-    \n\n#include \"../../src/geometry/common.hpp\"\n\n#include <iostream>\n\nint main()\
-    \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    geometry::Point<int>\
-    \ P0, P1;\n    cin >> P0.x >> P0.y >> P1.x >> P1.y;\n    int Q;\n    cin >> Q;\n\
-    \    for (geometry::Point<int> P2; Q--; ) {\n        cin >> P2.x >> P2.y;\n  \
-    \      int t = geometry::ccw(P0, P1, P2);\n        if (t == 1) cout << \"COUNTER_CLOCKWISE\\\
-    n\";\n        else if (t == -1) cout << \"CLOCKWISE\\n\";\n        else if (t\
-    \ == 2) cout << \"ONLINE_BACK\\n\";\n        else if (t == -2) cout << \"ONLINE_FRONT\\\
-    n\";\n        else cout << \"ON_SEGMENT\\n\";\n    }\n}"
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/geometry/common.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  geometry::Point<int> P0, P1;\n    cin >> P0.x >> P0.y >> P1.x >> P1.y;\n  \
+    \  int Q;\n    cin >> Q;\n    for (geometry::Point<int> P2; Q--; ) {\n       \
+    \ cin >> P2.x >> P2.y;\n        int t = geometry::ccw(P0, P1, P2);\n        if\
+    \ (t == 1) cout << \"COUNTER_CLOCKWISE\\n\";\n        else if (t == -1) cout <<\
+    \ \"CLOCKWISE\\n\";\n        else if (t == 2) cout << \"ONLINE_BACK\\n\";\n  \
+    \      else if (t == -2) cout << \"ONLINE_FRONT\\n\";\n        else cout << \"\
+    ON_SEGMENT\\n\";\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/geometry/common.hpp
   isVerificationFile: true
   path: test/geometry/common_ccw.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/geometry/common_ccw.test.cpp

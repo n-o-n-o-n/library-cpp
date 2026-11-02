@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -11,29 +14,15 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/data_structure/set/top_k_set.hpp\"\n#include <cassert>\n\
-    #include <set>\nusing namespace std;\n\ntemplate<typename T1, typename T2 = long\
-    \ long, typename Compare = less<T1>>\nstruct top_k_set {\n    top_k_set(int _k)\
-    \ : k(_k), lower_sum(0) {}\n    void insert(T1 x) {\n        if (k > 0 && ((int)lower.size()\
-    \ < k || Compare()(x, *prev(lower.end())))) {\n            lower_sum += x;\n \
-    \           lower.insert(x);\n        } else {\n            upper.insert(x);\n\
-    \        }\n        normalize();\n    }\n    void erase(T1 x) {\n        auto\
-    \ it = lower.find(x);\n        if (it != lower.end()) {\n            lower_sum\
-    \ -= *it;\n            lower.erase(it);\n        } else {\n            it = upper.find(x);\n\
-    \            assert(it != upper.end());\n            upper.erase(it);\n      \
-    \  }\n        normalize();\n    }\n    T1 kth_val() const {\n        assert((int)lower.size()\
-    \ == k);\n        return *prev(lower.end());\n    }\n    T2 sum() const {\n  \
-    \      return lower_sum;\n    }\nprivate:\n    int k;\n    multiset<T1, Compare>\
-    \ lower, upper;\n    T2 lower_sum;\n    void normalize() {\n        while ((int)lower.size()\
-    \ > k) {\n            auto it = prev(lower.end());\n            upper.insert(*it);\n\
-    \            lower_sum -= *it;\n            lower.erase(it);\n        }\n    \
-    \    while ((int)lower.size() < k && upper.size()) {\n            auto it = upper.begin();\n\
-    \            lower_sum += *it;\n            lower.insert(*it);\n            upper.erase(it);\n\
-    \        }\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <set>\nusing namespace std;\n\n\
-    template<typename T1, typename T2 = long long, typename Compare = less<T1>>\n\
-    struct top_k_set {\n    top_k_set(int _k) : k(_k), lower_sum(0) {}\n    void insert(T1\
-    \ x) {\n        if (k > 0 && ((int)lower.size() < k || Compare()(x, *prev(lower.end()))))\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/data_structure/set/top_k_set.hpp\"\n\ntemplate<typename T1,\
+    \ typename T2 = long long, typename Compare = less<T1>>\nstruct top_k_set {\n\
+    \    top_k_set(int _k) : k(_k), lower_sum(0) {}\n    void insert(T1 x) {\n   \
+    \     if (k > 0 && ((int)lower.size() < k || Compare()(x, *prev(lower.end()))))\
     \ {\n            lower_sum += x;\n            lower.insert(x);\n        } else\
     \ {\n            upper.insert(x);\n        }\n        normalize();\n    }\n  \
     \  void erase(T1 x) {\n        auto it = lower.find(x);\n        if (it != lower.end())\
@@ -48,12 +37,32 @@ data:
     \ -= *it;\n            lower.erase(it);\n        }\n        while ((int)lower.size()\
     \ < k && upper.size()) {\n            auto it = upper.begin();\n            lower_sum\
     \ += *it;\n            lower.insert(*it);\n            upper.erase(it);\n    \
+    \    }\n    }\n};\n"
+  code: "#pragma once\n#include \"../../template.hpp\"\n\ntemplate<typename T1, typename\
+    \ T2 = long long, typename Compare = less<T1>>\nstruct top_k_set {\n    top_k_set(int\
+    \ _k) : k(_k), lower_sum(0) {}\n    void insert(T1 x) {\n        if (k > 0 &&\
+    \ ((int)lower.size() < k || Compare()(x, *prev(lower.end())))) {\n           \
+    \ lower_sum += x;\n            lower.insert(x);\n        } else {\n          \
+    \  upper.insert(x);\n        }\n        normalize();\n    }\n    void erase(T1\
+    \ x) {\n        auto it = lower.find(x);\n        if (it != lower.end()) {\n \
+    \           lower_sum -= *it;\n            lower.erase(it);\n        } else {\n\
+    \            it = upper.find(x);\n            assert(it != upper.end());\n   \
+    \         upper.erase(it);\n        }\n        normalize();\n    }\n    T1 kth_val()\
+    \ const {\n        assert((int)lower.size() == k);\n        return *prev(lower.end());\n\
+    \    }\n    T2 sum() const {\n        return lower_sum;\n    }\nprivate:\n   \
+    \ int k;\n    multiset<T1, Compare> lower, upper;\n    T2 lower_sum;\n    void\
+    \ normalize() {\n        while ((int)lower.size() > k) {\n            auto it\
+    \ = prev(lower.end());\n            upper.insert(*it);\n            lower_sum\
+    \ -= *it;\n            lower.erase(it);\n        }\n        while ((int)lower.size()\
+    \ < k && upper.size()) {\n            auto it = upper.begin();\n            lower_sum\
+    \ += *it;\n            lower.insert(*it);\n            upper.erase(it);\n    \
     \    }\n    }\n};"
-  dependsOn: []
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/data_structure/set/top_k_set.hpp
   requiredBy: []
-  timestamp: '2026-10-24 11:13:20+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/set/top_k_set.test.cpp

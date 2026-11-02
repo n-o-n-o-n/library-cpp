@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/number_theory/discrete_logarithm.hpp
     title: src/math/number_theory/discrete_logarithm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/modint/dynamic_modint.hpp
     title: src/modint/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -31,46 +34,46 @@ data:
     - https://atcoder.jp/contests/abc270/submissions/62690414
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/math/number_theory/discrete_logarithm.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 2 \"src/random/utility.hpp\"\
-    \n#include <cassert>\n#include <concepts>\n#include <random>\nusing namespace\
-    \ std;\n\nnamespace rng {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 2 \"src/template.hpp\"\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
+    template<typename T>\nconstexpr T inf() { return numeric_limits<T>::max() / 2;\
+    \ }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return a\
+    \ > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/random/utility.hpp\"\
+    \n\nnamespace rng {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\
     \ntemplate<typename T>\nvoid set_seed(const T &sd) {\n    eng.seed(sd);\n}\n\n\
     template<integral T>\ninline T randint(T lo, T hi) {\n    assert(lo <= hi);\n\
     \    uniform_int_distribution<T> dist(lo, hi);\n    return dist(eng);\n}\n\ntemplate<integral\
     \ T>\ninline pair<T, T> randpair(T lo, T hi, bool strict = false) {\n    assert(lo\
     \ + strict <= hi);\n    T l = randint(lo, hi - strict);\n    T r = randint(l +\
-    \ strict, hi);\n    return make_pair(l, r);\n}\n\n} // namespace rng\n#line 2\
-    \ \"src/math/number_theory/prime.hpp\"\n#include <algorithm>\n#include <array>\n\
-    #line 5 \"src/math/number_theory/prime.hpp\"\n#include <cstdint>\n#include <iterator>\n\
-    #include <numeric>\n#include <type_traits>\n#include <utility>\n#include <vector>\n\
-    #line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\ntemplate<typename\
-    \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
-    \ constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr\
-    \ U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n            x ^=\
-    \ x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n        } else\
-    \ {\n            x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x <<\
-    \ 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T lo, T\
-    \ hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n   \
-    \ U x;\n};\n#line 12 \"src/math/number_theory/prime.hpp\"\n\nusing namespace std;\n\
-    \nnamespace prime {\n\ntemplate<typename T>\nstruct montgomery_modint {\n    using\
-    \ U = conditional_t<(sizeof(T) <= 4), uint32_t, uint64_t>;\n    using W = conditional_t<(sizeof(T)\
-    \ <= 4), uint64_t, unsigned __int128>;\n    constexpr explicit montgomery_modint(U\
-    \ _mod, U v = 0) {\n        mod = _mod;\n        inv = get_inv_mod(mod);\n   \
-    \     r2 = get_r2(mod);\n        x = reduce(W(v % mod) * r2);\n    }\n    constexpr\
-    \ U modulus() const { return mod; }\n    constexpr U val() const { return reduce(x);\
-    \ }\n    constexpr U raw() const { return x; }\n    constexpr montgomery_modint\
-    \ make(U value) const {\n        montgomery_modint res = *this;\n        res.x\
-    \ = reduce(W(value % mod) * r2);\n        return res;\n    }\n    constexpr montgomery_modint&\
-    \ operator+=(const montgomery_modint& r) {\n        assert(mod == r.mod);\n  \
-    \      x = x >= mod - r.x ? x - (mod - r.x) : x + r.x;\n        return *this;\n\
-    \    }\n    constexpr montgomery_modint& operator-=(const montgomery_modint& r)\
-    \ {\n        assert(mod == r.mod);\n        x = x >= r.x ? x - r.x : mod - (r.x\
-    \ - x);\n        return *this;\n    }\n    constexpr montgomery_modint& operator*=(const\
-    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = reduce(W(x)\
-    \ * r.x);\n        return *this;\n    }\n    friend constexpr montgomery_modint\
-    \ operator+(montgomery_modint l, const montgomery_modint& r) { return l += r;\
-    \ }\n    friend constexpr montgomery_modint operator-(montgomery_modint l, const\
-    \ montgomery_modint& r) { return l -= r; }\n    friend constexpr montgomery_modint\
+    \ strict, hi);\n    return make_pair(l, r);\n}\n\n} // namespace rng\n#line 3\
+    \ \"src/random/xor_shift.hpp\"\n\ntemplate<typename T>\nstruct xor_shift {\n \
+    \   using U = typename make_unsigned<T>::type;\n    constexpr xor_shift(U seed\
+    \ = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr U operator()() {\n\
+    \        if constexpr (sizeof(T) <= 4) {\n            x ^= x << 13;\n        \
+    \    x ^= x >> 17;\n            x ^= x << 5;\n        } else {\n            x\
+    \ ^= x << 13;\n            x ^= x >> 7;\n            x ^= x << 17;\n        }\n\
+    \        return x;\n    }\n    constexpr T operator()(T lo, T hi) {\n        return\
+    \ lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n    U x;\n};\n#line 4 \"src/math/number_theory/prime.hpp\"\
+    \n\n\nnamespace prime {\n\ntemplate<typename T>\nstruct montgomery_modint {\n\
+    \    using U = conditional_t<(sizeof(T) <= 4), uint32_t, uint64_t>;\n    using\
+    \ W = conditional_t<(sizeof(T) <= 4), uint64_t, unsigned __int128>;\n    constexpr\
+    \ explicit montgomery_modint(U _mod, U v = 0) {\n        mod = _mod;\n       \
+    \ inv = get_inv_mod(mod);\n        r2 = get_r2(mod);\n        x = reduce(W(v %\
+    \ mod) * r2);\n    }\n    constexpr U modulus() const { return mod; }\n    constexpr\
+    \ U val() const { return reduce(x); }\n    constexpr U raw() const { return x;\
+    \ }\n    constexpr montgomery_modint make(U value) const {\n        montgomery_modint\
+    \ res = *this;\n        res.x = reduce(W(value % mod) * r2);\n        return res;\n\
+    \    }\n    constexpr montgomery_modint& operator+=(const montgomery_modint& r)\
+    \ {\n        assert(mod == r.mod);\n        x = x >= mod - r.x ? x - (mod - r.x)\
+    \ : x + r.x;\n        return *this;\n    }\n    constexpr montgomery_modint& operator-=(const\
+    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = x >= r.x\
+    \ ? x - r.x : mod - (r.x - x);\n        return *this;\n    }\n    constexpr montgomery_modint&\
+    \ operator*=(const montgomery_modint& r) {\n        assert(mod == r.mod);\n  \
+    \      x = reduce(W(x) * r.x);\n        return *this;\n    }\n    friend constexpr\
+    \ montgomery_modint operator+(montgomery_modint l, const montgomery_modint& r)\
+    \ { return l += r; }\n    friend constexpr montgomery_modint operator-(montgomery_modint\
+    \ l, const montgomery_modint& r) { return l -= r; }\n    friend constexpr montgomery_modint\
     \ operator*(montgomery_modint l, const montgomery_modint& r) { return l *= r;\
     \ }\n    friend constexpr bool operator==(const montgomery_modint& l, const montgomery_modint&\
     \ r) {\n        assert(l.mod == r.mod);\n        return l.x == r.x;\n    }\n \
@@ -138,16 +141,16 @@ data:
     \  auto [p, k] = f[i];\n        for (int j = 0; j <= k; j++) {\n            rec(rec,\
     \ i + 1, x);\n            if (j < k) x *= p;\n        }\n    };\n    rec(rec,\
     \ 0, 1);\n    sort(res.begin(), res.end());\n    return res;\n}\n\n\n} // namespace\
-    \ prime\n#line 4 \"src/modint/dynamic_modint.hpp\"\nusing namespace std;\n\nstruct\
-    \ modint {\n    modint() : x(0) {}\n    modint(long long v) {\n        long long\
-    \ y = v % m();\n        if (y < 0) y += m();\n        x = (unsigned int)(y);\n\
-    \    }\n    static void set_mod(int _m) { MOD = _m; }\n    static modint raw(int\
-    \ v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n    static\
-    \ int mod() { return m(); }\n    unsigned int val() const { return x; }\n    modint&\
-    \ operator++() {\n        x++;\n        if (x == m()) x = 0;\n        return *this;\n\
-    \    }\n    modint& operator--() {\n        if (x == 0) x = m();\n        x--;\n\
-    \        return *this;\n    }\n    modint operator++(int) {\n        modint res\
-    \ = *this;\n        ++*this;\n        return res;\n    }\n    modint operator--(int)\
+    \ prime\n#line 3 \"src/modint/dynamic_modint.hpp\"\n\nstruct modint {\n    modint()\
+    \ : x(0) {}\n    modint(long long v) {\n        long long y = v % m();\n     \
+    \   if (y < 0) y += m();\n        x = (unsigned int)(y);\n    }\n    static void\
+    \ set_mod(int _m) { MOD = _m; }\n    static modint raw(int v) {\n        modint\
+    \ a;\n        a.x = v;\n        return a;\n    }\n    static int mod() { return\
+    \ m(); }\n    unsigned int val() const { return x; }\n    modint& operator++()\
+    \ {\n        x++;\n        if (x == m()) x = 0;\n        return *this;\n    }\n\
+    \    modint& operator--() {\n        if (x == 0) x = m();\n        x--;\n    \
+    \    return *this;\n    }\n    modint operator++(int) {\n        modint res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    modint operator--(int)\
     \ {\n        modint res = *this;\n        --*this;\n        return res;\n    }\n\
     \    modint& operator+=(const modint &r) {\n        x += r.x;\n        if (x >=\
     \ m()) x -= m();\n        return *this;\n    }\n    modint& operator-=(const modint\
@@ -172,31 +175,30 @@ data:
     \ long t = a / b;\n            a -= t * b;\n            swap(a, b);\n        \
     \    u -= t * v;\n            swap(u, v);\n        }\n        return modint(u);\n\
     \    }\nprivate:\n    unsigned int x;\n    inline static unsigned int MOD = -1;\n\
-    \    static unsigned int m() { return MOD; }\n};\n#line 2 \"src/math/affine.hpp\"\
+    \    static unsigned int m() { return MOD; }\n};\n#line 3 \"src/math/affine.hpp\"\
     \n\ntemplate<typename mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1),\
     \ b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint\
     \ operator()(const mint &x) const {\n        return a * x + b;\n    }\n    affine\
     \ operator()(const affine &f) const {\n        mint c = a * f.a;\n        mint\
-    \ d = a * f.b + b;\n        return affine(c, d);\n    }\n};\n#line 2 \"src/math/number_theory/discrete_logarithm.hpp\"\
-    \n#include <unordered_set>\nusing namespace std;\n\ntemplate<typename ActSet>\n\
-    struct discrete_logarithm {\n    using S = typename ActSet::S;\n    using F =\
-    \ typename ActSet::F;\n    template<typename H>\n    static long long solve(F\
-    \ f, S s, S t, long long p, const H &h) {\n        long long ht = h(t);\n    \
-    \    long long m = 1;\n        do {\n            m++;\n        } while (m * m\
-    \ <= p);\n        unordered_set<long long> a;\n        a.reserve(m);\n       \
-    \ for (int k = 0; k < m; k++) {\n            t = ActSet::mapping(f, t);\n    \
-    \        a.insert(h(t));\n        }\n        F g = ActSet::id();\n        {\n\
-    \            long long mm = m;\n            F ff = f;\n            while (m >\
-    \ 0) {\n                if (m & 1) g = ActSet::comp(g, f);\n                f\
-    \ = ActSet::comp(f, f);\n                m >>= 1;\n            }\n           \
-    \ m = mm;\n            f = ff;\n        }\n        for (int k = 0, flag = 0; k\
-    \ <= m; k++) {\n            t = ActSet::mapping(g, s);\n            if (a.count(h(t)))\
+    \ d = a * f.b + b;\n        return affine(c, d);\n    }\n};\n#line 3 \"src/math/number_theory/discrete_logarithm.hpp\"\
+    \n\ntemplate<typename ActSet>\nstruct discrete_logarithm {\n    using S = typename\
+    \ ActSet::S;\n    using F = typename ActSet::F;\n    template<typename H>\n  \
+    \  static long long solve(F f, S s, S t, long long p, const H &h) {\n        long\
+    \ long ht = h(t);\n        long long m = 1;\n        do {\n            m++;\n\
+    \        } while (m * m <= p);\n        unordered_set<long long> a;\n        a.reserve(m);\n\
+    \        for (int k = 0; k < m; k++) {\n            t = ActSet::mapping(f, t);\n\
+    \            a.insert(h(t));\n        }\n        F g = ActSet::id();\n       \
+    \ {\n            long long mm = m;\n            F ff = f;\n            while (m\
+    \ > 0) {\n                if (m & 1) g = ActSet::comp(g, f);\n               \
+    \ f = ActSet::comp(f, f);\n                m >>= 1;\n            }\n         \
+    \   m = mm;\n            f = ff;\n        }\n        for (int k = 0, flag = 0;\
+    \ k <= m; k++) {\n            t = ActSet::mapping(g, s);\n            if (a.count(h(t)))\
     \ {\n                for (int i = 0; i < m; i++) {\n                    if (h(s)\
     \ == ht) {\n                        return m * k + i;\n                    }\n\
     \                    s = ActSet::mapping(f, s);\n                }\n         \
     \       if (flag) return -1;\n                flag = 1;\n            }\n     \
-    \       s = t;\n        }\n        return -1;\n    }\n};\n#line 8 \"test/math/number_theory/discrete_logarithm.test.cpp\"\
-    \n\nusing mint = modint;\n\n#include <iostream>\n\n// https://atcoder.jp/contests/abc270/submissions/62690414\n\
+    \       s = t;\n        }\n        return -1;\n    }\n};\n#line 9 \"test/math/number_theory/discrete_logarithm.test.cpp\"\
+    \n\nusing mint = modint;\n\n\n// https://atcoder.jp/contests/abc270/submissions/62690414\n\
     namespace AC {\n\ntemplate<typename mint>\nstruct affine {\n    mint a, b;\n \
     \   affine() : a(1), b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a),\
     \ b(_b) {}\n    mint operator()(const mint &x) const {\n        return a * x +\
@@ -238,10 +240,10 @@ data:
     \ B), S, T, P, [&](mint x){ return x.val(); });\n        assert(ans == AC::solve(P,\
     \ A, B, S, T));\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../../../src/random/utility.hpp\"\n#include \"../../../src/math/number_theory/prime.hpp\"\
-    \n#include \"../../../src/modint/dynamic_modint.hpp\"\n#include \"../../../src/math/affine.hpp\"\
-    \n#include \"../../../src/math/number_theory/discrete_logarithm.hpp\"\n\nusing\
-    \ mint = modint;\n\n#include <iostream>\n\n// https://atcoder.jp/contests/abc270/submissions/62690414\n\
+    ../../../src/template.hpp\"\n#include \"../../../src/random/utility.hpp\"\n#include\
+    \ \"../../../src/math/number_theory/prime.hpp\"\n#include \"../../../src/modint/dynamic_modint.hpp\"\
+    \n#include \"../../../src/math/affine.hpp\"\n#include \"../../../src/math/number_theory/discrete_logarithm.hpp\"\
+    \n\nusing mint = modint;\n\n\n// https://atcoder.jp/contests/abc270/submissions/62690414\n\
     namespace AC {\n\ntemplate<typename mint>\nstruct affine {\n    mint a, b;\n \
     \   affine() : a(1), b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a),\
     \ b(_b) {}\n    mint operator()(const mint &x) const {\n        return a * x +\
@@ -283,6 +285,7 @@ data:
     \ B), S, T, P, [&](mint x){ return x.val(); });\n        assert(ans == AC::solve(P,\
     \ A, B, S, T));\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/random/utility.hpp
   - src/math/number_theory/prime.hpp
   - src/random/xor_shift.hpp
@@ -292,8 +295,8 @@ data:
   isVerificationFile: true
   path: test/math/number_theory/discrete_logarithm.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/number_theory/discrete_logarithm.test.cpp
 layout: document

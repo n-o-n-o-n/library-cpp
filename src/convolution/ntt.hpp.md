@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/convolution/arbitrary_mod_convolution.hpp
     title: src/convolution/arbitrary_mod_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/convolution.hpp
     title: src/convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/convolution_ll.hpp
     title: src/convolution/convolution_ll.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps.hpp
     title: Formal Power Series
   - icon: ':heavy_check_mark:'
@@ -35,16 +38,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_pow.hpp
     title: src/fps/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -71,28 +74,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/subprod_tree.hpp
     title: src/fps/subprod_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/bmbm.hpp
     title: src/math/bmbm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/bostan_mori.hpp
     title: src/math/bostan_mori.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
     title: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/partition.hpp
     title: src/math/enumerative_combinatorics/partition.hpp
   - icon: ':warning:'
     path: src/math/enumerative_combinatorics/power_sums.hpp
     title: src/math/enumerative_combinatorics/power_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/subset_sum.hpp
     title: src/math/enumerative_combinatorics/subset_sum.hpp
   _extendedVerifiedWith:
@@ -153,105 +156,107 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bostan_mori_only_convolution.test.cpp
     title: test/math/bostan_mori_only_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/partition.test.cpp
     title: test/math/enumerative_combinatorics/partition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/subset_sum.test.cpp
     title: test/math/enumerative_combinatorics/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/convolution/ntt.hpp\"\n#include <vector>\n#line 2 \"\
-    src/math/number_theory/prime.hpp\"\n#include <algorithm>\n#include <array>\n#include\
-    \ <cassert>\n#include <cstdint>\n#include <iterator>\n#include <numeric>\n#include\
-    \ <type_traits>\n#include <utility>\n#line 4 \"src/random/xor_shift.hpp\"\nusing\
-    \ namespace std;\n\ntemplate<typename T>\nstruct xor_shift {\n    using U = typename\
-    \ make_unsigned<T>::type;\n    constexpr xor_shift(U seed = 0) : x(seed == 0 ?\
-    \ 987139873 : seed) {}\n    constexpr U operator()() {\n        if constexpr (sizeof(T)\
-    \ <= 4) {\n            x ^= x << 13;\n            x ^= x >> 17;\n            x\
-    \ ^= x << 5;\n        } else {\n            x ^= x << 13;\n            x ^= x\
-    \ >> 7;\n            x ^= x << 17;\n        }\n        return x;\n    }\n    constexpr\
-    \ T operator()(T lo, T hi) {\n        return lo + (*this)() % (hi - lo + 1);\n\
-    \    }\nprivate:\n    U x;\n};\n#line 12 \"src/math/number_theory/prime.hpp\"\n\
-    \nusing namespace std;\n\nnamespace prime {\n\ntemplate<typename T>\nstruct montgomery_modint\
-    \ {\n    using U = conditional_t<(sizeof(T) <= 4), uint32_t, uint64_t>;\n    using\
-    \ W = conditional_t<(sizeof(T) <= 4), uint64_t, unsigned __int128>;\n    constexpr\
-    \ explicit montgomery_modint(U _mod, U v = 0) {\n        mod = _mod;\n       \
-    \ inv = get_inv_mod(mod);\n        r2 = get_r2(mod);\n        x = reduce(W(v %\
-    \ mod) * r2);\n    }\n    constexpr U modulus() const { return mod; }\n    constexpr\
-    \ U val() const { return reduce(x); }\n    constexpr U raw() const { return x;\
-    \ }\n    constexpr montgomery_modint make(U value) const {\n        montgomery_modint\
-    \ res = *this;\n        res.x = reduce(W(value % mod) * r2);\n        return res;\n\
-    \    }\n    constexpr montgomery_modint& operator+=(const montgomery_modint& r)\
-    \ {\n        assert(mod == r.mod);\n        x = x >= mod - r.x ? x - (mod - r.x)\
-    \ : x + r.x;\n        return *this;\n    }\n    constexpr montgomery_modint& operator-=(const\
-    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = x >= r.x\
-    \ ? x - r.x : mod - (r.x - x);\n        return *this;\n    }\n    constexpr montgomery_modint&\
-    \ operator*=(const montgomery_modint& r) {\n        assert(mod == r.mod);\n  \
-    \      x = reduce(W(x) * r.x);\n        return *this;\n    }\n    friend constexpr\
-    \ montgomery_modint operator+(montgomery_modint l, const montgomery_modint& r)\
-    \ { return l += r; }\n    friend constexpr montgomery_modint operator-(montgomery_modint\
-    \ l, const montgomery_modint& r) { return l -= r; }\n    friend constexpr montgomery_modint\
-    \ operator*(montgomery_modint l, const montgomery_modint& r) { return l *= r;\
-    \ }\n    friend constexpr bool operator==(const montgomery_modint& l, const montgomery_modint&\
-    \ r) {\n        assert(l.mod == r.mod);\n        return l.x == r.x;\n    }\n \
-    \   constexpr montgomery_modint pow(U k) const {\n        montgomery_modint a\
-    \ = *this, res = make(1);\n        while (k) {\n            if (k & 1) res *=\
-    \ a;\n            a *= a;\n            k >>= 1;\n        }\n        return res;\n\
-    \    }\nprivate:\n    static constexpr int bits = sizeof(U) * 8;\n    U mod, inv,\
-    \ r2, x;\n    static constexpr U get_inv_mod(U mod) {\n        U inv = 1;\n  \
-    \      for (int i = 0; i < (bits == 32 ? 5 : 6); ++i) inv *= 2 - mod * inv;\n\
-    \        return -inv;\n    }\n    static constexpr U get_r2(U mod) {\n       \
-    \ const U r = U((W(1) << bits) % mod);\n        return U(W(r) * r % mod);\n  \
-    \  }\n    constexpr U reduce(W x) const {\n        const U q = U(x) * inv;\n \
-    \       const W sum = x + W(q) * mod;\n        W res = sum >> bits;\n        if\
-    \ constexpr (is_unsigned_v<T>) {\n            if (sum < x) res += W(1) << bits;\n\
-    \        }\n        return U(res >= mod ? res - mod : res);\n    }\n};\n\ntemplate<typename\
-    \ T>\nconstexpr bool is_prime(T n) {\n    using U = typename montgomery_modint<T>::U;\n\
-    \    if (n <= 1) return false;\n    if (n == 2) return true;\n    if ((n & 1)\
-    \ == 0) return false;\n    using mint = montgomery_modint<T>;\n    mint p{U(n)};\n\
-    \    const mint one = p.make(1), neg1 = p.make(U(n - 1));\n    auto miller_rabin\
-    \ = [&] (const auto& ps) constexpr -> bool {\n        U d = p.modulus() - 1;\n\
-    \        int s = 0;\n        while ((d & 1) == 0) {\n            d >>= 1;\n  \
-    \          ++s;\n        }\n        for (int m : ps) {\n            const U a\
-    \ = U(m) % p.modulus();\n            if (a == 0) continue;\n            mint x\
-    \ = p.make(a);\n            x = x.pow(d);\n            if (x == one || x == neg1)\
-    \ continue;\n            bool f = false;\n            for (int i = 1; i < s; ++i)\
-    \ {\n                x *= x;\n                if (x == neg1) {\n             \
-    \       f = true;\n                    break;\n                }\n           \
-    \ }\n            if (!f) return false;\n        }\n        return true;\n    };\n\
-    \    if constexpr (sizeof(T) <= 4) {\n        return miller_rabin(array<int, 3>{2,\
-    \ 7, 61});\n    } else {\n        if (n < 4759123141LL) return miller_rabin(array<int,\
-    \ 3>{2, 7, 61});\n        return miller_rabin(array<int, 7>{2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022});\n    }\n}\n\ntemplate<typename T>\nconstexpr\
-    \ vector<T> prime_factor(T n) {\n    using U = typename montgomery_modint<T>::U;\n\
-    \    if (n <= 1) return {};\n    if (is_prime(n)) return {n};\n    auto rho =\
-    \ [] (T n) constexpr -> T {\n        for (int p : {2, 3, 5, 7}) {\n          \
-    \  if (n % p == 0) return T(p);\n        }\n        using mint = montgomery_modint<T>;\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/random/xor_shift.hpp\"\n\ntemplate<typename T>\nstruct xor_shift\
+    \ {\n    using U = typename make_unsigned<T>::type;\n    constexpr xor_shift(U\
+    \ seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr U operator()()\
+    \ {\n        if constexpr (sizeof(T) <= 4) {\n            x ^= x << 13;\n    \
+    \        x ^= x >> 17;\n            x ^= x << 5;\n        } else {\n         \
+    \   x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x << 17;\n     \
+    \   }\n        return x;\n    }\n    constexpr T operator()(T lo, T hi) {\n  \
+    \      return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n    U x;\n};\n\
+    #line 4 \"src/math/number_theory/prime.hpp\"\n\n\nnamespace prime {\n\ntemplate<typename\
+    \ T>\nstruct montgomery_modint {\n    using U = conditional_t<(sizeof(T) <= 4),\
+    \ uint32_t, uint64_t>;\n    using W = conditional_t<(sizeof(T) <= 4), uint64_t,\
+    \ unsigned __int128>;\n    constexpr explicit montgomery_modint(U _mod, U v =\
+    \ 0) {\n        mod = _mod;\n        inv = get_inv_mod(mod);\n        r2 = get_r2(mod);\n\
+    \        x = reduce(W(v % mod) * r2);\n    }\n    constexpr U modulus() const\
+    \ { return mod; }\n    constexpr U val() const { return reduce(x); }\n    constexpr\
+    \ U raw() const { return x; }\n    constexpr montgomery_modint make(U value) const\
+    \ {\n        montgomery_modint res = *this;\n        res.x = reduce(W(value %\
+    \ mod) * r2);\n        return res;\n    }\n    constexpr montgomery_modint& operator+=(const\
+    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = x >= mod\
+    \ - r.x ? x - (mod - r.x) : x + r.x;\n        return *this;\n    }\n    constexpr\
+    \ montgomery_modint& operator-=(const montgomery_modint& r) {\n        assert(mod\
+    \ == r.mod);\n        x = x >= r.x ? x - r.x : mod - (r.x - x);\n        return\
+    \ *this;\n    }\n    constexpr montgomery_modint& operator*=(const montgomery_modint&\
+    \ r) {\n        assert(mod == r.mod);\n        x = reduce(W(x) * r.x);\n     \
+    \   return *this;\n    }\n    friend constexpr montgomery_modint operator+(montgomery_modint\
+    \ l, const montgomery_modint& r) { return l += r; }\n    friend constexpr montgomery_modint\
+    \ operator-(montgomery_modint l, const montgomery_modint& r) { return l -= r;\
+    \ }\n    friend constexpr montgomery_modint operator*(montgomery_modint l, const\
+    \ montgomery_modint& r) { return l *= r; }\n    friend constexpr bool operator==(const\
+    \ montgomery_modint& l, const montgomery_modint& r) {\n        assert(l.mod ==\
+    \ r.mod);\n        return l.x == r.x;\n    }\n    constexpr montgomery_modint\
+    \ pow(U k) const {\n        montgomery_modint a = *this, res = make(1);\n    \
+    \    while (k) {\n            if (k & 1) res *= a;\n            a *= a;\n    \
+    \        k >>= 1;\n        }\n        return res;\n    }\nprivate:\n    static\
+    \ constexpr int bits = sizeof(U) * 8;\n    U mod, inv, r2, x;\n    static constexpr\
+    \ U get_inv_mod(U mod) {\n        U inv = 1;\n        for (int i = 0; i < (bits\
+    \ == 32 ? 5 : 6); ++i) inv *= 2 - mod * inv;\n        return -inv;\n    }\n  \
+    \  static constexpr U get_r2(U mod) {\n        const U r = U((W(1) << bits) %\
+    \ mod);\n        return U(W(r) * r % mod);\n    }\n    constexpr U reduce(W x)\
+    \ const {\n        const U q = U(x) * inv;\n        const W sum = x + W(q) * mod;\n\
+    \        W res = sum >> bits;\n        if constexpr (is_unsigned_v<T>) {\n   \
+    \         if (sum < x) res += W(1) << bits;\n        }\n        return U(res >=\
+    \ mod ? res - mod : res);\n    }\n};\n\ntemplate<typename T>\nconstexpr bool is_prime(T\
+    \ n) {\n    using U = typename montgomery_modint<T>::U;\n    if (n <= 1) return\
+    \ false;\n    if (n == 2) return true;\n    if ((n & 1) == 0) return false;\n\
+    \    using mint = montgomery_modint<T>;\n    mint p{U(n)};\n    const mint one\
+    \ = p.make(1), neg1 = p.make(U(n - 1));\n    auto miller_rabin = [&] (const auto&\
+    \ ps) constexpr -> bool {\n        U d = p.modulus() - 1;\n        int s = 0;\n\
+    \        while ((d & 1) == 0) {\n            d >>= 1;\n            ++s;\n    \
+    \    }\n        for (int m : ps) {\n            const U a = U(m) % p.modulus();\n\
+    \            if (a == 0) continue;\n            mint x = p.make(a);\n        \
+    \    x = x.pow(d);\n            if (x == one || x == neg1) continue;\n       \
+    \     bool f = false;\n            for (int i = 1; i < s; ++i) {\n           \
+    \     x *= x;\n                if (x == neg1) {\n                    f = true;\n\
+    \                    break;\n                }\n            }\n            if\
+    \ (!f) return false;\n        }\n        return true;\n    };\n    if constexpr\
+    \ (sizeof(T) <= 4) {\n        return miller_rabin(array<int, 3>{2, 7, 61});\n\
+    \    } else {\n        if (n < 4759123141LL) return miller_rabin(array<int, 3>{2,\
+    \ 7, 61});\n        return miller_rabin(array<int, 7>{2, 325, 9375, 28178, 450775,\
+    \ 9780504, 1795265022});\n    }\n}\n\ntemplate<typename T>\nconstexpr vector<T>\
+    \ prime_factor(T n) {\n    using U = typename montgomery_modint<T>::U;\n    if\
+    \ (n <= 1) return {};\n    if (is_prime(n)) return {n};\n    auto rho = [] (T\
+    \ n) constexpr -> T {\n        for (int p : {2, 3, 5, 7}) {\n            if (n\
+    \ % p == 0) return T(p);\n        }\n        using mint = montgomery_modint<T>;\n\
     \        mint p{U(n)};\n        xor_shift<T> eng(n);\n        while (true) {\n\
     \            mint u = p.make(U(eng(2, n - 1)));\n            mint v = u;\n   \
     \         mint c = p.make(U(eng(1, n - 1)));\n            U d = 1;\n         \
@@ -283,26 +288,26 @@ data:
     \  auto [p, k] = f[i];\n        for (int j = 0; j <= k; j++) {\n            rec(rec,\
     \ i + 1, x);\n            if (j < k) x *= p;\n        }\n    };\n    rec(rec,\
     \ 0, 1);\n    sort(res.begin(), res.end());\n    return res;\n}\n\n\n} // namespace\
-    \ prime\n#line 4 \"src/convolution/ntt.hpp\"\nusing namespace std;\n\ntemplate<typename\
-    \ mint>\nstruct Number_Theoretic_Transform {\n    static mint get_root() {\n \
-    \       init();\n        return root;\n    }\n    template<typename Vector>\n\
-    \    static void ntt(Vector &f) {\n        init();\n        int n = f.size();\n\
-    \        assert((n & (n - 1)) == 0);\n        int h = 0;\n        while ((1 <<\
-    \ h) < n) h++;\n        int len = 0;\n        while (len < h) {\n            if\
-    \ (len == h - 1) {\n                int p = 1 << (h - len - 1);\n            \
-    \    mint r = 1;\n                for (int s = 0; s < 1 << len; s++) {\n     \
-    \               int j = s << (h - len);\n                    for (int i = 0; i\
-    \ < p; i++) {\n                        mint a = f[i + j], b = f[i + j + p] * r;\n\
-    \                        f[i + j] = a + b;\n                        f[i + j +\
-    \ p] = a - b;\n                    }\n                    if (s + 1 != (1 << len))\
-    \ {\n                        r *= rt2[__builtin_ctz(~s)];\n                  \
-    \  }\n                }\n                len++;\n            } else {\n      \
-    \          int p = 1 << (h - len - 2);\n                mint r = 1, imag = dw[2];\n\
-    \                for (int s = 0; s < 1 << len; s++) {\n                    mint\
-    \ r2 = r * r;\n                    mint r3 = r * r2;\n                    int\
-    \ j = s << (h - len);\n                    for (int i = 0; i < p; i++) {\n   \
-    \                     unsigned long long m2 = (unsigned long long)mod * mod;\n\
-    \                        unsigned long long a0 = (unsigned long long)f[i + j].val();\n\
+    \ prime\n#line 4 \"src/convolution/ntt.hpp\"\n\ntemplate<typename mint>\nstruct\
+    \ Number_Theoretic_Transform {\n    static mint get_root() {\n        init();\n\
+    \        return root;\n    }\n    template<typename Vector>\n    static void ntt(Vector\
+    \ &f) {\n        init();\n        int n = f.size();\n        assert((n & (n -\
+    \ 1)) == 0);\n        int h = 0;\n        while ((1 << h) < n) h++;\n        int\
+    \ len = 0;\n        while (len < h) {\n            if (len == h - 1) {\n     \
+    \           int p = 1 << (h - len - 1);\n                mint r = 1;\n       \
+    \         for (int s = 0; s < 1 << len; s++) {\n                    int j = s\
+    \ << (h - len);\n                    for (int i = 0; i < p; i++) {\n         \
+    \               mint a = f[i + j], b = f[i + j + p] * r;\n                   \
+    \     f[i + j] = a + b;\n                        f[i + j + p] = a - b;\n     \
+    \               }\n                    if (s + 1 != (1 << len)) {\n          \
+    \              r *= rt2[__builtin_ctz(~s)];\n                    }\n         \
+    \       }\n                len++;\n            } else {\n                int p\
+    \ = 1 << (h - len - 2);\n                mint r = 1, imag = dw[2];\n         \
+    \       for (int s = 0; s < 1 << len; s++) {\n                    mint r2 = r\
+    \ * r;\n                    mint r3 = r * r2;\n                    int j = s <<\
+    \ (h - len);\n                    for (int i = 0; i < p; i++) {\n            \
+    \            unsigned long long m2 = (unsigned long long)mod * mod;\n        \
+    \                unsigned long long a0 = (unsigned long long)f[i + j].val();\n\
     \                        unsigned long long a1 = (unsigned long long)f[i + j +\
     \ p].val() * r.val();\n                        unsigned long long a2 = (unsigned\
     \ long long)f[i + j + p + p].val() * r2.val();\n                        unsigned\
@@ -375,21 +380,21 @@ data:
     \ vector<mint>();\ntemplate<typename mint>\nvector<mint> Number_Theoretic_Transform<mint>::rt3\
     \ = vector<mint>();\ntemplate<typename mint>\nvector<mint> Number_Theoretic_Transform<mint>::irt3\
     \ = vector<mint>();\n"
-  code: "#pragma once\n#include <vector>\n#include \"../math/number_theory/prime.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename mint>\nstruct Number_Theoretic_Transform\
-    \ {\n    static mint get_root() {\n        init();\n        return root;\n   \
-    \ }\n    template<typename Vector>\n    static void ntt(Vector &f) {\n       \
-    \ init();\n        int n = f.size();\n        assert((n & (n - 1)) == 0);\n  \
-    \      int h = 0;\n        while ((1 << h) < n) h++;\n        int len = 0;\n \
-    \       while (len < h) {\n            if (len == h - 1) {\n                int\
-    \ p = 1 << (h - len - 1);\n                mint r = 1;\n                for (int\
-    \ s = 0; s < 1 << len; s++) {\n                    int j = s << (h - len);\n \
-    \                   for (int i = 0; i < p; i++) {\n                        mint\
-    \ a = f[i + j], b = f[i + j + p] * r;\n                        f[i + j] = a +\
-    \ b;\n                        f[i + j + p] = a - b;\n                    }\n \
-    \                   if (s + 1 != (1 << len)) {\n                        r *= rt2[__builtin_ctz(~s)];\n\
-    \                    }\n                }\n                len++;\n          \
-    \  } else {\n                int p = 1 << (h - len - 2);\n                mint\
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"../math/number_theory/prime.hpp\"\
+    \n\ntemplate<typename mint>\nstruct Number_Theoretic_Transform {\n    static mint\
+    \ get_root() {\n        init();\n        return root;\n    }\n    template<typename\
+    \ Vector>\n    static void ntt(Vector &f) {\n        init();\n        int n =\
+    \ f.size();\n        assert((n & (n - 1)) == 0);\n        int h = 0;\n       \
+    \ while ((1 << h) < n) h++;\n        int len = 0;\n        while (len < h) {\n\
+    \            if (len == h - 1) {\n                int p = 1 << (h - len - 1);\n\
+    \                mint r = 1;\n                for (int s = 0; s < 1 << len; s++)\
+    \ {\n                    int j = s << (h - len);\n                    for (int\
+    \ i = 0; i < p; i++) {\n                        mint a = f[i + j], b = f[i + j\
+    \ + p] * r;\n                        f[i + j] = a + b;\n                     \
+    \   f[i + j + p] = a - b;\n                    }\n                    if (s +\
+    \ 1 != (1 << len)) {\n                        r *= rt2[__builtin_ctz(~s)];\n \
+    \                   }\n                }\n                len++;\n           \
+    \ } else {\n                int p = 1 << (h - len - 2);\n                mint\
     \ r = 1, imag = dw[2];\n                for (int s = 0; s < 1 << len; s++) {\n\
     \                    mint r2 = r * r;\n                    mint r3 = r * r2;\n\
     \                    int j = s << (h - len);\n                    for (int i =\
@@ -468,6 +473,7 @@ data:
     \ = vector<mint>();\ntemplate<typename mint>\nvector<mint> Number_Theoretic_Transform<mint>::irt3\
     \ = vector<mint>();\n"
   dependsOn:
+  - src/template.hpp
   - src/math/number_theory/prime.hpp
   - src/random/xor_shift.hpp
   isVerificationFile: false
@@ -502,8 +508,8 @@ data:
   - src/convolution/middle_product.hpp
   - src/convolution/convolution_ll.hpp
   - src/convolution/arbitrary_mod_convolution.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/bostan_mori.test.cpp
   - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp

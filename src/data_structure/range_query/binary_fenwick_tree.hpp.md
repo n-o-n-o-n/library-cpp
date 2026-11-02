@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -11,17 +14,21 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/data_structure/range_query/binary_fenwick_tree.hpp\"\
-    \n#include <cassert>\n#include <numeric>\n#include <vector>\nusing namespace std;\n\
-    \nstruct binary_fenwick_tree {\n    binary_fenwick_tree() : binary_fenwick_tree(0)\
-    \ {}\n    binary_fenwick_tree(int _n) : binary_fenwick_tree(vector<int>(_n, 0))\
-    \ {}\n    template<typename T>\n    binary_fenwick_tree(const vector<T> &_v) :\
-    \ n(_v.size()) {\n        sz = (n + 63) >> 6;\n        bit = vector<unsigned long\
-    \ long>(sz, 0);\n        d = v = vector<int>(sz, 0);\n        for (int p = 0;\
-    \ p < n; p++) {\n            if (_v[p]) {\n                int i = p >> 6, j =\
-    \ p & 63;\n                bit[i] |= 1ULL << j;\n            }\n        }\n  \
-    \      for (int i = 1; i <= sz; i++) {\n            v[i - 1] = __builtin_popcountll(bit[i\
-    \ - 1]);\n            d[i - 1] += v[i - 1];\n            int j = i + (i & -i);\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/data_structure/range_query/binary_fenwick_tree.hpp\"\n\nstruct\
+    \ binary_fenwick_tree {\n    binary_fenwick_tree() : binary_fenwick_tree(0) {}\n\
+    \    binary_fenwick_tree(int _n) : binary_fenwick_tree(vector<int>(_n, 0)) {}\n\
+    \    template<typename T>\n    binary_fenwick_tree(const vector<T> &_v) : n(_v.size())\
+    \ {\n        sz = (n + 63) >> 6;\n        bit = vector<unsigned long long>(sz,\
+    \ 0);\n        d = v = vector<int>(sz, 0);\n        for (int p = 0; p < n; p++)\
+    \ {\n            if (_v[p]) {\n                int i = p >> 6, j = p & 63;\n \
+    \               bit[i] |= 1ULL << j;\n            }\n        }\n        for (int\
+    \ i = 1; i <= sz; i++) {\n            v[i - 1] = __builtin_popcountll(bit[i -\
+    \ 1]);\n            d[i - 1] += v[i - 1];\n            int j = i + (i & -i);\n\
     \            if (j <= sz) d[j - 1] += d[i - 1];\n        }\n    }\n    void set(int\
     \ p) {\n        assert(0 <= p && p < n);\n        int i = p >> 6, j = p & 63;\n\
     \        if ((bit[i] >> j & 1) == 0) {\n            bit[i] |= 1ULL << j;\n   \
@@ -63,28 +70,28 @@ data:
     \       if (r + p <= sz && d[r + p - 1] < x) {\n                r += p;\n    \
     \            x -= d[r - 1];\n            }\n            p >>= 1;\n        }\n\
     \        return r;\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <numeric>\n#include <vector>\n\
-    using namespace std;\n\nstruct binary_fenwick_tree {\n    binary_fenwick_tree()\
-    \ : binary_fenwick_tree(0) {}\n    binary_fenwick_tree(int _n) : binary_fenwick_tree(vector<int>(_n,\
-    \ 0)) {}\n    template<typename T>\n    binary_fenwick_tree(const vector<T> &_v)\
-    \ : n(_v.size()) {\n        sz = (n + 63) >> 6;\n        bit = vector<unsigned\
-    \ long long>(sz, 0);\n        d = v = vector<int>(sz, 0);\n        for (int p\
-    \ = 0; p < n; p++) {\n            if (_v[p]) {\n                int i = p >> 6,\
-    \ j = p & 63;\n                bit[i] |= 1ULL << j;\n            }\n        }\n\
-    \        for (int i = 1; i <= sz; i++) {\n            v[i - 1] = __builtin_popcountll(bit[i\
-    \ - 1]);\n            d[i - 1] += v[i - 1];\n            int j = i + (i & -i);\n\
-    \            if (j <= sz) d[j - 1] += d[i - 1];\n        }\n    }\n    void set(int\
-    \ p) {\n        assert(0 <= p && p < n);\n        int i = p >> 6, j = p & 63;\n\
-    \        if ((bit[i] >> j & 1) == 0) {\n            bit[i] |= 1ULL << j;\n   \
-    \         fw_update(i);\n        }\n    }\n    void reset(int p) {\n        assert(0\
-    \ <= p && p < n);\n        int i = p >> 6, j = p & 63;\n        if (bit[i] >>\
-    \ j & 1) {\n            bit[i] &= ~(1uLL << j);\n            fw_update(i);\n \
-    \       }\n    }\n    void flip(int p) {\n        assert(0 <= p && p < n);\n \
-    \       int i = p >> 6, j = p & 63;\n        bit[i] ^= 1ULL << j;\n        fw_update(i);\n\
-    \    }\n    bool test(int p) const {\n        assert(0 <= p && p < n);\n     \
-    \   return bit[p >> 6] >> (p & 63) & 1;\n    }\n    int count(int l, int r) const\
-    \ {\n        assert(0 <= l && l <= r && r <= n);\n        if (l == r) return 0;\n\
-    \        int il = l >> 6, jl = l & 63;\n        int ir = r >> 6, jr = r & 63;\n\
+  code: "#pragma once\n#include \"../../template.hpp\"\n\nstruct binary_fenwick_tree\
+    \ {\n    binary_fenwick_tree() : binary_fenwick_tree(0) {}\n    binary_fenwick_tree(int\
+    \ _n) : binary_fenwick_tree(vector<int>(_n, 0)) {}\n    template<typename T>\n\
+    \    binary_fenwick_tree(const vector<T> &_v) : n(_v.size()) {\n        sz = (n\
+    \ + 63) >> 6;\n        bit = vector<unsigned long long>(sz, 0);\n        d = v\
+    \ = vector<int>(sz, 0);\n        for (int p = 0; p < n; p++) {\n            if\
+    \ (_v[p]) {\n                int i = p >> 6, j = p & 63;\n                bit[i]\
+    \ |= 1ULL << j;\n            }\n        }\n        for (int i = 1; i <= sz; i++)\
+    \ {\n            v[i - 1] = __builtin_popcountll(bit[i - 1]);\n            d[i\
+    \ - 1] += v[i - 1];\n            int j = i + (i & -i);\n            if (j <= sz)\
+    \ d[j - 1] += d[i - 1];\n        }\n    }\n    void set(int p) {\n        assert(0\
+    \ <= p && p < n);\n        int i = p >> 6, j = p & 63;\n        if ((bit[i] >>\
+    \ j & 1) == 0) {\n            bit[i] |= 1ULL << j;\n            fw_update(i);\n\
+    \        }\n    }\n    void reset(int p) {\n        assert(0 <= p && p < n);\n\
+    \        int i = p >> 6, j = p & 63;\n        if (bit[i] >> j & 1) {\n       \
+    \     bit[i] &= ~(1uLL << j);\n            fw_update(i);\n        }\n    }\n \
+    \   void flip(int p) {\n        assert(0 <= p && p < n);\n        int i = p >>\
+    \ 6, j = p & 63;\n        bit[i] ^= 1ULL << j;\n        fw_update(i);\n    }\n\
+    \    bool test(int p) const {\n        assert(0 <= p && p < n);\n        return\
+    \ bit[p >> 6] >> (p & 63) & 1;\n    }\n    int count(int l, int r) const {\n \
+    \       assert(0 <= l && l <= r && r <= n);\n        if (l == r) return 0;\n \
+    \       int il = l >> 6, jl = l & 63;\n        int ir = r >> 6, jr = r & 63;\n\
     \        if (il == ir) {\n            return __builtin_popcountll((bit[il] >>\
     \ jl) & mask(jr - jl));\n        }\n        int res = fw_sum(ir) - fw_sum(il);\n\
     \        res -= __builtin_popcountll(bit[il] & mask(jl));\n        if (jr) res\
@@ -114,11 +121,12 @@ data:
     \       if (r + p <= sz && d[r + p - 1] < x) {\n                r += p;\n    \
     \            x -= d[r - 1];\n            }\n            p >>= 1;\n        }\n\
     \        return r;\n    }\n};"
-  dependsOn: []
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/data_structure/range_query/binary_fenwick_tree.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/range_query/binary_fenwick_tree.test.cpp

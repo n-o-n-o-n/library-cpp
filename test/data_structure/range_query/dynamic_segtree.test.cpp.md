@@ -4,12 +4,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/dynamic_segtree.hpp
     title: Segtree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,29 +25,33 @@ data:
     - https://judge.yosupo.jp/problem/point_set_range_composite_large_array
   bundledCode: "#line 1 \"test/data_structure/range_query/dynamic_segtree.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite_large_array\"\
-    \n\n#line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#include <cassert>\n\
-    using namespace std;\n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr\
-    \ modint() : x(0) {}\n    template<typename T>\n    constexpr modint(T v) {\n\
-    \        int y = v % (int)mod();\n        if (y < 0) y += mod();\n        x =\
-    \ (unsigned int)y;\n    }\n    static constexpr modint raw(int v) {\n        modint\
-    \ a;\n        a.x = v;\n        return a;\n    }\n    static constexpr int mod()\
-    \ { return MOD; }\n    constexpr unsigned int val() const { return x; }\n    constexpr\
-    \ modint& operator++() {\n        x++;\n        if (x == mod()) x = 0;\n     \
-    \   return *this;\n    }\n    constexpr modint& operator--() {\n        if (x\
-    \ == 0) x = mod();\n        x--;\n        return *this;\n    }\n    constexpr\
-    \ modint operator++(int) {\n        modint res = *this;\n        ++*this;\n  \
-    \      return res;\n    }\n    constexpr modint operator--(int) {\n        modint\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr modint&\
-    \ operator+=(const modint &r) {\n        x += r.x;\n        if (x >= mod()) x\
-    \ -= mod();\n        return *this;\n    }\n    constexpr modint& operator-=(const\
-    \ modint &r) {\n        x -= r.x;\n        if (x >= mod()) x += mod();\n     \
-    \   return *this;\n    }\n    constexpr modint& operator*=(const modint &r) {\n\
-    \        unsigned long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y\
-    \ % mod());\n        return *this;\n    }\n    constexpr modint &operator/=(const\
-    \ modint &r) {\n        return *this = *this * r.inv();\n    }\n    friend constexpr\
-    \ modint operator+(const modint &a, const modint &b) {\n        return modint(a)\
-    \ += b;\n    }\n    friend constexpr modint operator-(const modint &a, const modint\
-    \ &b) {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
+    \n\n#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/modint/modint.hpp\"\
+    \n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint() : x(0)\
+    \ {}\n    template<typename T>\n    constexpr modint(T v) {\n        int y = v\
+    \ % (int)mod();\n        if (y < 0) y += mod();\n        x = (unsigned int)y;\n\
+    \    }\n    static constexpr modint raw(int v) {\n        modint a;\n        a.x\
+    \ = v;\n        return a;\n    }\n    static constexpr int mod() { return MOD;\
+    \ }\n    constexpr unsigned int val() const { return x; }\n    constexpr modint&\
+    \ operator++() {\n        x++;\n        if (x == mod()) x = 0;\n        return\
+    \ *this;\n    }\n    constexpr modint& operator--() {\n        if (x == 0) x =\
+    \ mod();\n        x--;\n        return *this;\n    }\n    constexpr modint operator++(int)\
+    \ {\n        modint res = *this;\n        ++*this;\n        return res;\n    }\n\
+    \    constexpr modint operator--(int) {\n        modint res = *this;\n       \
+    \ --*this;\n        return res;\n    }\n    constexpr modint& operator+=(const\
+    \ modint &r) {\n        x += r.x;\n        if (x >= mod()) x -= mod();\n     \
+    \   return *this;\n    }\n    constexpr modint& operator-=(const modint &r) {\n\
+    \        x -= r.x;\n        if (x >= mod()) x += mod();\n        return *this;\n\
+    \    }\n    constexpr modint& operator*=(const modint &r) {\n        unsigned\
+    \ long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y % mod());\n\
+    \        return *this;\n    }\n    constexpr modint &operator/=(const modint &r)\
+    \ {\n        return *this = *this * r.inv();\n    }\n    friend constexpr modint\
+    \ operator+(const modint &a, const modint &b) {\n        return modint(a) += b;\n\
+    \    }\n    friend constexpr modint operator-(const modint &a, const modint &b)\
+    \ {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
     \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
     \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
     \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
@@ -59,69 +66,69 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 2 \"src/math/affine.hpp\"\n\ntemplate<typename\
+    \    unsigned int x;\n};\n#line 3 \"src/math/affine.hpp\"\n\ntemplate<typename\
     \ mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
     \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
     \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
     \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
     \    return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/range_query/dynamic_segtree.hpp\"\
-    \n#include <vector>\nusing namespace std;\n\ntemplate<typename Monoid, integral\
-    \ T = int>\nstruct dynamic_segtree {\n    using M = Monoid;\n    using S = typename\
-    \ M::S;\n    dynamic_segtree(T _n = 0, int q = 0) : n(_n) {\n        int log =\
-    \ 1;\n        while ((T(1) << log) < n) log++;\n        d.reserve(1 + 2 * q *\
-    \ log);\n        root = new_node();\n    }\n    void set(T p, const S &x) {\n\
-    \        assert(0 <= p && p < n);\n        set(root, 0, n, p, x);\n    }\n   \
-    \ S get(T p) const {\n        assert(0 <= p && p < n);\n        return get(root,\
-    \ 0, n, p);\n    }\n    S prod(T l, T r) const {\n        assert(0 <= l && l <=\
-    \ r && r <= n);\n        return prod(root, 0, n, l, r);\n    }\n    S all_prod()\
-    \ const {\n        return d[root].x;\n    }\nprivate:\n    struct node {\n   \
-    \     S x;\n        int l, r;\n        node() : x(M::e()), l(-1), r(-1) {}\n \
-    \   };\n    T n;\n    int root;\n    vector<node> d;\n    int new_node() {\n \
-    \       int res = d.size();\n        d.emplace_back();\n        return res;\n\
-    \    }\n    void update(int t) {\n        int l = d[t].l, r = d[t].r;\n      \
-    \  const S pl = l == -1 ? M::e() : d[l].x;\n        const S pr = r == -1 ? M::e()\
-    \ : d[r].x;\n        d[t].x = M::op(pl, pr);\n    }\n    void set(int t, T l,\
-    \ T r, T p, const S &x) {\n        if (l + 1 == r) {\n            d[t].x = x;\n\
-    \            return;\n        }\n        T m = (l + r) / 2;\n        if (p < m)\
-    \ {\n            if (d[t].l == -1) d[t].l = new_node();\n            set(d[t].l,\
-    \ l, m, p, x);\n        } else {\n            if (d[t].r == -1) d[t].r = new_node();\n\
-    \            set(d[t].r, m, r, p, x);\n        }\n        update(t);\n    }\n\
-    \    S get(int t, T l, T r, T p) const {\n        if (t == -1) return M::e();\n\
-    \        if (l + 1 == r) return d[t].x;\n        T m = (l + r) / 2;\n        return\
-    \ p < m ? get(d[t].l, l, m, p) : get(d[t].r, m, r, p);\n    }\n    S prod(int\
-    \ t, T l, T r, T ql, T qr) const {\n        if (t == -1 || r <= ql || qr <= l)\
-    \ return M::e();\n        if (ql <= l && r <= qr) return d[t].x;\n        T m\
-    \ = (l + r) / 2;\n        return M::op(prod(d[t].l, l, m, ql, qr), prod(d[t].r,\
-    \ m, r, ql, qr));\n    }\n};\n#line 6 \"test/data_structure/range_query/dynamic_segtree.test.cpp\"\
+    \n\ntemplate<typename Monoid, integral T = int>\nstruct dynamic_segtree {\n  \
+    \  using M = Monoid;\n    using S = typename M::S;\n    dynamic_segtree(T _n =\
+    \ 0, int q = 0) : n(_n) {\n        int log = 1;\n        while ((T(1) << log)\
+    \ < n) log++;\n        d.reserve(1 + 2 * q * log);\n        root = new_node();\n\
+    \    }\n    void set(T p, const S &x) {\n        assert(0 <= p && p < n);\n  \
+    \      set(root, 0, n, p, x);\n    }\n    S get(T p) const {\n        assert(0\
+    \ <= p && p < n);\n        return get(root, 0, n, p);\n    }\n    S prod(T l,\
+    \ T r) const {\n        assert(0 <= l && l <= r && r <= n);\n        return prod(root,\
+    \ 0, n, l, r);\n    }\n    S all_prod() const {\n        return d[root].x;\n \
+    \   }\nprivate:\n    struct node {\n        S x;\n        int l, r;\n        node()\
+    \ : x(M::e()), l(-1), r(-1) {}\n    };\n    T n;\n    int root;\n    vector<node>\
+    \ d;\n    int new_node() {\n        int res = d.size();\n        d.emplace_back();\n\
+    \        return res;\n    }\n    void update(int t) {\n        int l = d[t].l,\
+    \ r = d[t].r;\n        const S pl = l == -1 ? M::e() : d[l].x;\n        const\
+    \ S pr = r == -1 ? M::e() : d[r].x;\n        d[t].x = M::op(pl, pr);\n    }\n\
+    \    void set(int t, T l, T r, T p, const S &x) {\n        if (l + 1 == r) {\n\
+    \            d[t].x = x;\n            return;\n        }\n        T m = (l + r)\
+    \ / 2;\n        if (p < m) {\n            if (d[t].l == -1) d[t].l = new_node();\n\
+    \            set(d[t].l, l, m, p, x);\n        } else {\n            if (d[t].r\
+    \ == -1) d[t].r = new_node();\n            set(d[t].r, m, r, p, x);\n        }\n\
+    \        update(t);\n    }\n    S get(int t, T l, T r, T p) const {\n        if\
+    \ (t == -1) return M::e();\n        if (l + 1 == r) return d[t].x;\n        T\
+    \ m = (l + r) / 2;\n        return p < m ? get(d[t].l, l, m, p) : get(d[t].r,\
+    \ m, r, p);\n    }\n    S prod(int t, T l, T r, T ql, T qr) const {\n        if\
+    \ (t == -1 || r <= ql || qr <= l) return M::e();\n        if (ql <= l && r <=\
+    \ qr) return d[t].x;\n        T m = (l + r) / 2;\n        return M::op(prod(d[t].l,\
+    \ l, m, ql, qr), prod(d[t].r, m, r, ql, qr));\n    }\n};\n#line 7 \"test/data_structure/range_query/dynamic_segtree.test.cpp\"\
     \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return affine<mint>();\
-    \ }\n};\n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    dynamic_segtree<Monoid>\
-    \ seg(N, Q);\n    while (Q--) {\n        int t;\n        cin >> t;\n        if\
-    \ (t == 0) {\n            int p, a, b;\n            cin >> p >> a >> b;\n    \
-    \        seg.set(p, affine<mint>(a, b));\n        } else {\n            int l,\
-    \ r, x;\n            cin >> l >> r >> x;\n            auto f = seg.prod(l, r);\n\
-    \            cout << f(x).val() << '\\n';\n        }\n    }\n}\n"
+    \ }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    int N, Q;\n    cin >> N >> Q;\n    dynamic_segtree<Monoid> seg(N, Q);\n \
+    \   while (Q--) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n\
+    \            int p, a, b;\n            cin >> p >> a >> b;\n            seg.set(p,\
+    \ affine<mint>(a, b));\n        } else {\n            int l, r, x;\n         \
+    \   cin >> l >> r >> x;\n            auto f = seg.prod(l, r);\n            cout\
+    \ << f(x).val() << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite_large_array\"\
-    \n\n#include \"../../../src/modint/modint.hpp\"\n#include \"../../../src/math/affine.hpp\"\
-    \n#include \"../../../src/data_structure/range_query/dynamic_segtree.hpp\"\n\n\
-    using mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
+    \n#include \"../../../src/math/affine.hpp\"\n#include \"../../../src/data_structure/range_query/dynamic_segtree.hpp\"\
+    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return affine<mint>();\
-    \ }\n};\n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    dynamic_segtree<Monoid>\
-    \ seg(N, Q);\n    while (Q--) {\n        int t;\n        cin >> t;\n        if\
-    \ (t == 0) {\n            int p, a, b;\n            cin >> p >> a >> b;\n    \
-    \        seg.set(p, affine<mint>(a, b));\n        } else {\n            int l,\
-    \ r, x;\n            cin >> l >> r >> x;\n            auto f = seg.prod(l, r);\n\
-    \            cout << f(x).val() << '\\n';\n        }\n    }\n}"
+    \ }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    int N, Q;\n    cin >> N >> Q;\n    dynamic_segtree<Monoid> seg(N, Q);\n \
+    \   while (Q--) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n\
+    \            int p, a, b;\n            cin >> p >> a >> b;\n            seg.set(p,\
+    \ affine<mint>(a, b));\n        } else {\n            int l, r, x;\n         \
+    \   cin >> l >> r >> x;\n            auto f = seg.prod(l, r);\n            cout\
+    \ << f(x).val() << '\\n';\n        }\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/modint/modint.hpp
   - src/math/affine.hpp
   - src/data_structure/range_query/dynamic_segtree.hpp
   isVerificationFile: true
   path: test/data_structure/range_query/dynamic_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/dynamic_segtree.test.cpp

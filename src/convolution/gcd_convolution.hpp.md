@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/multiple_zmt.hpp
     title: src/convolution/multiple_zmt.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -14,33 +17,36 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/convolution/gcd_convolution.hpp\"\n#include <cassert>\n\
-    #include <vector>\nusing namespace std;\n#line 4 \"src/convolution/multiple_zmt.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename mint>\nvoid multiple_zmt(vector<mint>\
-    \ &f, bool moebius = false) {\n    int n = f.size();\n    vector<bool> sieve(n,\
-    \ true);\n    for (int i = 2; i < n; i++) {\n        if (sieve[i]) {\n       \
-    \     if (moebius) {\n                for (int j = 1; i * j < n; j++) {\n    \
-    \                sieve[i * j] = false;\n                    f[j] -= f[i * j];\n\
-    \                }\n            } else {\n                for (int j = (n - 1)\
-    \ / i; j > 0; j--) {\n                    sieve[i * j] = false;\n            \
-    \        f[j] += f[i * j];\n                }\n            }\n        }\n    }\n\
-    }\n#line 6 \"src/convolution/gcd_convolution.hpp\"\n\ntemplate<typename mint>\n\
-    vector<mint> gcd_convolution(vector<mint> f, vector<mint> g) {\n    assert(f.size()\
-    \ == g.size());\n    int n = f.size();\n    if (n == 0) return {};\n    multiple_zmt(f);\n\
-    \    multiple_zmt(g);\n    for (int i = 0; i < n; i++) f[i] *= g[i];\n    multiple_zmt(f,\
-    \ true);\n    return f;\n}\n"
-  code: "#pragma once\n#include <cassert>\n#include <vector>\nusing namespace std;\n\
-    #include \"multiple_zmt.hpp\"\n\ntemplate<typename mint>\nvector<mint> gcd_convolution(vector<mint>\
-    \ f, vector<mint> g) {\n    assert(f.size() == g.size());\n    int n = f.size();\n\
-    \    if (n == 0) return {};\n    multiple_zmt(f);\n    multiple_zmt(g);\n    for\
-    \ (int i = 0; i < n; i++) f[i] *= g[i];\n    multiple_zmt(f, true);\n    return\
-    \ f;\n}"
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/convolution/multiple_zmt.hpp\"\n\ntemplate<typename mint>\n\
+    void multiple_zmt(vector<mint> &f, bool moebius = false) {\n    int n = f.size();\n\
+    \    vector<bool> sieve(n, true);\n    for (int i = 2; i < n; i++) {\n       \
+    \ if (sieve[i]) {\n            if (moebius) {\n                for (int j = 1;\
+    \ i * j < n; j++) {\n                    sieve[i * j] = false;\n             \
+    \       f[j] -= f[i * j];\n                }\n            } else {\n         \
+    \       for (int j = (n - 1) / i; j > 0; j--) {\n                    sieve[i *\
+    \ j] = false;\n                    f[j] += f[i * j];\n                }\n    \
+    \        }\n        }\n    }\n}\n#line 4 \"src/convolution/gcd_convolution.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> gcd_convolution(vector<mint> f, vector<mint>\
+    \ g) {\n    assert(f.size() == g.size());\n    int n = f.size();\n    if (n ==\
+    \ 0) return {};\n    multiple_zmt(f);\n    multiple_zmt(g);\n    for (int i =\
+    \ 0; i < n; i++) f[i] *= g[i];\n    multiple_zmt(f, true);\n    return f;\n}\n"
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"multiple_zmt.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> gcd_convolution(vector<mint> f, vector<mint>\
+    \ g) {\n    assert(f.size() == g.size());\n    int n = f.size();\n    if (n ==\
+    \ 0) return {};\n    multiple_zmt(f);\n    multiple_zmt(g);\n    for (int i =\
+    \ 0; i < n; i++) f[i] *= g[i];\n    multiple_zmt(f, true);\n    return f;\n}"
   dependsOn:
+  - src/template.hpp
   - src/convolution/multiple_zmt.hpp
   isVerificationFile: false
   path: src/convolution/gcd_convolution.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution/gcd_convolution.test.cpp

@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: src/random/graph.hpp
@@ -8,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/tree/hash_on_tree.hpp
     title: src/tree/hash_on_tree.hpp
   _extendedVerifiedWith:
@@ -21,25 +24,29 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/number_theory/discrete_logarithm.test.cpp
     title: test/math/number_theory/discrete_logarithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/number_theory/mod_inv.test.cpp
     title: test/math/number_theory/mod_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/hash_on_tree.test.cpp
     title: test/tree/hash_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/prufer_code.test.cpp
     title: test/tree/prufer_code.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/random/utility.hpp\"\n#include <cassert>\n#include <concepts>\n\
-    #include <random>\nusing namespace std;\n\nnamespace rng {\n\ninline random_device\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/random/utility.hpp\"\n\nnamespace rng {\n\ninline random_device\
     \ seed;\ninline mt19937 eng(seed());\n\ntemplate<typename T>\nvoid set_seed(const\
     \ T &sd) {\n    eng.seed(sd);\n}\n\ntemplate<integral T>\ninline T randint(T lo,\
     \ T hi) {\n    assert(lo <= hi);\n    uniform_int_distribution<T> dist(lo, hi);\n\
@@ -47,24 +54,24 @@ data:
     \ lo, T hi, bool strict = false) {\n    assert(lo + strict <= hi);\n    T l =\
     \ randint(lo, hi - strict);\n    T r = randint(l + strict, hi);\n    return make_pair(l,\
     \ r);\n}\n\n} // namespace rng\n"
-  code: "#pragma once\n#include <cassert>\n#include <concepts>\n#include <random>\n\
-    using namespace std;\n\nnamespace rng {\n\ninline random_device seed;\ninline\
-    \ mt19937 eng(seed());\n\ntemplate<typename T>\nvoid set_seed(const T &sd) {\n\
-    \    eng.seed(sd);\n}\n\ntemplate<integral T>\ninline T randint(T lo, T hi) {\n\
-    \    assert(lo <= hi);\n    uniform_int_distribution<T> dist(lo, hi);\n    return\
-    \ dist(eng);\n}\n\ntemplate<integral T>\ninline pair<T, T> randpair(T lo, T hi,\
-    \ bool strict = false) {\n    assert(lo + strict <= hi);\n    T l = randint(lo,\
-    \ hi - strict);\n    T r = randint(l + strict, hi);\n    return make_pair(l, r);\n\
-    }\n\n} // namespace rng"
-  dependsOn: []
+  code: "#pragma once\n#include \"../template.hpp\"\n\nnamespace rng {\n\ninline random_device\
+    \ seed;\ninline mt19937 eng(seed());\n\ntemplate<typename T>\nvoid set_seed(const\
+    \ T &sd) {\n    eng.seed(sd);\n}\n\ntemplate<integral T>\ninline T randint(T lo,\
+    \ T hi) {\n    assert(lo <= hi);\n    uniform_int_distribution<T> dist(lo, hi);\n\
+    \    return dist(eng);\n}\n\ntemplate<integral T>\ninline pair<T, T> randpair(T\
+    \ lo, T hi, bool strict = false) {\n    assert(lo + strict <= hi);\n    T l =\
+    \ randint(lo, hi - strict);\n    T r = randint(l + strict, hi);\n    return make_pair(l,\
+    \ r);\n}\n\n} // namespace rng"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/random/utility.hpp
   requiredBy:
   - src/random/graph.hpp
   - src/random/sequence.hpp
   - src/tree/hash_on_tree.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/number_theory/mod_inv.test.cpp
   - test/math/number_theory/discrete_logarithm.test.cpp

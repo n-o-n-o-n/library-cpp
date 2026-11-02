@@ -1,33 +1,41 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/number_theory/enumerate_quotient.test.cpp
     title: test/math/number_theory/enumerate_quotient.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/math/number_theory/enumerate_quotients.hpp\"\n#include\
-    \ <vector>\nusing namespace std;\n\n// for all m in [l, r), floor(n/m) = q\ntemplate<typename\
-    \ T>\nvector<tuple<T, T, T>> enumerate_quotients(T n) {\n    vector<tuple<T, T,\
-    \ T>> res;\n    for (T l = 1, r, q; l <= n; l = r) {\n        q = n / l;\n   \
-    \     r = n / q + 1;\n        res.emplace_back(l, r, q);\n    }\n    return res;\n\
-    }\n"
-  code: "#pragma once\n#include <vector>\nusing namespace std;\n\n// for all m in\
-    \ [l, r), floor(n/m) = q\ntemplate<typename T>\nvector<tuple<T, T, T>> enumerate_quotients(T\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/math/number_theory/enumerate_quotients.hpp\"\n\n// for all\
+    \ m in [l, r), floor(n/m) = q\ntemplate<typename T>\nvector<tuple<T, T, T>> enumerate_quotients(T\
+    \ n) {\n    vector<tuple<T, T, T>> res;\n    for (T l = 1, r, q; l <= n; l = r)\
+    \ {\n        q = n / l;\n        r = n / q + 1;\n        res.emplace_back(l, r,\
+    \ q);\n    }\n    return res;\n}\n"
+  code: "#pragma once\n#include \"../../template.hpp\"\n\n// for all m in [l, r),\
+    \ floor(n/m) = q\ntemplate<typename T>\nvector<tuple<T, T, T>> enumerate_quotients(T\
     \ n) {\n    vector<tuple<T, T, T>> res;\n    for (T l = 1, r, q; l <= n; l = r)\
     \ {\n        q = n / l;\n        r = n / q + 1;\n        res.emplace_back(l, r,\
     \ q);\n    }\n    return res;\n}"
-  dependsOn: []
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/math/number_theory/enumerate_quotients.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/math/number_theory/enumerate_quotient.test.cpp
 documentation_of: src/math/number_theory/enumerate_quotients.hpp

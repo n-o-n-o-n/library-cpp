@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
   - icon: ':heavy_check_mark:'
     path: src/geometry/polygon.hpp
     title: Polygon
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -19,13 +22,15 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/3/CGL_3_B
   bundledCode: "#line 1 \"test/geometry/polygon_is_convex.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/3/CGL_3_B\"\n\n#line\
-    \ 2 \"src/geometry/polygon.hpp\"\n#include <algorithm>\n#include <vector>\n#line\
-    \ 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n#include\
-    \ <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace geometry\
-    \ {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T)\
-    \ <= 4, long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps()\
-    \ { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr\
-    \ T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename T>\nconstexpr\
+    \ 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing\
+    \ ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/geometry/common.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
+    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
+    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
+    \ T>\nconstexpr T inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr\
     \ T PI() {\n    static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n\
     }\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>)\
     \ {\n        return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n\
@@ -74,7 +79,7 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 5 \"src/geometry/polygon.hpp\"\
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"src/geometry/polygon.hpp\"\
     \n\nnamespace geometry {\n\ntemplate<typename T>\nstruct Polygon : vector<Point<T>>\
     \ {\n    using vector<Point<T>>::vector;\n    Polygon(const vector<Point<T>> &pts)\
     \ : vector<Point<T>>(pts) {}\n    int contain(const Point<T> &p) const {\n   \
@@ -135,23 +140,25 @@ data:
     \ }\ntemplate<typename T>\ninline W<T> area(const Polygon<T> &v) { return v.area();\
     \ }\ntemplate<typename T>\ninline bool is_convex(const Polygon<T> &v) { return\
     \ v.is_convex(); }\ntemplate<typename T>\ninline pair<int, int> diam(const Polygon<T>\
-    \ &v) { return v.diam(); }\n\n} // namespace geometry\n#line 4 \"test/geometry/polygon_is_convex.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int N;\n    cin >> N;\n    geometry::Polygon<int> V(N);\n\
-    \    for (int i = 0; i < N; i++) cin >> V[i].x >> V[i].y;\n    cout << (V.is_convex()\
-    \ ? 1 : 0) << endl;\n}\n"
+    \ &v) { return v.diam(); }\n\n} // namespace geometry\n#line 5 \"test/geometry/polygon_is_convex.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N;\n    cin >> N;\n    geometry::Polygon<int> V(N);\n    for (int i = 0;\
+    \ i < N; i++) cin >> V[i].x >> V[i].y;\n    cout << (V.is_convex() ? 1 : 0) <<\
+    \ endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/3/CGL_3_B\"\
-    \n\n#include \"../../src/geometry/polygon.hpp\"\n\n#include <iostream>\n\nint\
-    \ main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N;\n\
-    \    cin >> N;\n    geometry::Polygon<int> V(N);\n    for (int i = 0; i < N; i++)\
-    \ cin >> V[i].x >> V[i].y;\n    cout << (V.is_convex() ? 1 : 0) << endl;\n}"
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/geometry/polygon.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N;\n    cin >> N;\n    geometry::Polygon<int> V(N);\n    for (int i = 0;\
+    \ i < N; i++) cin >> V[i].x >> V[i].y;\n    cout << (V.is_convex() ? 1 : 0) <<\
+    \ endl;\n}"
   dependsOn:
+  - src/template.hpp
   - src/geometry/polygon.hpp
   - src/geometry/common.hpp
   isVerificationFile: true
   path: test/geometry/polygon_is_convex.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/geometry/polygon_is_convex.test.cpp

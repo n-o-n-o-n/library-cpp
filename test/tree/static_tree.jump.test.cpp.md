@@ -1,59 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/data_structure/range_query/sparse_table.hpp
     title: src/data_structure/range_query/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/data_structure/range_query/static_rmq.hpp
     title: src/data_structure/range_query/static_rmq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/monoid/min.hpp
     title: src/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
+  - icon: ':question:'
     path: src/tree/static_tree.hpp
     title: Static Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
     links:
     - https://judge.yosupo.jp/problem/jump_on_tree
   bundledCode: "#line 1 \"test/tree/static_tree.jump.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#line 2 \"src/tree/static_tree.hpp\"\
-    \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <stack>\n\
-    #include <vector>\nusing namespace std;\n#line 3 \"src/data_structure/range_query/static_rmq.hpp\"\
-    \n#include <limits>\n#include <type_traits>\n#line 2 \"src/data_structure/range_query/sparse_table.hpp\"\
-    \n#include <bit>\n#line 5 \"src/data_structure/range_query/sparse_table.hpp\"\n\
-    using namespace std;\n\ntemplate<typename Monoid>\nstruct sparse_table {\n   \
-    \ using M = Monoid;\n    using S = typename M::S;\n    sparse_table() = default;\n\
-    \    sparse_table(const vector<S> &v) : n(v.size()), b(0), d(1, v) { build();\
-    \ }\n    S prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <=n);\n\
-    \        if (l == r) return M::e();\n        int i = bit_width(unsigned(r - l))\
-    \ - 1;\n        return M::op(d[i][l], d[i][r - (1 << i)]);\n    }\nprivate:\n\
-    \    int n, b, e;\n    vector<vector<S>> d;\n    void build() {\n        b = bit_width(unsigned(n));\n\
+    https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#line 2 \"src/template.hpp\"\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
+    template<typename T>\nconstexpr T inf() { return numeric_limits<T>::max() / 2;\
+    \ }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return a\
+    \ > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/data_structure/range_query/sparse_table.hpp\"\
+    \n\ntemplate<typename Monoid>\nstruct sparse_table {\n    using M = Monoid;\n\
+    \    using S = typename M::S;\n    sparse_table() = default;\n    sparse_table(const\
+    \ vector<S> &v) : n(v.size()), b(0), d(1, v) { build(); }\n    S prod(int l, int\
+    \ r) const {\n        assert(0 <= l && l <= r && r <=n);\n        if (l == r)\
+    \ return M::e();\n        int i = bit_width(unsigned(r - l)) - 1;\n        return\
+    \ M::op(d[i][l], d[i][r - (1 << i)]);\n    }\nprivate:\n    int n, b, e;\n   \
+    \ vector<vector<S>> d;\n    void build() {\n        b = bit_width(unsigned(n));\n\
     \        d.resize(b);\n        for (int i = 1; i < b; i++) {\n            int\
     \ width = 1 << i;\n            d[i].assign(n - width + 1, M::e());\n         \
     \   for (int j = 0; j + width <= n; j++) {\n                d[i][j] = M::op(d[i\
     \ - 1][j], d[i - 1][j + (width >> 1)]);\n            }\n        }\n    }\n};\n\
-    #line 4 \"src/monoid/min.hpp\"\nusing namespace std;\n\ntemplate<typename T, T\
-    \ E = numeric_limits<T>::max()>\nstruct min_monoid {\n    using S = T;\n    static\
-    \ S op(S a, S b) { return min(a, b); }\n    static S e() { return E; }\n};\n#line\
-    \ 8 \"src/data_structure/range_query/static_rmq.hpp\"\nusing namespace std;\n\n\
-    template<typename T, T inf = numeric_limits<T>::max()>\nstruct static_rmq {\n\
-    \    static_assert(is_integral_v<T>);\n    static_rmq() = default;\n    static_rmq(const\
-    \ vector<T> &_v) : n(_v.size()), v(_v), pref(n), suff(n) { build(); }\n    T prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        if (l\
-    \ == r) return inf;\n        r--;\n        int bl = l >> log, br = r >> log;\n\
-    \        if (bl < br) {\n            if (bl + 1 == br) return min(pref[r], suff[l]);\n\
-    \            return min(min(pref[r], suff[l]), st.prod(bl + 1, br));\n       \
-    \ }\n        T res = v[l];\n        for (int i = l + 1; i <= r; i++) res = min(res,\
-    \ v[i]);\n        return res;\n    }\nprivate:\n    int n;\n    static constexpr\
-    \ int log = 4, mask = 15;\n    vector<T> v, pref, suff;\n    sparse_table<min_monoid<T,\
+    #line 3 \"src/monoid/min.hpp\"\n\ntemplate<typename T, T E = inf<T>()>\nstruct\
+    \ min_monoid {\n    using S = T;\n    static S op(S a, S b) { return min(a, b);\
+    \ }\n    static S e() { return E; }\n};\n#line 5 \"src/data_structure/range_query/static_rmq.hpp\"\
+    \n\ntemplate<typename T, T inf = ::inf<T>()>\nstruct static_rmq {\n    static_assert(is_integral_v<T>);\n\
+    \    static_rmq() = default;\n    static_rmq(const vector<T> &_v) : n(_v.size()),\
+    \ v(_v), pref(n), suff(n) { build(); }\n    T prod(int l, int r) const {\n   \
+    \     assert(0 <= l && l <= r && r <= n);\n        if (l == r) return inf;\n \
+    \       r--;\n        int bl = l >> log, br = r >> log;\n        if (bl < br)\
+    \ {\n            if (bl + 1 == br) return min(pref[r], suff[l]);\n           \
+    \ return min(min(pref[r], suff[l]), st.prod(bl + 1, br));\n        }\n       \
+    \ T res = v[l];\n        for (int i = l + 1; i <= r; i++) chmin(res, v[i]);\n\
+    \        return res;\n    }\nprivate:\n    int n;\n    static constexpr int log\
+    \ = 4, mask = 15;\n    vector<T> v, pref, suff;\n    sparse_table<min_monoid<T,\
     \ inf>> st;\n    void build() {\n        if (n == 0) return;\n        pref[0]\
     \ = v[0];\n        suff[n - 1] = v[n - 1];\n        for (int i = 1; i < n; i++)\
     \ {\n            pref[i] = i & mask ? min(pref[i - 1], v[i]) : v[i];\n       \
@@ -61,7 +64,7 @@ data:
     \ == mask ? v[i] : min(v[i], suff[i + 1]);\n        }\n        st = sparse_table<min_monoid<T,\
     \ inf>>([&] {\n            vector<T> a(n >> log);\n            for (int i = 0;\
     \ i < (n >> log); i++) {\n                a[i] = suff[i << log];\n           \
-    \ }\n            return move(a);\n        } ());\n    }\n};\n#line 9 \"src/tree/static_tree.hpp\"\
+    \ }\n            return move(a);\n        } ());\n    }\n};\n#line 4 \"src/tree/static_tree.hpp\"\
     \n\nstruct static_tree {\n    static_tree() = default;\n    static_tree(int _n,\
     \ int r = 0) : n(_n), e(0), root(r), g(_n), built(false) {\n        if (n <= 1)\
     \ build();\n    }\n    void set_root(int r) {\n        assert(0 <= r && r < n);\n\
@@ -129,20 +132,21 @@ data:
     \ i = 0; i < ssize(ord); i++) {\n                int u = ord[i];\n           \
     \     if (in[u] == -1) in[u] = i;\n                a[i] = ((long long)d[u] <<\
     \ 32) ^ mask ^ i;\n            }\n            return a;\n        } ());\n    \
-    \    built = true;\n    }\n};\n#line 4 \"test/tree/static_tree.jump.test.cpp\"\
-    \n\n#line 6 \"test/tree/static_tree.jump.test.cpp\"\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    static_tree G(N);\n\
-    \    for (int i = 1, u, v; i < N; i++) {\n        cin >> u >> v;\n        G.add_edge(u,\
-    \ v);\n    }\n    for (int u, v, k; Q--; ) {\n        cin >> u >> v >> k;\n  \
-    \      cout << G.jump(u, v, k) << '\\n';\n    }\n}\n"
+    \    built = true;\n    }\n};\n#line 5 \"test/tree/static_tree.jump.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N, Q;\n    cin >> N >> Q;\n    static_tree G(N);\n    for (int i = 1, u,\
+    \ v; i < N; i++) {\n        cin >> u >> v;\n        G.add_edge(u, v);\n    }\n\
+    \    for (int u, v, k; Q--; ) {\n        cin >> u >> v >> k;\n        cout <<\
+    \ G.jump(u, v, k) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\
-    \ \"../../src/tree/static_tree.hpp\"\n\n#include <iostream>\n\nint main() {\n\
-    \    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n    cin\
-    \ >> N >> Q;\n    static_tree G(N);\n    for (int i = 1, u, v; i < N; i++) {\n\
-    \        cin >> u >> v;\n        G.add_edge(u, v);\n    }\n    for (int u, v,\
-    \ k; Q--; ) {\n        cin >> u >> v >> k;\n        cout << G.jump(u, v, k) <<\
-    \ '\\n';\n    }\n}"
+    \ \"../../src/template.hpp\"\n#include \"../../src/tree/static_tree.hpp\"\n\n\
+    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    static_tree G(N);\n    for (int i = 1, u, v;\
+    \ i < N; i++) {\n        cin >> u >> v;\n        G.add_edge(u, v);\n    }\n  \
+    \  for (int u, v, k; Q--; ) {\n        cin >> u >> v >> k;\n        cout << G.jump(u,\
+    \ v, k) << '\\n';\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/tree/static_tree.hpp
   - src/data_structure/range_query/static_rmq.hpp
   - src/data_structure/range_query/sparse_table.hpp
@@ -150,8 +154,8 @@ data:
   isVerificationFile: true
   path: test/tree/static_tree.jump.test.cpp
   requiredBy: []
-  timestamp: '2026-10-31 13:28:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree/static_tree.jump.test.cpp
 layout: document

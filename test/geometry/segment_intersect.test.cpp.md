@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/line.hpp
     title: Line
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/segment.hpp
     title: Segment
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B
@@ -22,12 +25,15 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B
   bundledCode: "#line 1 \"test/geometry/segment_intersect.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B\"\n\n#line\
-    \ 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n#include\
-    \ <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace geometry\
-    \ {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T)\
-    \ <= 4, long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps()\
-    \ { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr\
-    \ T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename T>\nconstexpr\
+    \ 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing\
+    \ ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/geometry/common.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
+    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
+    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
+    \ T>\nconstexpr T inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr\
     \ T PI() {\n    static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n\
     }\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>)\
     \ {\n        return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n\
@@ -76,7 +82,7 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 3 \"src/geometry/line.hpp\"\
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"src/geometry/line.hpp\"\
     \n\nnamespace geometry {\n\ntemplate<typename T>\nstruct Line {\n    constexpr\
     \ Line() = default;\n    constexpr Line(T _a, T _b, T _c) : a(_a), b(_b), c(_c)\
     \ {}\n    constexpr Line(const Point<T> &p, const Point<T> &q) : a(q.y - p.y),\
@@ -110,7 +116,7 @@ data:
     \ Line<T> &l2) { return l1.crossppoint(l2); }\ntemplate<typename T>\ninline T\
     \ dist(const Line<T> &l, const Point<T> &p) { return l.dist(p); }\ntemplate<typename\
     \ T>\ninline T dist(const Point<T> &p, const Line<T> &l) { return l.dist(p); }\n\
-    \n\n} // namespace geometry\n#line 3 \"src/geometry/segment.hpp\"\n\nnamespace\
+    \n\n} // namespace geometry\n#line 4 \"src/geometry/segment.hpp\"\n\nnamespace\
     \ geometry {\n\ntemplate<typename T>\nstruct Segment {\n    constexpr Segment()\
     \ = default;\n    constexpr Segment(const Point<T> &_a, const Point<T> &_b) :\
     \ l(_a, _b), a(_a), b(_b) {}\n    bool intersect(const Segment &s) const {\n \
@@ -129,39 +135,39 @@ data:
     \   if (dot(b - a, p - a) < eps<T>()) return (p - a).dist();\n        if (dot(a\
     \ - b, p - b) < eps<T>()) return (p - b).dist();\n        return l.dist(p);\n\
     \    }\n    T dist(const Segment &s) const {\n        static_assert(is_floating_point_v<T>);\n\
-    \        if (intersect(s)) return 0;\n        T res = inf<T>();\n        res =\
-    \ min(res, dist(s.a));\n        res = min(res, dist(s.b));\n        res = min(res,\
-    \ s.dist(a));\n        res = min(res, s.dist(b));\n        return res;\n    }\n\
-    private:\n    Line<T> l;\n    Point<T> a, b;\n};\n\ntemplate<typename T>\ninline\
-    \ bool intersect(const Segment<T> &s1, const Segment<T> &s2) { return s1.intersect(s2);\
-    \ }\ntemplate<typename T>\ninline Point<T> crosspoint(const Segment<T> &s1, const\
-    \ Segment<T> &s2) { return s1.crosspoint(s2); }\ntemplate<typename T>\ninline\
-    \ T dist(const Segment<T> &s, const Point<T> &p) { return s.dist(p); }\ntemplate<typename\
-    \ T>\ninline T dist(const Point<T> &p, const Segment<T> &s) { return s.dist(p);\
-    \ }\ntemplate<typename T>\ninline T dist(const Segment<T> &s1, const Segment<T>\
-    \ &s2) { return s1.dist(s2); }\n\n} // namespace geometry\n#line 4 \"test/geometry/segment_intersect.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int Q;\n    cin >> Q;\n    for (geometry::Point<int>\
-    \ P0, P1, P2, P3; Q--; ) {\n        cin >> P0.x >> P0.y >> P1.x >> P1.y >> P2.x\
-    \ >> P2.y >> P3.x >> P3.y;\n        geometry::Segment<int> S1(P0, P1), S2(P2,\
-    \ P3);\n        cout << (geometry::intersect(S1, S2) ? 1 : 0) << '\\n';\n    }\n\
-    }\n"
+    \        if (intersect(s)) return 0;\n        T res = inf<T>();\n        chmin(res,\
+    \ dist(s.a));\n        chmin(res, dist(s.b));\n        chmin(res, s.dist(a));\n\
+    \        chmin(res, s.dist(b));\n        return res;\n    }\nprivate:\n    Line<T>\
+    \ l;\n    Point<T> a, b;\n};\n\ntemplate<typename T>\ninline bool intersect(const\
+    \ Segment<T> &s1, const Segment<T> &s2) { return s1.intersect(s2); }\ntemplate<typename\
+    \ T>\ninline Point<T> crosspoint(const Segment<T> &s1, const Segment<T> &s2) {\
+    \ return s1.crosspoint(s2); }\ntemplate<typename T>\ninline T dist(const Segment<T>\
+    \ &s, const Point<T> &p) { return s.dist(p); }\ntemplate<typename T>\ninline T\
+    \ dist(const Point<T> &p, const Segment<T> &s) { return s.dist(p); }\ntemplate<typename\
+    \ T>\ninline T dist(const Segment<T> &s1, const Segment<T> &s2) { return s1.dist(s2);\
+    \ }\n\n} // namespace geometry\n#line 5 \"test/geometry/segment_intersect.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int Q;\n    cin >> Q;\n    for (geometry::Point<int> P0, P1, P2, P3; Q--; )\
+    \ {\n        cin >> P0.x >> P0.y >> P1.x >> P1.y >> P2.x >> P2.y >> P3.x >> P3.y;\n\
+    \        geometry::Segment<int> S1(P0, P1), S2(P2, P3);\n        cout << (geometry::intersect(S1,\
+    \ S2) ? 1 : 0) << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B\"\
-    \n\n#include \"../../src/geometry/segment.hpp\"\n\n#include <iostream>\n\nint\
-    \ main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int Q;\n\
-    \    cin >> Q;\n    for (geometry::Point<int> P0, P1, P2, P3; Q--; ) {\n     \
-    \   cin >> P0.x >> P0.y >> P1.x >> P1.y >> P2.x >> P2.y >> P3.x >> P3.y;\n   \
-    \     geometry::Segment<int> S1(P0, P1), S2(P2, P3);\n        cout << (geometry::intersect(S1,\
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/geometry/segment.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int Q;\n    cin >> Q;\n    for (geometry::Point<int> P0, P1, P2, P3; Q--; )\
+    \ {\n        cin >> P0.x >> P0.y >> P1.x >> P1.y >> P2.x >> P2.y >> P3.x >> P3.y;\n\
+    \        geometry::Segment<int> S1(P0, P1), S2(P2, P3);\n        cout << (geometry::intersect(S1,\
     \ S2) ? 1 : 0) << '\\n';\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/geometry/segment.hpp
   - src/geometry/line.hpp
   - src/geometry/common.hpp
   isVerificationFile: true
   path: test/geometry/segment_intersect.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/geometry/segment_intersect.test.cpp
 layout: document

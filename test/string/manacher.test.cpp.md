@@ -1,24 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/string/manacher.hpp
     title: src/string/manacher.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_palindromes
     links:
     - https://judge.yosupo.jp/problem/enumerate_palindromes
   bundledCode: "#line 1 \"test/string/manacher.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    \n\n#line 2 \"src/string/manacher.hpp\"\n#include <string>\n#include <vector>\n\
-    using namespace std;\n\ntemplate<typename S> \nvector<int> manacher(vector<S>\
-    \ v, const S wildcard) {\n    {\n        vector<S> tmp = v;\n        v.clear();\n\
-    \        for (const S &s : tmp) {\n            v.push_back(s);\n            v.push_back(wildcard);\n\
+    \n\n#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/string/manacher.hpp\"\
+    \n\ntemplate<typename S> \nvector<int> manacher(vector<S> v, const S wildcard)\
+    \ {\n    {\n        vector<S> tmp = v;\n        v.clear();\n        for (const\
+    \ S &s : tmp) {\n            v.push_back(s);\n            v.push_back(wildcard);\n\
     \        }\n        v.pop_back();\n    }\n    const int n = v.size();\n    int\
     \ i = 0, j = 0;\n    vector<int> res(n);\n    while (i < n) {\n        while (j\
     \ <= i && i + j < n && v[i - j] == v[i + j]) j++;\n        res[i] = j;\n     \
@@ -27,22 +34,24 @@ data:
     \ += k;\n        j -= k;\n    }\n    for (int i = 0; i < n; i++) {\n        if\
     \ (1 ^ ((res[i] ^ i) & 1)) res[i]--;\n    }\n    return res;\n}\n\ninline vector<int>\
     \ manacher(const string &s) {\n    return manacher(vector<char>(s.begin(), s.end()),\
-    \ '$');\n}\n#line 4 \"test/string/manacher.test.cpp\"\n\n#include <iostream>\n\
-    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    string\
-    \ S;\n    cin >> S;\n    auto ans = manacher(S);\n    for (int i = 0; i < ssize(ans);\
-    \ i++) {\n        cout << ans[i] << \" \\n\"[i + 1 == ssize(ans)];\n    }\n}\n"
+    \ '$');\n}\n#line 5 \"test/string/manacher.test.cpp\"\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    string S;\n    cin >> S;\n    auto ans = manacher(S);\n\
+    \    for (int i = 0; i < ssize(ans); i++) {\n        cout << ans[i] << \" \\n\"\
+    [i + 1 == ssize(ans)];\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    \n\n#include \"../../src/string/manacher.hpp\"\n\n#include <iostream>\n\nint main()\
-    \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    string S;\n\
-    \    cin >> S;\n    auto ans = manacher(S);\n    for (int i = 0; i < ssize(ans);\
-    \ i++) {\n        cout << ans[i] << \" \\n\"[i + 1 == ssize(ans)];\n    }\n}"
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/string/manacher.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  string S;\n    cin >> S;\n    auto ans = manacher(S);\n    for (int i = 0;\
+    \ i < ssize(ans); i++) {\n        cout << ans[i] << \" \\n\"[i + 1 == ssize(ans)];\n\
+    \    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/string/manacher.hpp
   isVerificationFile: true
   path: test/string/manacher.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/string/manacher.test.cpp
 layout: document

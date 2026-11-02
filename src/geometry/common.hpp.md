@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/geometry/arg_sort.hpp
@@ -17,13 +20,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/geometry/incircle_of_triangle.hpp
     title: src/geometry/incircle_of_triangle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/line.hpp
     title: Line
   - icon: ':heavy_check_mark:'
     path: src/geometry/polygon.hpp
     title: Polygon
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/segment.hpp
     title: Segment
   _extendedVerifiedWith:
@@ -84,51 +87,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/geometry/segment_crosspoint.test.cpp
     title: test/geometry/segment_crosspoint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/geometry/segment_dist.test.cpp
     title: test/geometry/segment_dist.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/geometry/segment_intersect.test.cpp
     title: test/geometry/segment_intersect.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n\
-    #include <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace\
-    \ geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
-    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
-    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
-    \ T>\nconstexpr T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename\
-    \ T>\nconstexpr T PI() {\n    static_assert(is_floating_point_v<T>);\n    return\
-    \ (T)acosl(-1);\n}\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if\
-    \ constexpr (is_integral_v<T>) {\n        return a == b;\n    } else {\n     \
-    \   return abs(a - b) < eps<T>();\n    }\n}\n\ntemplate<typename T>\ninline int\
-    \ sgn(T a) { return eq<T>(a, 0) ? 0 : a > 0 ? 1 : -1; }\n\ntemplate<typename T>\n\
-    struct Point {\n    T x, y;\n    constexpr Point(T _x = 0, T _y = 0) : x(_x),\
-    \ y(_y) {}\n    constexpr Point(const pair<T, T> &pt) : x(pt.first), y(pt.second)\
-    \ {}\n    static constexpr Point inf_point() { return Point(inf<T>(), inf<T>());\
-    \ }\n    Point &operator+=(const Point &p) {\n        x += p.x;\n        y +=\
-    \ p.y;\n        return *this;\n    }\n    Point &operator-=(const Point &p) {\n\
-    \        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point\
-    \ &operator*=(const T &r) {\n        x *= r;\n        y *= r;\n        return\
-    \ *this;\n    }\n    Point &operator/=(const T &r) {\n        x /= r;\n      \
-    \  y /= r;\n        return *this;\n    }\n    Point operator+(const Point &p)\
-    \ const { return Point(*this) += p; }\n    Point operator-(const Point &p) const\
-    \ { return Point(*this) -= p; }\n    Point operator*(const T &r) const { return\
-    \ Point(*this) *= r; }\n    Point operator/(const T &r) const { return Point(*this)\
-    \ /= r; }\n    Point operator+() const { return *this; }\n    Point operator-()\
-    \ const { return Point() - *this; }\n    bool operator==(const Point &p) const\
-    \ { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const Point &p) const\
-    \ { return !this->operator==(p); }\n    bool operator<(const Point &p) const {\
-    \ return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const Point &p) const\
-    \ { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const Point &p)\
-    \ const { return this->operator==(p) || this->operator<(p); }\n    bool operator>=(const\
-    \ Point &p) const { return this->operator==(p) || this->operator>(p); }\n    friend\
-    \ Point operator*(T r, const Point &p) { return p * r; }\n    W<T> norm() const\
-    \ { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n        static_assert(is_floating_point_v<T>);\n\
-    \        return sqrtl(norm());\n    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/geometry/common.hpp\"\n\nnamespace geometry {\n\ntemplate<typename\
+    \ T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T) <= 4,\
+    \ long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps() { return\
+    \ is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr T\
+    \ inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr T PI() {\n \
+    \   static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n}\n\ntemplate<typename\
+    \ T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>) {\n    \
+    \    return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n   \
+    \ }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ? 0 :\
+    \ a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n   \
+    \ constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
+    \ pair<T, T> &pt) : x(pt.first), y(pt.second) {}\n    static constexpr Point inf_point()\
+    \ { return Point(inf<T>(), inf<T>()); }\n    Point &operator+=(const Point &p)\
+    \ {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point\
+    \ &operator-=(const Point &p) {\n        x -= p.x;\n        y -= p.y;\n      \
+    \  return *this;\n    }\n    Point &operator*=(const T &r) {\n        x *= r;\n\
+    \        y *= r;\n        return *this;\n    }\n    Point &operator/=(const T\
+    \ &r) {\n        x /= r;\n        y /= r;\n        return *this;\n    }\n    Point\
+    \ operator+(const Point &p) const { return Point(*this) += p; }\n    Point operator-(const\
+    \ Point &p) const { return Point(*this) -= p; }\n    Point operator*(const T &r)\
+    \ const { return Point(*this) *= r; }\n    Point operator/(const T &r) const {\
+    \ return Point(*this) /= r; }\n    Point operator+() const { return *this; }\n\
+    \    Point operator-() const { return Point() - *this; }\n    bool operator==(const\
+    \ Point &p) const { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const\
+    \ Point &p) const { return !this->operator==(p); }\n    bool operator<(const Point\
+    \ &p) const { return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const\
+    \ Point &p) const { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const\
+    \ Point &p) const { return this->operator==(p) || this->operator<(p); }\n    bool\
+    \ operator>=(const Point &p) const { return this->operator==(p) || this->operator>(p);\
+    \ }\n    friend Point operator*(T r, const Point &p) { return p * r; }\n    W<T>\
+    \ norm() const { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n \
+    \       static_assert(is_floating_point_v<T>);\n        return sqrtl(norm());\n\
+    \    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
     \        return atan2l(y, x);\n    }\n    Point unit() const {\n        return\
     \ (*this) / dist();\n    }\n    Point rotate(T rad) const {\n        static_assert(is_floating_point_v<T>);\n\
     \        T c = cosl(rad), s = sinl(rad);\n        T tx = x * c - y * s;\n    \
@@ -150,18 +157,17 @@ data:
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
     \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n"
-  code: "#pragma once\n#include <cmath>\n#include <numeric>\n#include <type_traits>\n\
-    #include <utility>\nusing namespace std;\n\nnamespace geometry {\n\ntemplate<typename\
+  code: "#pragma once\n#include \"../template.hpp\"\n\nnamespace geometry {\n\ntemplate<typename\
     \ T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T) <= 4,\
     \ long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps() { return\
     \ is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr T\
-    \ inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename T>\nconstexpr\
-    \ T PI() {\n    static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n\
-    }\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>)\
-    \ {\n        return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n\
-    \    }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ?\
-    \ 0 : a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n\
-    \    constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
+    \ inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr T PI() {\n \
+    \   static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n}\n\ntemplate<typename\
+    \ T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>) {\n    \
+    \    return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n   \
+    \ }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ? 0 :\
+    \ a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n   \
+    \ constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
     \ pair<T, T> &pt) : x(pt.first), y(pt.second) {}\n    static constexpr Point inf_point()\
     \ { return Point(inf<T>(), inf<T>()); }\n    Point &operator+=(const Point &p)\
     \ {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point\
@@ -205,7 +211,8 @@ data:
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
     \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry"
-  dependsOn: []
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/geometry/common.hpp
   requiredBy:
@@ -217,8 +224,8 @@ data:
   - src/geometry/circle.hpp
   - src/geometry/incircle_of_triangle.hpp
   - src/geometry/circumcircle_of_triangle.hpp
-  timestamp: '2026-10-26 18:50:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/geometry/circle_common_tangents.test.cpp
   - test/geometry/circle_crosspoint_with_line.test.cpp

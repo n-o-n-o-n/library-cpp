@@ -1,11 +1,14 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/convolution/arbitrary_mod_convolution.hpp
     title: src/convolution/arbitrary_mod_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/convolution_ll.hpp
     title: src/convolution/convolution_ll.hpp
   _extendedVerifiedWith:
@@ -36,9 +39,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution/middle_product.test.cpp
     title: test/convolution/middle_product.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/convolution/min_plus_convolution_convex_arbitrary.test.cpp
-    title: test/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/convolution/relaxed_convolution.test.cpp
     title: test/convolution/relaxed_convolution.test.cpp
@@ -117,73 +117,77 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/best_theorem.test.cpp
     title: test/graph/best_theorem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/matrix_tree_theorem.test.cpp
     title: test/graph/matrix_tree_theorem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/berlekamp_massey.test.cpp
     title: test/math/berlekamp_massey.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bostan_mori_only_convolution.test.cpp
     title: test/math/bostan_mori_only_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/partition.test.cpp
     title: test/math/enumerative_combinatorics/partition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
     title: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/subset_sum.test.cpp
     title: test/math/enumerative_combinatorics/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/matrix/matrix_det.test.cpp
     title: test/math/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/matrix/matrix_inv.test.cpp
     title: test/math/matrix/matrix_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/matrix/matrix_pow.test.cpp
     title: test/math/matrix/matrix_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/matrix/matrix_prod.test.cpp
     title: test/math/matrix/matrix_prod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/matrix/matrix_rank.test.cpp
     title: test/math/matrix/matrix_rank.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/hld.test.cpp
     title: test/tree/hld.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/rerooting_dp.test.cpp
     title: test/tree/rerooting_dp.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#include\
-    \ <cassert>\nusing namespace std;\n\ntemplate<unsigned int MOD>\nstruct modint\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/modint/modint.hpp\"\n\ntemplate<unsigned int MOD>\nstruct modint\
     \ {\n    constexpr modint() : x(0) {}\n    template<typename T>\n    constexpr\
     \ modint(T v) {\n        int y = v % (int)mod();\n        if (y < 0) y += mod();\n\
     \        x = (unsigned int)y;\n    }\n    static constexpr modint raw(int v) {\n\
@@ -220,35 +224,35 @@ data:
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
     \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\nusing namespace std;\n\
-    \ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n\
-    \    template<typename T>\n    constexpr modint(T v) {\n        int y = v % (int)mod();\n\
-    \        if (y < 0) y += mod();\n        x = (unsigned int)y;\n    }\n    static\
-    \ constexpr modint raw(int v) {\n        modint a;\n        a.x = v;\n       \
-    \ return a;\n    }\n    static constexpr int mod() { return MOD; }\n    constexpr\
-    \ unsigned int val() const { return x; }\n    constexpr modint& operator++() {\n\
-    \        x++;\n        if (x == mod()) x = 0;\n        return *this;\n    }\n\
-    \    constexpr modint& operator--() {\n        if (x == 0) x = mod();\n      \
-    \  x--;\n        return *this;\n    }\n    constexpr modint operator++(int) {\n\
-    \        modint res = *this;\n        ++*this;\n        return res;\n    }\n \
-    \   constexpr modint operator--(int) {\n        modint res = *this;\n        --*this;\n\
-    \        return res;\n    }\n    constexpr modint& operator+=(const modint &r)\
-    \ {\n        x += r.x;\n        if (x >= mod()) x -= mod();\n        return *this;\n\
-    \    }\n    constexpr modint& operator-=(const modint &r) {\n        x -= r.x;\n\
-    \        if (x >= mod()) x += mod();\n        return *this;\n    }\n    constexpr\
-    \ modint& operator*=(const modint &r) {\n        unsigned long long y = x;\n \
-    \       y *= r.x;\n        x = (unsigned int)(y % mod());\n        return *this;\n\
-    \    }\n    constexpr modint &operator/=(const modint &r) {\n        return *this\
-    \ = *this * r.inv();\n    }\n    friend constexpr modint operator+(const modint\
-    \ &a, const modint &b) {\n        return modint(a) += b;\n    }\n    friend constexpr\
-    \ modint operator-(const modint &a, const modint &b) {\n        return modint(a)\
-    \ -= b;\n    }\n    friend constexpr modint operator*(const modint &a, const modint\
-    \ &b) {\n        return modint(a) *= b;\n    }\n    friend constexpr modint operator/(const\
-    \ modint &a, const modint &b) {\n        return modint(a) /= b;\n    }\n    friend\
-    \ constexpr bool operator==(const modint &a, const modint &b) {\n        return\
-    \ a.x == b.x;\n    }\n    friend constexpr bool operator!=(const modint &a, const\
-    \ modint &b) {\n        return a.x != b.x;\n    }\n    constexpr modint operator+()\
-    \ const { return *this; }\n    constexpr modint operator-() const { return modint()\
+  code: "#pragma once\n#include \"../template.hpp\"\n\ntemplate<unsigned int MOD>\n\
+    struct modint {\n    constexpr modint() : x(0) {}\n    template<typename T>\n\
+    \    constexpr modint(T v) {\n        int y = v % (int)mod();\n        if (y <\
+    \ 0) y += mod();\n        x = (unsigned int)y;\n    }\n    static constexpr modint\
+    \ raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n    }\n\
+    \    static constexpr int mod() { return MOD; }\n    constexpr unsigned int val()\
+    \ const { return x; }\n    constexpr modint& operator++() {\n        x++;\n  \
+    \      if (x == mod()) x = 0;\n        return *this;\n    }\n    constexpr modint&\
+    \ operator--() {\n        if (x == 0) x = mod();\n        x--;\n        return\
+    \ *this;\n    }\n    constexpr modint operator++(int) {\n        modint res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    constexpr modint operator--(int)\
+    \ {\n        modint res = *this;\n        --*this;\n        return res;\n    }\n\
+    \    constexpr modint& operator+=(const modint &r) {\n        x += r.x;\n    \
+    \    if (x >= mod()) x -= mod();\n        return *this;\n    }\n    constexpr\
+    \ modint& operator-=(const modint &r) {\n        x -= r.x;\n        if (x >= mod())\
+    \ x += mod();\n        return *this;\n    }\n    constexpr modint& operator*=(const\
+    \ modint &r) {\n        unsigned long long y = x;\n        y *= r.x;\n       \
+    \ x = (unsigned int)(y % mod());\n        return *this;\n    }\n    constexpr\
+    \ modint &operator/=(const modint &r) {\n        return *this = *this * r.inv();\n\
+    \    }\n    friend constexpr modint operator+(const modint &a, const modint &b)\
+    \ {\n        return modint(a) += b;\n    }\n    friend constexpr modint operator-(const\
+    \ modint &a, const modint &b) {\n        return modint(a) -= b;\n    }\n    friend\
+    \ constexpr modint operator*(const modint &a, const modint &b) {\n        return\
+    \ modint(a) *= b;\n    }\n    friend constexpr modint operator/(const modint &a,\
+    \ const modint &b) {\n        return modint(a) /= b;\n    }\n    friend constexpr\
+    \ bool operator==(const modint &a, const modint &b) {\n        return a.x == b.x;\n\
+    \    }\n    friend constexpr bool operator!=(const modint &a, const modint &b)\
+    \ {\n        return a.x != b.x;\n    }\n    constexpr modint operator+() const\
+    \ { return *this; }\n    constexpr modint operator-() const { return modint()\
     \ - *this; }\n    constexpr modint pow(long long k) const {\n        assert(k\
     \ >= 0);\n        modint a = *this;\n        modint res = 1;\n        while (k\
     \ > 0) {\n            if (k & 1) res *= a;\n            a *= a;\n            k\
@@ -257,14 +261,15 @@ data:
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
     \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};"
-  dependsOn: []
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/modint/modint.hpp
   requiredBy:
   - src/convolution/convolution_ll.hpp
   - src/convolution/arbitrary_mod_convolution.hpp
-  timestamp: '2026-10-29 12:38:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/graph/best_theorem.test.cpp
   - test/graph/matrix_tree_theorem.test.cpp
@@ -310,7 +315,6 @@ data:
   - test/convolution/relaxed_convolution.test.cpp
   - test/convolution/convolution_ll.test.cpp
   - test/convolution/middle_product.test.cpp
-  - test/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - test/tree/hld.test.cpp
   - test/tree/rerooting_dp.test.cpp
   - test/tree/centroid_decomposition.test.cpp

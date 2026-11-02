@@ -4,12 +4,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/geometry/circle.hpp
     title: Circle
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/line.hpp
     title: Line
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,19 +25,22 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_D
   bundledCode: "#line 1 \"test/geometry/circle_crosspoint_with_line.test.cpp\"\n#define\
-    \ ERROR 0.000001\n\n#line 2 \"src/geometry/circle.hpp\"\n#include <array>\n#line\
-    \ 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n#include\
-    \ <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace geometry\
-    \ {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T)\
-    \ <= 4, long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps()\
-    \ { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr\
-    \ T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename T>\nconstexpr\
-    \ T PI() {\n    static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n\
-    }\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>)\
-    \ {\n        return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n\
-    \    }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ?\
-    \ 0 : a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n\
-    \    constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
+    \ ERROR 0.000001\n\n#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T\
+    \ inf() { return numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename\
+    \ T2>\nbool chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/geometry/common.hpp\"\n\nnamespace geometry {\n\ntemplate<typename\
+    \ T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T) <= 4,\
+    \ long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps() { return\
+    \ is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr T\
+    \ inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr T PI() {\n \
+    \   static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n}\n\ntemplate<typename\
+    \ T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>) {\n    \
+    \    return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n   \
+    \ }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ? 0 :\
+    \ a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n   \
+    \ constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
     \ pair<T, T> &pt) : x(pt.first), y(pt.second) {}\n    static constexpr Point inf_point()\
     \ { return Point(inf<T>(), inf<T>()); }\n    Point &operator+=(const Point &p)\
     \ {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point\
@@ -77,7 +83,7 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 3 \"src/geometry/line.hpp\"\
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"src/geometry/line.hpp\"\
     \n\nnamespace geometry {\n\ntemplate<typename T>\nstruct Line {\n    constexpr\
     \ Line() = default;\n    constexpr Line(T _a, T _b, T _c) : a(_a), b(_b), c(_c)\
     \ {}\n    constexpr Line(const Point<T> &p, const Point<T> &q) : a(q.y - p.y),\
@@ -111,13 +117,13 @@ data:
     \ Line<T> &l2) { return l1.crossppoint(l2); }\ntemplate<typename T>\ninline T\
     \ dist(const Line<T> &l, const Point<T> &p) { return l.dist(p); }\ntemplate<typename\
     \ T>\ninline T dist(const Point<T> &p, const Line<T> &l) { return l.dist(p); }\n\
-    \n\n} // namespace geometry\n#line 4 \"src/geometry/circle.hpp\"\nusing namespace\
-    \ std;\n\nnamespace geometry {\n\ntemplate<typename T>\nstruct Circle {\n    Point<T>\
-    \ p;\n    T r;\n    static constexpr Point<T> ip = Point<T>::inf_point();\n  \
-    \  constexpr Circle() = default;\n    constexpr Circle(const Point<T> &_p, const\
-    \ T &_r) : p(_p), r(_r) {}\n    int count_common_tangents(const Circle<T> &other)\
-    \ const {\n        if (eq(p, other.p) && eq(r, other.r)) return -1;\n        W<T>\
-    \ s = r + other.r, d = abs(r - other.r);\n        W<T> d2 = norm(p - other.p);\n\
+    \n\n} // namespace geometry\n#line 4 \"src/geometry/circle.hpp\"\n\nnamespace\
+    \ geometry {\n\ntemplate<typename T>\nstruct Circle {\n    Point<T> p;\n    T\
+    \ r;\n    static constexpr Point<T> ip = Point<T>::inf_point();\n    constexpr\
+    \ Circle() = default;\n    constexpr Circle(const Point<T> &_p, const T &_r) :\
+    \ p(_p), r(_r) {}\n    int count_common_tangents(const Circle<T> &other) const\
+    \ {\n        if (eq(p, other.p) && eq(r, other.r)) return -1;\n        W<T> s\
+    \ = r + other.r, d = abs(r - other.r);\n        W<T> d2 = norm(p - other.p);\n\
     \        auto comp = [d2] (W<T> x) {\n            W<T> d = d2 - x * x;\n     \
     \       W<T> b = eps<T>() * (2 * x + eps<T>());\n            return d > b ? 1\
     \ : d < -b ? -1 : 0;\n        };\n        int out = comp(s), in = comp(d);\n \
@@ -165,36 +171,35 @@ data:
     \ 2> tangent_points(const Point<T> &p, const Circle<T> &c) { return c.tangent_points(p);\
     \ }\ntemplate<typename T>\ninline array<Line<T>, 4> common_tangents(const Circle<T>\
     \ &c1, const Circle<T> &c2) { return c1.common_tangents(c2); }\n\n} // namespace\
-    \ geometry\n#line 4 \"test/geometry/circle_crosspoint_with_line.test.cpp\"\n\n\
+    \ geometry\n#line 5 \"test/geometry/circle_crosspoint_with_line.test.cpp\"\n\n\
     #define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_D\"\
-    \n\n#include <iomanip>\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    geometry::Point<double> P;\n    double R;\n    cin\
-    \ >> P.x >> P.y >> R;\n    geometry::Circle<double> C(P, R);\n    int Q;\n   \
-    \ cin >> Q;\n    for (geometry::Point<double> P1, P2; Q--; ) {\n        cin >>\
-    \ P1.x >> P1.y >> P2.x >> P2.y;\n        geometry::Line<double> L(P1, P2);\n \
-    \       array<geometry::Point<double>, 2> cp = geometry::crosspoint(C, L);\n \
-    \       if (cp[0] > cp[1]) swap(cp[0], cp[1]);\n        cout << fixed << setprecision(16)\
-    \ << cp[0].x << ' ' << cp[0].y << ' ' << cp[1].x << ' ' << cp[1].y << '\\n';\n\
-    \    }\n}\n"
-  code: "#define ERROR 0.000001\n\n#include \"../../src/geometry/circle.hpp\"\n\n\
-    #define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_D\"\
-    \n\n#include <iomanip>\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    geometry::Point<double> P;\n    double R;\n    cin\
-    \ >> P.x >> P.y >> R;\n    geometry::Circle<double> C(P, R);\n    int Q;\n   \
-    \ cin >> Q;\n    for (geometry::Point<double> P1, P2; Q--; ) {\n        cin >>\
-    \ P1.x >> P1.y >> P2.x >> P2.y;\n        geometry::Line<double> L(P1, P2);\n \
-    \       array<geometry::Point<double>, 2> cp = geometry::crosspoint(C, L);\n \
-    \       if (cp[0] > cp[1]) swap(cp[0], cp[1]);\n        cout << fixed << setprecision(16)\
-    \ << cp[0].x << ' ' << cp[0].y << ' ' << cp[1].x << ' ' << cp[1].y << '\\n';\n\
-    \    }\n}"
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  geometry::Point<double> P;\n    double R;\n    cin >> P.x >> P.y >> R;\n  \
+    \  geometry::Circle<double> C(P, R);\n    int Q;\n    cin >> Q;\n    for (geometry::Point<double>\
+    \ P1, P2; Q--; ) {\n        cin >> P1.x >> P1.y >> P2.x >> P2.y;\n        geometry::Line<double>\
+    \ L(P1, P2);\n        array<geometry::Point<double>, 2> cp = geometry::crosspoint(C,\
+    \ L);\n        if (cp[0] > cp[1]) swap(cp[0], cp[1]);\n        cout << fixed <<\
+    \ setprecision(16) << cp[0].x << ' ' << cp[0].y << ' ' << cp[1].x << ' ' << cp[1].y\
+    \ << '\\n';\n    }\n}\n"
+  code: "#define ERROR 0.000001\n\n#include \"../../src/template.hpp\"\n#include \"\
+    ../../src/geometry/circle.hpp\"\n\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_D\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  geometry::Point<double> P;\n    double R;\n    cin >> P.x >> P.y >> R;\n  \
+    \  geometry::Circle<double> C(P, R);\n    int Q;\n    cin >> Q;\n    for (geometry::Point<double>\
+    \ P1, P2; Q--; ) {\n        cin >> P1.x >> P1.y >> P2.x >> P2.y;\n        geometry::Line<double>\
+    \ L(P1, P2);\n        array<geometry::Point<double>, 2> cp = geometry::crosspoint(C,\
+    \ L);\n        if (cp[0] > cp[1]) swap(cp[0], cp[1]);\n        cout << fixed <<\
+    \ setprecision(16) << cp[0].x << ' ' << cp[0].y << ' ' << cp[1].x << ' ' << cp[1].y\
+    \ << '\\n';\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/geometry/circle.hpp
   - src/geometry/line.hpp
   - src/geometry/common.hpp
   isVerificationFile: true
   path: test/geometry/circle_crosspoint_with_line.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/geometry/circle_crosspoint_with_line.test.cpp

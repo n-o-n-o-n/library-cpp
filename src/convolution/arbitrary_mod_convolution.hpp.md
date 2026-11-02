@@ -1,27 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/convolution.hpp
     title: src/convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/ext_gcd.hpp
     title: Extended GCD
   - icon: ':heavy_check_mark:'
     path: src/math/number_theory/garner.hpp
     title: Garner
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -32,9 +35,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/convolution/arbitrary_mod_convolution.hpp\"\n#include\
-    \ <vector>\n#line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#include\
-    \ <cassert>\nusing namespace std;\n\ntemplate<unsigned int MOD>\nstruct modint\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/modint/modint.hpp\"\n\ntemplate<unsigned int MOD>\nstruct modint\
     \ {\n    constexpr modint() : x(0) {}\n    template<typename T>\n    constexpr\
     \ modint(T v) {\n        int y = v % (int)mod();\n        if (y < 0) y += mod();\n\
     \        x = (unsigned int)y;\n    }\n    static constexpr modint raw(int v) {\n\
@@ -70,73 +76,70 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 3 \"src/math/number_theory/prime.hpp\"\
-    \n#include <array>\n#line 5 \"src/math/number_theory/prime.hpp\"\n#include <cstdint>\n\
-    #include <iterator>\n#include <numeric>\n#include <type_traits>\n#include <utility>\n\
-    #line 4 \"src/random/xor_shift.hpp\"\nusing namespace std;\n\ntemplate<typename\
-    \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
-    \ constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr\
-    \ U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n            x ^=\
-    \ x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n        } else\
-    \ {\n            x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x <<\
-    \ 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T lo, T\
-    \ hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n   \
-    \ U x;\n};\n#line 12 \"src/math/number_theory/prime.hpp\"\n\nusing namespace std;\n\
-    \nnamespace prime {\n\ntemplate<typename T>\nstruct montgomery_modint {\n    using\
-    \ U = conditional_t<(sizeof(T) <= 4), uint32_t, uint64_t>;\n    using W = conditional_t<(sizeof(T)\
-    \ <= 4), uint64_t, unsigned __int128>;\n    constexpr explicit montgomery_modint(U\
-    \ _mod, U v = 0) {\n        mod = _mod;\n        inv = get_inv_mod(mod);\n   \
-    \     r2 = get_r2(mod);\n        x = reduce(W(v % mod) * r2);\n    }\n    constexpr\
-    \ U modulus() const { return mod; }\n    constexpr U val() const { return reduce(x);\
-    \ }\n    constexpr U raw() const { return x; }\n    constexpr montgomery_modint\
-    \ make(U value) const {\n        montgomery_modint res = *this;\n        res.x\
-    \ = reduce(W(value % mod) * r2);\n        return res;\n    }\n    constexpr montgomery_modint&\
-    \ operator+=(const montgomery_modint& r) {\n        assert(mod == r.mod);\n  \
-    \      x = x >= mod - r.x ? x - (mod - r.x) : x + r.x;\n        return *this;\n\
-    \    }\n    constexpr montgomery_modint& operator-=(const montgomery_modint& r)\
-    \ {\n        assert(mod == r.mod);\n        x = x >= r.x ? x - r.x : mod - (r.x\
-    \ - x);\n        return *this;\n    }\n    constexpr montgomery_modint& operator*=(const\
-    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = reduce(W(x)\
-    \ * r.x);\n        return *this;\n    }\n    friend constexpr montgomery_modint\
-    \ operator+(montgomery_modint l, const montgomery_modint& r) { return l += r;\
-    \ }\n    friend constexpr montgomery_modint operator-(montgomery_modint l, const\
-    \ montgomery_modint& r) { return l -= r; }\n    friend constexpr montgomery_modint\
-    \ operator*(montgomery_modint l, const montgomery_modint& r) { return l *= r;\
-    \ }\n    friend constexpr bool operator==(const montgomery_modint& l, const montgomery_modint&\
-    \ r) {\n        assert(l.mod == r.mod);\n        return l.x == r.x;\n    }\n \
-    \   constexpr montgomery_modint pow(U k) const {\n        montgomery_modint a\
-    \ = *this, res = make(1);\n        while (k) {\n            if (k & 1) res *=\
-    \ a;\n            a *= a;\n            k >>= 1;\n        }\n        return res;\n\
-    \    }\nprivate:\n    static constexpr int bits = sizeof(U) * 8;\n    U mod, inv,\
-    \ r2, x;\n    static constexpr U get_inv_mod(U mod) {\n        U inv = 1;\n  \
-    \      for (int i = 0; i < (bits == 32 ? 5 : 6); ++i) inv *= 2 - mod * inv;\n\
-    \        return -inv;\n    }\n    static constexpr U get_r2(U mod) {\n       \
-    \ const U r = U((W(1) << bits) % mod);\n        return U(W(r) * r % mod);\n  \
-    \  }\n    constexpr U reduce(W x) const {\n        const U q = U(x) * inv;\n \
-    \       const W sum = x + W(q) * mod;\n        W res = sum >> bits;\n        if\
-    \ constexpr (is_unsigned_v<T>) {\n            if (sum < x) res += W(1) << bits;\n\
-    \        }\n        return U(res >= mod ? res - mod : res);\n    }\n};\n\ntemplate<typename\
-    \ T>\nconstexpr bool is_prime(T n) {\n    using U = typename montgomery_modint<T>::U;\n\
-    \    if (n <= 1) return false;\n    if (n == 2) return true;\n    if ((n & 1)\
-    \ == 0) return false;\n    using mint = montgomery_modint<T>;\n    mint p{U(n)};\n\
-    \    const mint one = p.make(1), neg1 = p.make(U(n - 1));\n    auto miller_rabin\
-    \ = [&] (const auto& ps) constexpr -> bool {\n        U d = p.modulus() - 1;\n\
-    \        int s = 0;\n        while ((d & 1) == 0) {\n            d >>= 1;\n  \
-    \          ++s;\n        }\n        for (int m : ps) {\n            const U a\
-    \ = U(m) % p.modulus();\n            if (a == 0) continue;\n            mint x\
-    \ = p.make(a);\n            x = x.pow(d);\n            if (x == one || x == neg1)\
-    \ continue;\n            bool f = false;\n            for (int i = 1; i < s; ++i)\
-    \ {\n                x *= x;\n                if (x == neg1) {\n             \
-    \       f = true;\n                    break;\n                }\n           \
-    \ }\n            if (!f) return false;\n        }\n        return true;\n    };\n\
-    \    if constexpr (sizeof(T) <= 4) {\n        return miller_rabin(array<int, 3>{2,\
-    \ 7, 61});\n    } else {\n        if (n < 4759123141LL) return miller_rabin(array<int,\
-    \ 3>{2, 7, 61});\n        return miller_rabin(array<int, 7>{2, 325, 9375, 28178,\
-    \ 450775, 9780504, 1795265022});\n    }\n}\n\ntemplate<typename T>\nconstexpr\
-    \ vector<T> prime_factor(T n) {\n    using U = typename montgomery_modint<T>::U;\n\
-    \    if (n <= 1) return {};\n    if (is_prime(n)) return {n};\n    auto rho =\
-    \ [] (T n) constexpr -> T {\n        for (int p : {2, 3, 5, 7}) {\n          \
-    \  if (n % p == 0) return T(p);\n        }\n        using mint = montgomery_modint<T>;\n\
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 3 \"src/random/xor_shift.hpp\"\
+    \n\ntemplate<typename T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n\
+    \    constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n  \
+    \  constexpr U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n     \
+    \       x ^= x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n \
+    \       } else {\n            x ^= x << 13;\n            x ^= x >> 7;\n      \
+    \      x ^= x << 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T\
+    \ lo, T hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n\
+    \    U x;\n};\n#line 4 \"src/math/number_theory/prime.hpp\"\n\n\nnamespace prime\
+    \ {\n\ntemplate<typename T>\nstruct montgomery_modint {\n    using U = conditional_t<(sizeof(T)\
+    \ <= 4), uint32_t, uint64_t>;\n    using W = conditional_t<(sizeof(T) <= 4), uint64_t,\
+    \ unsigned __int128>;\n    constexpr explicit montgomery_modint(U _mod, U v =\
+    \ 0) {\n        mod = _mod;\n        inv = get_inv_mod(mod);\n        r2 = get_r2(mod);\n\
+    \        x = reduce(W(v % mod) * r2);\n    }\n    constexpr U modulus() const\
+    \ { return mod; }\n    constexpr U val() const { return reduce(x); }\n    constexpr\
+    \ U raw() const { return x; }\n    constexpr montgomery_modint make(U value) const\
+    \ {\n        montgomery_modint res = *this;\n        res.x = reduce(W(value %\
+    \ mod) * r2);\n        return res;\n    }\n    constexpr montgomery_modint& operator+=(const\
+    \ montgomery_modint& r) {\n        assert(mod == r.mod);\n        x = x >= mod\
+    \ - r.x ? x - (mod - r.x) : x + r.x;\n        return *this;\n    }\n    constexpr\
+    \ montgomery_modint& operator-=(const montgomery_modint& r) {\n        assert(mod\
+    \ == r.mod);\n        x = x >= r.x ? x - r.x : mod - (r.x - x);\n        return\
+    \ *this;\n    }\n    constexpr montgomery_modint& operator*=(const montgomery_modint&\
+    \ r) {\n        assert(mod == r.mod);\n        x = reduce(W(x) * r.x);\n     \
+    \   return *this;\n    }\n    friend constexpr montgomery_modint operator+(montgomery_modint\
+    \ l, const montgomery_modint& r) { return l += r; }\n    friend constexpr montgomery_modint\
+    \ operator-(montgomery_modint l, const montgomery_modint& r) { return l -= r;\
+    \ }\n    friend constexpr montgomery_modint operator*(montgomery_modint l, const\
+    \ montgomery_modint& r) { return l *= r; }\n    friend constexpr bool operator==(const\
+    \ montgomery_modint& l, const montgomery_modint& r) {\n        assert(l.mod ==\
+    \ r.mod);\n        return l.x == r.x;\n    }\n    constexpr montgomery_modint\
+    \ pow(U k) const {\n        montgomery_modint a = *this, res = make(1);\n    \
+    \    while (k) {\n            if (k & 1) res *= a;\n            a *= a;\n    \
+    \        k >>= 1;\n        }\n        return res;\n    }\nprivate:\n    static\
+    \ constexpr int bits = sizeof(U) * 8;\n    U mod, inv, r2, x;\n    static constexpr\
+    \ U get_inv_mod(U mod) {\n        U inv = 1;\n        for (int i = 0; i < (bits\
+    \ == 32 ? 5 : 6); ++i) inv *= 2 - mod * inv;\n        return -inv;\n    }\n  \
+    \  static constexpr U get_r2(U mod) {\n        const U r = U((W(1) << bits) %\
+    \ mod);\n        return U(W(r) * r % mod);\n    }\n    constexpr U reduce(W x)\
+    \ const {\n        const U q = U(x) * inv;\n        const W sum = x + W(q) * mod;\n\
+    \        W res = sum >> bits;\n        if constexpr (is_unsigned_v<T>) {\n   \
+    \         if (sum < x) res += W(1) << bits;\n        }\n        return U(res >=\
+    \ mod ? res - mod : res);\n    }\n};\n\ntemplate<typename T>\nconstexpr bool is_prime(T\
+    \ n) {\n    using U = typename montgomery_modint<T>::U;\n    if (n <= 1) return\
+    \ false;\n    if (n == 2) return true;\n    if ((n & 1) == 0) return false;\n\
+    \    using mint = montgomery_modint<T>;\n    mint p{U(n)};\n    const mint one\
+    \ = p.make(1), neg1 = p.make(U(n - 1));\n    auto miller_rabin = [&] (const auto&\
+    \ ps) constexpr -> bool {\n        U d = p.modulus() - 1;\n        int s = 0;\n\
+    \        while ((d & 1) == 0) {\n            d >>= 1;\n            ++s;\n    \
+    \    }\n        for (int m : ps) {\n            const U a = U(m) % p.modulus();\n\
+    \            if (a == 0) continue;\n            mint x = p.make(a);\n        \
+    \    x = x.pow(d);\n            if (x == one || x == neg1) continue;\n       \
+    \     bool f = false;\n            for (int i = 1; i < s; ++i) {\n           \
+    \     x *= x;\n                if (x == neg1) {\n                    f = true;\n\
+    \                    break;\n                }\n            }\n            if\
+    \ (!f) return false;\n        }\n        return true;\n    };\n    if constexpr\
+    \ (sizeof(T) <= 4) {\n        return miller_rabin(array<int, 3>{2, 7, 61});\n\
+    \    } else {\n        if (n < 4759123141LL) return miller_rabin(array<int, 3>{2,\
+    \ 7, 61});\n        return miller_rabin(array<int, 7>{2, 325, 9375, 28178, 450775,\
+    \ 9780504, 1795265022});\n    }\n}\n\ntemplate<typename T>\nconstexpr vector<T>\
+    \ prime_factor(T n) {\n    using U = typename montgomery_modint<T>::U;\n    if\
+    \ (n <= 1) return {};\n    if (is_prime(n)) return {n};\n    auto rho = [] (T\
+    \ n) constexpr -> T {\n        for (int p : {2, 3, 5, 7}) {\n            if (n\
+    \ % p == 0) return T(p);\n        }\n        using mint = montgomery_modint<T>;\n\
     \        mint p{U(n)};\n        xor_shift<T> eng(n);\n        while (true) {\n\
     \            mint u = p.make(U(eng(2, n - 1)));\n            mint v = u;\n   \
     \         mint c = p.make(U(eng(1, n - 1)));\n            U d = 1;\n         \
@@ -168,26 +171,26 @@ data:
     \  auto [p, k] = f[i];\n        for (int j = 0; j <= k; j++) {\n            rec(rec,\
     \ i + 1, x);\n            if (j < k) x *= p;\n        }\n    };\n    rec(rec,\
     \ 0, 1);\n    sort(res.begin(), res.end());\n    return res;\n}\n\n\n} // namespace\
-    \ prime\n#line 4 \"src/convolution/ntt.hpp\"\nusing namespace std;\n\ntemplate<typename\
-    \ mint>\nstruct Number_Theoretic_Transform {\n    static mint get_root() {\n \
-    \       init();\n        return root;\n    }\n    template<typename Vector>\n\
-    \    static void ntt(Vector &f) {\n        init();\n        int n = f.size();\n\
-    \        assert((n & (n - 1)) == 0);\n        int h = 0;\n        while ((1 <<\
-    \ h) < n) h++;\n        int len = 0;\n        while (len < h) {\n            if\
-    \ (len == h - 1) {\n                int p = 1 << (h - len - 1);\n            \
-    \    mint r = 1;\n                for (int s = 0; s < 1 << len; s++) {\n     \
-    \               int j = s << (h - len);\n                    for (int i = 0; i\
-    \ < p; i++) {\n                        mint a = f[i + j], b = f[i + j + p] * r;\n\
-    \                        f[i + j] = a + b;\n                        f[i + j +\
-    \ p] = a - b;\n                    }\n                    if (s + 1 != (1 << len))\
-    \ {\n                        r *= rt2[__builtin_ctz(~s)];\n                  \
-    \  }\n                }\n                len++;\n            } else {\n      \
-    \          int p = 1 << (h - len - 2);\n                mint r = 1, imag = dw[2];\n\
-    \                for (int s = 0; s < 1 << len; s++) {\n                    mint\
-    \ r2 = r * r;\n                    mint r3 = r * r2;\n                    int\
-    \ j = s << (h - len);\n                    for (int i = 0; i < p; i++) {\n   \
-    \                     unsigned long long m2 = (unsigned long long)mod * mod;\n\
-    \                        unsigned long long a0 = (unsigned long long)f[i + j].val();\n\
+    \ prime\n#line 4 \"src/convolution/ntt.hpp\"\n\ntemplate<typename mint>\nstruct\
+    \ Number_Theoretic_Transform {\n    static mint get_root() {\n        init();\n\
+    \        return root;\n    }\n    template<typename Vector>\n    static void ntt(Vector\
+    \ &f) {\n        init();\n        int n = f.size();\n        assert((n & (n -\
+    \ 1)) == 0);\n        int h = 0;\n        while ((1 << h) < n) h++;\n        int\
+    \ len = 0;\n        while (len < h) {\n            if (len == h - 1) {\n     \
+    \           int p = 1 << (h - len - 1);\n                mint r = 1;\n       \
+    \         for (int s = 0; s < 1 << len; s++) {\n                    int j = s\
+    \ << (h - len);\n                    for (int i = 0; i < p; i++) {\n         \
+    \               mint a = f[i + j], b = f[i + j + p] * r;\n                   \
+    \     f[i + j] = a + b;\n                        f[i + j + p] = a - b;\n     \
+    \               }\n                    if (s + 1 != (1 << len)) {\n          \
+    \              r *= rt2[__builtin_ctz(~s)];\n                    }\n         \
+    \       }\n                len++;\n            } else {\n                int p\
+    \ = 1 << (h - len - 2);\n                mint r = 1, imag = dw[2];\n         \
+    \       for (int s = 0; s < 1 << len; s++) {\n                    mint r2 = r\
+    \ * r;\n                    mint r3 = r * r2;\n                    int j = s <<\
+    \ (h - len);\n                    for (int i = 0; i < p; i++) {\n            \
+    \            unsigned long long m2 = (unsigned long long)mod * mod;\n        \
+    \                unsigned long long a0 = (unsigned long long)f[i + j].val();\n\
     \                        unsigned long long a1 = (unsigned long long)f[i + j +\
     \ p].val() * r.val();\n                        unsigned long long a2 = (unsigned\
     \ long long)f[i + j + p + p].val() * r2.val();\n                        unsigned\
@@ -259,64 +262,64 @@ data:
     template<typename mint>\nvector<mint> Number_Theoretic_Transform<mint>::irt2 =\
     \ vector<mint>();\ntemplate<typename mint>\nvector<mint> Number_Theoretic_Transform<mint>::rt3\
     \ = vector<mint>();\ntemplate<typename mint>\nvector<mint> Number_Theoretic_Transform<mint>::irt3\
-    \ = vector<mint>();\n#line 4 \"src/convolution/convolution.hpp\"\nusing namespace\
-    \ std;\n\ntemplate<typename mint>\nvector<mint> convolution(vector<mint> f, vector<mint>\
-    \ g, int deg = -1) {\n    using NTT = Number_Theoretic_Transform<mint>;\n    int\
-    \ n = f.size(), m = g.size();\n    if (deg == -1) deg = n + m - 1;\n    if (n\
-    \ == 0 || m == 0) return {};\n    if (n <= 63 || m <= 63) {\n        if (n > m)\
-    \ {\n            swap(f, g);\n            swap(n, m);\n        }\n        vector<mint>\
-    \ h(deg);\n        for (int i = 0; i < n && i < deg; i++) {\n            for (int\
-    \ j = 0; j < m && i + j < deg; j++) h[i + j] += f[i] * g[j];\n        }\n    \
-    \    return h;\n    }\n    int sz = 1;\n    while (sz < n + m - 1) sz <<= 1;\n\
-    \    f.resize(sz);\n    NTT::ntt(f);\n    g.resize(sz);\n    NTT::ntt(g);\n  \
-    \  for (int i = 0; i < sz; i++) f[i] *= g[i];\n    NTT::intt(f);\n    f.resize(deg);\n\
-    \    return f;\n}\n#line 3 \"src/math/number_theory/ext_gcd.hpp\"\nusing namespace\
-    \ std;\n\n// find x, y s.t. ax + by = gcd(a, b) and return gcd(a, b)\ntemplate<typename\
-    \ T>\nT ext_gcd(T a, T b, T &x, T &y) {\n    T g = a;\n    if (b != 0) {\n   \
-    \     g = ext_gcd(b, a % b, y, x);\n        y -= (a / b) * x;\n    } else {\n\
-    \        x = 1;\n        y = 0;\n    }\n    return g;\n}\n#line 5 \"src/math/number_theory/garner.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T>\nT garner(const vector<T> &rems,\
-    \ vector<T> mods, T mod) {\n    assert(rems.size() == mods.size());\n    using\
-    \ W = conditional_t<(sizeof(T) <= 4), long long, __int128_t>;\n    mods.push_back(mod);\n\
-    \    int n = mods.size();\n    vector<T> c1(n, 1), c2(n, 0);\n    for (int i =\
-    \ 0; i < n - 1; i++) {\n        T m = mods[i], a = c1[i], b = (rems[i] - c2[i])\
-    \ % m;\n        if (b < 0) b += m;\n        T x, y;\n        T g = ext_gcd(a,\
-    \ m, x, y);\n        if (b % g != 0) return -1;\n        m /= g, b /= g;\n   \
-    \     x %= m;\n        if (x < 0) x += m;\n        T t = (W)x * b % m;\n     \
-    \   for (int j = i + 1; j < n; j++) {\n            c2[j] = ((W)t * c1[j] + c2[j])\
-    \ % mods[j];\n            c1[j] = (W)c1[j] * m % mods[j];\n        }\n    }\n\
-    \    return c2.back();\n}\n#line 6 \"src/convolution/arbitrary_mod_convolution.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename mint>\nvector<mint> arbitrary_mod_convolution(const\
-    \ vector<mint> &f, const vector<mint> &g) {\n    constexpr int m1 = 167772161,\
-    \ m2 = 469762049, m3 = 754974721;\n    constexpr int mod = mint::mod();\n    const\
-    \ vector<long long> mods = {m1, m2, m3};\n    using mint1 = modint<m1>;\n    using\
-    \ mint2 = modint<m2>;\n    using mint3 = modint<m3>;\n    int n = f.size(), m\
-    \ = g.size();\n    vector<mint1> f1(n), g1(m);\n    vector<mint2> f2(n), g2(m);\n\
-    \    vector<mint3> f3(n), g3(m);\n    for (int i = 0; i < n; i++) {\n        f1[i]\
-    \ = f[i].val();\n        f2[i] = f[i].val();\n        f3[i] = f[i].val();\n  \
-    \  }\n    for (int i = 0; i < m; i++) {\n        g1[i] = g[i].val();\n       \
-    \ g2[i] = g[i].val();\n        g3[i] = g[i].val();\n    }\n    auto h1 = convolution(f1,\
-    \ g1);\n    auto h2 = convolution(f2, g2);\n    auto h3 = convolution(f3, g3);\n\
-    \    vector<mint> h(n + m - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n \
-    \       h[i] = garner<long long>({h1[i].val(), h2[i].val(), h3[i].val()}, mods,\
-    \ mod);\n    }\n    return h;\n}\n"
-  code: "#pragma once\n#include <vector>\n#include \"../modint/modint.hpp\"\n#include\
-    \ \"convolution.hpp\"\n#include \"../math/number_theory/garner.hpp\"\nusing namespace\
-    \ std;\n\ntemplate<typename mint>\nvector<mint> arbitrary_mod_convolution(const\
-    \ vector<mint> &f, const vector<mint> &g) {\n    constexpr int m1 = 167772161,\
-    \ m2 = 469762049, m3 = 754974721;\n    constexpr int mod = mint::mod();\n    const\
-    \ vector<long long> mods = {m1, m2, m3};\n    using mint1 = modint<m1>;\n    using\
-    \ mint2 = modint<m2>;\n    using mint3 = modint<m3>;\n    int n = f.size(), m\
-    \ = g.size();\n    vector<mint1> f1(n), g1(m);\n    vector<mint2> f2(n), g2(m);\n\
-    \    vector<mint3> f3(n), g3(m);\n    for (int i = 0; i < n; i++) {\n        f1[i]\
-    \ = f[i].val();\n        f2[i] = f[i].val();\n        f3[i] = f[i].val();\n  \
-    \  }\n    for (int i = 0; i < m; i++) {\n        g1[i] = g[i].val();\n       \
-    \ g2[i] = g[i].val();\n        g3[i] = g[i].val();\n    }\n    auto h1 = convolution(f1,\
-    \ g1);\n    auto h2 = convolution(f2, g2);\n    auto h3 = convolution(f3, g3);\n\
-    \    vector<mint> h(n + m - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n \
-    \       h[i] = garner<long long>({h1[i].val(), h2[i].val(), h3[i].val()}, mods,\
-    \ mod);\n    }\n    return h;\n}\n"
+    \ = vector<mint>();\n#line 4 \"src/convolution/convolution.hpp\"\n\ntemplate<typename\
+    \ mint>\nvector<mint> convolution(vector<mint> f, vector<mint> g, int deg = -1)\
+    \ {\n    using NTT = Number_Theoretic_Transform<mint>;\n    int n = f.size(),\
+    \ m = g.size();\n    if (deg == -1) deg = n + m - 1;\n    if (n == 0 || m == 0)\
+    \ return {};\n    if (n <= 63 || m <= 63) {\n        if (n > m) {\n          \
+    \  swap(f, g);\n            swap(n, m);\n        }\n        vector<mint> h(deg);\n\
+    \        for (int i = 0; i < n && i < deg; i++) {\n            for (int j = 0;\
+    \ j < m && i + j < deg; j++) h[i + j] += f[i] * g[j];\n        }\n        return\
+    \ h;\n    }\n    int sz = 1;\n    while (sz < n + m - 1) sz <<= 1;\n    f.resize(sz);\n\
+    \    NTT::ntt(f);\n    g.resize(sz);\n    NTT::ntt(g);\n    for (int i = 0; i\
+    \ < sz; i++) f[i] *= g[i];\n    NTT::intt(f);\n    f.resize(deg);\n    return\
+    \ f;\n}\n#line 3 \"src/math/number_theory/ext_gcd.hpp\"\n\n// find x, y s.t. ax\
+    \ + by = gcd(a, b) and return gcd(a, b)\ntemplate<typename T>\nT ext_gcd(T a,\
+    \ T b, T &x, T &y) {\n    T g = a;\n    if (b != 0) {\n        g = ext_gcd(b,\
+    \ a % b, y, x);\n        y -= (a / b) * x;\n    } else {\n        x = 1;\n   \
+    \     y = 0;\n    }\n    return g;\n}\n#line 4 \"src/math/number_theory/garner.hpp\"\
+    \n\ntemplate<typename T>\nT garner(const vector<T> &rems, vector<T> mods, T mod)\
+    \ {\n    assert(rems.size() == mods.size());\n    using W = conditional_t<(sizeof(T)\
+    \ <= 4), long long, __int128_t>;\n    mods.push_back(mod);\n    int n = mods.size();\n\
+    \    vector<T> c1(n, 1), c2(n, 0);\n    for (int i = 0; i < n - 1; i++) {\n  \
+    \      T m = mods[i], a = c1[i], b = (rems[i] - c2[i]) % m;\n        if (b < 0)\
+    \ b += m;\n        T x, y;\n        T g = ext_gcd(a, m, x, y);\n        if (b\
+    \ % g != 0) return -1;\n        m /= g, b /= g;\n        x %= m;\n        if (x\
+    \ < 0) x += m;\n        T t = (W)x * b % m;\n        for (int j = i + 1; j < n;\
+    \ j++) {\n            c2[j] = ((W)t * c1[j] + c2[j]) % mods[j];\n            c1[j]\
+    \ = (W)c1[j] * m % mods[j];\n        }\n    }\n    return c2.back();\n}\n#line\
+    \ 6 \"src/convolution/arbitrary_mod_convolution.hpp\"\n\ntemplate<typename mint>\n\
+    vector<mint> arbitrary_mod_convolution(const vector<mint> &f, const vector<mint>\
+    \ &g) {\n    constexpr int m1 = 167772161, m2 = 469762049, m3 = 754974721;\n \
+    \   constexpr int mod = mint::mod();\n    const vector<long long> mods = {m1,\
+    \ m2, m3};\n    using mint1 = modint<m1>;\n    using mint2 = modint<m2>;\n   \
+    \ using mint3 = modint<m3>;\n    int n = f.size(), m = g.size();\n    vector<mint1>\
+    \ f1(n), g1(m);\n    vector<mint2> f2(n), g2(m);\n    vector<mint3> f3(n), g3(m);\n\
+    \    for (int i = 0; i < n; i++) {\n        f1[i] = f[i].val();\n        f2[i]\
+    \ = f[i].val();\n        f3[i] = f[i].val();\n    }\n    for (int i = 0; i < m;\
+    \ i++) {\n        g1[i] = g[i].val();\n        g2[i] = g[i].val();\n        g3[i]\
+    \ = g[i].val();\n    }\n    auto h1 = convolution(f1, g1);\n    auto h2 = convolution(f2,\
+    \ g2);\n    auto h3 = convolution(f3, g3);\n    vector<mint> h(n + m - 1);\n \
+    \   for (int i = 0; i < n + m - 1; i++) {\n        h[i] = garner<long long>({h1[i].val(),\
+    \ h2[i].val(), h3[i].val()}, mods, mod);\n    }\n    return h;\n}\n"
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"../modint/modint.hpp\"\
+    \n#include \"convolution.hpp\"\n#include \"../math/number_theory/garner.hpp\"\n\
+    \ntemplate<typename mint>\nvector<mint> arbitrary_mod_convolution(const vector<mint>\
+    \ &f, const vector<mint> &g) {\n    constexpr int m1 = 167772161, m2 = 469762049,\
+    \ m3 = 754974721;\n    constexpr int mod = mint::mod();\n    const vector<long\
+    \ long> mods = {m1, m2, m3};\n    using mint1 = modint<m1>;\n    using mint2 =\
+    \ modint<m2>;\n    using mint3 = modint<m3>;\n    int n = f.size(), m = g.size();\n\
+    \    vector<mint1> f1(n), g1(m);\n    vector<mint2> f2(n), g2(m);\n    vector<mint3>\
+    \ f3(n), g3(m);\n    for (int i = 0; i < n; i++) {\n        f1[i] = f[i].val();\n\
+    \        f2[i] = f[i].val();\n        f3[i] = f[i].val();\n    }\n    for (int\
+    \ i = 0; i < m; i++) {\n        g1[i] = g[i].val();\n        g2[i] = g[i].val();\n\
+    \        g3[i] = g[i].val();\n    }\n    auto h1 = convolution(f1, g1);\n    auto\
+    \ h2 = convolution(f2, g2);\n    auto h3 = convolution(f3, g3);\n    vector<mint>\
+    \ h(n + m - 1);\n    for (int i = 0; i < n + m - 1; i++) {\n        h[i] = garner<long\
+    \ long>({h1[i].val(), h2[i].val(), h3[i].val()}, mods, mod);\n    }\n    return\
+    \ h;\n}\n"
   dependsOn:
+  - src/template.hpp
   - src/modint/modint.hpp
   - src/convolution/convolution.hpp
   - src/convolution/ntt.hpp
@@ -327,7 +330,7 @@ data:
   isVerificationFile: false
   path: src/convolution/arbitrary_mod_convolution.hpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution/arbitrary_mod_convolution.test.cpp

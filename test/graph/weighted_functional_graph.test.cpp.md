@@ -1,33 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/graph/weighted_functional_graph.hpp
     title: Weighted Functional Graph
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/misc/compress.hpp
     title: Compress
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/monoid/max.hpp
     title: src/monoid/max.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/2242
     links:
     - https://yukicoder.me/problems/no/2242
   bundledCode: "#line 1 \"test/graph/weighted_functional_graph.test.cpp\"\n#define\
-    \ PROBLEM \"https://yukicoder.me/problems/no/2242\"\n\n#line 2 \"src/graph/weighted_functional_graph.hpp\"\
-    \n#include <cassert>\n#include <numeric>\n#include <utility>\n#include <vector>\n\
-    using namespace std;\n\ntemplate<typename Monoid, bool edge>\nstruct weighted_functional_graph\
-    \ {\n    using M = Monoid;\n    using S = typename Monoid::S;\n    weighted_functional_graph(int\
+    \ PROBLEM \"https://yukicoder.me/problems/no/2242\"\n\n#line 2 \"src/template.hpp\"\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
+    template<typename T>\nconstexpr T inf() { return numeric_limits<T>::max() / 2;\
+    \ }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return a\
+    \ > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/graph/weighted_functional_graph.hpp\"\
+    \n\ntemplate<typename Monoid, bool edge>\nstruct weighted_functional_graph {\n\
+    \    using M = Monoid;\n    using S = typename Monoid::S;\n    weighted_functional_graph(int\
     \ _n) : n(_n), f(1, vector<int>(_n, -1)), d(1, vector<S>(_n, M::e())) {}\n   \
     \ void add_edge(int u, int v, const S &x = M::e()) {\n        assert(0 <= u &&\
     \ u < n);\n        assert(0 <= v && v < n);\n        assert(f[0][u] == -1);\n\
@@ -61,14 +68,13 @@ data:
     \ td(n, M::e());\n            const vector<int> &g = f.back();\n            const\
     \ vector<S> &h = d.back();\n            for (int i = 0; i < n; i++) tf[i] = g[g[i]],\
     \ td[i] = M::op(h[i], h[g[i]]);\n            f.push_back(tf);\n            d.push_back(td);\n\
-    \        }\n    }\n};\n#line 2 \"src/misc/compress.hpp\"\n#include <algorithm>\n\
-    #line 4 \"src/misc/merge_and_unique.hpp\"\nusing namespace std;\n\ntemplate<typename\
+    \        }\n    }\n};\n#line 3 \"src/misc/merge_and_unique.hpp\"\n\ntemplate<typename\
     \ T, typename... Ts>\nvector<T> merge_and_unique(const vector<T> &a, const Ts\
     \ &...z) {\n    vector<T> res = a;\n    (res.insert(res.end(), z.begin(), z.end()),\
     \ ...);\n    sort(res.begin(), res.end());\n    res.erase(unique(res.begin(),\
-    \ res.end()), res.end());\n    return res;\n}\n#line 5 \"src/misc/compress.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T>\nvector<int> compress(const vector<T>\
-    \ &v) {\n    auto zip = merge_and_unique(v);\n    vector<int> res;\n    res.reserve(v.size());\n\
+    \ res.end()), res.end());\n    return res;\n}\n#line 4 \"src/misc/compress.hpp\"\
+    \n\ntemplate<typename T>\nvector<int> compress(const vector<T> &v) {\n    auto\
+    \ zip = merge_and_unique(v);\n    vector<int> res;\n    res.reserve(v.size());\n\
     \    for (const T &e : v) {\n        res.push_back(lower_bound(zip.begin(), zip.end(),\
     \ e) - zip.begin());\n    }\n    return res;\n}\n\ntemplate<typename T, typename...\
     \ Ts>\nauto compress(const vector<T> &a, const Ts &...z) {\n    auto zip = merge_and_unique(a,\
@@ -80,16 +86,16 @@ data:
     \ Ts &...z) {\n    auto zip = merge_and_unique(a, z...);\n    auto f = [&] (vector<T>\
     \ &v) -> void {\n        for (T &e : v) {\n            e = lower_bound(zip.begin(),\
     \ zip.end(), e) - zip.begin();\n        }\n    };\n    (f(a), ..., f(z));\n  \
-    \  return (int)zip.size();\n}\n#line 3 \"src/monoid/max.hpp\"\n#include <limits>\n\
-    using namespace std;\n\ntemplate<typename T, T E = numeric_limits<T>::min()>\n\
-    struct max_monoid {\n    using S = T;\n    static S op(S a, S b) { return max(a,\
-    \ b); }\n    static S e() { return E; }\n};\n#line 6 \"test/graph/weighted_functional_graph.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int N;\n    cin >> N;\n    vector<int> H(N), T(N);\n\
-    \    for (auto &e : H) cin >> e;\n    for (auto &e : T) cin >> e;\n    int M =\
-    \ compress_inplace(H, T);\n    vector<int> to(M);\n    iota(to.begin(), to.end(),\
-    \ 0);\n    for (int i = 0; i < N; i++) to[H[i]] = max(to[H[i]], T[i]);\n    for\
-    \ (int i = 1; i < M; i++) to[i] = max(to[i], to[i - 1]);\n    weighted_functional_graph<max_monoid<int>,\
+    \  return (int)zip.size();\n}\n#line 3 \"src/monoid/max.hpp\"\n\ntemplate<typename\
+    \ T, T E = (is_signed_v<T> ? -inf<T>() : T(0))>\nstruct max_monoid {\n    using\
+    \ S = T;\n    static S op(S a, S b) { return max(a, b); }\n    static S e() {\
+    \ return E; }\n};\n#line 7 \"test/graph/weighted_functional_graph.test.cpp\"\n\
+    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N;\n    cin >> N;\n    vector<int> H(N), T(N);\n    for (auto &e : H) cin >>\
+    \ e;\n    for (auto &e : T) cin >> e;\n    int M = compress_inplace(H, T);\n \
+    \   vector<int> to(M);\n    iota(to.begin(), to.end(), 0);\n    for (int i = 0;\
+    \ i < N; i++) to[H[i]] = max(to[H[i]], T[i]);\n    for (int i = 1; i < M; i++)\
+    \ to[i] = max(to[i], to[i - 1]);\n    weighted_functional_graph<max_monoid<int>,\
     \ true> E(M);\n    weighted_functional_graph<max_monoid<int>, false> V(M);\n \
     \   for (int i = 0; i < M; i++) {\n        E.add_edge(i, to[i], to[i]);\n    \
     \    V.add_edge(i, to[i]);\n        V.set_weight(i, i);\n    }\n    int Q;\n \
@@ -100,24 +106,25 @@ data:
     \ long s = V.binary_search(T[a], M, check).first;\n            assert(r == s);\n\
     \            cout << (r == M ? -1 : r + 2) << '\\n';\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/2242\"\n\n#include \"\
-    ../../src/graph/weighted_functional_graph.hpp\"\n#include \"../../src/misc/compress.hpp\"\
-    \n#include \"../../src/monoid/max.hpp\"\n\n#include <iostream>\n\nint main() {\n\
-    \    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N;\n    cin\
-    \ >> N;\n    vector<int> H(N), T(N);\n    for (auto &e : H) cin >> e;\n    for\
-    \ (auto &e : T) cin >> e;\n    int M = compress_inplace(H, T);\n    vector<int>\
-    \ to(M);\n    iota(to.begin(), to.end(), 0);\n    for (int i = 0; i < N; i++)\
-    \ to[H[i]] = max(to[H[i]], T[i]);\n    for (int i = 1; i < M; i++) to[i] = max(to[i],\
-    \ to[i - 1]);\n    weighted_functional_graph<max_monoid<int>, true> E(M);\n  \
-    \  weighted_functional_graph<max_monoid<int>, false> V(M);\n    for (int i = 0;\
-    \ i < M; i++) {\n        E.add_edge(i, to[i], to[i]);\n        V.add_edge(i, to[i]);\n\
-    \        V.set_weight(i, i);\n    }\n    int Q;\n    cin >> Q;\n    for (int a,\
-    \ b; Q--; ) {\n        cin >> a >> b;\n        a--, b--;\n        if (H[b] <=\
-    \ T[a]) {\n            cout << 1 << '\\n';\n        } else {\n            auto\
-    \ check = [&] (int x) { return x < H[b]; };\n            long long r = E.binary_search(T[a],\
-    \ M, check).first;\n            long long s = V.binary_search(T[a], M, check).first;\n\
-    \            assert(r == s);\n            cout << (r == M ? -1 : r + 2) << '\\\
-    n';\n        }\n    }\n}\n"
+    ../../src/template.hpp\"\n#include \"../../src/graph/weighted_functional_graph.hpp\"\
+    \n#include \"../../src/misc/compress.hpp\"\n#include \"../../src/monoid/max.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N;\n    cin >> N;\n    vector<int> H(N), T(N);\n    for (auto &e : H) cin\
+    \ >> e;\n    for (auto &e : T) cin >> e;\n    int M = compress_inplace(H, T);\n\
+    \    vector<int> to(M);\n    iota(to.begin(), to.end(), 0);\n    for (int i =\
+    \ 0; i < N; i++) to[H[i]] = max(to[H[i]], T[i]);\n    for (int i = 1; i < M; i++)\
+    \ to[i] = max(to[i], to[i - 1]);\n    weighted_functional_graph<max_monoid<int>,\
+    \ true> E(M);\n    weighted_functional_graph<max_monoid<int>, false> V(M);\n \
+    \   for (int i = 0; i < M; i++) {\n        E.add_edge(i, to[i], to[i]);\n    \
+    \    V.add_edge(i, to[i]);\n        V.set_weight(i, i);\n    }\n    int Q;\n \
+    \   cin >> Q;\n    for (int a, b; Q--; ) {\n        cin >> a >> b;\n        a--,\
+    \ b--;\n        if (H[b] <= T[a]) {\n            cout << 1 << '\\n';\n       \
+    \ } else {\n            auto check = [&] (int x) { return x < H[b]; };\n     \
+    \       long long r = E.binary_search(T[a], M, check).first;\n            long\
+    \ long s = V.binary_search(T[a], M, check).first;\n            assert(r == s);\n\
+    \            cout << (r == M ? -1 : r + 2) << '\\n';\n        }\n    }\n}\n"
   dependsOn:
+  - src/template.hpp
   - src/graph/weighted_functional_graph.hpp
   - src/misc/compress.hpp
   - src/misc/merge_and_unique.hpp
@@ -125,8 +132,8 @@ data:
   isVerificationFile: true
   path: test/graph/weighted_functional_graph.test.cpp
   requiredBy: []
-  timestamp: '2026-11-01 11:51:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/graph/weighted_functional_graph.test.cpp
 layout: document

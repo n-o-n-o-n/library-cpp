@@ -4,15 +4,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/persistent_ds/persistent_segtree.hpp
     title: Persistent Segtree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/misc/compress.hpp
     title: Compress
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/monoid/sum.hpp
     title: src/monoid/sum.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -25,14 +28,17 @@ data:
     - https://judge.yosupo.jp/problem/rectangle_sum
   bundledCode: "#line 1 \"test/data_structure/persistent_ds/persistent_segtree.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#line 2\
-    \ \"src/misc/compress.hpp\"\n#include <algorithm>\n#include <vector>\n#line 4\
-    \ \"src/misc/merge_and_unique.hpp\"\nusing namespace std;\n\ntemplate<typename\
-    \ T, typename... Ts>\nvector<T> merge_and_unique(const vector<T> &a, const Ts\
-    \ &...z) {\n    vector<T> res = a;\n    (res.insert(res.end(), z.begin(), z.end()),\
-    \ ...);\n    sort(res.begin(), res.end());\n    res.erase(unique(res.begin(),\
-    \ res.end()), res.end());\n    return res;\n}\n#line 5 \"src/misc/compress.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T>\nvector<int> compress(const vector<T>\
-    \ &v) {\n    auto zip = merge_and_unique(v);\n    vector<int> res;\n    res.reserve(v.size());\n\
+    \ \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing\
+    \ ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/misc/merge_and_unique.hpp\"\
+    \n\ntemplate<typename T, typename... Ts>\nvector<T> merge_and_unique(const vector<T>\
+    \ &a, const Ts &...z) {\n    vector<T> res = a;\n    (res.insert(res.end(), z.begin(),\
+    \ z.end()), ...);\n    sort(res.begin(), res.end());\n    res.erase(unique(res.begin(),\
+    \ res.end()), res.end());\n    return res;\n}\n#line 4 \"src/misc/compress.hpp\"\
+    \n\ntemplate<typename T>\nvector<int> compress(const vector<T> &v) {\n    auto\
+    \ zip = merge_and_unique(v);\n    vector<int> res;\n    res.reserve(v.size());\n\
     \    for (const T &e : v) {\n        res.push_back(lower_bound(zip.begin(), zip.end(),\
     \ e) - zip.begin());\n    }\n    return res;\n}\n\ntemplate<typename T, typename...\
     \ Ts>\nauto compress(const vector<T> &a, const Ts &...z) {\n    auto zip = merge_and_unique(a,\
@@ -44,19 +50,18 @@ data:
     \ Ts &...z) {\n    auto zip = merge_and_unique(a, z...);\n    auto f = [&] (vector<T>\
     \ &v) -> void {\n        for (T &e : v) {\n            e = lower_bound(zip.begin(),\
     \ zip.end(), e) - zip.begin();\n        }\n    };\n    (f(a), ..., f(z));\n  \
-    \  return (int)zip.size();\n}\n#line 2 \"src/data_structure/persistent_ds/persistent_segtree.hpp\"\
-    \n#include <cassert>\n#line 4 \"src/data_structure/persistent_ds/persistent_segtree.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename Monoid>\nstruct persistent_segtree\
-    \ {\n    using M = Monoid;\n    using S = typename M::S;\n    persistent_segtree()\
-    \ : persistent_segtree(0) {}\n    persistent_segtree(int _n) : persistent_segtree(vector<S>(_n,\
-    \ M::e())) {}\n    persistent_segtree(const vector<S> &v) : n(v.size()), roots(1,\
-    \ 1) {\n        log = 0;\n        while ((1 << log) < n) log++;\n        sz =\
-    \ 1 << log;\n        make_node(-1, -1);\n        make_node(-1, -1);\n        for\
-    \ (int i = 2; i < 2 * sz; i++) {\n            make_node(i / 2, !(i & 1), sz <=\
-    \ i && i < sz + n ? v[i - sz] : M::e());\n        }\n        if (n == 1) d[1].x\
-    \ = v[0];\n        for (int i = sz - 1; i > 0; i--) update(i);\n    }\n    void\
-    \ reserve(int q) {\n        d.reserve(q * log);\n        roots.reserve(q);\n \
-    \   }\n    int set(int k, int p, const S &x) {\n        assert(0 <= k && k < ssize(roots));\n\
+    \  return (int)zip.size();\n}\n#line 3 \"src/data_structure/persistent_ds/persistent_segtree.hpp\"\
+    \n\ntemplate<typename Monoid>\nstruct persistent_segtree {\n    using M = Monoid;\n\
+    \    using S = typename M::S;\n    persistent_segtree() : persistent_segtree(0)\
+    \ {}\n    persistent_segtree(int _n) : persistent_segtree(vector<S>(_n, M::e()))\
+    \ {}\n    persistent_segtree(const vector<S> &v) : n(v.size()), roots(1, 1) {\n\
+    \        log = 0;\n        while ((1 << log) < n) log++;\n        sz = 1 << log;\n\
+    \        make_node(-1, -1);\n        make_node(-1, -1);\n        for (int i =\
+    \ 2; i < 2 * sz; i++) {\n            make_node(i / 2, !(i & 1), sz <= i && i <\
+    \ sz + n ? v[i - sz] : M::e());\n        }\n        if (n == 1) d[1].x = v[0];\n\
+    \        for (int i = sz - 1; i > 0; i--) update(i);\n    }\n    void reserve(int\
+    \ q) {\n        d.reserve(q * log);\n        roots.reserve(q);\n    }\n    int\
+    \ set(int k, int p, const S &x) {\n        assert(0 <= k && k < ssize(roots));\n\
     \        assert(0 <= p && p < n);\n        int res = roots.size();\n        int\
     \ i = make_node(-1, -1);\n        roots.emplace_back(i);\n        d[i] = d[roots[k]];\n\
     \        set(i, roots[k], p, x, 0, sz);\n        return res;\n    }\n    S get(int\
@@ -84,11 +89,26 @@ data:
     \ int l, int r) const {\n        if (i == -1 || qr <= l || ql >= r) return M::e();\n\
     \        if (ql <= l && r <= qr) return val(i);\n        int m = (l + r) / 2;\n\
     \        return M::op(prod(d[i].l, ql, qr, l, m), prod(d[i].r, ql, qr, m, r));\n\
-    \    }\n};\n#line 2 \"src/monoid/sum.hpp\"\n\ntemplate<typename T>\nstruct sum_monoid\
+    \    }\n};\n#line 3 \"src/monoid/sum.hpp\"\n\ntemplate<typename T>\nstruct sum_monoid\
     \ {\n    using S = T;\n    static S op(S a, S b) { return a + b; }\n    static\
-    \ S e() { return 0; }\n    static S inv(S x) { return -x; }\n};\n#line 6 \"test/data_structure/persistent_ds/persistent_segtree.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> X(N),\
+    \ S e() { return 0; }\n    static S inv(S x) { return -x; }\n};\n#line 7 \"test/data_structure/persistent_ds/persistent_segtree.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N, Q;\n    cin >> N >> Q;\n    vector<int> X(N), Y(N), Z(N);\n    for (int\
+    \ i = 0; i < N; i++) cin >> X[i] >> Y[i] >> Z[i];\n    vector<int> L(Q), D(Q),\
+    \ R(Q), U(Q);\n    for (int i = 0; i < Q; i++) cin >> L[i] >> D[i] >> R[i] >>\
+    \ U[i];\n    int W = compress_inplace(X, L, R);\n    int H = compress_inplace(Y,\
+    \ D, U);\n    vector<vector<pair<int, int>>> inv(H);\n    for (int i = 0; i <\
+    \ N; i++) inv[Y[i]].emplace_back(X[i], Z[i]);\n    persistent_segtree<sum_monoid<long\
+    \ long>> seg(W);\n    vector<int> T(H);\n    for (int y = 0, t = 0; y < H; y++)\
+    \ {\n        T[y] = t;\n        for (auto [x, z] : inv[y]) {\n            seg.set(t,\
+    \ x, seg.get(t, x) + z);\n            t++;\n        }\n    }\n    for (int i =\
+    \ 0; i < Q; i++) {\n        cout << seg.prod(T[U[i]], L[i], R[i]) - seg.prod(T[D[i]],\
+    \ L[i], R[i]) << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
+    \ \"../../../src/template.hpp\"\n#include \"../../../src/misc/compress.hpp\"\n\
+    #include \"../../../src/data_structure/persistent_ds/persistent_segtree.hpp\"\n\
+    #include \"../../../src/monoid/sum.hpp\"\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> X(N),\
     \ Y(N), Z(N);\n    for (int i = 0; i < N; i++) cin >> X[i] >> Y[i] >> Z[i];\n\
     \    vector<int> L(Q), D(Q), R(Q), U(Q);\n    for (int i = 0; i < Q; i++) cin\
     \ >> L[i] >> D[i] >> R[i] >> U[i];\n    int W = compress_inplace(X, L, R);\n \
@@ -98,23 +118,9 @@ data:
     \ {\n        T[y] = t;\n        for (auto [x, z] : inv[y]) {\n            seg.set(t,\
     \ x, seg.get(t, x) + z);\n            t++;\n        }\n    }\n    for (int i =\
     \ 0; i < Q; i++) {\n        cout << seg.prod(T[U[i]], L[i], R[i]) - seg.prod(T[D[i]],\
-    \ L[i], R[i]) << '\\n';\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ \"../../../src/misc/compress.hpp\"\n#include \"../../../src/data_structure/persistent_ds/persistent_segtree.hpp\"\
-    \n#include \"../../../src/monoid/sum.hpp\"\n\n#include <iostream>\n\nint main()\
-    \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n\
-    \    cin >> N >> Q;\n    vector<int> X(N), Y(N), Z(N);\n    for (int i = 0; i\
-    \ < N; i++) cin >> X[i] >> Y[i] >> Z[i];\n    vector<int> L(Q), D(Q), R(Q), U(Q);\n\
-    \    for (int i = 0; i < Q; i++) cin >> L[i] >> D[i] >> R[i] >> U[i];\n    int\
-    \ W = compress_inplace(X, L, R);\n    int H = compress_inplace(Y, D, U);\n   \
-    \ vector<vector<pair<int, int>>> inv(H);\n    for (int i = 0; i < N; i++) inv[Y[i]].emplace_back(X[i],\
-    \ Z[i]);\n    persistent_segtree<sum_monoid<long long>> seg(W);\n    vector<int>\
-    \ T(H);\n    for (int y = 0, t = 0; y < H; y++) {\n        T[y] = t;\n       \
-    \ for (auto [x, z] : inv[y]) {\n            seg.set(t, x, seg.get(t, x) + z);\n\
-    \            t++;\n        }\n    }\n    for (int i = 0; i < Q; i++) {\n     \
-    \   cout << seg.prod(T[U[i]], L[i], R[i]) - seg.prod(T[D[i]], L[i], R[i]) << '\\\
-    n';\n    }\n}"
+    \ L[i], R[i]) << '\\n';\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/misc/compress.hpp
   - src/misc/merge_and_unique.hpp
   - src/data_structure/persistent_ds/persistent_segtree.hpp
@@ -122,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/persistent_ds/persistent_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 14:11:37+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/persistent_ds/persistent_segtree.test.cpp

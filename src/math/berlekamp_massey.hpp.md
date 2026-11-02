@@ -1,24 +1,31 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/bmbm.hpp
     title: src/math/bmbm.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/berlekamp_massey.test.cpp
     title: test/math/berlekamp_massey.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/math/berlekamp_massey.hpp\"\n#include <algorithm>\n\
-    #include <vector>\nusing namespace std;\n\ntemplate<typename mint>\nvector<mint>\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/math/berlekamp_massey.hpp\"\n\ntemplate<typename mint>\nvector<mint>\
     \ Berlekamp_Massey(const vector<mint> &a) {\n    int n = a.size();\n    vector<mint>\
     \ b = {1}, c = {1};\n    b.reserve(n + 1);\n    c.reserve(n + 1);\n    mint y\
     \ = 1;\n    for (int d = 1; d <= n; d ++) {\n        int k = b.size(), l = c.size();\n\
@@ -31,27 +38,27 @@ data:
     \ } else {\n            for (int i = 0; i < k; i++) {\n                c[l - 1\
     \ - i] -= buf * b[k - 1 - i];\n            }\n        }\n    }\n    reverse(c.begin(),\
     \ c.end());\n    for (mint &x : c) x = -x;\n    return c;\n}\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\nusing namespace std;\n\
-    \ntemplate<typename mint>\nvector<mint> Berlekamp_Massey(const vector<mint> &a)\
-    \ {\n    int n = a.size();\n    vector<mint> b = {1}, c = {1};\n    b.reserve(n\
-    \ + 1);\n    c.reserve(n + 1);\n    mint y = 1;\n    for (int d = 1; d <= n; d\
-    \ ++) {\n        int k = b.size(), l = c.size();\n        mint x = 0;\n      \
-    \  for (int i = 0; i < l; i++) {\n            x += c[i] * a[d - l + i];\n    \
-    \    }\n        b.push_back(0);\n        k++;\n        if (x == 0) continue;\n\
-    \        mint buf = x / y;\n        if (l < k) {\n            auto tmp = c;\n\
-    \            c.insert(c.begin(), k - l, 0);\n            for (int i = 0; i < k;\
-    \ i++) {\n                c[k - 1 - i] -= buf * b[k - 1 - i];\n            }\n\
-    \            b = tmp;\n            y = x;\n        } else {\n            for (int\
-    \ i = 0; i < k; i++) {\n                c[l - 1 - i] -= buf * b[k - 1 - i];\n\
-    \            }\n        }\n    }\n    reverse(c.begin(), c.end());\n    for (mint\
-    \ &x : c) x = -x;\n    return c;\n}"
-  dependsOn: []
+  code: "#pragma once\n#include \"../template.hpp\"\n\ntemplate<typename mint>\nvector<mint>\
+    \ Berlekamp_Massey(const vector<mint> &a) {\n    int n = a.size();\n    vector<mint>\
+    \ b = {1}, c = {1};\n    b.reserve(n + 1);\n    c.reserve(n + 1);\n    mint y\
+    \ = 1;\n    for (int d = 1; d <= n; d ++) {\n        int k = b.size(), l = c.size();\n\
+    \        mint x = 0;\n        for (int i = 0; i < l; i++) {\n            x +=\
+    \ c[i] * a[d - l + i];\n        }\n        b.push_back(0);\n        k++;\n   \
+    \     if (x == 0) continue;\n        mint buf = x / y;\n        if (l < k) {\n\
+    \            auto tmp = c;\n            c.insert(c.begin(), k - l, 0);\n     \
+    \       for (int i = 0; i < k; i++) {\n                c[k - 1 - i] -= buf * b[k\
+    \ - 1 - i];\n            }\n            b = tmp;\n            y = x;\n       \
+    \ } else {\n            for (int i = 0; i < k; i++) {\n                c[l - 1\
+    \ - i] -= buf * b[k - 1 - i];\n            }\n        }\n    }\n    reverse(c.begin(),\
+    \ c.end());\n    for (mint &x : c) x = -x;\n    return c;\n}"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/math/berlekamp_massey.hpp
   requiredBy:
   - src/math/bmbm.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/math/bmbm.test.cpp
   - test/math/berlekamp_massey.test.cpp

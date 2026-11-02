@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/graph/lowlink.hpp
     title: src/graph/lowlink.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_A
@@ -16,11 +19,14 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_A
   bundledCode: "#line 1 \"test/graph/lowlink_articulation_point.test.cpp\"\n#define\
     \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_A\"\
-    \n\n#line 2 \"src/graph/lowlink.hpp\"\n#include <algorithm>\n#include <cassert>\n\
-    #include <utility>\n#include <vector>\nusing namespace std;\n\nstruct lowlink\
-    \ {\n    lowlink(int _n = 0, int m = 0) : n(_n), g(_n), built(false) {\n     \
-    \   edges.reserve(m);\n    }\n    void add_edge(int u, int v) {\n        assert(0\
-    \ <= u && u < n);\n        assert(0 <= v && v < n);\n        g[u].emplace_back(v,\
+    \n\n#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/graph/lowlink.hpp\"\
+    \n\nstruct lowlink {\n    lowlink(int _n = 0, int m = 0) : n(_n), g(_n), built(false)\
+    \ {\n        edges.reserve(m);\n    }\n    void add_edge(int u, int v) {\n   \
+    \     assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n        g[u].emplace_back(v,\
     \ edges.size());\n        g[v].emplace_back(u, edges.size());\n        edges.emplace_back(u,\
     \ v);\n        built = false;\n    }\n    vector<int> operator[](int p) const\
     \ {\n        vector<int> res;\n        res.reserve(g[p].size());\n        for\
@@ -67,36 +73,36 @@ data:
     \        low[u] = (ord[u] = k++);\n        int c = 0;\n        bool art = false,\
     \ sec = false;\n        for (auto [v, _] : g[u]) {\n            if (ord[v] ==\
     \ -1) {\n                c++;\n                k = dfs(v, k, u);\n           \
-    \     low[u] = min(low[u], low[v]);\n                art |= (p != -1) && (low[v]\
-    \ >= ord[u]);\n                if (ord[u] < low[v]) {\n                    bg.push_back(minmax(u,\
+    \     chmin(low[u], low[v]);\n                art |= (p != -1) && (low[v] >= ord[u]);\n\
+    \                if (ord[u] < low[v]) {\n                    bg.push_back(minmax(u,\
     \ v));\n                }\n            } else if (v != p || sec) {\n         \
-    \       low[u] = min(low[u], ord[v]);\n            } else {\n                sec\
-    \ = true;\n            }\n        }\n        art |= (p == -1) && (c > 1);\n  \
-    \      if (art) ap.push_back(u);\n        return k;\n    }\n    void build() {\n\
-    \        if (built) return;\n        int k = 0;\n        ord = vector<int>(n,\
-    \ -1);\n        low = vector<int>(n, -1);\n        for (int i = 0; i < n; i++)\
-    \ {\n            if (ord[i] == -1) {\n                k = dfs(i, k, -1);\n   \
-    \         }\n        }\n        built = true;\n    }\n};\n#line 4 \"test/graph/lowlink_articulation_point.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int N, M;\n    cin >> N >> M;\n    lowlink G(N, M);\n\
-    \    for (int u, v; M--; ) {\n        cin >> u >> v;\n        G.add_edge(u, v);\n\
-    \    }\n    auto articulation_point = G.articulation_point();\n    sort(articulation_point.begin(),\
-    \ articulation_point.end());\n    for (auto e : articulation_point) cout << e\
-    \ << '\\n';\n}\n"
+    \       chmin(low[u], ord[v]);\n            } else {\n                sec = true;\n\
+    \            }\n        }\n        art |= (p == -1) && (c > 1);\n        if (art)\
+    \ ap.push_back(u);\n        return k;\n    }\n    void build() {\n        if (built)\
+    \ return;\n        int k = 0;\n        ord = vector<int>(n, -1);\n        low\
+    \ = vector<int>(n, -1);\n        for (int i = 0; i < n; i++) {\n            if\
+    \ (ord[i] == -1) {\n                k = dfs(i, k, -1);\n            }\n      \
+    \  }\n        built = true;\n    }\n};\n#line 5 \"test/graph/lowlink_articulation_point.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N, M;\n    cin >> N >> M;\n    lowlink G(N, M);\n    for (int u, v; M--;\
+    \ ) {\n        cin >> u >> v;\n        G.add_edge(u, v);\n    }\n    auto articulation_point\
+    \ = G.articulation_point();\n    sort(articulation_point.begin(), articulation_point.end());\n\
+    \    for (auto e : articulation_point) cout << e << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_A\"\
-    \n\n#include \"../../src/graph/lowlink.hpp\"\n\n#include <iostream>\n\nint main()\
-    \ {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, M;\n\
-    \    cin >> N >> M;\n    lowlink G(N, M);\n    for (int u, v; M--; ) {\n     \
-    \   cin >> u >> v;\n        G.add_edge(u, v);\n    }\n    auto articulation_point\
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/graph/lowlink.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N, M;\n    cin >> N >> M;\n    lowlink G(N, M);\n    for (int u, v; M--;\
+    \ ) {\n        cin >> u >> v;\n        G.add_edge(u, v);\n    }\n    auto articulation_point\
     \ = G.articulation_point();\n    sort(articulation_point.begin(), articulation_point.end());\n\
     \    for (auto e : articulation_point) cout << e << '\\n';\n}"
   dependsOn:
+  - src/template.hpp
   - src/graph/lowlink.hpp
   isVerificationFile: true
   path: test/graph/lowlink_articulation_point.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/graph/lowlink_articulation_point.test.cpp
 layout: document

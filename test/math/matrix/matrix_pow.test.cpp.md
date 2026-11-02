@@ -1,75 +1,82 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/matrix/matrix.hpp
     title: src/math/matrix/matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
     links:
     - https://judge.yosupo.jp/problem/pow_of_matrix
   bundledCode: "#line 1 \"test/math/matrix/matrix_pow.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#line 2 \"src/modint/modint.hpp\"\
-    \n#include <algorithm>\n#include <cassert>\nusing namespace std;\n\ntemplate<unsigned\
-    \ int MOD>\nstruct modint {\n    constexpr modint() : x(0) {}\n    template<typename\
-    \ T>\n    constexpr modint(T v) {\n        int y = v % (int)mod();\n        if\
-    \ (y < 0) y += mod();\n        x = (unsigned int)y;\n    }\n    static constexpr\
-    \ modint raw(int v) {\n        modint a;\n        a.x = v;\n        return a;\n\
-    \    }\n    static constexpr int mod() { return MOD; }\n    constexpr unsigned\
-    \ int val() const { return x; }\n    constexpr modint& operator++() {\n      \
-    \  x++;\n        if (x == mod()) x = 0;\n        return *this;\n    }\n    constexpr\
-    \ modint& operator--() {\n        if (x == 0) x = mod();\n        x--;\n     \
-    \   return *this;\n    }\n    constexpr modint operator++(int) {\n        modint\
-    \ res = *this;\n        ++*this;\n        return res;\n    }\n    constexpr modint\
-    \ operator--(int) {\n        modint res = *this;\n        --*this;\n        return\
-    \ res;\n    }\n    constexpr modint& operator+=(const modint &r) {\n        x\
-    \ += r.x;\n        if (x >= mod()) x -= mod();\n        return *this;\n    }\n\
-    \    constexpr modint& operator-=(const modint &r) {\n        x -= r.x;\n    \
-    \    if (x >= mod()) x += mod();\n        return *this;\n    }\n    constexpr\
-    \ modint& operator*=(const modint &r) {\n        unsigned long long y = x;\n \
-    \       y *= r.x;\n        x = (unsigned int)(y % mod());\n        return *this;\n\
-    \    }\n    constexpr modint &operator/=(const modint &r) {\n        return *this\
-    \ = *this * r.inv();\n    }\n    friend constexpr modint operator+(const modint\
-    \ &a, const modint &b) {\n        return modint(a) += b;\n    }\n    friend constexpr\
-    \ modint operator-(const modint &a, const modint &b) {\n        return modint(a)\
-    \ -= b;\n    }\n    friend constexpr modint operator*(const modint &a, const modint\
-    \ &b) {\n        return modint(a) *= b;\n    }\n    friend constexpr modint operator/(const\
-    \ modint &a, const modint &b) {\n        return modint(a) /= b;\n    }\n    friend\
-    \ constexpr bool operator==(const modint &a, const modint &b) {\n        return\
-    \ a.x == b.x;\n    }\n    friend constexpr bool operator!=(const modint &a, const\
-    \ modint &b) {\n        return a.x != b.x;\n    }\n    constexpr modint operator+()\
-    \ const { return *this; }\n    constexpr modint operator-() const { return modint()\
-    \ - *this; }\n    constexpr modint pow(long long k) const {\n        assert(k\
-    \ >= 0);\n        modint a = *this;\n        modint res = 1;\n        while (k\
-    \ > 0) {\n            if (k & 1) res *= a;\n            a *= a;\n            k\
-    \ >>= 1;\n        }\n        return res;\n    }\n    constexpr modint inv() const\
-    \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
-    \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
-    \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 3 \"src/math/matrix/matrix.hpp\"\
-    \n#include <vector>\nusing namespace std;\n\ntemplate<typename mint>\nstruct matrix\
-    \ : vector<vector<mint>> {\n    using vector<vector<mint>>::vector;\n    matrix(int\
-    \ h, int w) : vector<vector<mint>>(h, vector<mint>(w)) {}\n    matrix &operator*=(const\
-    \ mint &r) {\n        for (vector<mint> &v : *this) {\n            for (mint &a\
-    \ : v) a *= r;\n        }\n        return *this;\n    }\n    matrix &operator/=(const\
-    \ mint &r) {\n        mint invr = r.inv();\n        return *this *= invr;\n  \
-    \  }\n    matrix &operator+=(const matrix& a) {\n        assert(this->size() ==\
-    \ a.size());\n        for (int i = 0; i < int(this->size()); i++) {\n        \
-    \    assert((*this)[i].size() == a[i].size());\n            for (int j = 0; j\
-    \ < int((*this)[i].size()); j++) {\n                (*this)[i][j] += a[i][j];\n\
-    \            }\n        }\n        return *this;\n    }\n    matrix &operator-=(const\
-    \ matrix& a) {\n        assert(this->size() == a.size());\n        for (int i\
-    \ = 0; i < int(this->size()); i++) {\n            assert((*this)[i].size() ==\
-    \ a[i].size());\n            for (int j = 0; j < int((*this)[i].size()); j++)\
+    \ \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#line 2 \"src/template.hpp\"\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
+    template<typename T>\nconstexpr T inf() { return numeric_limits<T>::max() / 2;\
+    \ }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return a\
+    \ > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/modint/modint.hpp\"\
+    \n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint() : x(0)\
+    \ {}\n    template<typename T>\n    constexpr modint(T v) {\n        int y = v\
+    \ % (int)mod();\n        if (y < 0) y += mod();\n        x = (unsigned int)y;\n\
+    \    }\n    static constexpr modint raw(int v) {\n        modint a;\n        a.x\
+    \ = v;\n        return a;\n    }\n    static constexpr int mod() { return MOD;\
+    \ }\n    constexpr unsigned int val() const { return x; }\n    constexpr modint&\
+    \ operator++() {\n        x++;\n        if (x == mod()) x = 0;\n        return\
+    \ *this;\n    }\n    constexpr modint& operator--() {\n        if (x == 0) x =\
+    \ mod();\n        x--;\n        return *this;\n    }\n    constexpr modint operator++(int)\
+    \ {\n        modint res = *this;\n        ++*this;\n        return res;\n    }\n\
+    \    constexpr modint operator--(int) {\n        modint res = *this;\n       \
+    \ --*this;\n        return res;\n    }\n    constexpr modint& operator+=(const\
+    \ modint &r) {\n        x += r.x;\n        if (x >= mod()) x -= mod();\n     \
+    \   return *this;\n    }\n    constexpr modint& operator-=(const modint &r) {\n\
+    \        x -= r.x;\n        if (x >= mod()) x += mod();\n        return *this;\n\
+    \    }\n    constexpr modint& operator*=(const modint &r) {\n        unsigned\
+    \ long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y % mod());\n\
+    \        return *this;\n    }\n    constexpr modint &operator/=(const modint &r)\
+    \ {\n        return *this = *this * r.inv();\n    }\n    friend constexpr modint\
+    \ operator+(const modint &a, const modint &b) {\n        return modint(a) += b;\n\
+    \    }\n    friend constexpr modint operator-(const modint &a, const modint &b)\
+    \ {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
+    \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
+    \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
+    \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
+    \ const modint &b) {\n        return a.x == b.x;\n    }\n    friend constexpr\
+    \ bool operator!=(const modint &a, const modint &b) {\n        return a.x != b.x;\n\
+    \    }\n    constexpr modint operator+() const { return *this; }\n    constexpr\
+    \ modint operator-() const { return modint() - *this; }\n    constexpr modint\
+    \ pow(long long k) const {\n        assert(k >= 0);\n        modint a = *this;\n\
+    \        modint res = 1;\n        while (k > 0) {\n            if (k & 1) res\
+    \ *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
+    \ res;\n    }\n    constexpr modint inv() const {\n        long long a = x, b\
+    \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
+    \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
+    \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
+    \    unsigned int x;\n};\n#line 3 \"src/math/matrix/matrix.hpp\"\n\ntemplate<typename\
+    \ mint>\nstruct matrix : vector<vector<mint>> {\n    using vector<vector<mint>>::vector;\n\
+    \    matrix(int h, int w) : vector<vector<mint>>(h, vector<mint>(w)) {}\n    matrix\
+    \ &operator*=(const mint &r) {\n        for (vector<mint> &v : *this) {\n    \
+    \        for (mint &a : v) a *= r;\n        }\n        return *this;\n    }\n\
+    \    matrix &operator/=(const mint &r) {\n        mint invr = r.inv();\n     \
+    \   return *this *= invr;\n    }\n    matrix &operator+=(const matrix& a) {\n\
+    \        assert(this->size() == a.size());\n        for (int i = 0; i < int(this->size());\
+    \ i++) {\n            assert((*this)[i].size() == a[i].size());\n            for\
+    \ (int j = 0; j < int((*this)[i].size()); j++) {\n                (*this)[i][j]\
+    \ += a[i][j];\n            }\n        }\n        return *this;\n    }\n    matrix\
+    \ &operator-=(const matrix& a) {\n        assert(this->size() == a.size());\n\
+    \        for (int i = 0; i < int(this->size()); i++) {\n            assert((*this)[i].size()\
+    \ == a[i].size());\n            for (int j = 0; j < int((*this)[i].size()); j++)\
     \ {\n                (*this)[i][j] -= a[i][j];\n            }\n        }\n   \
     \     return *this;\n    }\n    matrix &operator*=(const matrix &a) {\n      \
     \  int n = this->size(), m = a.size();\n        assert(m >= 1);\n        int l\
@@ -120,29 +127,30 @@ data:
     \      for (i = r + 1; i < h; i++) {\n                mint cef = a[i][j] * inv;\n\
     \                for (int k = j; k < w; k++) {\n                    a[i][k] -=\
     \ a[r][k] * cef;\n                }\n            }\n            r++;\n       \
-    \ }\n        return r;\n    }\n};\n#line 5 \"test/math/matrix/matrix_pow.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
-    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N;\n    long\
-    \ long K;\n    cin >> N >> K;\n    matrix<mint> A(N, N);\n    for (auto &E : A)\
-    \ for (auto &e : E) { int x; cin >> x; e = x; }\n    A = A.pow(K);\n    for (int\
-    \ i = 0; i < N; i++) {\n        for (int j = 0; j < N; j++) cout << A[i][j].val()\
-    \ << \" \\n\"[j + 1 == N];\n    }\n}\n"
+    \ }\n        return r;\n    }\n};\n#line 6 \"test/math/matrix/matrix_pow.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    int N;\n    long long K;\n    cin >> N >> K;\n   \
+    \ matrix<mint> A(N, N);\n    for (auto &E : A) for (auto &e : E) { int x; cin\
+    \ >> x; e = x; }\n    A = A.pow(K);\n    for (int i = 0; i < N; i++) {\n     \
+    \   for (int j = 0; j < N; j++) cout << A[i][j].val() << \" \\n\"[j + 1 == N];\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_matrix\"\n\n#include\
-    \ \"../../../src/modint/modint.hpp\"\n#include \"../../../src/math/matrix/matrix.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
-    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N;\n    long\
-    \ long K;\n    cin >> N >> K;\n    matrix<mint> A(N, N);\n    for (auto &E : A)\
-    \ for (auto &e : E) { int x; cin >> x; e = x; }\n    A = A.pow(K);\n    for (int\
-    \ i = 0; i < N; i++) {\n        for (int j = 0; j < N; j++) cout << A[i][j].val()\
-    \ << \" \\n\"[j + 1 == N];\n    }\n}"
+    \ \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\n\
+    #include \"../../../src/math/matrix/matrix.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N;\n    long long K;\n    cin >> N >> K;\n    matrix<mint> A(N, N);\n    for\
+    \ (auto &E : A) for (auto &e : E) { int x; cin >> x; e = x; }\n    A = A.pow(K);\n\
+    \    for (int i = 0; i < N; i++) {\n        for (int j = 0; j < N; j++) cout <<\
+    \ A[i][j].val() << \" \\n\"[j + 1 == N];\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/modint/modint.hpp
   - src/math/matrix/matrix.hpp
   isVerificationFile: true
   path: test/math/matrix/matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2026-10-31 09:27:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/matrix/matrix_pow.test.cpp
 layout: document

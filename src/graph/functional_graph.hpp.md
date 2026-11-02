@@ -1,71 +1,77 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/functional_graph.test.cpp
     title: test/graph/functional_graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/graph/functional_graph.hpp\"\n#include <cassert>\n#include\
-    \ <numeric>\n#include <vector>\nusing namespace std;\n\nstruct functional_graph\
-    \ {\n    functional_graph(int _n) : functional_graph(vector<int>(_n, -1)) {}\n\
-    \    functional_graph(const vector<int> &a) : n(a.size()), f(1, a) {}\n    void\
-    \ add_edge(int u, int v) {\n        assert(0 <= u && u < n);\n        assert(0\
-    \ <= v && v < n);\n        assert(f[0][u] == -1);\n        f[0][u] = v;\n    }\n\
-    \    int steps(int u, long long k) {\n        assert(0 <= u && u < n);\n     \
-    \   doubling(k);\n        for (int i = 0; (1LL << i) <= k; i++) {\n          \
-    \  if (k >> i & 1) u = f[i][u];\n        }\n        return u;\n    }\n    vector<int>\
-    \ table(long long k) {\n        doubling(k);\n        vector<int> g(n);\n    \
-    \    iota(g.begin(), g.end(), 0);\n        for (int i = 0; (1LL << i) <= k; i++)\
-    \ {\n            if (k >> i & 1) {\n                for (int j = 0; j < n; j++)\
-    \ {\n                    g[j] = f[i][g[j]];\n                }\n            }\n\
-    \        }\n        return g;\n    }\n    template<typename C>\n    pair<int,\
-    \ int> binary_search(int u, const C &check) {\n        assert(0 <= u && u < n);\n\
-    \        assert(check(u));\n        doubling(n);\n        int log = 0;\n     \
-    \   while (n >> log) log++;\n        int r = 0;\n        for (log--; log >= 0;\
-    \ log--) {\n            int len = 1 << log;\n            if (r > n - len) continue;\n\
-    \            int v = f[log][u];\n            if (check(v)) u = v, r += len;\n\
-    \        }\n        if (r == n) return {-1, -1};\n        return make_pair(r,\
-    \ u);\n    }\nprivate:\n    int n;\n    vector<vector<int>> f;\n    void doubling(long\
-    \ long k) {\n        while (1LL << int(f.size()) <= k) {\n            vector<int>\
-    \ tf(n);\n            const vector<int> &g = f.back();\n            for (int i\
-    \ = 0; i < n; i++) tf[i] = g[g[i]];\n            f.push_back(tf);\n        }\n\
-    \    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <numeric>\n#include <vector>\n\
-    using namespace std;\n\nstruct functional_graph {\n    functional_graph(int _n)\
-    \ : functional_graph(vector<int>(_n, -1)) {}\n    functional_graph(const vector<int>\
-    \ &a) : n(a.size()), f(1, a) {}\n    void add_edge(int u, int v) {\n        assert(0\
-    \ <= u && u < n);\n        assert(0 <= v && v < n);\n        assert(f[0][u] ==\
-    \ -1);\n        f[0][u] = v;\n    }\n    int steps(int u, long long k) {\n   \
-    \     assert(0 <= u && u < n);\n        doubling(k);\n        for (int i = 0;\
-    \ (1LL << i) <= k; i++) {\n            if (k >> i & 1) u = f[i][u];\n        }\n\
-    \        return u;\n    }\n    vector<int> table(long long k) {\n        doubling(k);\n\
-    \        vector<int> g(n);\n        iota(g.begin(), g.end(), 0);\n        for\
-    \ (int i = 0; (1LL << i) <= k; i++) {\n            if (k >> i & 1) {\n       \
-    \         for (int j = 0; j < n; j++) {\n                    g[j] = f[i][g[j]];\n\
-    \                }\n            }\n        }\n        return g;\n    }\n    template<typename\
-    \ C>\n    pair<int, int> binary_search(int u, const C &check) {\n        assert(0\
-    \ <= u && u < n);\n        assert(check(u));\n        doubling(n);\n        int\
-    \ log = 0;\n        while (n >> log) log++;\n        int r = 0;\n        for (log--;\
-    \ log >= 0; log--) {\n            int len = 1 << log;\n            if (r > n -\
-    \ len) continue;\n            int v = f[log][u];\n            if (check(v)) u\
-    \ = v, r += len;\n        }\n        if (r == n) return {-1, -1};\n        return\
-    \ make_pair(r, u);\n    }\nprivate:\n    int n;\n    vector<vector<int>> f;\n\
-    \    void doubling(long long k) {\n        while (1LL << int(f.size()) <= k) {\n\
-    \            vector<int> tf(n);\n            const vector<int> &g = f.back();\n\
-    \            for (int i = 0; i < n; i++) tf[i] = g[g[i]];\n            f.push_back(tf);\n\
-    \        }\n    }\n};\n"
-  dependsOn: []
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/graph/functional_graph.hpp\"\n\nstruct functional_graph {\n\
+    \    functional_graph(int _n) : functional_graph(vector<int>(_n, -1)) {}\n   \
+    \ functional_graph(const vector<int> &a) : n(a.size()), f(1, a) {}\n    void add_edge(int\
+    \ u, int v) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v <\
+    \ n);\n        assert(f[0][u] == -1);\n        f[0][u] = v;\n    }\n    int steps(int\
+    \ u, long long k) {\n        assert(0 <= u && u < n);\n        doubling(k);\n\
+    \        for (int i = 0; (1LL << i) <= k; i++) {\n            if (k >> i & 1)\
+    \ u = f[i][u];\n        }\n        return u;\n    }\n    vector<int> table(long\
+    \ long k) {\n        doubling(k);\n        vector<int> g(n);\n        iota(g.begin(),\
+    \ g.end(), 0);\n        for (int i = 0; (1LL << i) <= k; i++) {\n            if\
+    \ (k >> i & 1) {\n                for (int j = 0; j < n; j++) {\n            \
+    \        g[j] = f[i][g[j]];\n                }\n            }\n        }\n   \
+    \     return g;\n    }\n    template<typename C>\n    pair<int, int> binary_search(int\
+    \ u, const C &check) {\n        assert(0 <= u && u < n);\n        assert(check(u));\n\
+    \        doubling(n);\n        int log = 0;\n        while (n >> log) log++;\n\
+    \        int r = 0;\n        for (log--; log >= 0; log--) {\n            int len\
+    \ = 1 << log;\n            if (r > n - len) continue;\n            int v = f[log][u];\n\
+    \            if (check(v)) u = v, r += len;\n        }\n        if (r == n) return\
+    \ {-1, -1};\n        return make_pair(r, u);\n    }\nprivate:\n    int n;\n  \
+    \  vector<vector<int>> f;\n    void doubling(long long k) {\n        while (1LL\
+    \ << int(f.size()) <= k) {\n            vector<int> tf(n);\n            const\
+    \ vector<int> &g = f.back();\n            for (int i = 0; i < n; i++) tf[i] =\
+    \ g[g[i]];\n            f.push_back(tf);\n        }\n    }\n};\n"
+  code: "#pragma once\n#include \"../template.hpp\"\n\nstruct functional_graph {\n\
+    \    functional_graph(int _n) : functional_graph(vector<int>(_n, -1)) {}\n   \
+    \ functional_graph(const vector<int> &a) : n(a.size()), f(1, a) {}\n    void add_edge(int\
+    \ u, int v) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v <\
+    \ n);\n        assert(f[0][u] == -1);\n        f[0][u] = v;\n    }\n    int steps(int\
+    \ u, long long k) {\n        assert(0 <= u && u < n);\n        doubling(k);\n\
+    \        for (int i = 0; (1LL << i) <= k; i++) {\n            if (k >> i & 1)\
+    \ u = f[i][u];\n        }\n        return u;\n    }\n    vector<int> table(long\
+    \ long k) {\n        doubling(k);\n        vector<int> g(n);\n        iota(g.begin(),\
+    \ g.end(), 0);\n        for (int i = 0; (1LL << i) <= k; i++) {\n            if\
+    \ (k >> i & 1) {\n                for (int j = 0; j < n; j++) {\n            \
+    \        g[j] = f[i][g[j]];\n                }\n            }\n        }\n   \
+    \     return g;\n    }\n    template<typename C>\n    pair<int, int> binary_search(int\
+    \ u, const C &check) {\n        assert(0 <= u && u < n);\n        assert(check(u));\n\
+    \        doubling(n);\n        int log = 0;\n        while (n >> log) log++;\n\
+    \        int r = 0;\n        for (log--; log >= 0; log--) {\n            int len\
+    \ = 1 << log;\n            if (r > n - len) continue;\n            int v = f[log][u];\n\
+    \            if (check(v)) u = v, r += len;\n        }\n        if (r == n) return\
+    \ {-1, -1};\n        return make_pair(r, u);\n    }\nprivate:\n    int n;\n  \
+    \  vector<vector<int>> f;\n    void doubling(long long k) {\n        while (1LL\
+    \ << int(f.size()) <= k) {\n            vector<int> tf(n);\n            const\
+    \ vector<int> &g = f.back();\n            for (int i = 0; i < n; i++) tf[i] =\
+    \ g[g[i]];\n            f.push_back(tf);\n        }\n    }\n};\n"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/graph/functional_graph.hpp
   requiredBy: []
-  timestamp: '2026-11-01 11:51:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/graph/functional_graph.test.cpp
 documentation_of: src/graph/functional_graph.hpp

@@ -1,8 +1,11 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps.hpp
     title: Formal Power Series
   - icon: ':heavy_check_mark:'
@@ -14,16 +17,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_pow.hpp
     title: src/fps/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -50,34 +53,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/subprod_tree.hpp
     title: src/fps/subprod_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/graph/best_theorem.hpp
     title: src/graph/best_theorem.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/bmbm.hpp
     title: src/math/bmbm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/bostan_mori.hpp
     title: src/math/bostan_mori.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
     title: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/partition.hpp
     title: src/math/enumerative_combinatorics/partition.hpp
   - icon: ':warning:'
     path: src/math/enumerative_combinatorics/power_sums.hpp
     title: src/math/enumerative_combinatorics/power_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/prefix_binomial_sum.hpp
     title: src/math/enumerative_combinatorics/prefix_binomial_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/subset_sum.hpp
     title: src/math/enumerative_combinatorics/subset_sum.hpp
   _extendedVerifiedWith:
@@ -123,98 +126,103 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/best_theorem.test.cpp
     title: test/graph/best_theorem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/partition.test.cpp
     title: test/math/enumerative_combinatorics/partition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
     title: test/math/enumerative_combinatorics/prefix_binomial_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/subset_sum.test.cpp
     title: test/math/enumerative_combinatorics/subset_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/math/enumerative_combinatorics/combination.hpp\"\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <concepts>\n#include <vector>\nusing\
-    \ namespace std;\n\nnamespace combination {\n\ntemplate<typename mint>\nstruct\
-    \ container {\n    static vector<mint> fac, finv;\n    static void init(int n)\
-    \ {\n        int sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n,\
-    \ 2 * sz, min<int>(1 << 27, mint::mod() - 1));\n        fac.resize(n + 1);\n \
-    \       finv.resize(n + 1);\n        for (int i = sz; i <= n; i++) {\n       \
-    \     fac[i] = i * fac[i - 1];\n        }\n        finv[n] = fac[n].inv();\n \
-    \       for (int i = n; i >= sz; i--) {\n            finv[i - 1] = i * finv[i];\n\
-    \        }\n    }\n};\n\ntemplate<typename mint>\nvector<mint> container<mint>::fac(1,\
-    \ 1);\ntemplate<typename mint>\nvector<mint> container<mint>::finv(1, 1);\ntemplate<typename\
-    \ mint>\nmint fac(int n) {\n    container<mint>::init(n);\n    if (n < 0) return\
-    \ 0;\n    return container<mint>::fac[n];\n}\ntemplate<typename mint>\nmint finv(int\
-    \ n) {\n    container<mint>::init(n);\n    if (n < 0) return 0;\n    return container<mint>::finv[n];\n\
-    }\ntemplate<typename mint>\nmint mod_inv(int n) {\n    assert(n > 0);\n    return\
-    \ finv<mint>(n) * fac<mint>(n - 1);\n}\ntemplate<typename mint>\nmint nCk(int\
-    \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n)\
-    \ * finv<mint>(n - k) * finv<mint>(k);\n}\n// [x^k]1/(1-x)^n\ntemplate<typename\
-    \ mint>\nmint neg_nCk(int n, int k) {\n    if (n < 0 || k < 0) return 0;\n   \
-    \ if (n == 0) return k == 0;\n    return nCk<mint>(n + k - 1, k);\n}\ntemplate<typename\
-    \ mint>\nmint multi_C(const vector<int> &v) {\n    int n = 0;\n    for (const\
-    \ int &k : v) n += k;\n    mint res = fac<mint>(n);\n    for (const int &k : v)\
-    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint multi_C(same_as<int>\
-    \ auto... ks) {\n    int n = (0 + ... + ks);\n    mint res = fac<mint>(n);\n \
-    \   ((res *= finv<mint>(ks)), ...);\n    return res;\n}\ntemplate<typename mint>\n\
-    mint nPk(int n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return\
-    \ fac<mint>(n) * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int\
-    \ n) {\n    return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\n\
-    template<typename mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n\
-    \ + m, n);\n}\n\n} // namespace combination\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <concepts>\n\
-    #include <vector>\nusing namespace std;\n\nnamespace combination {\n\ntemplate<typename\
-    \ mint>\nstruct container {\n    static vector<mint> fac, finv;\n    static void\
-    \ init(int n) {\n        int sz = fac.size();\n        if (n < sz) return;\n \
-    \       n = clamp(n, 2 * sz, min<int>(1 << 27, mint::mod() - 1));\n        fac.resize(n\
-    \ + 1);\n        finv.resize(n + 1);\n        for (int i = sz; i <= n; i++) {\n\
-    \            fac[i] = i * fac[i - 1];\n        }\n        finv[n] = fac[n].inv();\n\
-    \        for (int i = n; i >= sz; i--) {\n            finv[i - 1] = i * finv[i];\n\
-    \        }\n    }\n};\n\ntemplate<typename mint>\nvector<mint> container<mint>::fac(1,\
-    \ 1);\ntemplate<typename mint>\nvector<mint> container<mint>::finv(1, 1);\ntemplate<typename\
-    \ mint>\nmint fac(int n) {\n    container<mint>::init(n);\n    if (n < 0) return\
-    \ 0;\n    return container<mint>::fac[n];\n}\ntemplate<typename mint>\nmint finv(int\
-    \ n) {\n    container<mint>::init(n);\n    if (n < 0) return 0;\n    return container<mint>::finv[n];\n\
-    }\ntemplate<typename mint>\nmint mod_inv(int n) {\n    assert(n > 0);\n    return\
-    \ finv<mint>(n) * fac<mint>(n - 1);\n}\ntemplate<typename mint>\nmint nCk(int\
-    \ n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n)\
-    \ * finv<mint>(n - k) * finv<mint>(k);\n}\n// [x^k]1/(1-x)^n\ntemplate<typename\
-    \ mint>\nmint neg_nCk(int n, int k) {\n    if (n < 0 || k < 0) return 0;\n   \
-    \ if (n == 0) return k == 0;\n    return nCk<mint>(n + k - 1, k);\n}\ntemplate<typename\
-    \ mint>\nmint multi_C(const vector<int> &v) {\n    int n = 0;\n    for (const\
-    \ int &k : v) n += k;\n    mint res = fac<mint>(n);\n    for (const int &k : v)\
-    \ res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename mint>\nmint multi_C(same_as<int>\
-    \ auto... ks) {\n    int n = (0 + ... + ks);\n    mint res = fac<mint>(n);\n \
-    \   ((res *= finv<mint>(ks)), ...);\n    return res;\n}\ntemplate<typename mint>\n\
-    mint nPk(int n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n    return\
-    \ fac<mint>(n) * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint catalan(int\
-    \ n) {\n    return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\n\
-    template<typename mint>\nmint grid_path(int n, int m) {\n    return nCk<mint>(n\
-    \ + m, n);\n}\n\n} // namespace combination\n"
-  dependsOn: []
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/math/enumerative_combinatorics/combination.hpp\"\n\nnamespace\
+    \ combination {\n\ntemplate<typename mint>\nstruct container {\n    static vector<mint>\
+    \ fac, finv;\n    static void init(int n) {\n        int sz = fac.size();\n  \
+    \      if (n < sz) return;\n        n = clamp(n, 2 * sz, min<int>(1 << 27, mint::mod()\
+    \ - 1));\n        fac.resize(n + 1);\n        finv.resize(n + 1);\n        for\
+    \ (int i = sz; i <= n; i++) {\n            fac[i] = i * fac[i - 1];\n        }\n\
+    \        finv[n] = fac[n].inv();\n        for (int i = n; i >= sz; i--) {\n  \
+    \          finv[i - 1] = i * finv[i];\n        }\n    }\n};\n\ntemplate<typename\
+    \ mint>\nvector<mint> container<mint>::fac(1, 1);\ntemplate<typename mint>\nvector<mint>\
+    \ container<mint>::finv(1, 1);\ntemplate<typename mint>\nmint fac(int n) {\n \
+    \   container<mint>::init(n);\n    if (n < 0) return 0;\n    return container<mint>::fac[n];\n\
+    }\ntemplate<typename mint>\nmint finv(int n) {\n    container<mint>::init(n);\n\
+    \    if (n < 0) return 0;\n    return container<mint>::finv[n];\n}\ntemplate<typename\
+    \ mint>\nmint mod_inv(int n) {\n    assert(n > 0);\n    return finv<mint>(n) *\
+    \ fac<mint>(n - 1);\n}\ntemplate<typename mint>\nmint nCk(int n, int k) {\n  \
+    \  if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n) * finv<mint>(n\
+    \ - k) * finv<mint>(k);\n}\n// [x^k]1/(1-x)^n\ntemplate<typename mint>\nmint neg_nCk(int\
+    \ n, int k) {\n    if (n < 0 || k < 0) return 0;\n    if (n == 0) return k ==\
+    \ 0;\n    return nCk<mint>(n + k - 1, k);\n}\ntemplate<typename mint>\nmint multi_C(const\
+    \ vector<int> &v) {\n    int n = 0;\n    for (const int &k : v) n += k;\n    mint\
+    \ res = fac<mint>(n);\n    for (const int &k : v) res *= finv<mint>(k);\n    return\
+    \ res;\n}\ntemplate<typename mint>\nmint multi_C(same_as<int> auto... ks) {\n\
+    \    int n = (0 + ... + ks);\n    mint res = fac<mint>(n);\n    ((res *= finv<mint>(ks)),\
+    \ ...);\n    return res;\n}\ntemplate<typename mint>\nmint nPk(int n, int k) {\n\
+    \    if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n) * finv<mint>(n\
+    \ - k);\n}\ntemplate<typename mint>\nmint catalan(int n) {\n    return fac<mint>(2\
+    \ * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\ntemplate<typename mint>\nmint\
+    \ grid_path(int n, int m) {\n    return nCk<mint>(n + m, n);\n}\n\n} // namespace\
+    \ combination\n"
+  code: "#pragma once\n#include \"../../template.hpp\"\n\nnamespace combination {\n\
+    \ntemplate<typename mint>\nstruct container {\n    static vector<mint> fac, finv;\n\
+    \    static void init(int n) {\n        int sz = fac.size();\n        if (n <\
+    \ sz) return;\n        n = clamp(n, 2 * sz, min<int>(1 << 27, mint::mod() - 1));\n\
+    \        fac.resize(n + 1);\n        finv.resize(n + 1);\n        for (int i =\
+    \ sz; i <= n; i++) {\n            fac[i] = i * fac[i - 1];\n        }\n      \
+    \  finv[n] = fac[n].inv();\n        for (int i = n; i >= sz; i--) {\n        \
+    \    finv[i - 1] = i * finv[i];\n        }\n    }\n};\n\ntemplate<typename mint>\n\
+    vector<mint> container<mint>::fac(1, 1);\ntemplate<typename mint>\nvector<mint>\
+    \ container<mint>::finv(1, 1);\ntemplate<typename mint>\nmint fac(int n) {\n \
+    \   container<mint>::init(n);\n    if (n < 0) return 0;\n    return container<mint>::fac[n];\n\
+    }\ntemplate<typename mint>\nmint finv(int n) {\n    container<mint>::init(n);\n\
+    \    if (n < 0) return 0;\n    return container<mint>::finv[n];\n}\ntemplate<typename\
+    \ mint>\nmint mod_inv(int n) {\n    assert(n > 0);\n    return finv<mint>(n) *\
+    \ fac<mint>(n - 1);\n}\ntemplate<typename mint>\nmint nCk(int n, int k) {\n  \
+    \  if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n) * finv<mint>(n\
+    \ - k) * finv<mint>(k);\n}\n// [x^k]1/(1-x)^n\ntemplate<typename mint>\nmint neg_nCk(int\
+    \ n, int k) {\n    if (n < 0 || k < 0) return 0;\n    if (n == 0) return k ==\
+    \ 0;\n    return nCk<mint>(n + k - 1, k);\n}\ntemplate<typename mint>\nmint multi_C(const\
+    \ vector<int> &v) {\n    int n = 0;\n    for (const int &k : v) n += k;\n    mint\
+    \ res = fac<mint>(n);\n    for (const int &k : v) res *= finv<mint>(k);\n    return\
+    \ res;\n}\ntemplate<typename mint>\nmint multi_C(same_as<int> auto... ks) {\n\
+    \    int n = (0 + ... + ks);\n    mint res = fac<mint>(n);\n    ((res *= finv<mint>(ks)),\
+    \ ...);\n    return res;\n}\ntemplate<typename mint>\nmint nPk(int n, int k) {\n\
+    \    if (n < 0 || n < k || k < 0) return 0;\n    return fac<mint>(n) * finv<mint>(n\
+    \ - k);\n}\ntemplate<typename mint>\nmint catalan(int n) {\n    return fac<mint>(2\
+    \ * n) * finv<mint>(n) * finv<mint>(n + 1);\n}\ntemplate<typename mint>\nmint\
+    \ grid_path(int n, int m) {\n    return nCk<mint>(n + m, n);\n}\n\n} // namespace\
+    \ combination\n"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/math/enumerative_combinatorics/combination.hpp
   requiredBy:
@@ -244,8 +252,8 @@ data:
   - src/fps/fps_log.hpp
   - src/fps/fps_inv.hpp
   - src/fps/subprod_tree.hpp
-  timestamp: '2026-10-29 12:38:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/graph/best_theorem.test.cpp
   - test/math/bostan_mori.test.cpp

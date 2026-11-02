@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/graph/matrix_tree_theorem.hpp
     title: src/graph/matrix_tree_theorem.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/matrix/matrix.hpp
     title: src/math/matrix/matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
@@ -22,29 +25,33 @@ data:
     - https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
   bundledCode: "#line 1 \"test/graph/matrix_tree_theorem.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/counting_spanning_tree_undirected\"\n\n#line\
-    \ 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#include <cassert>\nusing\
-    \ namespace std;\n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr\
-    \ modint() : x(0) {}\n    template<typename T>\n    constexpr modint(T v) {\n\
-    \        int y = v % (int)mod();\n        if (y < 0) y += mod();\n        x =\
-    \ (unsigned int)y;\n    }\n    static constexpr modint raw(int v) {\n        modint\
-    \ a;\n        a.x = v;\n        return a;\n    }\n    static constexpr int mod()\
-    \ { return MOD; }\n    constexpr unsigned int val() const { return x; }\n    constexpr\
-    \ modint& operator++() {\n        x++;\n        if (x == mod()) x = 0;\n     \
-    \   return *this;\n    }\n    constexpr modint& operator--() {\n        if (x\
-    \ == 0) x = mod();\n        x--;\n        return *this;\n    }\n    constexpr\
-    \ modint operator++(int) {\n        modint res = *this;\n        ++*this;\n  \
-    \      return res;\n    }\n    constexpr modint operator--(int) {\n        modint\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr modint&\
-    \ operator+=(const modint &r) {\n        x += r.x;\n        if (x >= mod()) x\
-    \ -= mod();\n        return *this;\n    }\n    constexpr modint& operator-=(const\
-    \ modint &r) {\n        x -= r.x;\n        if (x >= mod()) x += mod();\n     \
-    \   return *this;\n    }\n    constexpr modint& operator*=(const modint &r) {\n\
-    \        unsigned long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y\
-    \ % mod());\n        return *this;\n    }\n    constexpr modint &operator/=(const\
-    \ modint &r) {\n        return *this = *this * r.inv();\n    }\n    friend constexpr\
-    \ modint operator+(const modint &a, const modint &b) {\n        return modint(a)\
-    \ += b;\n    }\n    friend constexpr modint operator-(const modint &a, const modint\
-    \ &b) {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
+    \ 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing\
+    \ ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/modint/modint.hpp\"\
+    \n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint() : x(0)\
+    \ {}\n    template<typename T>\n    constexpr modint(T v) {\n        int y = v\
+    \ % (int)mod();\n        if (y < 0) y += mod();\n        x = (unsigned int)y;\n\
+    \    }\n    static constexpr modint raw(int v) {\n        modint a;\n        a.x\
+    \ = v;\n        return a;\n    }\n    static constexpr int mod() { return MOD;\
+    \ }\n    constexpr unsigned int val() const { return x; }\n    constexpr modint&\
+    \ operator++() {\n        x++;\n        if (x == mod()) x = 0;\n        return\
+    \ *this;\n    }\n    constexpr modint& operator--() {\n        if (x == 0) x =\
+    \ mod();\n        x--;\n        return *this;\n    }\n    constexpr modint operator++(int)\
+    \ {\n        modint res = *this;\n        ++*this;\n        return res;\n    }\n\
+    \    constexpr modint operator--(int) {\n        modint res = *this;\n       \
+    \ --*this;\n        return res;\n    }\n    constexpr modint& operator+=(const\
+    \ modint &r) {\n        x += r.x;\n        if (x >= mod()) x -= mod();\n     \
+    \   return *this;\n    }\n    constexpr modint& operator-=(const modint &r) {\n\
+    \        x -= r.x;\n        if (x >= mod()) x += mod();\n        return *this;\n\
+    \    }\n    constexpr modint& operator*=(const modint &r) {\n        unsigned\
+    \ long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y % mod());\n\
+    \        return *this;\n    }\n    constexpr modint &operator/=(const modint &r)\
+    \ {\n        return *this = *this * r.inv();\n    }\n    friend constexpr modint\
+    \ operator+(const modint &a, const modint &b) {\n        return modint(a) += b;\n\
+    \    }\n    friend constexpr modint operator-(const modint &a, const modint &b)\
+    \ {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
     \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
     \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
     \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
@@ -59,8 +66,7 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 2 \"src/graph/matrix_tree_theorem.hpp\"\n#include\
-    \ <vector>\n#line 4 \"src/math/matrix/matrix.hpp\"\nusing namespace std;\n\ntemplate<typename\
+    \    unsigned int x;\n};\n#line 3 \"src/math/matrix/matrix.hpp\"\n\ntemplate<typename\
     \ mint>\nstruct matrix : vector<vector<mint>> {\n    using vector<vector<mint>>::vector;\n\
     \    matrix(int h, int w) : vector<vector<mint>>(h, vector<mint>(w)) {}\n    matrix\
     \ &operator*=(const mint &r) {\n        for (vector<mint> &v : *this) {\n    \
@@ -135,28 +141,29 @@ data:
     inline mint matrix_tree_theorem(const vector<vector<int>> &g, int r = 0) {\n \
     \   int n = g.size();\n    vector<vector<int>> a(n, vector<int>(n));\n    for\
     \ (int u = 0; u < n; u++) {\n        for (int v : g[u]) a[u][v]++;\n    }\n  \
-    \  return matrix_tree_theorem_adjacency<mint>(a, r);\n}\n#line 5 \"test/graph/matrix_tree_theorem.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
-    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, M;\n    cin\
-    \ >> N >> M;\n    vector<vector<int>> E(N, vector<int>(N));\n    for (int u, v;\
-    \ M--; ) {\n        cin >> u >> v;\n        E[u][v]++, E[v][u]++;\n    }\n   \
-    \ cout << matrix_tree_theorem_adjacency<mint>(E).val() << '\\n';\n}\n"
+    \  return matrix_tree_theorem_adjacency<mint>(a, r);\n}\n#line 6 \"test/graph/matrix_tree_theorem.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    int N, M;\n    cin >> N >> M;\n    vector<vector<int>>\
+    \ E(N, vector<int>(N));\n    for (int u, v; M--; ) {\n        cin >> u >> v;\n\
+    \        E[u][v]++, E[v][u]++;\n    }\n    cout << matrix_tree_theorem_adjacency<mint>(E).val()\
+    \ << '\\n';\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_spanning_tree_undirected\"\
-    \n\n#include \"../../src/modint/modint.hpp\"\n#include \"../../src/graph/matrix_tree_theorem.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
-    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, M;\n    cin\
-    \ >> N >> M;\n    vector<vector<int>> E(N, vector<int>(N));\n    for (int u, v;\
-    \ M--; ) {\n        cin >> u >> v;\n        E[u][v]++, E[v][u]++;\n    }\n   \
-    \ cout << matrix_tree_theorem_adjacency<mint>(E).val() << '\\n';\n}"
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/modint/modint.hpp\"\
+    \n#include \"../../src/graph/matrix_tree_theorem.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N, M;\n    cin >> N >> M;\n    vector<vector<int>> E(N, vector<int>(N));\n \
+    \   for (int u, v; M--; ) {\n        cin >> u >> v;\n        E[u][v]++, E[v][u]++;\n\
+    \    }\n    cout << matrix_tree_theorem_adjacency<mint>(E).val() << '\\n';\n}"
   dependsOn:
+  - src/template.hpp
   - src/modint/modint.hpp
   - src/graph/matrix_tree_theorem.hpp
   - src/math/matrix/matrix.hpp
   isVerificationFile: true
   path: test/graph/matrix_tree_theorem.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/graph/matrix_tree_theorem.test.cpp
 layout: document

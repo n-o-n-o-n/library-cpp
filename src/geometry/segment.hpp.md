@@ -1,62 +1,69 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/line.hpp
     title: Line
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/geometry/segment_crosspoint.test.cpp
     title: test/geometry/segment_crosspoint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/geometry/segment_dist.test.cpp
     title: test/geometry/segment_dist.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/geometry/segment_intersect.test.cpp
     title: test/geometry/segment_intersect.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n\
-    #include <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace\
-    \ geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
-    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
-    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
-    \ T>\nconstexpr T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename\
-    \ T>\nconstexpr T PI() {\n    static_assert(is_floating_point_v<T>);\n    return\
-    \ (T)acosl(-1);\n}\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if\
-    \ constexpr (is_integral_v<T>) {\n        return a == b;\n    } else {\n     \
-    \   return abs(a - b) < eps<T>();\n    }\n}\n\ntemplate<typename T>\ninline int\
-    \ sgn(T a) { return eq<T>(a, 0) ? 0 : a > 0 ? 1 : -1; }\n\ntemplate<typename T>\n\
-    struct Point {\n    T x, y;\n    constexpr Point(T _x = 0, T _y = 0) : x(_x),\
-    \ y(_y) {}\n    constexpr Point(const pair<T, T> &pt) : x(pt.first), y(pt.second)\
-    \ {}\n    static constexpr Point inf_point() { return Point(inf<T>(), inf<T>());\
-    \ }\n    Point &operator+=(const Point &p) {\n        x += p.x;\n        y +=\
-    \ p.y;\n        return *this;\n    }\n    Point &operator-=(const Point &p) {\n\
-    \        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point\
-    \ &operator*=(const T &r) {\n        x *= r;\n        y *= r;\n        return\
-    \ *this;\n    }\n    Point &operator/=(const T &r) {\n        x /= r;\n      \
-    \  y /= r;\n        return *this;\n    }\n    Point operator+(const Point &p)\
-    \ const { return Point(*this) += p; }\n    Point operator-(const Point &p) const\
-    \ { return Point(*this) -= p; }\n    Point operator*(const T &r) const { return\
-    \ Point(*this) *= r; }\n    Point operator/(const T &r) const { return Point(*this)\
-    \ /= r; }\n    Point operator+() const { return *this; }\n    Point operator-()\
-    \ const { return Point() - *this; }\n    bool operator==(const Point &p) const\
-    \ { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const Point &p) const\
-    \ { return !this->operator==(p); }\n    bool operator<(const Point &p) const {\
-    \ return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const Point &p) const\
-    \ { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const Point &p)\
-    \ const { return this->operator==(p) || this->operator<(p); }\n    bool operator>=(const\
-    \ Point &p) const { return this->operator==(p) || this->operator>(p); }\n    friend\
-    \ Point operator*(T r, const Point &p) { return p * r; }\n    W<T> norm() const\
-    \ { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n        static_assert(is_floating_point_v<T>);\n\
-    \        return sqrtl(norm());\n    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/geometry/common.hpp\"\n\nnamespace geometry {\n\ntemplate<typename\
+    \ T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T) <= 4,\
+    \ long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps() { return\
+    \ is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr T\
+    \ inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr T PI() {\n \
+    \   static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n}\n\ntemplate<typename\
+    \ T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>) {\n    \
+    \    return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n   \
+    \ }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ? 0 :\
+    \ a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n   \
+    \ constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
+    \ pair<T, T> &pt) : x(pt.first), y(pt.second) {}\n    static constexpr Point inf_point()\
+    \ { return Point(inf<T>(), inf<T>()); }\n    Point &operator+=(const Point &p)\
+    \ {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point\
+    \ &operator-=(const Point &p) {\n        x -= p.x;\n        y -= p.y;\n      \
+    \  return *this;\n    }\n    Point &operator*=(const T &r) {\n        x *= r;\n\
+    \        y *= r;\n        return *this;\n    }\n    Point &operator/=(const T\
+    \ &r) {\n        x /= r;\n        y /= r;\n        return *this;\n    }\n    Point\
+    \ operator+(const Point &p) const { return Point(*this) += p; }\n    Point operator-(const\
+    \ Point &p) const { return Point(*this) -= p; }\n    Point operator*(const T &r)\
+    \ const { return Point(*this) *= r; }\n    Point operator/(const T &r) const {\
+    \ return Point(*this) /= r; }\n    Point operator+() const { return *this; }\n\
+    \    Point operator-() const { return Point() - *this; }\n    bool operator==(const\
+    \ Point &p) const { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const\
+    \ Point &p) const { return !this->operator==(p); }\n    bool operator<(const Point\
+    \ &p) const { return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const\
+    \ Point &p) const { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const\
+    \ Point &p) const { return this->operator==(p) || this->operator<(p); }\n    bool\
+    \ operator>=(const Point &p) const { return this->operator==(p) || this->operator>(p);\
+    \ }\n    friend Point operator*(T r, const Point &p) { return p * r; }\n    W<T>\
+    \ norm() const { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n \
+    \       static_assert(is_floating_point_v<T>);\n        return sqrtl(norm());\n\
+    \    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
     \        return atan2l(y, x);\n    }\n    Point unit() const {\n        return\
     \ (*this) / dist();\n    }\n    Point rotate(T rad) const {\n        static_assert(is_floating_point_v<T>);\n\
     \        T c = cosl(rad), s = sinl(rad);\n        T tx = x * c - y * s;\n    \
@@ -77,7 +84,7 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 3 \"src/geometry/line.hpp\"\
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"src/geometry/line.hpp\"\
     \n\nnamespace geometry {\n\ntemplate<typename T>\nstruct Line {\n    constexpr\
     \ Line() = default;\n    constexpr Line(T _a, T _b, T _c) : a(_a), b(_b), c(_c)\
     \ {}\n    constexpr Line(const Point<T> &p, const Point<T> &q) : a(q.y - p.y),\
@@ -111,7 +118,7 @@ data:
     \ Line<T> &l2) { return l1.crossppoint(l2); }\ntemplate<typename T>\ninline T\
     \ dist(const Line<T> &l, const Point<T> &p) { return l.dist(p); }\ntemplate<typename\
     \ T>\ninline T dist(const Point<T> &p, const Line<T> &l) { return l.dist(p); }\n\
-    \n\n} // namespace geometry\n#line 3 \"src/geometry/segment.hpp\"\n\nnamespace\
+    \n\n} // namespace geometry\n#line 4 \"src/geometry/segment.hpp\"\n\nnamespace\
     \ geometry {\n\ntemplate<typename T>\nstruct Segment {\n    constexpr Segment()\
     \ = default;\n    constexpr Segment(const Point<T> &_a, const Point<T> &_b) :\
     \ l(_a, _b), a(_a), b(_b) {}\n    bool intersect(const Segment &s) const {\n \
@@ -130,26 +137,27 @@ data:
     \   if (dot(b - a, p - a) < eps<T>()) return (p - a).dist();\n        if (dot(a\
     \ - b, p - b) < eps<T>()) return (p - b).dist();\n        return l.dist(p);\n\
     \    }\n    T dist(const Segment &s) const {\n        static_assert(is_floating_point_v<T>);\n\
-    \        if (intersect(s)) return 0;\n        T res = inf<T>();\n        res =\
-    \ min(res, dist(s.a));\n        res = min(res, dist(s.b));\n        res = min(res,\
-    \ s.dist(a));\n        res = min(res, s.dist(b));\n        return res;\n    }\n\
-    private:\n    Line<T> l;\n    Point<T> a, b;\n};\n\ntemplate<typename T>\ninline\
-    \ bool intersect(const Segment<T> &s1, const Segment<T> &s2) { return s1.intersect(s2);\
-    \ }\ntemplate<typename T>\ninline Point<T> crosspoint(const Segment<T> &s1, const\
-    \ Segment<T> &s2) { return s1.crosspoint(s2); }\ntemplate<typename T>\ninline\
-    \ T dist(const Segment<T> &s, const Point<T> &p) { return s.dist(p); }\ntemplate<typename\
-    \ T>\ninline T dist(const Point<T> &p, const Segment<T> &s) { return s.dist(p);\
-    \ }\ntemplate<typename T>\ninline T dist(const Segment<T> &s1, const Segment<T>\
-    \ &s2) { return s1.dist(s2); }\n\n} // namespace geometry\n"
-  code: "#pragma once\n#include \"line.hpp\"\n\nnamespace geometry {\n\ntemplate<typename\
-    \ T>\nstruct Segment {\n    constexpr Segment() = default;\n    constexpr Segment(const\
-    \ Point<T> &_a, const Point<T> &_b) : l(_a, _b), a(_a), b(_b) {}\n    bool intersect(const\
-    \ Segment &s) const {\n        bool f1 = ccw(a, b, s.a) * ccw(a, b, s.b) <= 0;\n\
-    \        bool f2 = ccw(s.a, s.b, a) * ccw(s.a, s.b, b) <= 0;\n        return f1\
-    \ && f2;\n    }\n    bool on_segment(const Point<T> &p) const {\n        Point<T>\
-    \ ab = b - a, ap = p - a, bp = p - b;\n        if (!eq<W<T>>(cross(ab, ap), 0))\
-    \ return false;\n        return dot(ab, ap) >= -eps<T>() && dot(ab, bp) <= eps<T>();\n\
-    \    }\n    Point<T> crosspoint(const Segment &s) const {\n        static_assert(is_floating_point_v<T>);\n\
+    \        if (intersect(s)) return 0;\n        T res = inf<T>();\n        chmin(res,\
+    \ dist(s.a));\n        chmin(res, dist(s.b));\n        chmin(res, s.dist(a));\n\
+    \        chmin(res, s.dist(b));\n        return res;\n    }\nprivate:\n    Line<T>\
+    \ l;\n    Point<T> a, b;\n};\n\ntemplate<typename T>\ninline bool intersect(const\
+    \ Segment<T> &s1, const Segment<T> &s2) { return s1.intersect(s2); }\ntemplate<typename\
+    \ T>\ninline Point<T> crosspoint(const Segment<T> &s1, const Segment<T> &s2) {\
+    \ return s1.crosspoint(s2); }\ntemplate<typename T>\ninline T dist(const Segment<T>\
+    \ &s, const Point<T> &p) { return s.dist(p); }\ntemplate<typename T>\ninline T\
+    \ dist(const Point<T> &p, const Segment<T> &s) { return s.dist(p); }\ntemplate<typename\
+    \ T>\ninline T dist(const Segment<T> &s1, const Segment<T> &s2) { return s1.dist(s2);\
+    \ }\n\n} // namespace geometry\n"
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"line.hpp\"\n\nnamespace\
+    \ geometry {\n\ntemplate<typename T>\nstruct Segment {\n    constexpr Segment()\
+    \ = default;\n    constexpr Segment(const Point<T> &_a, const Point<T> &_b) :\
+    \ l(_a, _b), a(_a), b(_b) {}\n    bool intersect(const Segment &s) const {\n \
+    \       bool f1 = ccw(a, b, s.a) * ccw(a, b, s.b) <= 0;\n        bool f2 = ccw(s.a,\
+    \ s.b, a) * ccw(s.a, s.b, b) <= 0;\n        return f1 && f2;\n    }\n    bool\
+    \ on_segment(const Point<T> &p) const {\n        Point<T> ab = b - a, ap = p -\
+    \ a, bp = p - b;\n        if (!eq<W<T>>(cross(ab, ap), 0)) return false;\n   \
+    \     return dot(ab, ap) >= -eps<T>() && dot(ab, bp) <= eps<T>();\n    }\n   \
+    \ Point<T> crosspoint(const Segment &s) const {\n        static_assert(is_floating_point_v<T>);\n\
     \        if (!intersect(s)) return Point<T>::inf_point();\n        if (!l.is_parallel(s.l))\
     \ return l.crossppoint(s.l);\n        auto less = [] (const Point<T> &p, const\
     \ Point<T> &q) {\n            return p.x < q.x || (p.x == q.x && p.y < q.y);\n\
@@ -159,25 +167,26 @@ data:
     \   if (dot(b - a, p - a) < eps<T>()) return (p - a).dist();\n        if (dot(a\
     \ - b, p - b) < eps<T>()) return (p - b).dist();\n        return l.dist(p);\n\
     \    }\n    T dist(const Segment &s) const {\n        static_assert(is_floating_point_v<T>);\n\
-    \        if (intersect(s)) return 0;\n        T res = inf<T>();\n        res =\
-    \ min(res, dist(s.a));\n        res = min(res, dist(s.b));\n        res = min(res,\
-    \ s.dist(a));\n        res = min(res, s.dist(b));\n        return res;\n    }\n\
-    private:\n    Line<T> l;\n    Point<T> a, b;\n};\n\ntemplate<typename T>\ninline\
-    \ bool intersect(const Segment<T> &s1, const Segment<T> &s2) { return s1.intersect(s2);\
-    \ }\ntemplate<typename T>\ninline Point<T> crosspoint(const Segment<T> &s1, const\
-    \ Segment<T> &s2) { return s1.crosspoint(s2); }\ntemplate<typename T>\ninline\
-    \ T dist(const Segment<T> &s, const Point<T> &p) { return s.dist(p); }\ntemplate<typename\
-    \ T>\ninline T dist(const Point<T> &p, const Segment<T> &s) { return s.dist(p);\
-    \ }\ntemplate<typename T>\ninline T dist(const Segment<T> &s1, const Segment<T>\
-    \ &s2) { return s1.dist(s2); }\n\n} // namespace geometry"
+    \        if (intersect(s)) return 0;\n        T res = inf<T>();\n        chmin(res,\
+    \ dist(s.a));\n        chmin(res, dist(s.b));\n        chmin(res, s.dist(a));\n\
+    \        chmin(res, s.dist(b));\n        return res;\n    }\nprivate:\n    Line<T>\
+    \ l;\n    Point<T> a, b;\n};\n\ntemplate<typename T>\ninline bool intersect(const\
+    \ Segment<T> &s1, const Segment<T> &s2) { return s1.intersect(s2); }\ntemplate<typename\
+    \ T>\ninline Point<T> crosspoint(const Segment<T> &s1, const Segment<T> &s2) {\
+    \ return s1.crosspoint(s2); }\ntemplate<typename T>\ninline T dist(const Segment<T>\
+    \ &s, const Point<T> &p) { return s.dist(p); }\ntemplate<typename T>\ninline T\
+    \ dist(const Point<T> &p, const Segment<T> &s) { return s.dist(p); }\ntemplate<typename\
+    \ T>\ninline T dist(const Segment<T> &s1, const Segment<T> &s2) { return s1.dist(s2);\
+    \ }\n\n} // namespace geometry"
   dependsOn:
+  - src/template.hpp
   - src/geometry/line.hpp
   - src/geometry/common.hpp
   isVerificationFile: false
   path: src/geometry/segment.hpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/geometry/segment_intersect.test.cpp
   - test/geometry/segment_crosspoint.test.cpp

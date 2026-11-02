@@ -1,51 +1,74 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/data_structure/range_query/sparse_table.hpp
     title: src/data_structure/range_query/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/monoid/min.hpp
     title: src/monoid/min.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/tree/static_tree.hpp
     title: Static Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/union_find/uf_merge_tree.test.cpp
     title: test/data_structure/union_find/uf_merge_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/static_tree.jump.test.cpp
     title: test/tree/static_tree.jump.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/static_tree.lca.test.cpp
     title: test/tree/static_tree.lca.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/data_structure/range_query/static_rmq.hpp\"\n#include\
-    \ <cassert>\n#include <limits>\n#include <type_traits>\n#include <vector>\n#line\
-    \ 2 \"src/data_structure/range_query/sparse_table.hpp\"\n#include <bit>\n#line\
-    \ 5 \"src/data_structure/range_query/sparse_table.hpp\"\nusing namespace std;\n\
-    \ntemplate<typename Monoid>\nstruct sparse_table {\n    using M = Monoid;\n  \
-    \  using S = typename M::S;\n    sparse_table() = default;\n    sparse_table(const\
-    \ vector<S> &v) : n(v.size()), b(0), d(1, v) { build(); }\n    S prod(int l, int\
-    \ r) const {\n        assert(0 <= l && l <= r && r <=n);\n        if (l == r)\
-    \ return M::e();\n        int i = bit_width(unsigned(r - l)) - 1;\n        return\
-    \ M::op(d[i][l], d[i][r - (1 << i)]);\n    }\nprivate:\n    int n, b, e;\n   \
-    \ vector<vector<S>> d;\n    void build() {\n        b = bit_width(unsigned(n));\n\
-    \        d.resize(b);\n        for (int i = 1; i < b; i++) {\n            int\
-    \ width = 1 << i;\n            d[i].assign(n - width + 1, M::e());\n         \
-    \   for (int j = 0; j + width <= n; j++) {\n                d[i][j] = M::op(d[i\
-    \ - 1][j], d[i - 1][j + (width >> 1)]);\n            }\n        }\n    }\n};\n\
-    #line 2 \"src/monoid/min.hpp\"\n#include <algorithm>\n#line 4 \"src/monoid/min.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T, T E = numeric_limits<T>::max()>\n\
-    struct min_monoid {\n    using S = T;\n    static S op(S a, S b) { return min(a,\
-    \ b); }\n    static S e() { return E; }\n};\n#line 8 \"src/data_structure/range_query/static_rmq.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T, T inf = numeric_limits<T>::max()>\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/data_structure/range_query/sparse_table.hpp\"\n\ntemplate<typename\
+    \ Monoid>\nstruct sparse_table {\n    using M = Monoid;\n    using S = typename\
+    \ M::S;\n    sparse_table() = default;\n    sparse_table(const vector<S> &v) :\
+    \ n(v.size()), b(0), d(1, v) { build(); }\n    S prod(int l, int r) const {\n\
+    \        assert(0 <= l && l <= r && r <=n);\n        if (l == r) return M::e();\n\
+    \        int i = bit_width(unsigned(r - l)) - 1;\n        return M::op(d[i][l],\
+    \ d[i][r - (1 << i)]);\n    }\nprivate:\n    int n, b, e;\n    vector<vector<S>>\
+    \ d;\n    void build() {\n        b = bit_width(unsigned(n));\n        d.resize(b);\n\
+    \        for (int i = 1; i < b; i++) {\n            int width = 1 << i;\n    \
+    \        d[i].assign(n - width + 1, M::e());\n            for (int j = 0; j +\
+    \ width <= n; j++) {\n                d[i][j] = M::op(d[i - 1][j], d[i - 1][j\
+    \ + (width >> 1)]);\n            }\n        }\n    }\n};\n#line 3 \"src/monoid/min.hpp\"\
+    \n\ntemplate<typename T, T E = inf<T>()>\nstruct min_monoid {\n    using S = T;\n\
+    \    static S op(S a, S b) { return min(a, b); }\n    static S e() { return E;\
+    \ }\n};\n#line 5 \"src/data_structure/range_query/static_rmq.hpp\"\n\ntemplate<typename\
+    \ T, T inf = ::inf<T>()>\nstruct static_rmq {\n    static_assert(is_integral_v<T>);\n\
+    \    static_rmq() = default;\n    static_rmq(const vector<T> &_v) : n(_v.size()),\
+    \ v(_v), pref(n), suff(n) { build(); }\n    T prod(int l, int r) const {\n   \
+    \     assert(0 <= l && l <= r && r <= n);\n        if (l == r) return inf;\n \
+    \       r--;\n        int bl = l >> log, br = r >> log;\n        if (bl < br)\
+    \ {\n            if (bl + 1 == br) return min(pref[r], suff[l]);\n           \
+    \ return min(min(pref[r], suff[l]), st.prod(bl + 1, br));\n        }\n       \
+    \ T res = v[l];\n        for (int i = l + 1; i <= r; i++) chmin(res, v[i]);\n\
+    \        return res;\n    }\nprivate:\n    int n;\n    static constexpr int log\
+    \ = 4, mask = 15;\n    vector<T> v, pref, suff;\n    sparse_table<min_monoid<T,\
+    \ inf>> st;\n    void build() {\n        if (n == 0) return;\n        pref[0]\
+    \ = v[0];\n        suff[n - 1] = v[n - 1];\n        for (int i = 1; i < n; i++)\
+    \ {\n            pref[i] = i & mask ? min(pref[i - 1], v[i]) : v[i];\n       \
+    \ }\n        for (int i = n - 2; i >= 0; i--) {\n            suff[i] = (i & mask)\
+    \ == mask ? v[i] : min(v[i], suff[i + 1]);\n        }\n        st = sparse_table<min_monoid<T,\
+    \ inf>>([&] {\n            vector<T> a(n >> log);\n            for (int i = 0;\
+    \ i < (n >> log); i++) {\n                a[i] = suff[i << log];\n           \
+    \ }\n            return move(a);\n        } ());\n    }\n};\n"
+  code: "#pragma once\n#include \"../../template.hpp\"\n#include \"sparse_table.hpp\"\
+    \n#include \"../../monoid/min.hpp\"\n\ntemplate<typename T, T inf = ::inf<T>()>\n\
     struct static_rmq {\n    static_assert(is_integral_v<T>);\n    static_rmq() =\
     \ default;\n    static_rmq(const vector<T> &_v) : n(_v.size()), v(_v), pref(n),\
     \ suff(n) { build(); }\n    T prod(int l, int r) const {\n        assert(0 <=\
@@ -53,47 +76,27 @@ data:
     \     int bl = l >> log, br = r >> log;\n        if (bl < br) {\n            if\
     \ (bl + 1 == br) return min(pref[r], suff[l]);\n            return min(min(pref[r],\
     \ suff[l]), st.prod(bl + 1, br));\n        }\n        T res = v[l];\n        for\
-    \ (int i = l + 1; i <= r; i++) res = min(res, v[i]);\n        return res;\n  \
-    \  }\nprivate:\n    int n;\n    static constexpr int log = 4, mask = 15;\n   \
-    \ vector<T> v, pref, suff;\n    sparse_table<min_monoid<T, inf>> st;\n    void\
-    \ build() {\n        if (n == 0) return;\n        pref[0] = v[0];\n        suff[n\
-    \ - 1] = v[n - 1];\n        for (int i = 1; i < n; i++) {\n            pref[i]\
-    \ = i & mask ? min(pref[i - 1], v[i]) : v[i];\n        }\n        for (int i =\
-    \ n - 2; i >= 0; i--) {\n            suff[i] = (i & mask) == mask ? v[i] : min(v[i],\
-    \ suff[i + 1]);\n        }\n        st = sparse_table<min_monoid<T, inf>>([&]\
-    \ {\n            vector<T> a(n >> log);\n            for (int i = 0; i < (n >>\
-    \ log); i++) {\n                a[i] = suff[i << log];\n            }\n      \
-    \      return move(a);\n        } ());\n    }\n};\n"
-  code: "#pragma once\n#include <cassert>\n#include <limits>\n#include <type_traits>\n\
-    #include <vector>\n#include \"sparse_table.hpp\"\n#include \"../../monoid/min.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T, T inf = numeric_limits<T>::max()>\n\
-    struct static_rmq {\n    static_assert(is_integral_v<T>);\n    static_rmq() =\
-    \ default;\n    static_rmq(const vector<T> &_v) : n(_v.size()), v(_v), pref(n),\
-    \ suff(n) { build(); }\n    T prod(int l, int r) const {\n        assert(0 <=\
-    \ l && l <= r && r <= n);\n        if (l == r) return inf;\n        r--;\n   \
-    \     int bl = l >> log, br = r >> log;\n        if (bl < br) {\n            if\
-    \ (bl + 1 == br) return min(pref[r], suff[l]);\n            return min(min(pref[r],\
-    \ suff[l]), st.prod(bl + 1, br));\n        }\n        T res = v[l];\n        for\
-    \ (int i = l + 1; i <= r; i++) res = min(res, v[i]);\n        return res;\n  \
-    \  }\nprivate:\n    int n;\n    static constexpr int log = 4, mask = 15;\n   \
-    \ vector<T> v, pref, suff;\n    sparse_table<min_monoid<T, inf>> st;\n    void\
-    \ build() {\n        if (n == 0) return;\n        pref[0] = v[0];\n        suff[n\
-    \ - 1] = v[n - 1];\n        for (int i = 1; i < n; i++) {\n            pref[i]\
-    \ = i & mask ? min(pref[i - 1], v[i]) : v[i];\n        }\n        for (int i =\
-    \ n - 2; i >= 0; i--) {\n            suff[i] = (i & mask) == mask ? v[i] : min(v[i],\
-    \ suff[i + 1]);\n        }\n        st = sparse_table<min_monoid<T, inf>>([&]\
-    \ {\n            vector<T> a(n >> log);\n            for (int i = 0; i < (n >>\
-    \ log); i++) {\n                a[i] = suff[i << log];\n            }\n      \
-    \      return move(a);\n        } ());\n    }\n};"
+    \ (int i = l + 1; i <= r; i++) chmin(res, v[i]);\n        return res;\n    }\n\
+    private:\n    int n;\n    static constexpr int log = 4, mask = 15;\n    vector<T>\
+    \ v, pref, suff;\n    sparse_table<min_monoid<T, inf>> st;\n    void build() {\n\
+    \        if (n == 0) return;\n        pref[0] = v[0];\n        suff[n - 1] = v[n\
+    \ - 1];\n        for (int i = 1; i < n; i++) {\n            pref[i] = i & mask\
+    \ ? min(pref[i - 1], v[i]) : v[i];\n        }\n        for (int i = n - 2; i >=\
+    \ 0; i--) {\n            suff[i] = (i & mask) == mask ? v[i] : min(v[i], suff[i\
+    \ + 1]);\n        }\n        st = sparse_table<min_monoid<T, inf>>([&] {\n   \
+    \         vector<T> a(n >> log);\n            for (int i = 0; i < (n >> log);\
+    \ i++) {\n                a[i] = suff[i << log];\n            }\n            return\
+    \ move(a);\n        } ());\n    }\n};"
   dependsOn:
+  - src/template.hpp
   - src/data_structure/range_query/sparse_table.hpp
   - src/monoid/min.hpp
   isVerificationFile: false
   path: src/data_structure/range_query/static_rmq.hpp
   requiredBy:
   - src/tree/static_tree.hpp
-  timestamp: '2026-10-31 13:28:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/tree/static_tree.lca.test.cpp
   - test/tree/static_tree.jump.test.cpp

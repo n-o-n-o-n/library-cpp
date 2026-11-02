@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
   - icon: ':heavy_check_mark:'
     path: src/geometry/polygon.hpp
     title: Polygon
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -20,41 +23,44 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/geometry/convex_hull.hpp\"\n#include <algorithm>\n#include\
-    \ <vector>\n#line 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n\
-    #include <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace\
-    \ geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
-    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
-    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
-    \ T>\nconstexpr T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename\
-    \ T>\nconstexpr T PI() {\n    static_assert(is_floating_point_v<T>);\n    return\
-    \ (T)acosl(-1);\n}\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if\
-    \ constexpr (is_integral_v<T>) {\n        return a == b;\n    } else {\n     \
-    \   return abs(a - b) < eps<T>();\n    }\n}\n\ntemplate<typename T>\ninline int\
-    \ sgn(T a) { return eq<T>(a, 0) ? 0 : a > 0 ? 1 : -1; }\n\ntemplate<typename T>\n\
-    struct Point {\n    T x, y;\n    constexpr Point(T _x = 0, T _y = 0) : x(_x),\
-    \ y(_y) {}\n    constexpr Point(const pair<T, T> &pt) : x(pt.first), y(pt.second)\
-    \ {}\n    static constexpr Point inf_point() { return Point(inf<T>(), inf<T>());\
-    \ }\n    Point &operator+=(const Point &p) {\n        x += p.x;\n        y +=\
-    \ p.y;\n        return *this;\n    }\n    Point &operator-=(const Point &p) {\n\
-    \        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point\
-    \ &operator*=(const T &r) {\n        x *= r;\n        y *= r;\n        return\
-    \ *this;\n    }\n    Point &operator/=(const T &r) {\n        x /= r;\n      \
-    \  y /= r;\n        return *this;\n    }\n    Point operator+(const Point &p)\
-    \ const { return Point(*this) += p; }\n    Point operator-(const Point &p) const\
-    \ { return Point(*this) -= p; }\n    Point operator*(const T &r) const { return\
-    \ Point(*this) *= r; }\n    Point operator/(const T &r) const { return Point(*this)\
-    \ /= r; }\n    Point operator+() const { return *this; }\n    Point operator-()\
-    \ const { return Point() - *this; }\n    bool operator==(const Point &p) const\
-    \ { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const Point &p) const\
-    \ { return !this->operator==(p); }\n    bool operator<(const Point &p) const {\
-    \ return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const Point &p) const\
-    \ { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const Point &p)\
-    \ const { return this->operator==(p) || this->operator<(p); }\n    bool operator>=(const\
-    \ Point &p) const { return this->operator==(p) || this->operator>(p); }\n    friend\
-    \ Point operator*(T r, const Point &p) { return p * r; }\n    W<T> norm() const\
-    \ { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n        static_assert(is_floating_point_v<T>);\n\
-    \        return sqrtl(norm());\n    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/geometry/common.hpp\"\n\nnamespace geometry {\n\ntemplate<typename\
+    \ T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T) <= 4,\
+    \ long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps() { return\
+    \ is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr T\
+    \ inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr T PI() {\n \
+    \   static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n}\n\ntemplate<typename\
+    \ T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>) {\n    \
+    \    return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n   \
+    \ }\n}\n\ntemplate<typename T>\ninline int sgn(T a) { return eq<T>(a, 0) ? 0 :\
+    \ a > 0 ? 1 : -1; }\n\ntemplate<typename T>\nstruct Point {\n    T x, y;\n   \
+    \ constexpr Point(T _x = 0, T _y = 0) : x(_x), y(_y) {}\n    constexpr Point(const\
+    \ pair<T, T> &pt) : x(pt.first), y(pt.second) {}\n    static constexpr Point inf_point()\
+    \ { return Point(inf<T>(), inf<T>()); }\n    Point &operator+=(const Point &p)\
+    \ {\n        x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point\
+    \ &operator-=(const Point &p) {\n        x -= p.x;\n        y -= p.y;\n      \
+    \  return *this;\n    }\n    Point &operator*=(const T &r) {\n        x *= r;\n\
+    \        y *= r;\n        return *this;\n    }\n    Point &operator/=(const T\
+    \ &r) {\n        x /= r;\n        y /= r;\n        return *this;\n    }\n    Point\
+    \ operator+(const Point &p) const { return Point(*this) += p; }\n    Point operator-(const\
+    \ Point &p) const { return Point(*this) -= p; }\n    Point operator*(const T &r)\
+    \ const { return Point(*this) *= r; }\n    Point operator/(const T &r) const {\
+    \ return Point(*this) /= r; }\n    Point operator+() const { return *this; }\n\
+    \    Point operator-() const { return Point() - *this; }\n    bool operator==(const\
+    \ Point &p) const { return eq(x, p.x) && eq(y, p.y); }\n    bool operator!=(const\
+    \ Point &p) const { return !this->operator==(p); }\n    bool operator<(const Point\
+    \ &p) const { return x == p.x ? y < p.y : x < p.x; }\n    bool operator>(const\
+    \ Point &p) const { return x == p.x ? y > p.y : x > p.x; }\n    bool operator<=(const\
+    \ Point &p) const { return this->operator==(p) || this->operator<(p); }\n    bool\
+    \ operator>=(const Point &p) const { return this->operator==(p) || this->operator>(p);\
+    \ }\n    friend Point operator*(T r, const Point &p) { return p * r; }\n    W<T>\
+    \ norm() const { return (W<T>)x * x + (W<T>)y * y; }\n    T dist() const {\n \
+    \       static_assert(is_floating_point_v<T>);\n        return sqrtl(norm());\n\
+    \    }\n    T arg() const {\n        static_assert(is_floating_point_v<T>);\n\
     \        return atan2l(y, x);\n    }\n    Point unit() const {\n        return\
     \ (*this) / dist();\n    }\n    Point rotate(T rad) const {\n        static_assert(is_floating_point_v<T>);\n\
     \        T c = cosl(rad), s = sinl(rad);\n        T tx = x * c - y * s;\n    \
@@ -75,7 +81,7 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 5 \"src/geometry/polygon.hpp\"\
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"src/geometry/polygon.hpp\"\
     \n\nnamespace geometry {\n\ntemplate<typename T>\nstruct Polygon : vector<Point<T>>\
     \ {\n    using vector<Point<T>>::vector;\n    Polygon(const vector<Point<T>> &pts)\
     \ : vector<Point<T>>(pts) {}\n    int contain(const Point<T> &p) const {\n   \
@@ -136,8 +142,30 @@ data:
     \ }\ntemplate<typename T>\ninline W<T> area(const Polygon<T> &v) { return v.area();\
     \ }\ntemplate<typename T>\ninline bool is_convex(const Polygon<T> &v) { return\
     \ v.is_convex(); }\ntemplate<typename T>\ninline pair<int, int> diam(const Polygon<T>\
-    \ &v) { return v.diam(); }\n\n} // namespace geometry\n#line 6 \"src/geometry/convex_hull.hpp\"\
-    \nusing namespace std;\n\nnamespace geometry {\n\ntemplate<typename T>\nPolygon<T>\
+    \ &v) { return v.diam(); }\n\n} // namespace geometry\n#line 5 \"src/geometry/convex_hull.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nPolygon<T> convex_hull(vector<Point<T>>\
+    \ pts, bool exclude_collinear = true) {\n    sort(pts.begin(), pts.end());\n \
+    \   pts.erase(unique(pts.begin(), pts.end(), [] (const Point<T> &p, const Point<T>\
+    \ &q) {\n        return p.x == q.x && p.y == q.y;\n    }), pts.end());\n    int\
+    \ n = pts.size();\n    if (n <= 1) return Polygon<T>(pts);\n    auto turn = []\
+    \ (const Point<T> &a, const Point<T> &b, const Point<T> &c) {\n        W<T> d\
+    \ = cross(b - a, c - a);\n        if constexpr (is_integral_v<T>) return (d >\
+    \ 0) - (d < 0);\n        else return sgn(d);\n    };\n    bool collinear = true;\n\
+    \    for (int i = 1; i < n - 1; i++) {\n        if (turn(pts[0], pts[n - 1], pts[i])\
+    \ != 0) {\n            collinear = false;\n            break;\n        }\n   \
+    \ }\n    if (collinear) {\n        if (!exclude_collinear) return Polygon<T>(pts);\n\
+    \        return Polygon<T>(vector<Point<T>>{pts.front(), pts.back()});\n    }\n\
+    \    auto remove = [&] (const Point<T> &a, const Point<T> &b, const Point<T> &c)\
+    \ {\n        int d = turn(a, b, c);\n        return exclude_collinear ? d <= 0\
+    \ : d < 0;\n    };\n    vector<Point<T>> ch;\n    ch.reserve(2 * n);\n    for\
+    \ (const Point<T> &p : pts) {\n        while (ch.size() >= 2 && remove(ch[ch.size()\
+    \ - 2], ch.back(), p)) ch.pop_back();\n        ch.push_back(p);\n    }\n    int\
+    \ l = ch.size();\n    for (int i = n - 2; i >= 0; i--) {\n        while ((int)ch.size()\
+    \ > l && remove(ch[ch.size() - 2], ch.back(), pts[i])) ch.pop_back();\n      \
+    \  ch.push_back(pts[i]);\n    }\n    ch.pop_back();\n    return Polygon<T>(ch);\n\
+    }\n\n} // namespace geometry\n"
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"common.hpp\"\n#include\
+    \ \"polygon.hpp\"\n\nnamespace geometry {\n\ntemplate<typename T>\nPolygon<T>\
     \ convex_hull(vector<Point<T>> pts, bool exclude_collinear = true) {\n    sort(pts.begin(),\
     \ pts.end());\n    pts.erase(unique(pts.begin(), pts.end(), [] (const Point<T>\
     \ &p, const Point<T> &q) {\n        return p.x == q.x && p.y == q.y;\n    }),\
@@ -157,36 +185,15 @@ data:
     \ l = ch.size();\n    for (int i = n - 2; i >= 0; i--) {\n        while ((int)ch.size()\
     \ > l && remove(ch[ch.size() - 2], ch.back(), pts[i])) ch.pop_back();\n      \
     \  ch.push_back(pts[i]);\n    }\n    ch.pop_back();\n    return Polygon<T>(ch);\n\
-    }\n\n} // namespace geometry\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include \"common.hpp\"\
-    \n#include \"polygon.hpp\"\nusing namespace std;\n\nnamespace geometry {\n\ntemplate<typename\
-    \ T>\nPolygon<T> convex_hull(vector<Point<T>> pts, bool exclude_collinear = true)\
-    \ {\n    sort(pts.begin(), pts.end());\n    pts.erase(unique(pts.begin(), pts.end(),\
-    \ [] (const Point<T> &p, const Point<T> &q) {\n        return p.x == q.x && p.y\
-    \ == q.y;\n    }), pts.end());\n    int n = pts.size();\n    if (n <= 1) return\
-    \ Polygon<T>(pts);\n    auto turn = [] (const Point<T> &a, const Point<T> &b,\
-    \ const Point<T> &c) {\n        W<T> d = cross(b - a, c - a);\n        if constexpr\
-    \ (is_integral_v<T>) return (d > 0) - (d < 0);\n        else return sgn(d);\n\
-    \    };\n    bool collinear = true;\n    for (int i = 1; i < n - 1; i++) {\n \
-    \       if (turn(pts[0], pts[n - 1], pts[i]) != 0) {\n            collinear =\
-    \ false;\n            break;\n        }\n    }\n    if (collinear) {\n       \
-    \ if (!exclude_collinear) return Polygon<T>(pts);\n        return Polygon<T>(vector<Point<T>>{pts.front(),\
-    \ pts.back()});\n    }\n    auto remove = [&] (const Point<T> &a, const Point<T>\
-    \ &b, const Point<T> &c) {\n        int d = turn(a, b, c);\n        return exclude_collinear\
-    \ ? d <= 0 : d < 0;\n    };\n    vector<Point<T>> ch;\n    ch.reserve(2 * n);\n\
-    \    for (const Point<T> &p : pts) {\n        while (ch.size() >= 2 && remove(ch[ch.size()\
-    \ - 2], ch.back(), p)) ch.pop_back();\n        ch.push_back(p);\n    }\n    int\
-    \ l = ch.size();\n    for (int i = n - 2; i >= 0; i--) {\n        while ((int)ch.size()\
-    \ > l && remove(ch[ch.size() - 2], ch.back(), pts[i])) ch.pop_back();\n      \
-    \  ch.push_back(pts[i]);\n    }\n    ch.pop_back();\n    return Polygon<T>(ch);\n\
     }\n\n} // namespace geometry"
   dependsOn:
+  - src/template.hpp
   - src/geometry/common.hpp
   - src/geometry/polygon.hpp
   isVerificationFile: false
   path: src/geometry/convex_hull.hpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/geometry/convex_hull_aoj.test.cpp

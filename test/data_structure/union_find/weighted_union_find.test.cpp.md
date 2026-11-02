@@ -4,12 +4,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/monoid/sum.hpp
     title: src/monoid/sum.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,29 +25,33 @@ data:
     - https://judge.yosupo.jp/problem/unionfind_with_potential
   bundledCode: "#line 1 \"test/data_structure/union_find/weighted_union_find.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
-    \n\n#line 2 \"src/modint/modint.hpp\"\n#include <algorithm>\n#include <cassert>\n\
-    using namespace std;\n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr\
-    \ modint() : x(0) {}\n    template<typename T>\n    constexpr modint(T v) {\n\
-    \        int y = v % (int)mod();\n        if (y < 0) y += mod();\n        x =\
-    \ (unsigned int)y;\n    }\n    static constexpr modint raw(int v) {\n        modint\
-    \ a;\n        a.x = v;\n        return a;\n    }\n    static constexpr int mod()\
-    \ { return MOD; }\n    constexpr unsigned int val() const { return x; }\n    constexpr\
-    \ modint& operator++() {\n        x++;\n        if (x == mod()) x = 0;\n     \
-    \   return *this;\n    }\n    constexpr modint& operator--() {\n        if (x\
-    \ == 0) x = mod();\n        x--;\n        return *this;\n    }\n    constexpr\
-    \ modint operator++(int) {\n        modint res = *this;\n        ++*this;\n  \
-    \      return res;\n    }\n    constexpr modint operator--(int) {\n        modint\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    constexpr modint&\
-    \ operator+=(const modint &r) {\n        x += r.x;\n        if (x >= mod()) x\
-    \ -= mod();\n        return *this;\n    }\n    constexpr modint& operator-=(const\
-    \ modint &r) {\n        x -= r.x;\n        if (x >= mod()) x += mod();\n     \
-    \   return *this;\n    }\n    constexpr modint& operator*=(const modint &r) {\n\
-    \        unsigned long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y\
-    \ % mod());\n        return *this;\n    }\n    constexpr modint &operator/=(const\
-    \ modint &r) {\n        return *this = *this * r.inv();\n    }\n    friend constexpr\
-    \ modint operator+(const modint &a, const modint &b) {\n        return modint(a)\
-    \ += b;\n    }\n    friend constexpr modint operator-(const modint &a, const modint\
-    \ &b) {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
+    \n\n#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/modint/modint.hpp\"\
+    \n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint() : x(0)\
+    \ {}\n    template<typename T>\n    constexpr modint(T v) {\n        int y = v\
+    \ % (int)mod();\n        if (y < 0) y += mod();\n        x = (unsigned int)y;\n\
+    \    }\n    static constexpr modint raw(int v) {\n        modint a;\n        a.x\
+    \ = v;\n        return a;\n    }\n    static constexpr int mod() { return MOD;\
+    \ }\n    constexpr unsigned int val() const { return x; }\n    constexpr modint&\
+    \ operator++() {\n        x++;\n        if (x == mod()) x = 0;\n        return\
+    \ *this;\n    }\n    constexpr modint& operator--() {\n        if (x == 0) x =\
+    \ mod();\n        x--;\n        return *this;\n    }\n    constexpr modint operator++(int)\
+    \ {\n        modint res = *this;\n        ++*this;\n        return res;\n    }\n\
+    \    constexpr modint operator--(int) {\n        modint res = *this;\n       \
+    \ --*this;\n        return res;\n    }\n    constexpr modint& operator+=(const\
+    \ modint &r) {\n        x += r.x;\n        if (x >= mod()) x -= mod();\n     \
+    \   return *this;\n    }\n    constexpr modint& operator-=(const modint &r) {\n\
+    \        x -= r.x;\n        if (x >= mod()) x += mod();\n        return *this;\n\
+    \    }\n    constexpr modint& operator*=(const modint &r) {\n        unsigned\
+    \ long long y = x;\n        y *= r.x;\n        x = (unsigned int)(y % mod());\n\
+    \        return *this;\n    }\n    constexpr modint &operator/=(const modint &r)\
+    \ {\n        return *this = *this * r.inv();\n    }\n    friend constexpr modint\
+    \ operator+(const modint &a, const modint &b) {\n        return modint(a) += b;\n\
+    \    }\n    friend constexpr modint operator-(const modint &a, const modint &b)\
+    \ {\n        return modint(a) -= b;\n    }\n    friend constexpr modint operator*(const\
     \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
     \ constexpr modint operator/(const modint &a, const modint &b) {\n        return\
     \ modint(a) /= b;\n    }\n    friend constexpr bool operator==(const modint &a,\
@@ -60,19 +67,18 @@ data:
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
     \    unsigned int x;\n};\n#line 3 \"src/data_structure/union_find/weighted_union_find.hpp\"\
-    \n#include <numeric>\n#include <vector>\nusing namespace std;\n\ntemplate<typename\
-    \ Abelian_Group>\nstruct weighted_union_find {\n    using S = Abelian_Group::S;\n\
-    \    weighted_union_find(int _n) : n(_n), p(n, -1), cyc(n), d(n, Abelian_Group::e())\
-    \ {\n        iota(cyc.begin(), cyc.end(), 0);\n    }\n    int leader(int u) {\n\
-    \        assert(0 <= u && u < n);\n        if (p[u] < 0) return u;\n        int\
-    \ r = leader(p[u]);\n        d[u] = Abelian_Group::op(d[u], d[p[u]]);\n      \
-    \  return p[u] = r;\n    }\n    S weight(int u) {\n        assert(0 <= u && u\
-    \ < n);\n        leader(u);\n        return d[u];\n    }\n    bool same(int u,\
-    \ int v) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n\
-    \        return leader(u) == leader(v);\n    }\n    bool merge(int u, int v, S\
-    \ w) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n \
-    \       if (same(u, v)) {\n            return diff(u, v) == w;\n        }\n  \
-    \      w = Abelian_Group::op(w, weight(u));\n        w = Abelian_Group::op(w,\
+    \n\ntemplate<typename Abelian_Group>\nstruct weighted_union_find {\n    using\
+    \ S = Abelian_Group::S;\n    weighted_union_find(int _n) : n(_n), p(n, -1), cyc(n),\
+    \ d(n, Abelian_Group::e()) {\n        iota(cyc.begin(), cyc.end(), 0);\n    }\n\
+    \    int leader(int u) {\n        assert(0 <= u && u < n);\n        if (p[u] <\
+    \ 0) return u;\n        int r = leader(p[u]);\n        d[u] = Abelian_Group::op(d[u],\
+    \ d[p[u]]);\n        return p[u] = r;\n    }\n    S weight(int u) {\n        assert(0\
+    \ <= u && u < n);\n        leader(u);\n        return d[u];\n    }\n    bool same(int\
+    \ u, int v) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v <\
+    \ n);\n        return leader(u) == leader(v);\n    }\n    bool merge(int u, int\
+    \ v, S w) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n\
+    \        if (same(u, v)) {\n            return diff(u, v) == w;\n        }\n \
+    \       w = Abelian_Group::op(w, weight(u));\n        w = Abelian_Group::op(w,\
     \ Abelian_Group::inv(weight(v)));\n        u = leader(u);\n        v = leader(v);\n\
     \        assert(u != v);\n        if (p[u] > p[v]) {\n            swap(u, v);\n\
     \            w = Abelian_Group::inv(w);\n        }\n        p[u] += p[v];\n  \
@@ -88,37 +94,39 @@ data:
     \           tmp[leader(i)].push_back(i);\n        }\n        vector<vector<int>>\
     \ res;\n        for (auto v : tmp) {\n            if (v.size()) res.push_back(v);\n\
     \        }\n        return res;\n    }\nprivate:\n    int n;\n    vector<int>\
-    \ p, cyc;\n    vector<S> d;\n};\n#line 2 \"src/monoid/sum.hpp\"\n\ntemplate<typename\
+    \ p, cyc;\n    vector<S> d;\n};\n#line 3 \"src/monoid/sum.hpp\"\n\ntemplate<typename\
     \ T>\nstruct sum_monoid {\n    using S = T;\n    static S op(S a, S b) { return\
     \ a + b; }\n    static S e() { return 0; }\n    static S inv(S x) { return -x;\
-    \ }\n};\n#line 6 \"test/data_structure/union_find/weighted_union_find.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\n#include <iostream>\n\nint main() {\n \
-    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n    cin\
-    \ >> N >> Q;\n    weighted_union_find<sum_monoid<mint>> wuf(N);\n    while (Q--)\
-    \ {\n        int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0) {\n\
-    \            int x;\n            cin >> x;\n            cout << wuf.merge(v, u,\
-    \ x) << '\\n';\n        } else {\n            if (wuf.same(u, v)) {\n        \
-    \        cout << wuf.diff(v, u).val() << '\\n';\n            } else {\n      \
-    \          cout << -1 << '\\n';\n            }\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
-    \n\n#include \"../../../src/modint/modint.hpp\"\n#include \"../../../src/data_structure/union_find/weighted_union_find.hpp\"\
-    \n#include \"../../../src/monoid/sum.hpp\"\n\nusing mint = modint<998244353>;\n\
-    \n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    int N, Q;\n    cin >> N >> Q;\n    weighted_union_find<sum_monoid<mint>>\
+    \ }\n};\n#line 7 \"test/data_structure/union_find/weighted_union_find.test.cpp\"\
+    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    weighted_union_find<sum_monoid<mint>>\
     \ wuf(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
     \        if (t == 0) {\n            int x;\n            cin >> x;\n          \
     \  cout << wuf.merge(v, u, x) << '\\n';\n        } else {\n            if (wuf.same(u,\
     \ v)) {\n                cout << wuf.diff(v, u).val() << '\\n';\n            }\
     \ else {\n                cout << -1 << '\\n';\n            }\n        }\n   \
     \ }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
+    \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
+    \n#include \"../../../src/data_structure/union_find/weighted_union_find.hpp\"\n\
+    #include \"../../../src/monoid/sum.hpp\"\n\nusing mint = modint<998244353>;\n\n\
+    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    weighted_union_find<sum_monoid<mint>> wuf(N);\n\
+    \    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n      \
+    \  if (t == 0) {\n            int x;\n            cin >> x;\n            cout\
+    \ << wuf.merge(v, u, x) << '\\n';\n        } else {\n            if (wuf.same(u,\
+    \ v)) {\n                cout << wuf.diff(v, u).val() << '\\n';\n            }\
+    \ else {\n                cout << -1 << '\\n';\n            }\n        }\n   \
+    \ }\n}\n"
   dependsOn:
+  - src/template.hpp
   - src/modint/modint.hpp
   - src/data_structure/union_find/weighted_union_find.hpp
   - src/monoid/sum.hpp
   isVerificationFile: true
   path: test/data_structure/union_find/weighted_union_find.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 14:11:37+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/union_find/weighted_union_find.test.cpp

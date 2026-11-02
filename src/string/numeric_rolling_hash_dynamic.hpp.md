@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -11,57 +14,61 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/string/numeric_rolling_hash_dynamic.hpp\"\n#include\
-    \ <array>\n#include <cassert>\n#include <vector>\n#line 4 \"src/data_structure/range_query/segtree.hpp\"\
-    \nusing namespace std;\n\ntemplate <typename Monoid>\nstruct segtree {\n    using\
-    \ M = Monoid;\n    using S = typename M::S;\n    segtree() : segtree(0) {}\n \
-    \   segtree(int _n) : segtree(vector<S>(_n, M::e())) {}\n    segtree(const vector<S>\
-    \ &v) : n(v.size()) {\n        log = 1;\n        while ((1 << log) < n) log++;\n\
-    \        sz = 1 << log;\n        d = vector<S>(2 * sz, M::e());\n        for (int\
-    \ i = 0; i < n; i++) d[i + sz] = v[i];\n        for (int i = sz - 1; i >= 1; i--)\
-    \ update(i);\n    }\n    void set(int p, const S &x) {\n        assert(0 <= p\
-    \ && p < n);\n        p += sz;\n        d[p] = x;\n        for (int i = 1; i <=\
-    \ log; i++) update(p >> i);\n    }\n    void apply(int p, const S &x) {\n    \
-    \    assert(0 <= p && p < n);\n        set(p, M::op(x, d[p + sz]));\n    }\n \
-    \   S get(int p) const {\n        assert(0 <= p && p < n);\n        return d[p\
-    \ + sz];\n    }\n    S prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= n);\n        l += sz;\n        r += sz;\n        S pl = M::e(),\
-    \ pr = M::e();\n        while (l < r) {\n            if (l & 1) pl = M::op(pl,\
-    \ d[l++]);\n            if (r & 1) pr = M::op(d[--r], pr);\n            l >>=\
-    \ 1;\n            r >>= 1;\n        }\n        return M::op(pl, pr);\n    }\n\
-    \    S all_prod() const { return d[1]; }\n    template<typename C>\n    int max_right(int\
-    \ l, const C &check) const {\n        assert(0 <= l && l <= n);\n        assert(check(M::e()));\n\
-    \        if (l == n) return l;\n        l += sz;\n        S p = M::e();\n    \
-    \    do {\n            while (!(l & 1)) l >>= 1;\n            S np = M::op(p,\
-    \ d[l]);\n            if (!check(np)) {\n                while (l < sz) {\n  \
-    \                  l <<= 1;\n                    np = M::op(p, d[l]);\n      \
-    \              if (check(np)) {\n                        p = np;\n           \
-    \             l++;\n                    }\n                }\n               \
-    \ return l - sz;\n            }\n            p = np;\n            l++;\n     \
-    \   } while ((l & -l) != l);\n        return n;\n    }\n    template<typename\
-    \ C>\n    int max_right(const C &check) const {\n        return max_right(0, check);\n\
-    \    }\n    template<typename C>\n    int min_left(int r, const C &check) const\
-    \ {\n        assert(0 <= r && r <= n);\n        assert(check(M::e()));\n     \
-    \   if (r == 0) return r;\n        r += sz;\n        S p = M::e();\n        do\
-    \ {\n            r--;\n            while (r > 1 && r & 1) r >>= 1;\n         \
-    \   S np = M::op(d[r], p);\n            if (!check(np)) {\n                while\
-    \ (r < sz) {\n                    (r <<= 1)++;\n                    np = M::op(d[r],\
-    \ p);\n                    if (check(np)) {\n                        p = np;\n\
-    \                        r--;\n                    }\n                }\n    \
-    \            return r + 1 - sz;\n            }\n            p = np;\n        }\
-    \ while ((r & -r) != r);\n        return 0;\n    }\n    template<typename C>\n\
-    \    int min_left(const C &check) const {\n        return min_left(n, check);\n\
-    \    }\nprivate:\n    int n, log, sz;\n    vector<S> d;\n    void update(int p)\
-    \ {\n        d[p] = M::op(d[2 * p], d[2 * p + 1]);\n    }\n};\n#line 6 \"src/string/numeric_rolling_hash_dynamic.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T>\nstruct rolling_hash {\n    static\
-    \ long long base, p, q;\n    static array<long long, 3> inv;\n    static constexpr\
-    \ array<long long, 3> mod = {1000274903LL, 1000274927LL, 1000274953LL};\n    static\
-    \ vector<array<long long, 3>> pow;\n    static void set_base(int b) {\n      \
-    \  assert(base == -1);\n        assert(2 <= b && b <= int(1e9));\n        base\
-    \ = b;\n        p = (b + (b >> 5)) % 2749;\n        q = (b + (b >> 9)) % 274;\n\
-    \    }\n    rolling_hash(const vector<T> &a) {\n        assert(base != -1);\n\
-    \        int n = a.size();\n        init(n);\n        vector<pair<array<long long,\
-    \ 3>, int>> v(n);\n        for (int i = 0; i < n; i++) {\n            v[i].first.fill(inner_hash(a[i]));\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/data_structure/range_query/segtree.hpp\"\n\ntemplate <typename\
+    \ Monoid>\nstruct segtree {\n    using M = Monoid;\n    using S = typename M::S;\n\
+    \    segtree() : segtree(0) {}\n    segtree(int _n) : segtree(vector<S>(_n, M::e()))\
+    \ {}\n    segtree(const vector<S> &v) : n(v.size()) {\n        log = 1;\n    \
+    \    while ((1 << log) < n) log++;\n        sz = 1 << log;\n        d = vector<S>(2\
+    \ * sz, M::e());\n        for (int i = 0; i < n; i++) d[i + sz] = v[i];\n    \
+    \    for (int i = sz - 1; i >= 1; i--) update(i);\n    }\n    void set(int p,\
+    \ const S &x) {\n        assert(0 <= p && p < n);\n        p += sz;\n        d[p]\
+    \ = x;\n        for (int i = 1; i <= log; i++) update(p >> i);\n    }\n    void\
+    \ apply(int p, const S &x) {\n        assert(0 <= p && p < n);\n        set(p,\
+    \ M::op(x, d[p + sz]));\n    }\n    S get(int p) const {\n        assert(0 <=\
+    \ p && p < n);\n        return d[p + sz];\n    }\n    S prod(int l, int r) const\
+    \ {\n        assert(0 <= l && l <= r && r <= n);\n        l += sz;\n        r\
+    \ += sz;\n        S pl = M::e(), pr = M::e();\n        while (l < r) {\n     \
+    \       if (l & 1) pl = M::op(pl, d[l++]);\n            if (r & 1) pr = M::op(d[--r],\
+    \ pr);\n            l >>= 1;\n            r >>= 1;\n        }\n        return\
+    \ M::op(pl, pr);\n    }\n    S all_prod() const { return d[1]; }\n    template<typename\
+    \ C>\n    int max_right(int l, const C &check) const {\n        assert(0 <= l\
+    \ && l <= n);\n        assert(check(M::e()));\n        if (l == n) return l;\n\
+    \        l += sz;\n        S p = M::e();\n        do {\n            while (!(l\
+    \ & 1)) l >>= 1;\n            S np = M::op(p, d[l]);\n            if (!check(np))\
+    \ {\n                while (l < sz) {\n                    l <<= 1;\n        \
+    \            np = M::op(p, d[l]);\n                    if (check(np)) {\n    \
+    \                    p = np;\n                        l++;\n                 \
+    \   }\n                }\n                return l - sz;\n            }\n    \
+    \        p = np;\n            l++;\n        } while ((l & -l) != l);\n       \
+    \ return n;\n    }\n    template<typename C>\n    int max_right(const C &check)\
+    \ const {\n        return max_right(0, check);\n    }\n    template<typename C>\n\
+    \    int min_left(int r, const C &check) const {\n        assert(0 <= r && r <=\
+    \ n);\n        assert(check(M::e()));\n        if (r == 0) return r;\n       \
+    \ r += sz;\n        S p = M::e();\n        do {\n            r--;\n          \
+    \  while (r > 1 && r & 1) r >>= 1;\n            S np = M::op(d[r], p);\n     \
+    \       if (!check(np)) {\n                while (r < sz) {\n                \
+    \    (r <<= 1)++;\n                    np = M::op(d[r], p);\n                \
+    \    if (check(np)) {\n                        p = np;\n                     \
+    \   r--;\n                    }\n                }\n                return r +\
+    \ 1 - sz;\n            }\n            p = np;\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n    template<typename C>\n    int min_left(const C\
+    \ &check) const {\n        return min_left(n, check);\n    }\nprivate:\n    int\
+    \ n, log, sz;\n    vector<S> d;\n    void update(int p) {\n        d[p] = M::op(d[2\
+    \ * p], d[2 * p + 1]);\n    }\n};\n#line 4 \"src/string/numeric_rolling_hash_dynamic.hpp\"\
+    \n\ntemplate<typename T>\nstruct rolling_hash {\n    static long long base, p,\
+    \ q;\n    static array<long long, 3> inv;\n    static constexpr array<long long,\
+    \ 3> mod = {1000274903LL, 1000274927LL, 1000274953LL};\n    static vector<array<long\
+    \ long, 3>> pow;\n    static void set_base(int b) {\n        assert(base == -1);\n\
+    \        assert(2 <= b && b <= int(1e9));\n        base = b;\n        p = (b +\
+    \ (b >> 5)) % 2749;\n        q = (b + (b >> 9)) % 274;\n    }\n    rolling_hash(const\
+    \ vector<T> &a) {\n        assert(base != -1);\n        int n = a.size();\n  \
+    \      init(n);\n        vector<pair<array<long long, 3>, int>> v(n);\n      \
+    \  for (int i = 0; i < n; i++) {\n            v[i].first.fill(inner_hash(a[i]));\n\
     \            v[i].second = 1;\n        }\n        d = segtree<Monoid>(v);\n  \
     \  }\n    void set(int p, T c) {\n        array<long long, 3> x;\n        x.fill(inner_hash(c));\n\
     \        d.set(p, make_pair(x, 1));\n    }\n    array<long long, 3> prod(int l,\
@@ -86,21 +93,20 @@ data:
     template<typename T>\nlong long rolling_hash<T>::q(-1);\ntemplate<typename T>\n\
     array<long long, 3> rolling_hash<T>::inv({1, 1, 1});\ntemplate<typename T>\nvector<array<long\
     \ long, 3>> rolling_hash<T>::pow(1, {1, 1, 1});\n"
-  code: "#pragma once\n#include <array>\n#include <cassert>\n#include <vector>\n#include\
-    \ \"../data_structure/range_query/segtree.hpp\"\nusing namespace std;\n\ntemplate<typename\
-    \ T>\nstruct rolling_hash {\n    static long long base, p, q;\n    static array<long\
-    \ long, 3> inv;\n    static constexpr array<long long, 3> mod = {1000274903LL,\
-    \ 1000274927LL, 1000274953LL};\n    static vector<array<long long, 3>> pow;\n\
-    \    static void set_base(int b) {\n        assert(base == -1);\n        assert(2\
-    \ <= b && b <= int(1e9));\n        base = b;\n        p = (b + (b >> 5)) % 2749;\n\
-    \        q = (b + (b >> 9)) % 274;\n    }\n    rolling_hash(const vector<T> &a)\
-    \ {\n        assert(base != -1);\n        int n = a.size();\n        init(n);\n\
-    \        vector<pair<array<long long, 3>, int>> v(n);\n        for (int i = 0;\
-    \ i < n; i++) {\n            v[i].first.fill(inner_hash(a[i]));\n            v[i].second\
-    \ = 1;\n        }\n        d = segtree<Monoid>(v);\n    }\n    void set(int p,\
-    \ T c) {\n        array<long long, 3> x;\n        x.fill(inner_hash(c));\n   \
-    \     d.set(p, make_pair(x, 1));\n    }\n    array<long long, 3> prod(int l, int\
-    \ r) {\n        return d.prod(l, r).first;\n    }\nprivate:\n    struct Monoid\
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"../data_structure/range_query/segtree.hpp\"\
+    \n\ntemplate<typename T>\nstruct rolling_hash {\n    static long long base, p,\
+    \ q;\n    static array<long long, 3> inv;\n    static constexpr array<long long,\
+    \ 3> mod = {1000274903LL, 1000274927LL, 1000274953LL};\n    static vector<array<long\
+    \ long, 3>> pow;\n    static void set_base(int b) {\n        assert(base == -1);\n\
+    \        assert(2 <= b && b <= int(1e9));\n        base = b;\n        p = (b +\
+    \ (b >> 5)) % 2749;\n        q = (b + (b >> 9)) % 274;\n    }\n    rolling_hash(const\
+    \ vector<T> &a) {\n        assert(base != -1);\n        int n = a.size();\n  \
+    \      init(n);\n        vector<pair<array<long long, 3>, int>> v(n);\n      \
+    \  for (int i = 0; i < n; i++) {\n            v[i].first.fill(inner_hash(a[i]));\n\
+    \            v[i].second = 1;\n        }\n        d = segtree<Monoid>(v);\n  \
+    \  }\n    void set(int p, T c) {\n        array<long long, 3> x;\n        x.fill(inner_hash(c));\n\
+    \        d.set(p, make_pair(x, 1));\n    }\n    array<long long, 3> prod(int l,\
+    \ int r) {\n        return d.prod(l, r).first;\n    }\nprivate:\n    struct Monoid\
     \ {\n        using S = pair<array<long long, 3>, int>;\n        static S op(const\
     \ S &a, const S &b) {\n            S c;\n            for (int j = 0; j < 3; j++)\
     \ {\n                c.first[j] = (a.first[j] + b.first[j] * pow[a.second][j])\
@@ -122,11 +128,12 @@ data:
     array<long long, 3> rolling_hash<T>::inv({1, 1, 1});\ntemplate<typename T>\nvector<array<long\
     \ long, 3>> rolling_hash<T>::pow(1, {1, 1, 1});"
   dependsOn:
+  - src/template.hpp
   - src/data_structure/range_query/segtree.hpp
   isVerificationFile: false
   path: src/string/numeric_rolling_hash_dynamic.hpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/string/numeric_rolling_hash_dynamic.hpp

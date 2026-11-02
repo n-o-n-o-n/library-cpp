@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/geometry/common.hpp
     title: Common
   - icon: ':heavy_check_mark:'
@@ -10,6 +10,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/geometry/polygon.hpp
     title: Polygon
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,13 +25,15 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A
   bundledCode: "#line 1 \"test/geometry/convex_hull_aoj.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A\"\n\n#line\
-    \ 2 \"src/geometry/convex_hull.hpp\"\n#include <algorithm>\n#include <vector>\n\
-    #line 2 \"src/geometry/common.hpp\"\n#include <cmath>\n#include <numeric>\n#include\
-    \ <type_traits>\n#include <utility>\nusing namespace std;\n\nnamespace geometry\
-    \ {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>, conditional_t<sizeof(T)\
-    \ <= 4, long long, __int128_t>, T>;\n\ntemplate<typename T>\nconstexpr T eps()\
-    \ { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename T>\nconstexpr\
-    \ T inf() { return numeric_limits<T>::max(); }\n\ntemplate<typename T>\nconstexpr\
+    \ 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing\
+    \ ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/geometry/common.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nusing W = conditional_t<is_integral_v<T>,\
+    \ conditional_t<sizeof(T) <= 4, long long, __int128_t>, T>;\n\ntemplate<typename\
+    \ T>\nconstexpr T eps() { return is_integral_v<T> ? T(0) : T(1e-12L); }\n\ntemplate<typename\
+    \ T>\nconstexpr T inf() { return ::inf<T>(); }\n\ntemplate<typename T>\nconstexpr\
     \ T PI() {\n    static_assert(is_floating_point_v<T>);\n    return (T)acosl(-1);\n\
     }\n\ntemplate<typename T>\ninline bool eq(T a, T b) {\n    if constexpr (is_integral_v<T>)\
     \ {\n        return a == b;\n    } else {\n        return abs(a - b) < eps<T>();\n\
@@ -77,7 +82,7 @@ data:
     \ a;\n    W<T> e = eps<T>();\n    W<T> cr = cross(p, q);\n    if (cr > e) return\
     \ 1;\n    if (cr < -e) return -1;\n    W<T> pn = norm(p), qn = norm(q);\n    if\
     \ (min(pn, qn) <= e * e) return 0;\n    if (dot(p, q) < e) return 2;\n    if (pn\
-    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 5 \"src/geometry/polygon.hpp\"\
+    \ < qn) return -2;\n    return 0;\n}\n\n}  // namespace geometry\n#line 4 \"src/geometry/polygon.hpp\"\
     \n\nnamespace geometry {\n\ntemplate<typename T>\nstruct Polygon : vector<Point<T>>\
     \ {\n    using vector<Point<T>>::vector;\n    Polygon(const vector<Point<T>> &pts)\
     \ : vector<Point<T>>(pts) {}\n    int contain(const Point<T> &p) const {\n   \
@@ -138,49 +143,49 @@ data:
     \ }\ntemplate<typename T>\ninline W<T> area(const Polygon<T> &v) { return v.area();\
     \ }\ntemplate<typename T>\ninline bool is_convex(const Polygon<T> &v) { return\
     \ v.is_convex(); }\ntemplate<typename T>\ninline pair<int, int> diam(const Polygon<T>\
-    \ &v) { return v.diam(); }\n\n} // namespace geometry\n#line 6 \"src/geometry/convex_hull.hpp\"\
-    \nusing namespace std;\n\nnamespace geometry {\n\ntemplate<typename T>\nPolygon<T>\
-    \ convex_hull(vector<Point<T>> pts, bool exclude_collinear = true) {\n    sort(pts.begin(),\
-    \ pts.end());\n    pts.erase(unique(pts.begin(), pts.end(), [] (const Point<T>\
-    \ &p, const Point<T> &q) {\n        return p.x == q.x && p.y == q.y;\n    }),\
-    \ pts.end());\n    int n = pts.size();\n    if (n <= 1) return Polygon<T>(pts);\n\
-    \    auto turn = [] (const Point<T> &a, const Point<T> &b, const Point<T> &c)\
-    \ {\n        W<T> d = cross(b - a, c - a);\n        if constexpr (is_integral_v<T>)\
-    \ return (d > 0) - (d < 0);\n        else return sgn(d);\n    };\n    bool collinear\
-    \ = true;\n    for (int i = 1; i < n - 1; i++) {\n        if (turn(pts[0], pts[n\
-    \ - 1], pts[i]) != 0) {\n            collinear = false;\n            break;\n\
-    \        }\n    }\n    if (collinear) {\n        if (!exclude_collinear) return\
-    \ Polygon<T>(pts);\n        return Polygon<T>(vector<Point<T>>{pts.front(), pts.back()});\n\
-    \    }\n    auto remove = [&] (const Point<T> &a, const Point<T> &b, const Point<T>\
-    \ &c) {\n        int d = turn(a, b, c);\n        return exclude_collinear ? d\
-    \ <= 0 : d < 0;\n    };\n    vector<Point<T>> ch;\n    ch.reserve(2 * n);\n  \
-    \  for (const Point<T> &p : pts) {\n        while (ch.size() >= 2 && remove(ch[ch.size()\
+    \ &v) { return v.diam(); }\n\n} // namespace geometry\n#line 5 \"src/geometry/convex_hull.hpp\"\
+    \n\nnamespace geometry {\n\ntemplate<typename T>\nPolygon<T> convex_hull(vector<Point<T>>\
+    \ pts, bool exclude_collinear = true) {\n    sort(pts.begin(), pts.end());\n \
+    \   pts.erase(unique(pts.begin(), pts.end(), [] (const Point<T> &p, const Point<T>\
+    \ &q) {\n        return p.x == q.x && p.y == q.y;\n    }), pts.end());\n    int\
+    \ n = pts.size();\n    if (n <= 1) return Polygon<T>(pts);\n    auto turn = []\
+    \ (const Point<T> &a, const Point<T> &b, const Point<T> &c) {\n        W<T> d\
+    \ = cross(b - a, c - a);\n        if constexpr (is_integral_v<T>) return (d >\
+    \ 0) - (d < 0);\n        else return sgn(d);\n    };\n    bool collinear = true;\n\
+    \    for (int i = 1; i < n - 1; i++) {\n        if (turn(pts[0], pts[n - 1], pts[i])\
+    \ != 0) {\n            collinear = false;\n            break;\n        }\n   \
+    \ }\n    if (collinear) {\n        if (!exclude_collinear) return Polygon<T>(pts);\n\
+    \        return Polygon<T>(vector<Point<T>>{pts.front(), pts.back()});\n    }\n\
+    \    auto remove = [&] (const Point<T> &a, const Point<T> &b, const Point<T> &c)\
+    \ {\n        int d = turn(a, b, c);\n        return exclude_collinear ? d <= 0\
+    \ : d < 0;\n    };\n    vector<Point<T>> ch;\n    ch.reserve(2 * n);\n    for\
+    \ (const Point<T> &p : pts) {\n        while (ch.size() >= 2 && remove(ch[ch.size()\
     \ - 2], ch.back(), p)) ch.pop_back();\n        ch.push_back(p);\n    }\n    int\
     \ l = ch.size();\n    for (int i = n - 2; i >= 0; i--) {\n        while ((int)ch.size()\
     \ > l && remove(ch[ch.size() - 2], ch.back(), pts[i])) ch.pop_back();\n      \
     \  ch.push_back(pts[i]);\n    }\n    ch.pop_back();\n    return Polygon<T>(ch);\n\
-    }\n\n} // namespace geometry\n#line 4 \"test/geometry/convex_hull_aoj.test.cpp\"\
-    \n\n#include <iostream>\n#line 7 \"test/geometry/convex_hull_aoj.test.cpp\"\n\n\
-    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
-    \ N;\n    cin >> N;\n    vector<geometry::Point<int>> P(N);\n    for (int i =\
-    \ 0; i < N; i++) cin >> P[i].x >> P[i].y;\n    auto C = geometry::convex_hull<int>(P,\
+    }\n\n} // namespace geometry\n#line 5 \"test/geometry/convex_hull_aoj.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N;\n    cin >> N;\n    vector<geometry::Point<int>> P(N);\n    for (int\
+    \ i = 0; i < N; i++) cin >> P[i].x >> P[i].y;\n    auto C = geometry::convex_hull<int>(P,\
     \ false);\n    C.relabeling();\n    cout << C.size() << '\\n';\n    for (auto\
     \ p : C) cout << p.x << ' ' << p.y << '\\n';\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A\"\
-    \n\n#include \"../../src/geometry/convex_hull.hpp\"\n\n#include <iostream>\n#include\
-    \ <vector>\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    int N;\n    cin >> N;\n    vector<geometry::Point<int>> P(N);\n    for (int\
+    \n\n#include \"../../src/template.hpp\"\n#include \"../../src/geometry/convex_hull.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N;\n    cin >> N;\n    vector<geometry::Point<int>> P(N);\n    for (int\
     \ i = 0; i < N; i++) cin >> P[i].x >> P[i].y;\n    auto C = geometry::convex_hull<int>(P,\
     \ false);\n    C.relabeling();\n    cout << C.size() << '\\n';\n    for (auto\
     \ p : C) cout << p.x << ' ' << p.y << '\\n';\n}"
   dependsOn:
+  - src/template.hpp
   - src/geometry/convex_hull.hpp
   - src/geometry/common.hpp
   - src/geometry/polygon.hpp
   isVerificationFile: true
   path: test/geometry/convex_hull_aoj.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 18:50:46+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/geometry/convex_hull_aoj.test.cpp

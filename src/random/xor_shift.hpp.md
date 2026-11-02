@@ -1,20 +1,23 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/convolution/arbitrary_mod_convolution.hpp
     title: src/convolution/arbitrary_mod_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/convolution.hpp
     title: src/convolution/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/convolution_ll.hpp
     title: src/convolution/convolution_ll.hpp
   - icon: ':heavy_check_mark:'
     path: src/convolution/middle_product.hpp
     title: src/convolution/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +26,7 @@ data:
   - icon: ':warning:'
     path: src/data_structure/bst/treap.hpp
     title: Treap
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps.hpp
     title: Formal Power Series
   - icon: ':heavy_check_mark:'
@@ -35,16 +38,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_exp.hpp
     title: src/fps/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_inv.hpp
     title: src/fps/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/fps/fps_pow.hpp
     title: src/fps/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -71,31 +74,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/subprod_tree.hpp
     title: src/fps/subprod_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/bmbm.hpp
     title: src/math/bmbm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/bostan_mori.hpp
     title: src/math/bostan_mori.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
     title: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/partition.hpp
     title: src/math/enumerative_combinatorics/partition.hpp
   - icon: ':warning:'
     path: src/math/enumerative_combinatorics/power_sums.hpp
     title: src/math/enumerative_combinatorics/power_sums.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_n_fixed.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/math/enumerative_combinatorics/subset_sum.hpp
     title: src/math/enumerative_combinatorics/subset_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/number_theory/prime.hpp
     title: Prime
   _extendedVerifiedWith:
@@ -156,52 +159,56 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/bostan_mori_only_convolution.test.cpp
     title: test/math/bostan_mori_only_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/partition.test.cpp
     title: test/math/enumerative_combinatorics/partition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_n_fixed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/enumerative_combinatorics/subset_sum.test.cpp
     title: test/math/enumerative_combinatorics/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/number_theory/discrete_logarithm.test.cpp
     title: test/math/number_theory/discrete_logarithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/number_theory/factorise.test.cpp
     title: test/math/number_theory/factorise.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/number_theory/primality_test.test.cpp
     title: test/math/number_theory/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/number_theory/primitive_root.test.cpp
     title: test/math/number_theory/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/random/xor_shift.hpp\"\n#include <cstdint>\n#include\
-    \ <type_traits>\nusing namespace std;\n\ntemplate<typename T>\nstruct xor_shift\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/random/xor_shift.hpp\"\n\ntemplate<typename T>\nstruct xor_shift\
     \ {\n    using U = typename make_unsigned<T>::type;\n    constexpr xor_shift(U\
     \ seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr U operator()()\
     \ {\n        if constexpr (sizeof(T) <= 4) {\n            x ^= x << 13;\n    \
@@ -209,16 +216,16 @@ data:
     \   x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x << 17;\n     \
     \   }\n        return x;\n    }\n    constexpr T operator()(T lo, T hi) {\n  \
     \      return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n    U x;\n};\n"
-  code: "#pragma once\n#include <cstdint>\n#include <type_traits>\nusing namespace\
-    \ std;\n\ntemplate<typename T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n\
-    \    constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n  \
-    \  constexpr U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n     \
-    \       x ^= x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n \
-    \       } else {\n            x ^= x << 13;\n            x ^= x >> 7;\n      \
-    \      x ^= x << 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T\
-    \ lo, T hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n\
-    \    U x;\n};"
-  dependsOn: []
+  code: "#pragma once\n#include \"../template.hpp\"\n\ntemplate<typename T>\nstruct\
+    \ xor_shift {\n    using U = typename make_unsigned<T>::type;\n    constexpr xor_shift(U\
+    \ seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr U operator()()\
+    \ {\n        if constexpr (sizeof(T) <= 4) {\n            x ^= x << 13;\n    \
+    \        x ^= x >> 17;\n            x ^= x << 5;\n        } else {\n         \
+    \   x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x << 17;\n     \
+    \   }\n        return x;\n    }\n    constexpr T operator()(T lo, T hi) {\n  \
+    \      return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n    U x;\n};"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/random/xor_shift.hpp
   requiredBy:
@@ -254,8 +261,8 @@ data:
   - src/convolution/convolution_ll.hpp
   - src/convolution/arbitrary_mod_convolution.hpp
   - src/data_structure/bst/treap.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/bostan_mori.test.cpp
   - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp

@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
@@ -8,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/rectangle_query/rectangle_sum.hpp
     title: src/data_structure/rectangle_query/rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/misc/compress.hpp
     title: Compress
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/misc/inversion_number.hpp
     title: src/misc/inversion_number.hpp
   _extendedVerifiedWith:
@@ -24,35 +27,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/rectangle_query/rectangle_sum.test.cpp
     title: test/data_structure/rectangle_query/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/functional_graph.test.cpp
     title: test/graph/functional_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/weighted_functional_graph.test.cpp
     title: test/graph/weighted_functional_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/misc/inversion_number.test.cpp
     title: test/misc/inversion_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/misc/mo_static_range_count_distinct.test.cpp
     title: test/misc/mo_static_range_count_distinct.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/misc/merge_and_unique.hpp\"\n#include <algorithm>\n\
-    #include <vector>\nusing namespace std;\n\ntemplate<typename T, typename... Ts>\n\
-    vector<T> merge_and_unique(const vector<T> &a, const Ts &...z) {\n    vector<T>\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/misc/merge_and_unique.hpp\"\n\ntemplate<typename T, typename...\
+    \ Ts>\nvector<T> merge_and_unique(const vector<T> &a, const Ts &...z) {\n    vector<T>\
     \ res = a;\n    (res.insert(res.end(), z.begin(), z.end()), ...);\n    sort(res.begin(),\
     \ res.end());\n    res.erase(unique(res.begin(), res.end()), res.end());\n   \
     \ return res;\n}\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\nusing namespace std;\n\
-    \ntemplate<typename T, typename... Ts>\nvector<T> merge_and_unique(const vector<T>\
-    \ &a, const Ts &...z) {\n    vector<T> res = a;\n    (res.insert(res.end(), z.begin(),\
-    \ z.end()), ...);\n    sort(res.begin(), res.end());\n    res.erase(unique(res.begin(),\
-    \ res.end()), res.end());\n    return res;\n}"
-  dependsOn: []
+  code: "#pragma once\n#include \"../template.hpp\"\n\ntemplate<typename T, typename...\
+    \ Ts>\nvector<T> merge_and_unique(const vector<T> &a, const Ts &...z) {\n    vector<T>\
+    \ res = a;\n    (res.insert(res.end(), z.begin(), z.end()), ...);\n    sort(res.begin(),\
+    \ res.end());\n    res.erase(unique(res.begin(), res.end()), res.end());\n   \
+    \ return res;\n}"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/misc/merge_and_unique.hpp
   requiredBy:
@@ -60,8 +68,8 @@ data:
   - src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
   - src/misc/compress.hpp
   - src/misc/inversion_number.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/graph/functional_graph.test.cpp
   - test/graph/weighted_functional_graph.test.cpp

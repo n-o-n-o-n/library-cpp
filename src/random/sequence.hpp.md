@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: src/random/graph.hpp
@@ -20,58 +23,60 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/random/sequence.hpp\"\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <vector>\n#line 3 \"src/random/utility.hpp\"\n#include <concepts>\n\
-    #include <random>\nusing namespace std;\n\nnamespace rng {\n\ninline random_device\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/random/utility.hpp\"\n\nnamespace rng {\n\ninline random_device\
     \ seed;\ninline mt19937 eng(seed());\n\ntemplate<typename T>\nvoid set_seed(const\
     \ T &sd) {\n    eng.seed(sd);\n}\n\ntemplate<integral T>\ninline T randint(T lo,\
     \ T hi) {\n    assert(lo <= hi);\n    uniform_int_distribution<T> dist(lo, hi);\n\
     \    return dist(eng);\n}\n\ntemplate<integral T>\ninline pair<T, T> randpair(T\
     \ lo, T hi, bool strict = false) {\n    assert(lo + strict <= hi);\n    T l =\
     \ randint(lo, hi - strict);\n    T r = randint(l + strict, hi);\n    return make_pair(l,\
-    \ r);\n}\n\n} // namespace rng\n#line 6 \"src/random/sequence.hpp\"\nusing namespace\
-    \ std;\n\nnamespace rng {\n\ntemplate<typename T>\nvoid shuffle(vector<T> &v)\
-    \ {\n    std::shuffle(v.begin(), v.end(), eng);\n}\n\ntemplate<integral T>\ninline\
-    \ vector<T> random_sequence(int n, T lo, T hi) {\n    assert(n >= 0);\n    vector<T>\
-    \ res(n);\n    for (int i = 0; i < n; i++) res[i] = randint(lo, hi);\n    return\
-    \ res;\n}\n\ntemplate<integral T>\ninline vector<T> random_increasing_sequence(int\
-    \ n, T lo, T hi, bool strict = false) {\n    assert(n >= 0);\n    if (n == 0)\
-    \ return {};\n    assert(lo + (n - 1) * strict <= hi);\n    vector<T> res = random_sequence(n,\
-    \ lo, hi - (n - 1) * strict);\n    sort(res.begin(), res.end());\n    for (int\
-    \ i = 0; i < n; i++) res[i] += i * strict;\n    return res;\n}\n\ntemplate<integral\
-    \ T>\ninline vector<T> random_decreasing_sequence(int n, T lo, T hi, bool strict\
-    \ = false) {\n    vector<T> res = random_increasing_sequence(n, lo, hi, strict);\n\
-    \    reverse(res.begin(), res.end());\n    return res;\n}\n\ntemplate<integral\
-    \ T = int>\ninline vector<T> random_permutation(int n, T v = 0) {\n    vector<T>\
-    \ res(n);\n    iota(res.begin(), res.end(), v);\n    shuffle(res);\n    return\
-    \ res;\n}\n\ninline string random_string(int n, char a, char z) {\n    assert(a\
-    \ <= z);\n    string s(n, a);\n    for (auto &c : s) c = randint((int)a, (int)z);\n\
-    \    return s;\n}\n\n} // namespace rng\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\
-    #include \"utility.hpp\"\nusing namespace std;\n\nnamespace rng {\n\ntemplate<typename\
-    \ T>\nvoid shuffle(vector<T> &v) {\n    std::shuffle(v.begin(), v.end(), eng);\n\
-    }\n\ntemplate<integral T>\ninline vector<T> random_sequence(int n, T lo, T hi)\
-    \ {\n    assert(n >= 0);\n    vector<T> res(n);\n    for (int i = 0; i < n; i++)\
-    \ res[i] = randint(lo, hi);\n    return res;\n}\n\ntemplate<integral T>\ninline\
-    \ vector<T> random_increasing_sequence(int n, T lo, T hi, bool strict = false)\
-    \ {\n    assert(n >= 0);\n    if (n == 0) return {};\n    assert(lo + (n - 1)\
-    \ * strict <= hi);\n    vector<T> res = random_sequence(n, lo, hi - (n - 1) *\
-    \ strict);\n    sort(res.begin(), res.end());\n    for (int i = 0; i < n; i++)\
-    \ res[i] += i * strict;\n    return res;\n}\n\ntemplate<integral T>\ninline vector<T>\
-    \ random_decreasing_sequence(int n, T lo, T hi, bool strict = false) {\n    vector<T>\
-    \ res = random_increasing_sequence(n, lo, hi, strict);\n    reverse(res.begin(),\
+    \ r);\n}\n\n} // namespace rng\n#line 4 \"src/random/sequence.hpp\"\n\nnamespace\
+    \ rng {\n\ntemplate<typename T>\nvoid shuffle(vector<T> &v) {\n    std::shuffle(v.begin(),\
+    \ v.end(), eng);\n}\n\ntemplate<integral T>\ninline vector<T> random_sequence(int\
+    \ n, T lo, T hi) {\n    assert(n >= 0);\n    vector<T> res(n);\n    for (int i\
+    \ = 0; i < n; i++) res[i] = randint(lo, hi);\n    return res;\n}\n\ntemplate<integral\
+    \ T>\ninline vector<T> random_increasing_sequence(int n, T lo, T hi, bool strict\
+    \ = false) {\n    assert(n >= 0);\n    if (n == 0) return {};\n    assert(lo +\
+    \ (n - 1) * strict <= hi);\n    vector<T> res = random_sequence(n, lo, hi - (n\
+    \ - 1) * strict);\n    sort(res.begin(), res.end());\n    for (int i = 0; i <\
+    \ n; i++) res[i] += i * strict;\n    return res;\n}\n\ntemplate<integral T>\n\
+    inline vector<T> random_decreasing_sequence(int n, T lo, T hi, bool strict = false)\
+    \ {\n    vector<T> res = random_increasing_sequence(n, lo, hi, strict);\n    reverse(res.begin(),\
+    \ res.end());\n    return res;\n}\n\ntemplate<integral T = int>\ninline vector<T>\
+    \ random_permutation(int n, T v = 0) {\n    vector<T> res(n);\n    iota(res.begin(),\
+    \ res.end(), v);\n    shuffle(res);\n    return res;\n}\n\ninline string random_string(int\
+    \ n, char a, char z) {\n    assert(a <= z);\n    string s(n, a);\n    for (auto\
+    \ &c : s) c = randint((int)a, (int)z);\n    return s;\n}\n\n} // namespace rng\n"
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"utility.hpp\"\n\n\
+    namespace rng {\n\ntemplate<typename T>\nvoid shuffle(vector<T> &v) {\n    std::shuffle(v.begin(),\
+    \ v.end(), eng);\n}\n\ntemplate<integral T>\ninline vector<T> random_sequence(int\
+    \ n, T lo, T hi) {\n    assert(n >= 0);\n    vector<T> res(n);\n    for (int i\
+    \ = 0; i < n; i++) res[i] = randint(lo, hi);\n    return res;\n}\n\ntemplate<integral\
+    \ T>\ninline vector<T> random_increasing_sequence(int n, T lo, T hi, bool strict\
+    \ = false) {\n    assert(n >= 0);\n    if (n == 0) return {};\n    assert(lo +\
+    \ (n - 1) * strict <= hi);\n    vector<T> res = random_sequence(n, lo, hi - (n\
+    \ - 1) * strict);\n    sort(res.begin(), res.end());\n    for (int i = 0; i <\
+    \ n; i++) res[i] += i * strict;\n    return res;\n}\n\ntemplate<integral T>\n\
+    inline vector<T> random_decreasing_sequence(int n, T lo, T hi, bool strict = false)\
+    \ {\n    vector<T> res = random_increasing_sequence(n, lo, hi, strict);\n    reverse(res.begin(),\
     \ res.end());\n    return res;\n}\n\ntemplate<integral T = int>\ninline vector<T>\
     \ random_permutation(int n, T v = 0) {\n    vector<T> res(n);\n    iota(res.begin(),\
     \ res.end(), v);\n    shuffle(res);\n    return res;\n}\n\ninline string random_string(int\
     \ n, char a, char z) {\n    assert(a <= z);\n    string s(n, a);\n    for (auto\
     \ &c : s) c = randint((int)a, (int)z);\n    return s;\n}\n\n} // namespace rng"
   dependsOn:
+  - src/template.hpp
   - src/random/utility.hpp
   isVerificationFile: false
   path: src/random/sequence.hpp
   requiredBy:
   - src/random/graph.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/fps/power_projection.test.cpp

@@ -7,9 +7,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,23 +26,26 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
     - https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8
   bundledCode: "#line 1 \"test/data_structure/set/median_set.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 2 \"src/random/sequence.hpp\"\
-    \n#include <algorithm>\n#include <cassert>\n#include <vector>\n#line 3 \"src/random/utility.hpp\"\
-    \n#include <concepts>\n#include <random>\nusing namespace std;\n\nnamespace rng\
-    \ {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\ntemplate<typename\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 2 \"src/template.hpp\"\n\
+    #include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\ntemplate<typename\
+    \ T>\nconstexpr T inf() { return numeric_limits<T>::max() / 2; }\n\ntemplate<typename\
+    \ T1, typename T2>\nbool chmin(T1 &a, T2 b) { return a > b ? a = b, true : false;\
+    \ }\ntemplate<typename T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a <\
+    \ b ? a = b, true : false; }\n#line 3 \"src/random/utility.hpp\"\n\nnamespace\
+    \ rng {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\ntemplate<typename\
     \ T>\nvoid set_seed(const T &sd) {\n    eng.seed(sd);\n}\n\ntemplate<integral\
     \ T>\ninline T randint(T lo, T hi) {\n    assert(lo <= hi);\n    uniform_int_distribution<T>\
     \ dist(lo, hi);\n    return dist(eng);\n}\n\ntemplate<integral T>\ninline pair<T,\
     \ T> randpair(T lo, T hi, bool strict = false) {\n    assert(lo + strict <= hi);\n\
     \    T l = randint(lo, hi - strict);\n    T r = randint(l + strict, hi);\n   \
-    \ return make_pair(l, r);\n}\n\n} // namespace rng\n#line 6 \"src/random/sequence.hpp\"\
-    \nusing namespace std;\n\nnamespace rng {\n\ntemplate<typename T>\nvoid shuffle(vector<T>\
-    \ &v) {\n    std::shuffle(v.begin(), v.end(), eng);\n}\n\ntemplate<integral T>\n\
-    inline vector<T> random_sequence(int n, T lo, T hi) {\n    assert(n >= 0);\n \
-    \   vector<T> res(n);\n    for (int i = 0; i < n; i++) res[i] = randint(lo, hi);\n\
-    \    return res;\n}\n\ntemplate<integral T>\ninline vector<T> random_increasing_sequence(int\
-    \ n, T lo, T hi, bool strict = false) {\n    assert(n >= 0);\n    if (n == 0)\
-    \ return {};\n    assert(lo + (n - 1) * strict <= hi);\n    vector<T> res = random_sequence(n,\
+    \ return make_pair(l, r);\n}\n\n} // namespace rng\n#line 4 \"src/random/sequence.hpp\"\
+    \n\nnamespace rng {\n\ntemplate<typename T>\nvoid shuffle(vector<T> &v) {\n  \
+    \  std::shuffle(v.begin(), v.end(), eng);\n}\n\ntemplate<integral T>\ninline vector<T>\
+    \ random_sequence(int n, T lo, T hi) {\n    assert(n >= 0);\n    vector<T> res(n);\n\
+    \    for (int i = 0; i < n; i++) res[i] = randint(lo, hi);\n    return res;\n\
+    }\n\ntemplate<integral T>\ninline vector<T> random_increasing_sequence(int n,\
+    \ T lo, T hi, bool strict = false) {\n    assert(n >= 0);\n    if (n == 0) return\
+    \ {};\n    assert(lo + (n - 1) * strict <= hi);\n    vector<T> res = random_sequence(n,\
     \ lo, hi - (n - 1) * strict);\n    sort(res.begin(), res.end());\n    for (int\
     \ i = 0; i < n; i++) res[i] += i * strict;\n    return res;\n}\n\ntemplate<integral\
     \ T>\ninline vector<T> random_decreasing_sequence(int n, T lo, T hi, bool strict\
@@ -50,42 +56,40 @@ data:
     \ res;\n}\n\ninline string random_string(int n, char a, char z) {\n    assert(a\
     \ <= z);\n    string s(n, a);\n    for (auto &c : s) c = randint((int)a, (int)z);\n\
     \    return s;\n}\n\n} // namespace rng\n#line 3 \"src/data_structure/set/median_set.hpp\"\
-    \n#include <set>\nusing namespace std;\n\ntemplate<typename T1, typename T2 =\
-    \ long long>\nstruct median_set {\n    median_set() : upper_sum(0), lower_sum(0)\
-    \ {}\n    void insert(T1 x) {\n        if (lower.empty() || x <= *prev(lower.end()))\
-    \ {\n            lower_sum += x;\n            lower.insert(x);\n        } else\
-    \ {\n            upper_sum += x;\n            upper.insert(x);\n        }\n  \
-    \      normalize();\n    }\n    void erase(T1 x) {\n        auto it = lower.find(x);\n\
-    \        if (it != lower.end()) {\n            lower_sum -= *it;\n           \
-    \ lower.erase(it);\n        } else {\n            it = upper.find(x);\n      \
-    \      assert(it != upper.end());\n            upper_sum -= *it;\n           \
-    \ upper.erase(it);\n        }\n        normalize();\n    }\n    T1 median() const\
-    \ {\n        assert(lower.size());\n        return *prev(lower.end());\n    }\n\
-    \    T2 min_cost() const {\n        T2 med = median();\n        return (upper_sum\
-    \ - med * upper.size()) + (med * lower.size() - lower_sum);\n    }\nprivate:\n\
-    \    multiset<T1> upper, lower;\n    T2 upper_sum, lower_sum;\n    void normalize()\
-    \ {\n        while (lower.size() > upper.size() + 1) {\n            auto it =\
-    \ prev(lower.end());\n            upper_sum += *it;\n            upper.insert(*it);\n\
+    \n\ntemplate<typename T1, typename T2 = long long>\nstruct median_set {\n    median_set()\
+    \ : upper_sum(0), lower_sum(0) {}\n    void insert(T1 x) {\n        if (lower.empty()\
+    \ || x <= *prev(lower.end())) {\n            lower_sum += x;\n            lower.insert(x);\n\
+    \        } else {\n            upper_sum += x;\n            upper.insert(x);\n\
+    \        }\n        normalize();\n    }\n    void erase(T1 x) {\n        auto\
+    \ it = lower.find(x);\n        if (it != lower.end()) {\n            lower_sum\
+    \ -= *it;\n            lower.erase(it);\n        } else {\n            it = upper.find(x);\n\
+    \            assert(it != upper.end());\n            upper_sum -= *it;\n     \
+    \       upper.erase(it);\n        }\n        normalize();\n    }\n    T1 median()\
+    \ const {\n        assert(lower.size());\n        return *prev(lower.end());\n\
+    \    }\n    T2 min_cost() const {\n        T2 med = median();\n        return\
+    \ (upper_sum - med * upper.size()) + (med * lower.size() - lower_sum);\n    }\n\
+    private:\n    multiset<T1> upper, lower;\n    T2 upper_sum, lower_sum;\n    void\
+    \ normalize() {\n        while (lower.size() > upper.size() + 1) {\n         \
+    \   auto it = prev(lower.end());\n            upper_sum += *it;\n            upper.insert(*it);\n\
     \            lower_sum -= *it;\n            lower.erase(it);\n        }\n    \
     \    while (lower.size() < upper.size()) {\n            auto it = upper.begin();\n\
     \            lower_sum += *it;\n            lower.insert(*it);\n            upper_sum\
-    \ -= *it;\n            upper.erase(it);\n        }\n    }\n};\n#line 5 \"test/data_structure/set/median_set.test.cpp\"\
-    \n\n#include <bits/stdc++.h>\n\nnamespace AC {\n\n// https://atcoder.jp/contests/abc127/submissions/80286090\n\
-    \nusing namespace std;\n\n// https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8\n\
-    \ntemplate<typename T>\nstruct slope_trick {\n    slope_trick() : min_val(0),\
-    \ left_add(0), right_add(0) {\n        left.push(-inf);\n        right.push(inf);\n\
-    \    }\n    T get_min() const { return min_val; }\n    pair<T, T> min_range()\
-    \ const { return make_pair(left_top(), right_top()); }\n    // f(x) += a\n   \
-    \ void add_all(T a) { min_val += a; }\n    // f(x) += max(0, x - a)\n    void\
-    \ add_x_minus_a(T a) {\n        min_val += max<T>(0, left_top() - a);\n      \
-    \  left_push(a);\n        right_push(left_pop());\n    }\n    // f(x) += max(0,\
-    \ a - x)\n    void add_a_minus_x(T a) {\n        min_val += max<T>(0, a - right_top());\n\
-    \        right_push(a);\n        left_push(right_pop());\n    }\n    // f(x) +=\
-    \ |x - a|\n    void add_abs_x_minus_a(T a) {\n        add_x_minus_a(a);\n    \
-    \    add_a_minus_x(a);\n    }\n    // f_new(x) = f(x - c)\n    void shift(T c)\
-    \ {\n        left_add += c;\n        right_add += c;\n    }\n    // f_new(x) =\
-    \ min_{y in [x-l, x-r]} f_cur(y)\n    void slide_window_min(T l, T r) {\n    \
-    \    assert(l >= r);\n        left_add += r;\n        right_add += l;\n    }\n\
+    \ -= *it;\n            upper.erase(it);\n        }\n    }\n};\n#line 6 \"test/data_structure/set/median_set.test.cpp\"\
+    \n\n\nnamespace AC {\n\n// https://atcoder.jp/contests/abc127/submissions/80286090\n\
+    \n\n// https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8\n\ntemplate<typename\
+    \ T>\nstruct slope_trick {\n    slope_trick() : min_val(0), left_add(0), right_add(0)\
+    \ {\n        left.push(-inf);\n        right.push(inf);\n    }\n    T get_min()\
+    \ const { return min_val; }\n    pair<T, T> min_range() const { return make_pair(left_top(),\
+    \ right_top()); }\n    // f(x) += a\n    void add_all(T a) { min_val += a; }\n\
+    \    // f(x) += max(0, x - a)\n    void add_x_minus_a(T a) {\n        min_val\
+    \ += max<T>(0, left_top() - a);\n        left_push(a);\n        right_push(left_pop());\n\
+    \    }\n    // f(x) += max(0, a - x)\n    void add_a_minus_x(T a) {\n        min_val\
+    \ += max<T>(0, a - right_top());\n        right_push(a);\n        left_push(right_pop());\n\
+    \    }\n    // f(x) += |x - a|\n    void add_abs_x_minus_a(T a) {\n        add_x_minus_a(a);\n\
+    \        add_a_minus_x(a);\n    }\n    // f_new(x) = f(x - c)\n    void shift(T\
+    \ c) {\n        left_add += c;\n        right_add += c;\n    }\n    // f_new(x)\
+    \ = min_{y in [x-l, x-r]} f_cur(y)\n    void slide_window_min(T l, T r) {\n  \
+    \      assert(l >= r);\n        left_add += r;\n        right_add += l;\n    }\n\
     private:\n    static constexpr T inf = numeric_limits<T>::max() / 3;\n    T min_val,\
     \ left_add, right_add;\n    priority_queue<T, vector<T>, less<T>> left;\n    priority_queue<T,\
     \ vector<T>, greater<T>> right;\n    T left_top() const {\n        assert(left.size());\n\
@@ -114,9 +118,9 @@ data:
     \ 1e9);\n        auto B = rng::random_sequence<int>(Q, -1e9, 1e9);\n        assert(AC::solve(T,\
     \ A, B) == median_set_test(T, A, B));\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../../../src/random/sequence.hpp\"\n#include \"../../../src/data_structure/set/median_set.hpp\"\
-    \n\n#include <bits/stdc++.h>\n\nnamespace AC {\n\n// https://atcoder.jp/contests/abc127/submissions/80286090\n\
-    \nusing namespace std;\n\n// https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8\n\
+    ../../../src/template.hpp\"\n#include \"../../../src/random/sequence.hpp\"\n#include\
+    \ \"../../../src/data_structure/set/median_set.hpp\"\n\n\nnamespace AC {\n\n//\
+    \ https://atcoder.jp/contests/abc127/submissions/80286090\n\n\n// https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8\n\
     \ntemplate<typename T>\nstruct slope_trick {\n    slope_trick() : min_val(0),\
     \ left_add(0), right_add(0) {\n        left.push(-inf);\n        right.push(inf);\n\
     \    }\n    T get_min() const { return min_val; }\n    pair<T, T> min_range()\
@@ -159,13 +163,14 @@ data:
     \ 1e9);\n        auto B = rng::random_sequence<int>(Q, -1e9, 1e9);\n        assert(AC::solve(T,\
     \ A, B) == median_set_test(T, A, B));\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/random/sequence.hpp
   - src/random/utility.hpp
   - src/data_structure/set/median_set.hpp
   isVerificationFile: true
   path: test/data_structure/set/median_set.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 11:13:20+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/set/median_set.test.cpp

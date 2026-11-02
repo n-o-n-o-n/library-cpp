@@ -4,12 +4,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/misc/dswag.hpp
     title: src/data_structure/misc/dswag.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/affine.hpp
     title: src/math/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,10 +25,14 @@ data:
     - https://judge.yosupo.jp/problem/deque_operate_all_composite
   bundledCode: "#line 1 \"test/data_structure/misc/dswag.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\n\n#line 2 \"\
-    src/modint/modint.hpp\"\n#include <algorithm>\n#include <cassert>\nusing namespace\
-    \ std;\n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint()\
-    \ : x(0) {}\n    template<typename T>\n    constexpr modint(T v) {\n        int\
-    \ y = v % (int)mod();\n        if (y < 0) y += mod();\n        x = (unsigned int)y;\n\
+    src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll\
+    \ = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/modint/modint.hpp\"\
+    \n\ntemplate<unsigned int MOD>\nstruct modint {\n    constexpr modint() : x(0)\
+    \ {}\n    template<typename T>\n    constexpr modint(T v) {\n        int y = v\
+    \ % (int)mod();\n        if (y < 0) y += mod();\n        x = (unsigned int)y;\n\
     \    }\n    static constexpr modint raw(int v) {\n        modint a;\n        a.x\
     \ = v;\n        return a;\n    }\n    static constexpr int mod() { return MOD;\
     \ }\n    constexpr unsigned int val() const { return x; }\n    constexpr modint&\
@@ -59,51 +66,36 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 2 \"src/math/affine.hpp\"\n\ntemplate<typename\
+    \    unsigned int x;\n};\n#line 3 \"src/math/affine.hpp\"\n\ntemplate<typename\
     \ mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
     \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
     \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
     \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
-    \    return affine(c, d);\n    }\n};\n#line 4 \"src/data_structure/misc/dswag.hpp\"\
-    \n#include <stack>\n#include <vector>\nusing namespace std;\n\ntemplate<typename\
-    \ Monoid>\nstruct dswag {\n    using S = typename Monoid::S;\n    dswag() = default;\n\
-    \    size_t size() const { return f1.size() + b1.size(); }\n    bool empty() const\
-    \ { return size() == 0; }\n    S get() const { return Monoid::op(get_f(), get_b());\
-    \ }\n    void push_front(const S &x) { push_f(x); }\n    void push_back(const\
-    \ S &x) { push_b(x); }\n    void pop_front() {\n        assert(size());\n    \
-    \    if (f1.empty()) normalize();\n        pop_f();\n    }\n    void pop_back()\
-    \ {\n        assert(size());\n        if (b1.empty()) normalize();\n        pop_b();\n\
-    \    }\nprivate:\n    stack<S> f1, f2, b1, b2;\n    void normalize() {\n     \
-    \   int n = size();\n        int m = n / 2 + (f1.size() ? 0 : n & 1);\n      \
-    \  vector<S> f, b;\n        while (f1.size()) {\n            f.push_back(f1.top());\n\
-    \            pop_f();\n        }\n        while (b1.size()) {\n            b.push_back(b1.top());\n\
-    \            pop_b();\n        }\n        reverse(b.begin(), b.end());\n     \
-    \   copy(b.begin(), b.end(), back_inserter(f));\n        for (int i = m - 1; i\
-    \ >= 0; i--) push_f(f[i]);\n        for (int i = m; i < n; i++) push_b(f[i]);\n\
-    \    }\n    S get_f() const { return f2.size() ? f2.top() : Monoid::e(); }\n \
-    \   S get_b() const { return b2.size() ? b2.top() : Monoid::e(); }\n    void push_f(const\
-    \ S &x) {\n        auto y = get_f();\n        f1.push(x);\n        f2.push(Monoid::op(x,\
-    \ y));\n    }\n    void push_b(const S &x) {\n        auto y = get_b();\n    \
-    \    b1.push(x);\n        b2.push(Monoid::op(y, x));\n    }\n    void pop_f()\
-    \ {\n        f1.pop();\n        f2.pop();\n    }\n    void pop_b() {\n       \
-    \ b1.pop();\n        b2.pop();\n    }\n};\n#line 6 \"test/data_structure/misc/dswag.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
-    \    static S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n\
-    };\n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    dswag<Monoid> q;\n    int Q;\n    cin >> Q;\n    while\
-    \ (Q--) {\n        int t;\n        cin >> t;\n        if (t == 0) {\n        \
-    \    int a, b;\n            cin >> a >> b;\n            q.push_front(affine<mint>(a,\
-    \ b));\n        } else if (t == 1) {\n            int a, b;\n            cin >>\
-    \ a >> b;\n            q.push_back(affine<mint>(a, b));\n        } else if (t\
-    \ == 2) {\n            q.pop_front();\n        } else if (t == 3) {\n        \
-    \    q.pop_back();\n        } else {\n            int x;\n            cin >> x;\n\
-    \            auto f = q.get();\n            cout << f(x).val() << '\\n';\n   \
-    \     }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
-    \n\n#include \"../../../src/modint/modint.hpp\"\n#include \"../../../src/math/affine.hpp\"\
-    \n#include \"../../../src/data_structure/misc/dswag.hpp\"\n\nusing mint = modint<998244353>;\n\
-    \nstruct Monoid {\n    using S = affine<mint>;\n    static S op(S f, S g) { return\
-    \ g(f); }\n    static S e() { return S(); }\n};\n\n#include <iostream>\n\nint\
+    \    return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/misc/dswag.hpp\"\
+    \n\ntemplate<typename Monoid>\nstruct dswag {\n    using S = typename Monoid::S;\n\
+    \    dswag() = default;\n    size_t size() const { return f1.size() + b1.size();\
+    \ }\n    bool empty() const { return size() == 0; }\n    S get() const { return\
+    \ Monoid::op(get_f(), get_b()); }\n    void push_front(const S &x) { push_f(x);\
+    \ }\n    void push_back(const S &x) { push_b(x); }\n    void pop_front() {\n \
+    \       assert(size());\n        if (f1.empty()) normalize();\n        pop_f();\n\
+    \    }\n    void pop_back() {\n        assert(size());\n        if (b1.empty())\
+    \ normalize();\n        pop_b();\n    }\nprivate:\n    stack<S> f1, f2, b1, b2;\n\
+    \    void normalize() {\n        int n = size();\n        int m = n / 2 + (f1.size()\
+    \ ? 0 : n & 1);\n        vector<S> f, b;\n        while (f1.size()) {\n      \
+    \      f.push_back(f1.top());\n            pop_f();\n        }\n        while\
+    \ (b1.size()) {\n            b.push_back(b1.top());\n            pop_b();\n  \
+    \      }\n        reverse(b.begin(), b.end());\n        copy(b.begin(), b.end(),\
+    \ back_inserter(f));\n        for (int i = m - 1; i >= 0; i--) push_f(f[i]);\n\
+    \        for (int i = m; i < n; i++) push_b(f[i]);\n    }\n    S get_f() const\
+    \ { return f2.size() ? f2.top() : Monoid::e(); }\n    S get_b() const { return\
+    \ b2.size() ? b2.top() : Monoid::e(); }\n    void push_f(const S &x) {\n     \
+    \   auto y = get_f();\n        f1.push(x);\n        f2.push(Monoid::op(x, y));\n\
+    \    }\n    void push_b(const S &x) {\n        auto y = get_b();\n        b1.push(x);\n\
+    \        b2.push(Monoid::op(y, x));\n    }\n    void pop_f() {\n        f1.pop();\n\
+    \        f2.pop();\n    }\n    void pop_b() {\n        b1.pop();\n        b2.pop();\n\
+    \    }\n};\n#line 7 \"test/data_structure/misc/dswag.test.cpp\"\n\nusing mint\
+    \ = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n    static\
+    \ S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n};\n\nint\
     \ main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    dswag<Monoid>\
     \ q;\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int t;\n        cin\
     \ >> t;\n        if (t == 0) {\n            int a, b;\n            cin >> a >>\
@@ -112,15 +104,30 @@ data:
     \ b));\n        } else if (t == 2) {\n            q.pop_front();\n        } else\
     \ if (t == 3) {\n            q.pop_back();\n        } else {\n            int\
     \ x;\n            cin >> x;\n            auto f = q.get();\n            cout <<\
-    \ f(x).val() << '\\n';\n        }\n    }\n}"
+    \ f(x).val() << '\\n';\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
+    \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
+    \n#include \"../../../src/math/affine.hpp\"\n#include \"../../../src/data_structure/misc/dswag.hpp\"\
+    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \    static S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n\
+    };\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    dswag<Monoid> q;\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int\
+    \ t;\n        cin >> t;\n        if (t == 0) {\n            int a, b;\n      \
+    \      cin >> a >> b;\n            q.push_front(affine<mint>(a, b));\n       \
+    \ } else if (t == 1) {\n            int a, b;\n            cin >> a >> b;\n  \
+    \          q.push_back(affine<mint>(a, b));\n        } else if (t == 2) {\n  \
+    \          q.pop_front();\n        } else if (t == 3) {\n            q.pop_back();\n\
+    \        } else {\n            int x;\n            cin >> x;\n            auto\
+    \ f = q.get();\n            cout << f(x).val() << '\\n';\n        }\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/modint/modint.hpp
   - src/math/affine.hpp
   - src/data_structure/misc/dswag.hpp
   isVerificationFile: true
   path: test/data_structure/misc/dswag.test.cpp
   requiredBy: []
-  timestamp: '2026-10-29 12:38:21+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/misc/dswag.test.cpp

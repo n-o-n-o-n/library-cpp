@@ -1,57 +1,63 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: src/misc/inversion_number.hpp
     title: src/misc/inversion_number.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/persistent_ds/persistent_segtree.test.cpp
     title: test/data_structure/persistent_ds/persistent_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/functional_graph.test.cpp
     title: test/graph/functional_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graph/weighted_functional_graph.test.cpp
     title: test/graph/weighted_functional_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/misc/inversion_number.test.cpp
     title: test/misc/inversion_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/misc/mo_static_range_count_distinct.test.cpp
     title: test/misc/mo_static_range_count_distinct.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/misc/compress.hpp\"\n#include <algorithm>\n#include\
-    \ <vector>\n#line 4 \"src/misc/merge_and_unique.hpp\"\nusing namespace std;\n\n\
-    template<typename T, typename... Ts>\nvector<T> merge_and_unique(const vector<T>\
-    \ &a, const Ts &...z) {\n    vector<T> res = a;\n    (res.insert(res.end(), z.begin(),\
-    \ z.end()), ...);\n    sort(res.begin(), res.end());\n    res.erase(unique(res.begin(),\
-    \ res.end()), res.end());\n    return res;\n}\n#line 5 \"src/misc/compress.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T>\nvector<int> compress(const vector<T>\
-    \ &v) {\n    auto zip = merge_and_unique(v);\n    vector<int> res;\n    res.reserve(v.size());\n\
-    \    for (const T &e : v) {\n        res.push_back(lower_bound(zip.begin(), zip.end(),\
-    \ e) - zip.begin());\n    }\n    return res;\n}\n\ntemplate<typename T, typename...\
-    \ Ts>\nauto compress(const vector<T> &a, const Ts &...z) {\n    auto zip = merge_and_unique(a,\
-    \ z...);\n    auto f = [&] (const vector<T> &v) -> vector<int> {\n        vector<int>\
-    \ res;\n        res.reserve(v.size());\n        for (const T &e : v) {\n     \
-    \       res.push_back(lower_bound(zip.begin(), zip.end(), e) - zip.begin());\n\
-    \        }\n        return res;\n    };\n    return make_tuple(f(a), f(z)...);\n\
-    }\n\ntemplate<typename T, typename... Ts>\nint compress_inplace(vector<T> &a,\
-    \ Ts &...z) {\n    auto zip = merge_and_unique(a, z...);\n    auto f = [&] (vector<T>\
-    \ &v) -> void {\n        for (T &e : v) {\n            e = lower_bound(zip.begin(),\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/misc/merge_and_unique.hpp\"\n\ntemplate<typename T, typename...\
+    \ Ts>\nvector<T> merge_and_unique(const vector<T> &a, const Ts &...z) {\n    vector<T>\
+    \ res = a;\n    (res.insert(res.end(), z.begin(), z.end()), ...);\n    sort(res.begin(),\
+    \ res.end());\n    res.erase(unique(res.begin(), res.end()), res.end());\n   \
+    \ return res;\n}\n#line 4 \"src/misc/compress.hpp\"\n\ntemplate<typename T>\n\
+    vector<int> compress(const vector<T> &v) {\n    auto zip = merge_and_unique(v);\n\
+    \    vector<int> res;\n    res.reserve(v.size());\n    for (const T &e : v) {\n\
+    \        res.push_back(lower_bound(zip.begin(), zip.end(), e) - zip.begin());\n\
+    \    }\n    return res;\n}\n\ntemplate<typename T, typename... Ts>\nauto compress(const\
+    \ vector<T> &a, const Ts &...z) {\n    auto zip = merge_and_unique(a, z...);\n\
+    \    auto f = [&] (const vector<T> &v) -> vector<int> {\n        vector<int> res;\n\
+    \        res.reserve(v.size());\n        for (const T &e : v) {\n            res.push_back(lower_bound(zip.begin(),\
+    \ zip.end(), e) - zip.begin());\n        }\n        return res;\n    };\n    return\
+    \ make_tuple(f(a), f(z)...);\n}\n\ntemplate<typename T, typename... Ts>\nint compress_inplace(vector<T>\
+    \ &a, Ts &...z) {\n    auto zip = merge_and_unique(a, z...);\n    auto f = [&]\
+    \ (vector<T> &v) -> void {\n        for (T &e : v) {\n            e = lower_bound(zip.begin(),\
     \ zip.end(), e) - zip.begin();\n        }\n    };\n    (f(a), ..., f(z));\n  \
     \  return (int)zip.size();\n}\n"
-  code: "#pragma once\n#include <algorithm>\n#include <vector>\n#include \"merge_and_unique.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename T>\nvector<int> compress(const vector<T>\
-    \ &v) {\n    auto zip = merge_and_unique(v);\n    vector<int> res;\n    res.reserve(v.size());\n\
+  code: "#pragma once\n#include \"../template.hpp\"\n#include \"merge_and_unique.hpp\"\
+    \n\ntemplate<typename T>\nvector<int> compress(const vector<T> &v) {\n    auto\
+    \ zip = merge_and_unique(v);\n    vector<int> res;\n    res.reserve(v.size());\n\
     \    for (const T &e : v) {\n        res.push_back(lower_bound(zip.begin(), zip.end(),\
     \ e) - zip.begin());\n    }\n    return res;\n}\n\ntemplate<typename T, typename...\
     \ Ts>\nauto compress(const vector<T> &a, const Ts &...z) {\n    auto zip = merge_and_unique(a,\
@@ -65,13 +71,14 @@ data:
     \ zip.end(), e) - zip.begin();\n        }\n    };\n    (f(a), ..., f(z));\n  \
     \  return (int)zip.size();\n}"
   dependsOn:
+  - src/template.hpp
   - src/misc/merge_and_unique.hpp
   isVerificationFile: false
   path: src/misc/compress.hpp
   requiredBy:
   - src/misc/inversion_number.hpp
-  timestamp: '2026-10-23 21:11:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/graph/functional_graph.test.cpp
   - test/graph/weighted_functional_graph.test.cpp

@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -11,18 +14,21 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/data_structure/set/interval_set.hpp\"\n#include <algorithm>\n\
-    #include <cassert>\n#include <iterator>\n#include <limits>\n#include <set>\n#include\
-    \ <utility>\n#include <vector>\nusing namespace std;\n\ntemplate<typename T>\n\
-    struct interval_set {\n    interval_set() = default;\n    template<typename A,\
-    \ typename D>\n    void insert(T l, T r, const A &add, const D &del) {\n     \
-    \   if (l == r) return;\n        assert(l < r);\n        auto cur = key(l);\n\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/data_structure/set/interval_set.hpp\"\n\ntemplate<typename\
+    \ T>\nstruct interval_set {\n    interval_set() = default;\n    template<typename\
+    \ A, typename D>\n    void insert(T l, T r, const A &add, const D &del) {\n  \
+    \      if (l == r) return;\n        assert(l < r);\n        auto cur = key(l);\n\
     \        if (cur != s.end() && cur->l <= l && r <= cur->r) return;\n        auto\
     \ it = s.lower_bound(node(l, l));\n        if (it != s.begin()) {\n          \
     \  auto pre = prev(it);\n            if (l <= pre->r) {\n                l = pre->l;\n\
-    \                r = max(r, pre->r);\n                del(pre->l, pre->r);\n \
-    \               it = s.erase(pre);\n            }\n        }\n        while (it\
-    \ != s.end() && it->l <= r) {\n            r = max(r, it->r);\n            del(it->l,\
+    \                chmax(r, pre->r);\n                del(pre->l, pre->r);\n   \
+    \             it = s.erase(pre);\n            }\n        }\n        while (it\
+    \ != s.end() && it->l <= r) {\n            chmax(r, it->r);\n            del(it->l,\
     \ it->r);\n            it = s.erase(it);\n        }\n        add(l, r);\n    \
     \    s.emplace_hint(it, l, r);\n    }\n    void insert(T l, T r) {\n        insert(l,\
     \ r, [] (T, T) {}, [] (T, T) {});\n    }\n    template<typename A, typename D>\n\
@@ -64,24 +70,22 @@ data:
     \        for (; it != s.end() && it->l < r; ++it) {\n            if (l < it->r)\
     \ res.emplace_back(max(l, it->l), min(r, it->r));\n        }\n        return res;\n\
     \    }\n    void clear() {\n        s.clear();\n    }\nprivate:\n    static constexpr\
-    \ T low = numeric_limits<T>::min();\n    static constexpr T inf = numeric_limits<T>::max();\n\
+    \ T low = numeric_limits<T>::min();\n    static constexpr T inf = ::inf<T>();\n\
     \    struct node {\n        T l, r;\n        node(T _l, T _r) : l(_l), r(_r) {}\n\
     \        constexpr bool operator<(const node &a) const {\n            return l\
     \ == a.l ? r < a.r : l < a.l;\n        }\n    };\n    set<node> s;\n    typename\
     \ set<node>::const_iterator key(T k) const {\n        auto it = s.upper_bound(node(k,\
     \ inf));\n        return it == s.begin() ? s.end() : prev(it);\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <iterator>\n\
-    #include <limits>\n#include <set>\n#include <utility>\n#include <vector>\nusing\
-    \ namespace std;\n\ntemplate<typename T>\nstruct interval_set {\n    interval_set()\
-    \ = default;\n    template<typename A, typename D>\n    void insert(T l, T r,\
-    \ const A &add, const D &del) {\n        if (l == r) return;\n        assert(l\
-    \ < r);\n        auto cur = key(l);\n        if (cur != s.end() && cur->l <= l\
-    \ && r <= cur->r) return;\n        auto it = s.lower_bound(node(l, l));\n    \
-    \    if (it != s.begin()) {\n            auto pre = prev(it);\n            if\
-    \ (l <= pre->r) {\n                l = pre->l;\n                r = max(r, pre->r);\n\
-    \                del(pre->l, pre->r);\n                it = s.erase(pre);\n  \
-    \          }\n        }\n        while (it != s.end() && it->l <= r) {\n     \
-    \       r = max(r, it->r);\n            del(it->l, it->r);\n            it = s.erase(it);\n\
+  code: "#pragma once\n#include \"../../template.hpp\"\n\ntemplate<typename T>\nstruct\
+    \ interval_set {\n    interval_set() = default;\n    template<typename A, typename\
+    \ D>\n    void insert(T l, T r, const A &add, const D &del) {\n        if (l ==\
+    \ r) return;\n        assert(l < r);\n        auto cur = key(l);\n        if (cur\
+    \ != s.end() && cur->l <= l && r <= cur->r) return;\n        auto it = s.lower_bound(node(l,\
+    \ l));\n        if (it != s.begin()) {\n            auto pre = prev(it);\n   \
+    \         if (l <= pre->r) {\n                l = pre->l;\n                chmax(r,\
+    \ pre->r);\n                del(pre->l, pre->r);\n                it = s.erase(pre);\n\
+    \            }\n        }\n        while (it != s.end() && it->l <= r) {\n   \
+    \         chmax(r, it->r);\n            del(it->l, it->r);\n            it = s.erase(it);\n\
     \        }\n        add(l, r);\n        s.emplace_hint(it, l, r);\n    }\n   \
     \ void insert(T l, T r) {\n        insert(l, r, [] (T, T) {}, [] (T, T) {});\n\
     \    }\n    template<typename A, typename D>\n    void insert(T k, const A &add,\
@@ -123,17 +127,18 @@ data:
     \ s.end() && it->l < r; ++it) {\n            if (l < it->r) res.emplace_back(max(l,\
     \ it->l), min(r, it->r));\n        }\n        return res;\n    }\n    void clear()\
     \ {\n        s.clear();\n    }\nprivate:\n    static constexpr T low = numeric_limits<T>::min();\n\
-    \    static constexpr T inf = numeric_limits<T>::max();\n    struct node {\n \
-    \       T l, r;\n        node(T _l, T _r) : l(_l), r(_r) {}\n        constexpr\
-    \ bool operator<(const node &a) const {\n            return l == a.l ? r < a.r\
-    \ : l < a.l;\n        }\n    };\n    set<node> s;\n    typename set<node>::const_iterator\
-    \ key(T k) const {\n        auto it = s.upper_bound(node(k, inf));\n        return\
-    \ it == s.begin() ? s.end() : prev(it);\n    }\n};\n"
-  dependsOn: []
+    \    static constexpr T inf = ::inf<T>();\n    struct node {\n        T l, r;\n\
+    \        node(T _l, T _r) : l(_l), r(_r) {}\n        constexpr bool operator<(const\
+    \ node &a) const {\n            return l == a.l ? r < a.r : l < a.l;\n       \
+    \ }\n    };\n    set<node> s;\n    typename set<node>::const_iterator key(T k)\
+    \ const {\n        auto it = s.upper_bound(node(k, inf));\n        return it ==\
+    \ s.begin() ? s.end() : prev(it);\n    }\n};\n"
+  dependsOn:
+  - src/template.hpp
   isVerificationFile: false
   path: src/data_structure/set/interval_set.hpp
   requiredBy: []
-  timestamp: '2026-10-24 11:13:20+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/set/interval_set.test.cpp

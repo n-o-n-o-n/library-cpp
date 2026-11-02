@@ -4,9 +4,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/union_find/foldable_union_find.hpp
     title: Foldable Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/monoid/sum.hpp
     title: src/monoid/sum.hpp
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,10 +21,14 @@ data:
     links:
     - https://yukicoder.me/problems/no/3164
   bundledCode: "#line 1 \"test/data_structure/union_find/foldable_union_find.test.cpp\"\
-    \n#define PROBLEM \"https://yukicoder.me/problems/no/3164\"\n\n#line 2 \"src/data_structure/union_find/foldable_union_find.hpp\"\
-    \n#include <cassert>\n#include <numeric>\n#include <vector>\nusing namespace std;\n\
-    \ntemplate<typename Abelian_Monoid>\nstruct foldable_union_find {\n    using M\
-    \ = Abelian_Monoid;\n    using S = M::S;\n    foldable_union_find(int n) : p(n,\
+    \n#define PROBLEM \"https://yukicoder.me/problems/no/3164\"\n\n#line 2 \"src/template.hpp\"\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n\nusing ll = long long;\n\n\
+    template<typename T>\nconstexpr T inf() { return numeric_limits<T>::max() / 2;\
+    \ }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return a\
+    \ > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/data_structure/union_find/foldable_union_find.hpp\"\
+    \n\ntemplate<typename Abelian_Monoid>\nstruct foldable_union_find {\n    using\
+    \ M = Abelian_Monoid;\n    using S = M::S;\n    foldable_union_find(int n) : p(n,\
     \ -1), cyc(n), a(n, M::e()), d(n, M::e()) {\n        iota(cyc.begin(), cyc.end(),\
     \ 0);\n    }\n    int leader(int u) {\n        assert(0 <= u && u < ssize(p));\n\
     \        return p[u] < 0 ? u : p[u] = leader(p[u]);\n    }\n    bool same(int\
@@ -44,22 +51,22 @@ data:
     \ diff = M::op(M::inv(a[u]), x);\n        a[u] = x;\n        d[leader(u)] = M::op(d[leader(u)],\
     \ diff);\n    }\n    S prod(int u) {\n        assert(0 <=u && u < ssize(p));\n\
     \        return d[leader(u)];\n    }\nprivate:\n    vector<int> p, cyc;\n    vector<S>\
-    \ a, d;\n};\n#line 2 \"src/monoid/sum.hpp\"\n\ntemplate<typename T>\nstruct sum_monoid\
+    \ a, d;\n};\n#line 3 \"src/monoid/sum.hpp\"\n\ntemplate<typename T>\nstruct sum_monoid\
     \ {\n    using S = T;\n    static S op(S a, S b) { return a + b; }\n    static\
-    \ S e() { return 0; }\n    static S inv(S x) { return -x; }\n};\n#line 5 \"test/data_structure/union_find/foldable_union_find.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int N;\n    cin >> N;\n    vector<long long> A(N);\n\
-    \    foldable_union_find<sum_monoid<long long>> uf(N);\n    for (int i = 0; i\
-    \ < N; i++) {\n        cin >> A[i];\n        uf.set(i, A[i]);\n        if (i &&\
-    \ A[i - 1] && A[i]) uf.merge(i - 1, i);\n    }\n    int Q;\n    cin >> Q;\n  \
-    \  while (Q--) {\n        int p;\n        long long b;\n        cin >> p >> b;\n\
-    \        p--;\n        uf.set(p, b);\n        long long ans = uf.prod(p);\n  \
-    \      if (A[p] == 0) {\n            if (p && A[p - 1]) ans += uf.prod(p - 1);\n\
-    \            if (p + 1 < N && A[p + 1]) ans += uf.prod(p + 1);\n        }\n  \
-    \      cout << ans << '\\n';\n        uf.set(p, A[p]);\n    }\n}\n"
+    \ S e() { return 0; }\n    static S inv(S x) { return -x; }\n};\n#line 6 \"test/data_structure/union_find/foldable_union_find.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N;\n    cin >> N;\n    vector<long long> A(N);\n    foldable_union_find<sum_monoid<long\
+    \ long>> uf(N);\n    for (int i = 0; i < N; i++) {\n        cin >> A[i];\n   \
+    \     uf.set(i, A[i]);\n        if (i && A[i - 1] && A[i]) uf.merge(i - 1, i);\n\
+    \    }\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int p;\n       \
+    \ long long b;\n        cin >> p >> b;\n        p--;\n        uf.set(p, b);\n\
+    \        long long ans = uf.prod(p);\n        if (A[p] == 0) {\n            if\
+    \ (p && A[p - 1]) ans += uf.prod(p - 1);\n            if (p + 1 < N && A[p + 1])\
+    \ ans += uf.prod(p + 1);\n        }\n        cout << ans << '\\n';\n        uf.set(p,\
+    \ A[p]);\n    }\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/3164\"\n\n#include \"\
-    ../../../src/data_structure/union_find/foldable_union_find.hpp\"\n#include \"\
-    ../../../src/monoid/sum.hpp\"\n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    ../../../src/template.hpp\"\n#include \"../../../src/data_structure/union_find/foldable_union_find.hpp\"\
+    \n#include \"../../../src/monoid/sum.hpp\"\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N;\n    cin >> N;\n    vector<long long> A(N);\n\
     \    foldable_union_find<sum_monoid<long long>> uf(N);\n    for (int i = 0; i\
     \ < N; i++) {\n        cin >> A[i];\n        uf.set(i, A[i]);\n        if (i &&\
@@ -70,12 +77,13 @@ data:
     \            if (p + 1 < N && A[p + 1]) ans += uf.prod(p + 1);\n        }\n  \
     \      cout << ans << '\\n';\n        uf.set(p, A[p]);\n    }\n}\n"
   dependsOn:
+  - src/template.hpp
   - src/data_structure/union_find/foldable_union_find.hpp
   - src/monoid/sum.hpp
   isVerificationFile: true
   path: test/data_structure/union_find/foldable_union_find.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 19:54:17+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/union_find/foldable_union_find.test.cpp

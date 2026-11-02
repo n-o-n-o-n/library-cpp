@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/union_find/undoable_foldable_union_find.hpp
     title: Undoable Foldable Union Find
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -14,12 +17,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"src/data_structure/union_find/offline_dynamic_connectivity.hpp\"\
-    \n#include <algorithm>\n#include <cassert>\n#include <tuple>\n#include <unordered_map>\n\
-    #include <utility>\n#include <vector>\n#line 3 \"src/data_structure/union_find/undoable_foldable_union_find.hpp\"\
-    \n#include <iterator>\n#include <numeric>\n#line 8 \"src/data_structure/union_find/undoable_foldable_union_find.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename Abelian_Monoid>\nstruct undoable_foldable_union_find\
-    \ {\n    using M = Abelian_Monoid;\n    using S = M::S;\n    undoable_foldable_union_find(int\
+  bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
+    \ std;\n\nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return\
+    \ numeric_limits<T>::max() / 2; }\n\ntemplate<typename T1, typename T2>\nbool\
+    \ chmin(T1 &a, T2 b) { return a > b ? a = b, true : false; }\ntemplate<typename\
+    \ T1, typename T2>\nbool chmax(T1 &a, T2 b) { return a < b ? a = b, true : false;\
+    \ }\n#line 3 \"src/data_structure/union_find/undoable_foldable_union_find.hpp\"\
+    \n\ntemplate<typename Abelian_Monoid>\nstruct undoable_foldable_union_find {\n\
+    \    using M = Abelian_Monoid;\n    using S = M::S;\n    undoable_foldable_union_find(int\
     \ n) : p(n, -1), cyc(n), a(n, M::e()), d(n, M::e()) {\n        iota(cyc.begin(),\
     \ cyc.end(), 0);\n    }\n    int leader(int u) const {\n        assert(0 <= u\
     \ && u < ssize(p));\n        return p[u] < 0 ? u : leader(p[u]);\n    }\n    bool\
@@ -53,9 +58,9 @@ data:
     \ res;\n        for (auto v : tmp) if (v.size()) res.push_back(v);\n        return\
     \ res;\n    }\nprivate:\n    vector<int> p, cyc;\n    vector<S> a, d;\n    vector<bool>\
     \ his_type;\n    vector<tuple<int, int, S, S>> his_set;\n    vector<tuple<int,\
-    \ int, int, int, int, int, S>> his_merge;\n};\n#line 9 \"src/data_structure/union_find/offline_dynamic_connectivity.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename Abelian_Monoid>\nstruct offline_dynamic_connectivity\
-    \ {\n    using M = Abelian_Monoid;\n    using S = M::S;\n    offline_dynamic_connectivity(int\
+    \ int, int, int, int, int, S>> his_merge;\n};\n#line 4 \"src/data_structure/union_find/offline_dynamic_connectivity.hpp\"\
+    \n\ntemplate<typename Abelian_Monoid>\nstruct offline_dynamic_connectivity {\n\
+    \    using M = Abelian_Monoid;\n    using S = M::S;\n    offline_dynamic_connectivity(int\
     \ _n = 0) : n(_n), t(0), lst(_n, -1), d(_n, M::e()) {}\n    void merge(int u,\
     \ int v) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n\
     \        act[key(u, v)].push_back(t++);\n    }\n    void erase(int u, int v) {\n\
@@ -105,10 +110,9 @@ data:
     \ int, int>> his_e;\n    vector<tuple<int, int, int, S>> his_v;\n    static constexpr\
     \ long long w = 1LL << 32;\n    static long long key(int &u, int &v) {\n     \
     \   if (u > v) swap(u, v);\n        return u * w + v;\n    }\n};\n"
-  code: "#pragma once\n#include <algorithm>\n#include <cassert>\n#include <tuple>\n\
-    #include <unordered_map>\n#include <utility>\n#include <vector>\n#include \"undoable_foldable_union_find.hpp\"\
-    \nusing namespace std;\n\ntemplate<typename Abelian_Monoid>\nstruct offline_dynamic_connectivity\
-    \ {\n    using M = Abelian_Monoid;\n    using S = M::S;\n    offline_dynamic_connectivity(int\
+  code: "#pragma once\n#include \"../../template.hpp\"\n#include \"undoable_foldable_union_find.hpp\"\
+    \n\ntemplate<typename Abelian_Monoid>\nstruct offline_dynamic_connectivity {\n\
+    \    using M = Abelian_Monoid;\n    using S = M::S;\n    offline_dynamic_connectivity(int\
     \ _n = 0) : n(_n), t(0), lst(_n, -1), d(_n, M::e()) {}\n    void merge(int u,\
     \ int v) {\n        assert(0 <= u && u < n);\n        assert(0 <= v && v < n);\n\
     \        act[key(u, v)].push_back(t++);\n    }\n    void erase(int u, int v) {\n\
@@ -159,11 +163,12 @@ data:
     \ long long w = 1LL << 32;\n    static long long key(int &u, int &v) {\n     \
     \   if (u > v) swap(u, v);\n        return u * w + v;\n    }\n};\n"
   dependsOn:
+  - src/template.hpp
   - src/data_structure/union_find/undoable_foldable_union_find.hpp
   isVerificationFile: false
   path: src/data_structure/union_find/offline_dynamic_connectivity.hpp
   requiredBy: []
-  timestamp: '2026-11-02 19:54:17+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/union_find/offline_dynamic_connectivity.test.cpp

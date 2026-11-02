@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/wavelet_matrix.hpp
     title: Wavelet Matrix
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -16,9 +19,12 @@ data:
     - https://judge.yosupo.jp/problem/range_kth_smallest
   bundledCode: "#line 1 \"test/data_structure/range_query/wavelet_matrix_kth_smallest.test.cpp\"\
     \n#define  PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n\
-    #line 2 \"src/data_structure/range_query/wavelet_matrix.hpp\"\n#include <cassert>\n\
-    #include <limits>\n#include <unordered_map>\n#include <vector>\nusing namespace\
-    \ std;\n\ntemplate<typename T, int LOG = numeric_limits<T>::digits>\nstruct wavelet_matrix\
+    #line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/data_structure/range_query/wavelet_matrix.hpp\"\
+    \n\ntemplate<typename T, int LOG = numeric_limits<T>::digits>\nstruct wavelet_matrix\
     \ {\n    wavelet_matrix() : wavelet_matrix(0) {}\n    wavelet_matrix(int _n) :\
     \ n(_n), d(_n), built(false) {}\n    wavelet_matrix(const vector<T> &v) : n(v.size()),\
     \ d(v), built(false) {}\n    void set(int p, const T &x) {\n        assert(0 <=\
@@ -79,25 +85,26 @@ data:
     \            }\n            d = d2;\n        }\n        for (int i = 0; i < n;\
     \ i++) {\n            if (st.find(d[i]) == st.end()) st[d[i]] = i;\n        }\n\
     \        built = true;\n    }\n    int id(int p, int i, bool flag) {\n       \
-    \ return cnt[i] * flag + mat[i].rank(p, flag);\n    }\n};\n#line 4 \"test/data_structure/range_query/wavelet_matrix_kth_smallest.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n\
-    \    for (auto &e : A) cin >> e;\n    wavelet_matrix<int> WM(A);\n    for (int\
-    \ l, r, k; Q--; ) {\n        cin >> l >> r >> k;\n        cout << WM.range_kth_smallest(l,\
-    \ r, k) << '\\n';\n    }\n}\n"
+    \ return cnt[i] * flag + mat[i].rank(p, flag);\n    }\n};\n#line 5 \"test/data_structure/range_query/wavelet_matrix_kth_smallest.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (auto &e : A)\
+    \ cin >> e;\n    wavelet_matrix<int> WM(A);\n    for (int l, r, k; Q--; ) {\n\
+    \        cin >> l >> r >> k;\n        cout << WM.range_kth_smallest(l, r, k) <<\
+    \ '\\n';\n    }\n}\n"
   code: "#define  PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    \n#include \"../../../src/data_structure/range_query/wavelet_matrix.hpp\"\n\n\
-    #include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (auto &e :\
-    \ A) cin >> e;\n    wavelet_matrix<int> WM(A);\n    for (int l, r, k; Q--; ) {\n\
+    \n#include \"../../../src/template.hpp\"\n#include \"../../../src/data_structure/range_query/wavelet_matrix.hpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  int N, Q;\n    cin >> N >> Q;\n    vector<int> A(N);\n    for (auto &e : A)\
+    \ cin >> e;\n    wavelet_matrix<int> WM(A);\n    for (int l, r, k; Q--; ) {\n\
     \        cin >> l >> r >> k;\n        cout << WM.range_kth_smallest(l, r, k) <<\
     \ '\\n';\n    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/data_structure/range_query/wavelet_matrix.hpp
   isVerificationFile: true
   path: test/data_structure/range_query/wavelet_matrix_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2026-10-23 21:11:51+09:00'
+  timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/wavelet_matrix_kth_smallest.test.cpp

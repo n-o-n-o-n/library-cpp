@@ -1,26 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/random/utility.hpp
     title: Random Utility
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: src/template.hpp
+    title: src/template.hpp
+  - icon: ':x:'
     path: src/tree/prufer_code.hpp
     title: src/tree/prufer_code.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/tree/prufer_code.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n\n#line 2 \"src/tree/prufer_code.hpp\"\n#include <queue>\n#include <vector>\n\
-    using namespace std;\n\ninline vector<int> prufer_code_compress(const vector<vector<int>>\
-    \ &t) {\n    int n = t.size();\n    if (n <= 2) return {};\n    vector<int> deg(n);\n\
+    \n\n#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    \nusing ll = long long;\n\ntemplate<typename T>\nconstexpr T inf() { return numeric_limits<T>::max()\
+    \ / 2; }\n\ntemplate<typename T1, typename T2>\nbool chmin(T1 &a, T2 b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate<typename T1, typename T2>\nbool chmax(T1\
+    \ &a, T2 b) { return a < b ? a = b, true : false; }\n#line 3 \"src/tree/prufer_code.hpp\"\
+    \n\ninline vector<int> prufer_code_compress(const vector<vector<int>> &t) {\n\
+    \    int n = t.size();\n    if (n <= 2) return {};\n    vector<int> deg(n);\n\
     \    priority_queue<int, vector<int>, greater<int>> q;\n    for (int i = 0; i\
     \ < n; i++) {\n        deg[i] = t[i].size();\n        if (deg[i] == 1) {\n   \
     \         q.push(i);\n        }\n    }\n    vector<int> p;\n    p.reserve(n -\
@@ -40,38 +47,38 @@ data:
     \ i && deg[j] == 1) {\n                    t[i].push_back(j);\n              \
     \      t[j].push_back(i);\n                    deg[i]--, deg[j]--;\n         \
     \           break;\n                }\n            }\n            break;\n   \
-    \     }\n    }\n    return t;\n}\n#line 2 \"src/random/utility.hpp\"\n#include\
-    \ <cassert>\n#include <concepts>\n#include <random>\nusing namespace std;\n\n\
-    namespace rng {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\n\
-    template<typename T>\nvoid set_seed(const T &sd) {\n    eng.seed(sd);\n}\n\ntemplate<integral\
+    \     }\n    }\n    return t;\n}\n#line 3 \"src/random/utility.hpp\"\n\nnamespace\
+    \ rng {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\ntemplate<typename\
+    \ T>\nvoid set_seed(const T &sd) {\n    eng.seed(sd);\n}\n\ntemplate<integral\
     \ T>\ninline T randint(T lo, T hi) {\n    assert(lo <= hi);\n    uniform_int_distribution<T>\
     \ dist(lo, hi);\n    return dist(eng);\n}\n\ntemplate<integral T>\ninline pair<T,\
     \ T> randpair(T lo, T hi, bool strict = false) {\n    assert(lo + strict <= hi);\n\
     \    T l = randint(lo, hi - strict);\n    T r = randint(l + strict, hi);\n   \
-    \ return make_pair(l, r);\n}\n\n} // namespace rng\n#line 5 \"test/tree/prufer_code.test.cpp\"\
-    \n\n#include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n  \
-    \  cin.tie(nullptr);\n    {\n        int A, B;\n        cin >> A >> B;\n     \
-    \   cout << A + B << '\\n';\n    }\n    for (int t = 0; t < 20; t++) {\n     \
-    \   // code -> tree -> code\n        int N = rng::randint(3, (int)2e5);\n    \
-    \    vector<int> A(N - 2);\n        for (auto &e : A) e = rng::randint(0, N -\
-    \ 1);\n        assert(A == prufer_code_compress(prufer_code_expansion(A)));\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../../src/tree/prufer_code.hpp\"\n#include \"../../src/random/utility.hpp\"\n\n\
-    #include <iostream>\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
-    \    {\n        int A, B;\n        cin >> A >> B;\n        cout << A + B << '\\\
+    \ return make_pair(l, r);\n}\n\n} // namespace rng\n#line 6 \"test/tree/prufer_code.test.cpp\"\
+    \n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n  \
+    \  {\n        int A, B;\n        cin >> A >> B;\n        cout << A + B << '\\\
     n';\n    }\n    for (int t = 0; t < 20; t++) {\n        // code -> tree -> code\n\
     \        int N = rng::randint(3, (int)2e5);\n        vector<int> A(N - 2);\n \
     \       for (auto &e : A) e = rng::randint(0, N - 1);\n        assert(A == prufer_code_compress(prufer_code_expansion(A)));\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    ../../src/template.hpp\"\n#include \"../../src/tree/prufer_code.hpp\"\n#include\
+    \ \"../../src/random/utility.hpp\"\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    {\n        int A, B;\n        cin >> A >> B;\n   \
+    \     cout << A + B << '\\n';\n    }\n    for (int t = 0; t < 20; t++) {\n   \
+    \     // code -> tree -> code\n        int N = rng::randint(3, (int)2e5);\n  \
+    \      vector<int> A(N - 2);\n        for (auto &e : A) e = rng::randint(0, N\
+    \ - 1);\n        assert(A == prufer_code_compress(prufer_code_expansion(A)));\n\
     \    }\n}"
   dependsOn:
+  - src/template.hpp
   - src/tree/prufer_code.hpp
   - src/random/utility.hpp
   isVerificationFile: true
   path: test/tree/prufer_code.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 20:50:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-02 21:52:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree/prufer_code.test.cpp
 layout: document
