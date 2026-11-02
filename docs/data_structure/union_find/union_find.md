@@ -34,10 +34,11 @@ bool same(int u, int v)
 ## merge
 
 ```
-void merge(int u, int v)
+int merge(int u, int v)
 ```
 
 - 辺 $(u,v)$ を追加する
+- マージ後の連結成分の代表元を返す
 - ならし $O(\alpha(n))$
 
 ## size

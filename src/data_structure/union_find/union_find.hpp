@@ -18,16 +18,17 @@ struct union_find {
         assert(0 <= v && v < ssize(p));
         return leader(u) == leader(v);
     }
-    void merge(int u, int v) {
+    int merge(int u, int v) {
         assert(0 <= u && u < ssize(p));
         assert(0 <= v && v < ssize(p));
         u = leader(u);
         v = leader(v);
-        if (u == v) return;
+        if (u == v) return u;
         if (p[u] > p[v]) swap(u, v);
         p[u] += p[v];
         p[v] = u;
         swap(cyc[u], cyc[v]);
+        return u;
     }
     int size(int u) {
         assert(0 <= u && u < ssize(p));
