@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/superset_zmt.hpp
     title: src/convolution/superset_zmt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []

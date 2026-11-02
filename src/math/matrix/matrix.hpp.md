@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/best_theorem.hpp
     title: src/graph/best_theorem.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/matrix_tree_theorem.hpp
     title: src/graph/matrix_tree_theorem.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/best_theorem.test.cpp
     title: test/graph/best_theorem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/matrix_tree_theorem.test.cpp
     title: test/graph/matrix_tree_theorem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/matrix/matrix_det.test.cpp
     title: test/math/matrix/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/matrix/matrix_inv.test.cpp
     title: test/math/matrix/matrix_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/matrix/matrix_pow.test.cpp
     title: test/math/matrix/matrix_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/matrix/matrix_prod.test.cpp
     title: test/math/matrix/matrix_prod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/matrix/matrix_rank.test.cpp
     title: test/math/matrix/matrix_rank.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -181,7 +181,7 @@ data:
   - src/graph/best_theorem.hpp
   - src/graph/matrix_tree_theorem.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/best_theorem.test.cpp
   - test/graph/matrix_tree_theorem.test.cpp

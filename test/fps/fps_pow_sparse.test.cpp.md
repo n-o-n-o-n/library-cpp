@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_pow_sparse.hpp
     title: src/fps/fps_pow_sparse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/modint.hpp
     title: src/modint/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []

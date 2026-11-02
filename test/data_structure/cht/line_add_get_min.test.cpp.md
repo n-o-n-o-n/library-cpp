@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/cht/li_chao_tree.hpp
     title: Li Chao Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []

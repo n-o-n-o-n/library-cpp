@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/sparse_table.hpp
     title: src/data_structure/range_query/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/static_rmq.hpp
     title: src/data_structure/range_query/static_rmq.hpp
   - icon: ':heavy_check_mark:'
     path: src/data_structure/union_find/uf_merge_tree.hpp
     title: Union Find Merge Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/union_find/union_find.hpp
     title: Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/min.hpp
     title: src/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/tree/static_tree.hpp
     title: Static Tree
   _extendedRequiredBy: []

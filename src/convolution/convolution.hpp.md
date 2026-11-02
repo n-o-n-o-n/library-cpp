@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: src/convolution/arbitrary_mod_convolution.hpp
     title: src/convolution/arbitrary_mod_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/convolution_ll.hpp
     title: src/convolution/convolution_ll.hpp
   - icon: ':heavy_check_mark:'
@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution/middle_product.test.cpp
     title: test/convolution/middle_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/bostan_mori_only_convolution.test.cpp
     title: test/math/bostan_mori_only_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/centroid_decomposition.test.cpp
     title: test/tree/centroid_decomposition.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -274,7 +274,7 @@ data:
   - src/convolution/convolution_ll.hpp
   - src/convolution/arbitrary_mod_convolution.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/bostan_mori_only_convolution.test.cpp
   - test/convolution/arbitrary_mod_convolution.test.cpp

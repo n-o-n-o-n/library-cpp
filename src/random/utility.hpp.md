@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/tree/hash_on_tree.hpp
     title: src/tree/hash_on_tree.hpp
   _extendedVerifiedWith:
@@ -24,21 +24,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/number_theory/discrete_logarithm.test.cpp
     title: test/math/number_theory/discrete_logarithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/number_theory/mod_inv.test.cpp
     title: test/math/number_theory/mod_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/hash_on_tree.test.cpp
     title: test/tree/hash_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/tree/prufer_code.test.cpp
     title: test/tree/prufer_code.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -71,7 +71,7 @@ data:
   - src/random/sequence.hpp
   - src/tree/hash_on_tree.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/number_theory/mod_inv.test.cpp
   - test/math/number_theory/discrete_logarithm.test.cpp

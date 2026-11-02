@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/convolution/ntt.hpp
     title: src/convolution/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps.hpp
     title: Formal Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/combination.hpp
     title: src/math/enumerative_combinatorics/combination.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/prime.hpp
     title: Prime
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/random/xor_shift.hpp
     title: Xor Shift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:
@@ -29,10 +29,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/fps_compositional_inverse.hpp
     title: src/fps/fps_compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_log.hpp
     title: src/fps/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/fps/fps_pow.hpp
     title: src/fps/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -47,22 +47,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/fps/subprod_tree.hpp
     title: src/fps/subprod_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/bmbm.hpp
     title: src/math/bmbm.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/bostan_mori.hpp
     title: src/math/bostan_mori.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
     title: src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/partition.hpp
     title: src/math/enumerative_combinatorics/partition.hpp
   - icon: ':warning:'
     path: src/math/enumerative_combinatorics/power_sums.hpp
     title: src/math/enumerative_combinatorics/power_sums.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
     title: src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
   _extendedVerifiedWith:
@@ -96,24 +96,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/fps/power_projection.test.cpp
     title: test/fps/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/bmbm.test.cpp
     title: test/math/bmbm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/bostan_mori.test.cpp
     title: test/math/bostan_mori.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
     title: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/partition.test.cpp
     title: test/math/enumerative_combinatorics/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
     title: test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -451,7 +451,7 @@ data:
   - src/fps/fps_log.hpp
   - src/fps/subprod_tree.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/bostan_mori.test.cpp
   - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp

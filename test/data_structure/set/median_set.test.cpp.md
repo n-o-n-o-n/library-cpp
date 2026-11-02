@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/random/sequence.hpp
     title: Random Sequence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/random/utility.hpp
     title: Random Utility
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []

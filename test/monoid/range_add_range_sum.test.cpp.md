@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/lazysegtree.hpp
     title: Lazysegtree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/range_add_range_sum.hpp
     title: src/monoid/range_add_range_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G
@@ -120,7 +120,7 @@ data:
   path: test/monoid/range_add_range_sum.test.cpp
   requiredBy: []
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/monoid/range_add_range_sum.test.cpp
 layout: document

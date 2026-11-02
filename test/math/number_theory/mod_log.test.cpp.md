@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/discrete_logarithm.hpp
     title: src/math/number_theory/discrete_logarithm.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/mod_log.hpp
     title: src/math/number_theory/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/modint/dynamic_modint.hpp
     title: src/modint/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
@@ -108,7 +108,7 @@ data:
   path: test/math/number_theory/mod_log.test.cpp
   requiredBy: []
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/number_theory/mod_log.test.cpp
 layout: document

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/geometry/common.hpp
     title: Common
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/geometry/line.hpp
     title: Line
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/geometry/segment_crosspoint.test.cpp
     title: test/geometry/segment_crosspoint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/geometry/segment_dist.test.cpp
     title: test/geometry/segment_dist.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/geometry/segment_intersect.test.cpp
     title: test/geometry/segment_intersect.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -186,7 +186,7 @@ data:
   path: src/geometry/segment.hpp
   requiredBy: []
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/geometry/segment_intersect.test.cpp
   - test/geometry/segment_crosspoint.test.cpp

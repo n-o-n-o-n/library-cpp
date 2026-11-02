@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:
@@ -20,13 +20,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/geometry/incircle_of_triangle.hpp
     title: src/geometry/incircle_of_triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/geometry/line.hpp
     title: Line
   - icon: ':heavy_check_mark:'
     path: src/geometry/polygon.hpp
     title: Polygon
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/geometry/segment.hpp
     title: Segment
   _extendedVerifiedWith:
@@ -87,15 +87,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/geometry/segment_crosspoint.test.cpp
     title: test/geometry/segment_crosspoint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/geometry/segment_dist.test.cpp
     title: test/geometry/segment_dist.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/geometry/segment_intersect.test.cpp
     title: test/geometry/segment_intersect.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -225,7 +225,7 @@ data:
   - src/geometry/incircle_of_triangle.hpp
   - src/geometry/circumcircle_of_triangle.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/geometry/circle_common_tangents.test.cpp
   - test/geometry/circle_crosspoint_with_line.test.cpp

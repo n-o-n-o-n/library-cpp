@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:
@@ -15,27 +15,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/rectangle_query/rectangle_union.test.cpp
     title: test/data_structure/rectangle_query/rectangle_union.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/monoid/range_add_range_max.test.cpp
     title: test/monoid/range_add_range_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/monoid/range_add_range_min.test.cpp
     title: test/monoid/range_add_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/monoid/range_add_range_sum.test.cpp
     title: test/monoid/range_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/monoid/range_update_range_max.test.cpp
     title: test/monoid/range_update_range_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/monoid/range_update_range_min.test.cpp
     title: test/monoid/range_update_range_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/monoid/range_update_range_sum.test.cpp
     title: test/monoid/range_update_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -175,7 +175,7 @@ data:
   requiredBy:
   - src/data_structure/rectangle_query/rectangle_union.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/monoid/range_add_range_min.test.cpp
   - test/monoid/range_update_range_min.test.cpp

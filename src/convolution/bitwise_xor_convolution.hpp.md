@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/fwht.hpp
     title: src/convolution/fwht.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []

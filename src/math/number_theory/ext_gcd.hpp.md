@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:
@@ -14,19 +14,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/math/number_theory/garner.hpp
     title: Garner
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/math/number_theory/mod_inv.hpp
     title: src/math/number_theory/mod_inv.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/convolution/arbitrary_mod_convolution.test.cpp
     title: test/convolution/arbitrary_mod_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/number_theory/mod_inv.test.cpp
     title: test/math/number_theory/mod_inv.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"src/template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -54,7 +54,7 @@ data:
   - src/math/number_theory/crt.hpp
   - src/convolution/arbitrary_mod_convolution.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/number_theory/mod_inv.test.cpp
   - test/convolution/arbitrary_mod_convolution.test.cpp

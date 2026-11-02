@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/segtree.hpp
     title: Segtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy:

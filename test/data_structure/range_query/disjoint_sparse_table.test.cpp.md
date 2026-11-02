@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/range_query/disjoint_sparse_table.hpp
     title: src/data_structure/range_query/disjoint_sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/sum.hpp
     title: src/monoid/sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []

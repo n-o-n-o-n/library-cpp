@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/convolution/subset_zmt.hpp
     title: src/convolution/subset_zmt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []

@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/data_structure/persistent_ds/persistent_segtree.hpp
     title: Persistent Segtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/compress.hpp
     title: Compress
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/misc/merge_and_unique.hpp
     title: Merge And Unique
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/monoid/sum.hpp
     title: src/monoid/sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/template.hpp
     title: src/template.hpp
   _extendedRequiredBy: []
