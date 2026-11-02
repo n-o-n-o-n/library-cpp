@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/data_structure/union_find/uf_merge_tree.test.cpp
+    title: test/data_structure/union_find/uf_merge_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/tree/static_tree.jump.test.cpp
     title: test/tree/static_tree.jump.test.cpp
   - icon: ':heavy_check_mark:'
@@ -211,6 +214,7 @@ data:
   verifiedWith:
   - test/tree/static_tree.lca.test.cpp
   - test/tree/static_tree.jump.test.cpp
+  - test/data_structure/union_find/uf_merge_tree.test.cpp
 documentation_of: src/tree/static_tree.hpp
 layout: document
 title: Static Tree

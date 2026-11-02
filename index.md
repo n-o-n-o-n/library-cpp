@@ -152,6 +152,18 @@ data:
   - name: src/data_structure/union_find
     pages:
     - icon: ':heavy_check_mark:'
+      path: src/data_structure/union_find/foldable_union_find.hpp
+      title: Foldable Union Find
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/union_find/offline_dynamic_connectivity.hpp
+      title: Offline Dynamic Connectivity
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/union_find/uf_merge_tree.hpp
+      title: Union Find Merge Tree
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/union_find/undoable_foldable_union_find.hpp
+      title: Undoable Foldable Union Find
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/union_find/undoable_union_find.hpp
       title: Undoable Union Find
     - icon: ':heavy_check_mark:'
@@ -674,6 +686,18 @@ data:
       title: test/data_structure/set/top_k_set.test.cpp
   - name: test/data_structure/union_find
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/union_find/foldable_union_find.test.cpp
+      title: test/data_structure/union_find/foldable_union_find.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/union_find/offline_dynamic_connectivity.test.cpp
+      title: test/data_structure/union_find/offline_dynamic_connectivity.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/union_find/uf_merge_tree.test.cpp
+      title: test/data_structure/union_find/uf_merge_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/union_find/undoable_foldable_union_find.test.cpp
+      title: test/data_structure/union_find/undoable_foldable_union_find.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/data_structure/union_find/undoable_union_find.test.cpp
       title: test/data_structure/union_find/undoable_union_find.test.cpp

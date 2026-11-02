@@ -1,8 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: src/data_structure/union_find/uf_merge_tree.hpp
+    title: Union Find Merge Tree
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/data_structure/union_find/uf_merge_tree.test.cpp
+    title: test/data_structure/union_find/uf_merge_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data_structure/union_find/union_find.test.cpp
     title: test/data_structure/union_find/union_find.test.cpp
@@ -21,15 +27,15 @@ data:
     \        assert(0 <= u && u < ssize(p));\n        return p[u] < 0 ? u : p[u] =\
     \ leader(p[u]);\n    }\n    bool same(int u, int v) {\n        assert(0 <= u &&\
     \ u < ssize(p));\n        assert(0 <= v && v < ssize(p));\n        return leader(u)\
-    \ == leader(v);\n    }\n    void merge(int u, int v) {\n        assert(0 <= u\
-    \ && u < ssize(p));\n        assert(0 <= v && v < ssize(p));\n        u = leader(u);\n\
-    \        v = leader(v);\n        if (u == v) return;\n        if (p[u] > p[v])\
+    \ == leader(v);\n    }\n    int merge(int u, int v) {\n        assert(0 <= u &&\
+    \ u < ssize(p));\n        assert(0 <= v && v < ssize(p));\n        u = leader(u);\n\
+    \        v = leader(v);\n        if (u == v) return u;\n        if (p[u] > p[v])\
     \ swap(u, v);\n        p[u] += p[v];\n        p[v] = u;\n        swap(cyc[u],\
-    \ cyc[v]);\n    }\n    int size(int u) {\n        assert(0 <= u && u < ssize(p));\n\
-    \        return -p[leader(u)];\n    }\n    vector<int> group(int u) {\n      \
-    \  assert(0 <= u && u < ssize(p));\n        vector<int> res = {u};\n        int\
-    \ v = cyc[u];\n        while (v != u) {\n            res.push_back(v);\n     \
-    \       v = cyc[v];\n        }\n        return res;\n    }\n    vector<vector<int>>\
+    \ cyc[v]);\n        return u;\n    }\n    int size(int u) {\n        assert(0\
+    \ <= u && u < ssize(p));\n        return -p[leader(u)];\n    }\n    vector<int>\
+    \ group(int u) {\n        assert(0 <= u && u < ssize(p));\n        vector<int>\
+    \ res = {u};\n        int v = cyc[u];\n        while (v != u) {\n            res.push_back(v);\n\
+    \            v = cyc[v];\n        }\n        return res;\n    }\n    vector<vector<int>>\
     \ groups() {\n        int n = p.size();\n        vector<vector<int>> tmp(n);\n\
     \        for (int i = 0; i < n; i++) {\n            tmp[leader(i)].push_back(i);\n\
     \        }\n        vector<vector<int>> res;\n        for (auto v : tmp) {\n \
@@ -41,28 +47,30 @@ data:
     \   int leader(int u) {\n        assert(0 <= u && u < ssize(p));\n        return\
     \ p[u] < 0 ? u : p[u] = leader(p[u]);\n    }\n    bool same(int u, int v) {\n\
     \        assert(0 <= u && u < ssize(p));\n        assert(0 <= v && v < ssize(p));\n\
-    \        return leader(u) == leader(v);\n    }\n    void merge(int u, int v) {\n\
+    \        return leader(u) == leader(v);\n    }\n    int merge(int u, int v) {\n\
     \        assert(0 <= u && u < ssize(p));\n        assert(0 <= v && v < ssize(p));\n\
-    \        u = leader(u);\n        v = leader(v);\n        if (u == v) return;\n\
+    \        u = leader(u);\n        v = leader(v);\n        if (u == v) return u;\n\
     \        if (p[u] > p[v]) swap(u, v);\n        p[u] += p[v];\n        p[v] = u;\n\
-    \        swap(cyc[u], cyc[v]);\n    }\n    int size(int u) {\n        assert(0\
-    \ <= u && u < ssize(p));\n        return -p[leader(u)];\n    }\n    vector<int>\
-    \ group(int u) {\n        assert(0 <= u && u < ssize(p));\n        vector<int>\
-    \ res = {u};\n        int v = cyc[u];\n        while (v != u) {\n            res.push_back(v);\n\
-    \            v = cyc[v];\n        }\n        return res;\n    }\n    vector<vector<int>>\
-    \ groups() {\n        int n = p.size();\n        vector<vector<int>> tmp(n);\n\
-    \        for (int i = 0; i < n; i++) {\n            tmp[leader(i)].push_back(i);\n\
-    \        }\n        vector<vector<int>> res;\n        for (auto v : tmp) {\n \
-    \           if (v.size()) res.push_back(v);\n        }\n        return res;\n\
-    \    }\nprivate:\n    vector<int> p, cyc;\n};"
+    \        swap(cyc[u], cyc[v]);\n        return u;\n    }\n    int size(int u)\
+    \ {\n        assert(0 <= u && u < ssize(p));\n        return -p[leader(u)];\n\
+    \    }\n    vector<int> group(int u) {\n        assert(0 <= u && u < ssize(p));\n\
+    \        vector<int> res = {u};\n        int v = cyc[u];\n        while (v !=\
+    \ u) {\n            res.push_back(v);\n            v = cyc[v];\n        }\n  \
+    \      return res;\n    }\n    vector<vector<int>> groups() {\n        int n =\
+    \ p.size();\n        vector<vector<int>> tmp(n);\n        for (int i = 0; i <\
+    \ n; i++) {\n            tmp[leader(i)].push_back(i);\n        }\n        vector<vector<int>>\
+    \ res;\n        for (auto v : tmp) {\n            if (v.size()) res.push_back(v);\n\
+    \        }\n        return res;\n    }\nprivate:\n    vector<int> p, cyc;\n};"
   dependsOn: []
   isVerificationFile: false
   path: src/data_structure/union_find/union_find.hpp
-  requiredBy: []
-  timestamp: '2026-10-24 16:40:15+09:00'
+  requiredBy:
+  - src/data_structure/union_find/uf_merge_tree.hpp
+  timestamp: '2026-11-02 19:54:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/union_find/union_find.test.cpp
+  - test/data_structure/union_find/uf_merge_tree.test.cpp
   - test/misc/parallel_binary_search.test.cpp
 documentation_of: src/data_structure/union_find/union_find.hpp
 layout: document
@@ -100,10 +108,11 @@ bool same(int u, int v)
 ## merge
 
 ```
-void merge(int u, int v)
+int merge(int u, int v)
 ```
 
 - 辺 $(u,v)$ を追加する
+- マージ後の連結成分の代表元を返す
 - ならし $O(\alpha(n))$
 
 ## size

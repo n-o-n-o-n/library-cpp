@@ -25,27 +25,27 @@ data:
     \ u) {\n        assert(0 <= u && u < ssize(p));\n        return p[u] < 0 ? u :\
     \ p[u] = leader(p[u]);\n    }\n    bool same(int u, int v) {\n        assert(0\
     \ <= u && u < ssize(p));\n        assert(0 <= v && v < ssize(p));\n        return\
-    \ leader(u) == leader(v);\n    }\n    void merge(int u, int v) {\n        assert(0\
+    \ leader(u) == leader(v);\n    }\n    int merge(int u, int v) {\n        assert(0\
     \ <= u && u < ssize(p));\n        assert(0 <= v && v < ssize(p));\n        u =\
-    \ leader(u);\n        v = leader(v);\n        if (u == v) return;\n        if\
+    \ leader(u);\n        v = leader(v);\n        if (u == v) return u;\n        if\
     \ (p[u] > p[v]) swap(u, v);\n        p[u] += p[v];\n        p[v] = u;\n      \
-    \  swap(cyc[u], cyc[v]);\n    }\n    int size(int u) {\n        assert(0 <= u\
-    \ && u < ssize(p));\n        return -p[leader(u)];\n    }\n    vector<int> group(int\
-    \ u) {\n        assert(0 <= u && u < ssize(p));\n        vector<int> res = {u};\n\
-    \        int v = cyc[u];\n        while (v != u) {\n            res.push_back(v);\n\
-    \            v = cyc[v];\n        }\n        return res;\n    }\n    vector<vector<int>>\
-    \ groups() {\n        int n = p.size();\n        vector<vector<int>> tmp(n);\n\
-    \        for (int i = 0; i < n; i++) {\n            tmp[leader(i)].push_back(i);\n\
-    \        }\n        vector<vector<int>> res;\n        for (auto v : tmp) {\n \
-    \           if (v.size()) res.push_back(v);\n        }\n        return res;\n\
-    \    }\nprivate:\n    vector<int> p, cyc;\n};\n#line 3 \"src/misc/parallel_binary_search.hpp\"\
-    \nusing namespace std;\n\n// \u4F7F\u3044\u65B9\u306F\u3053\u308C\u3092\u53C2\u7167\
-    : https://atcoder.jp/contests/past20-open/submissions/71648427 \ntemplate<typename\
-    \ A, typename Q, typename R>\nvector<int> parallel_binary_search(int t, int q,\
-    \ const A &act, const Q &query, const R &reset) {\n    vector<int> l(q, -1), r(q,\
-    \ t);\n    for (int p = 1; p <= t; p *= 2) {\n        reset();\n        vector<int>\
-    \ m(q);\n        vector<vector<int>> qs(t);\n        for (int j = 0; j < q; j++)\
-    \ {\n            m[j] = (l[j] + r[j]) / 2;\n            qs[m[j]].push_back(j);\n\
+    \  swap(cyc[u], cyc[v]);\n        return u;\n    }\n    int size(int u) {\n  \
+    \      assert(0 <= u && u < ssize(p));\n        return -p[leader(u)];\n    }\n\
+    \    vector<int> group(int u) {\n        assert(0 <= u && u < ssize(p));\n   \
+    \     vector<int> res = {u};\n        int v = cyc[u];\n        while (v != u)\
+    \ {\n            res.push_back(v);\n            v = cyc[v];\n        }\n     \
+    \   return res;\n    }\n    vector<vector<int>> groups() {\n        int n = p.size();\n\
+    \        vector<vector<int>> tmp(n);\n        for (int i = 0; i < n; i++) {\n\
+    \            tmp[leader(i)].push_back(i);\n        }\n        vector<vector<int>>\
+    \ res;\n        for (auto v : tmp) {\n            if (v.size()) res.push_back(v);\n\
+    \        }\n        return res;\n    }\nprivate:\n    vector<int> p, cyc;\n};\n\
+    #line 3 \"src/misc/parallel_binary_search.hpp\"\nusing namespace std;\n\n// \u4F7F\
+    \u3044\u65B9\u306F\u3053\u308C\u3092\u53C2\u7167: https://atcoder.jp/contests/past20-open/submissions/71648427\
+    \ \ntemplate<typename A, typename Q, typename R>\nvector<int> parallel_binary_search(int\
+    \ t, int q, const A &act, const Q &query, const R &reset) {\n    vector<int> l(q,\
+    \ -1), r(q, t);\n    for (int p = 1; p <= t; p *= 2) {\n        reset();\n   \
+    \     vector<int> m(q);\n        vector<vector<int>> qs(t);\n        for (int\
+    \ j = 0; j < q; j++) {\n            m[j] = (l[j] + r[j]) / 2;\n            qs[m[j]].push_back(j);\n\
     \        }\n        for (int i = 0; i < t; i++) {\n            act(i);\n     \
     \       for (int j : qs[i]) (query(j) ? r[j] : l[j]) = m[j];\n        }\n    }\n\
     \    return r;\n}\n#line 5 \"test/misc/parallel_binary_search.test.cpp\"\n\n#include\
@@ -100,7 +100,7 @@ data:
   isVerificationFile: true
   path: test/misc/parallel_binary_search.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 16:40:15+09:00'
+  timestamp: '2026-11-02 19:54:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/misc/parallel_binary_search.test.cpp
