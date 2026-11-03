@@ -279,6 +279,9 @@ data:
     path: src/graph/scc.hpp
     title: src/graph/scc.hpp
   - icon: ':heavy_check_mark:'
+    path: src/graph/shortest_path.hpp
+    title: Shortest Path
+  - icon: ':heavy_check_mark:'
     path: src/graph/weighted_functional_graph.hpp
     title: Weighted Functional Graph
   - icon: ':heavy_check_mark:'
@@ -796,6 +799,9 @@ data:
     path: test/graph/scc.test.cpp
     title: test/graph/scc.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/graph/shortest_path.test.cpp
+    title: test/graph/shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/graph/weighted_functional_graph.test.cpp
     title: test/graph/weighted_functional_graph.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1034,6 +1040,7 @@ data:
   - src/graph/bipartite_matching.hpp
   - src/graph/lowlink.hpp
   - src/graph/chromatic_number.hpp
+  - src/graph/shortest_path.hpp
   - src/graph/hungarian.hpp
   - src/graph/offline_directed_reachability.hpp
   - src/random/graph.hpp
@@ -1208,6 +1215,7 @@ data:
   - test/graph/lowlink_articulation_point.test.cpp
   - test/graph/best_theorem.test.cpp
   - test/graph/scc.test.cpp
+  - test/graph/shortest_path.test.cpp
   - test/graph/maximum_independent_set.test.cpp
   - test/graph/hungarian.test.cpp
   - test/graph/chromatic_number.test.cpp

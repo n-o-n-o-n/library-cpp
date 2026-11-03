@@ -302,6 +302,9 @@ data:
       path: src/graph/scc.hpp
       title: src/graph/scc.hpp
     - icon: ':heavy_check_mark:'
+      path: src/graph/shortest_path.hpp
+      title: Shortest Path
+    - icon: ':heavy_check_mark:'
       path: src/graph/weighted_functional_graph.hpp
       title: Weighted Functional Graph
   - name: src/math
@@ -865,6 +868,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graph/scc.test.cpp
       title: test/graph/scc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/graph/shortest_path.test.cpp
+      title: test/graph/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/graph/weighted_functional_graph.test.cpp
       title: test/graph/weighted_functional_graph.test.cpp
