@@ -4,7 +4,7 @@
 #include "../../src/convolution/relaxed_convolution.hpp"
 #include "../../src/modint/modint.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 int main() {
     int N, M;

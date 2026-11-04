@@ -4,7 +4,7 @@
 #include "../../src/convolution/middle_product.hpp"
 #include "../../src/modint/modint.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 
 vector<mint> naive(vector<mint> f, vector<mint> g) {

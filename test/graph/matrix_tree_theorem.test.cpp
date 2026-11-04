@@ -4,7 +4,7 @@
 #include "../../src/modint/modint.hpp"
 #include "../../src/graph/matrix_tree_theorem.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 int main() {
     ios::sync_with_stdio(false);

@@ -4,8 +4,7 @@
 #include "../../src/convolution/arbitrary_mod_convolution.hpp"
 #include "../../src/modint/modint.hpp"
 
-constexpr int mod = 1000000007;
-using mint = modint<mod>;
+using mint = modint1000000007;
 
 int main() {
     ios::sync_with_stdio(false);

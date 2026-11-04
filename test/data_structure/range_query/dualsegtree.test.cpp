@@ -5,7 +5,7 @@
 #include "../../../src/data_structure/range_query/dualsegtree.hpp"
 #include "../../../src/monoid/range_affine_range_sum.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 int main() {
     ios::sync_with_stdio(false);

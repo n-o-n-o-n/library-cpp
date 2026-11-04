@@ -5,7 +5,7 @@
 #include "../../../src/data_structure/union_find/weighted_union_find.hpp"
 #include "../../../src/monoid/sum.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 int main() {
     ios::sync_with_stdio(false);

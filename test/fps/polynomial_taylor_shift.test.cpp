@@ -4,7 +4,7 @@
 #include "../../src/fps/polynomial_taylor_shift.hpp"
 #include "../../src/modint/modint.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 int main() {
     ios::sync_with_stdio(false);

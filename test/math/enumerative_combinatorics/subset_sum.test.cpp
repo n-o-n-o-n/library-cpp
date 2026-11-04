@@ -5,7 +5,7 @@
 #include "../../../src/math/enumerative_combinatorics/subset_sum.hpp"
 
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 int main() {
     ios::sync_with_stdio(false);

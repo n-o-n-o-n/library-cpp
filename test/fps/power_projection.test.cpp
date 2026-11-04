@@ -3,7 +3,7 @@
 #include "../../src/template.hpp"
 #include "../../src/modint/modint.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 namespace AC {
 // https://atcoder.jp/contests/abc439/submissions/72457854 

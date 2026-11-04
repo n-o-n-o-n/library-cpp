@@ -7,7 +7,7 @@
 #include "../../src/modint/modint.hpp"
 #include "../../src/math/affine.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 struct Monoid {
     using S = affine<mint>;

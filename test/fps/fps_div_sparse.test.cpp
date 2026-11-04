@@ -5,7 +5,7 @@
 #include "../../src/fps/fps_inv.hpp"
 #include "../../src/modint/modint.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 #include "../../src/random/utility.hpp"
 

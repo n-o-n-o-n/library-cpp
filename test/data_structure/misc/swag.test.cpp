@@ -5,7 +5,7 @@
 #include "../../../src/math/affine.hpp"
 #include "../../../src/data_structure/misc/swag.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 struct Monoid {
     using S = affine<mint>;

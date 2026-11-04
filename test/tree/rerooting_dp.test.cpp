@@ -4,7 +4,7 @@
 #include "../../src/tree/rerooting_dp.hpp"
 #include "../../src/modint/modint.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 struct Monoid {
     using S = pair<mint, int>;

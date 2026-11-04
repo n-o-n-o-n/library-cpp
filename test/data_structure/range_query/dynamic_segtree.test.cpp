@@ -5,7 +5,7 @@
 #include "../../../src/math/affine.hpp"
 #include "../../../src/data_structure/range_query/dynamic_segtree.hpp"
 
-using mint = modint<998244353>;
+using mint = modint998244353;
 
 struct Monoid {
     using S = affine<mint>;
