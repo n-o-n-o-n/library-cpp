@@ -5,7 +5,8 @@ template<typename Abelian_Monoid>
 struct foldable_union_find {
     using M = Abelian_Monoid;
     using S = M::S;
-    foldable_union_find(int n) : p(n, -1), cyc(n), a(n, M::e()), d(n, M::e()) {
+    foldable_union_find(int n) : foldable_union_find(vector<S>(n, M::e())) {}
+    foldable_union_find(const vector<S> &v) : p(v.size(), -1), cyc(v.size()), a(v), d(v) {
         iota(cyc.begin(), cyc.end(), 0);
     }
     int leader(int u) {

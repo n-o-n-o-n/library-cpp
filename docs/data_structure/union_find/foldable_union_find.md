@@ -9,10 +9,12 @@ documentation_of: //src/data_structure/union_find/foldable_union_find.hpp
 
 ```
 foldable_union_find<Abelian_Monoid> uf(int n)
+foldable_union_find<Abelian_Monoid> uf(vector<S> v)
 ```
 
 - $n$ 頂点で初期化する. 各頂点の初期値は `e()`
 - `Abelian_Monoid` には型 `S`, 可換な二項演算 `op`, 単位元 `e`, 逆元 `inv` が必要
+  - 配列で初期化し, `set` を呼ばない場合は `inv` が不要
 
 ## leader
 
