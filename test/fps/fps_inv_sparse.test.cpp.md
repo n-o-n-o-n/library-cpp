@@ -69,8 +69,9 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 6 \"test/fps/fps_inv_sparse.test.cpp\"\n\nusing\
-    \ mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 6 \"test/fps/fps_inv_sparse.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, K;\n    cin >> N >> K;\n    vector<pair<int,\
     \ mint>> f_sub(K);\n    for (int i = 0; i < K; i++) {\n        int a, b;\n   \
     \     cin >> a >> b;\n        f_sub[i] = {a, mint::raw(b)};\n    }\n    auto f\
@@ -78,8 +79,8 @@ data:
     \ << \" \\n\"[i + 1 == N];\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \n\n#include \"../../src/template.hpp\"\n#include \"../../src/fps/fps_inv_sparse.hpp\"\
-    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\
-    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint998244353;\n\n\
+    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N, K;\n    cin >> N >> K;\n    vector<pair<int, mint>> f_sub(K);\n    for (int\
     \ i = 0; i < K; i++) {\n        int a, b;\n        cin >> a >> b;\n        f_sub[i]\
     \ = {a, mint::raw(b)};\n    }\n    auto f = fps_inv_sparse(f_sub, N);\n    for\
@@ -91,7 +92,7 @@ data:
   isVerificationFile: true
   path: test/fps/fps_inv_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/fps_inv_sparse.test.cpp

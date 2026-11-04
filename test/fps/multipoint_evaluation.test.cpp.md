@@ -422,17 +422,18 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 6 \"test/fps/multipoint_evaluation.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    int N, M;\n    cin >> N >> M;\n    fps<mint> f(N);\n\
-    \    for (auto &e : f) { int a; cin >> a; e = a; }\n    vector<mint> x(M);\n \
-    \   for (auto &e : x) { int a; cin >> a; e = a; }\n    auto y = multipoint_evaluation<mint>(f,\
-    \ x);\n    for (int i = 0; i < M; i++) cout << y[i].val() << \" \\n\"[i + 1 ==\
-    \ M];\n}\n"
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n\nusing modint998244353\
+    \ = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 6\
+    \ \"test/fps/multipoint_evaluation.test.cpp\"\n\nusing mint = modint998244353;\n\
+    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N, M;\n    cin >> N >> M;\n    fps<mint> f(N);\n    for (auto &e : f) { int\
+    \ a; cin >> a; e = a; }\n    vector<mint> x(M);\n    for (auto &e : x) { int a;\
+    \ cin >> a; e = a; }\n    auto y = multipoint_evaluation<mint>(f, x);\n    for\
+    \ (int i = 0; i < M; i++) cout << y[i].val() << \" \\n\"[i + 1 == M];\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\
     \n\n#include \"../../src/template.hpp\"\n#include \"../../src/fps/multipoint_evaluation.hpp\"\
-    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\
-    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint998244353;\n\n\
+    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N, M;\n    cin >> N >> M;\n    fps<mint> f(N);\n    for (auto &e : f) { int\
     \ a; cin >> a; e = a; }\n    vector<mint> x(M);\n    for (auto &e : x) { int a;\
     \ cin >> a; e = a; }\n    auto y = multipoint_evaluation<mint>(f, x);\n    for\
@@ -451,7 +452,7 @@ data:
   isVerificationFile: true
   path: test/fps/multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/multipoint_evaluation.test.cpp

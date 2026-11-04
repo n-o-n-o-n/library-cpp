@@ -382,8 +382,9 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 7 \"test/fps/fps_div_sparse.test.cpp\"\n\nusing\
-    \ mint = modint<998244353>;\n\n#line 3 \"src/random/utility.hpp\"\n\nnamespace\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 7 \"test/fps/fps_div_sparse.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\n#line 3 \"src/random/utility.hpp\"\n\nnamespace\
     \ rng {\n\ninline random_device seed;\ninline mt19937 eng(seed());\n\ntemplate<typename\
     \ T>\nvoid set_seed(const T &sd) {\n    eng.seed(sd);\n}\n\ntemplate<integral\
     \ T>\ninline T randint(T lo, T hi) {\n    assert(lo <= hi);\n    uniform_int_distribution<T>\
@@ -405,8 +406,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../../src/template.hpp\"\n#include \"../../src/fps/fps_div_sparse.hpp\"\n#include\
     \ \"../../src/fps/fps_inv.hpp\"\n#include \"../../src/modint/modint.hpp\"\n\n\
-    using mint = modint<998244353>;\n\n#include \"../../src/random/utility.hpp\"\n\
-    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    {\n\
+    using mint = modint998244353;\n\n#include \"../../src/random/utility.hpp\"\n\n\
+    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    {\n\
     \        int A, B;\n        cin >> A >> B;\n        cout << A + B << '\\n';\n\
     \    }\n    for (int t = 0; t < 20; t++) {\n        int N = rng::randint(1, (int)1e5);\n\
     \        fps<mint> f(N), g(N);\n        for (auto &e : f) e = rng::randint(0,\
@@ -431,7 +432,7 @@ data:
   isVerificationFile: true
   path: test/fps/fps_div_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/fps_div_sparse.test.cpp

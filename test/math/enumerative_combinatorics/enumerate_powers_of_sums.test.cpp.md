@@ -84,7 +84,8 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/enumerative_combinatorics/combination.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/enumerative_combinatorics/combination.hpp\"\
     \n\nnamespace combination {\n\ntemplate<typename mint>\nstruct container {\n \
     \   static vector<mint> fac, finv;\n    static void init(int n) {\n        int\
     \ sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n, 2 * sz,\
@@ -387,7 +388,7 @@ data:
     \ m, r);\n    };\n    auto f = rec(rec, 0, a.size());\n    f.resize(k + 1);\n\
     \    f = -f.log().diff();\n    f.insert(f.begin(), a.size());\n    return f;\n\
     }\n#line 6 \"test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp\"\
-    \n\n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, M;\n    cin >> N >> M;\n    vector<int> A(N);\n\
     \    for (auto &e : A) cin >> e;\n    auto ans = enumerate_powers_of_sums<mint>(A,\
     \ M);\n    for (int i = 1; i <= M; i++) {\n        cout << ans[i].val() << \"\
@@ -395,7 +396,7 @@ data:
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1145\"\n\n#include \"\
     ../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\n#include\
     \ \"../../../src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp\"\
-    \n\n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, M;\n    cin >> N >> M;\n    vector<int> A(N);\n\
     \    for (auto &e : A) cin >> e;\n    auto ans = enumerate_powers_of_sums<mint>(A,\
     \ M);\n    for (int i = 1; i <= M; i++) {\n        cout << ans[i].val() << \"\
@@ -414,7 +415,7 @@ data:
   isVerificationFile: true
   path: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp

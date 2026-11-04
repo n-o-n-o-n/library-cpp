@@ -66,12 +66,13 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/affine.hpp\"\n\ntemplate<typename\
-    \ mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
-    \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
-    \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
-    \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
-    \    return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/range_query/dynamic_segtree.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/affine.hpp\"\n\n\
+    template<typename mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1),\
+    \ b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint\
+    \ operator()(const mint &x) const {\n        return a * x + b;\n    }\n    affine\
+    \ operator()(const affine &f) const {\n        mint c = a * f.a;\n        mint\
+    \ d = a * f.b + b;\n        return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/range_query/dynamic_segtree.hpp\"\
     \n\ntemplate<typename Monoid, integral T = int>\nstruct dynamic_segtree {\n  \
     \  using M = Monoid;\n    using S = typename M::S;\n    dynamic_segtree(T _n =\
     \ 0, int q = 0) : n(_n) {\n        int log = 1;\n        while ((T(1) << log)\
@@ -99,7 +100,7 @@ data:
     \ (t == -1 || r <= ql || qr <= l) return M::e();\n        if (ql <= l && r <=\
     \ qr) return d[t].x;\n        T m = (l + r) / 2;\n        return M::op(prod(d[t].l,\
     \ l, m, ql, qr), prod(d[t].r, m, r, ql, qr));\n    }\n};\n#line 7 \"test/data_structure/range_query/dynamic_segtree.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \n\nusing mint = modint998244353;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return affine<mint>();\
     \ }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \    int N, Q;\n    cin >> N >> Q;\n    dynamic_segtree<Monoid> seg(N, Q);\n \
@@ -111,7 +112,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite_large_array\"\
     \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
     \n#include \"../../../src/math/affine.hpp\"\n#include \"../../../src/data_structure/range_query/dynamic_segtree.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \n\nusing mint = modint998244353;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return affine<mint>();\
     \ }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \    int N, Q;\n    cin >> N >> Q;\n    dynamic_segtree<Monoid> seg(N, Q);\n \
@@ -128,7 +129,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/range_query/dynamic_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/dynamic_segtree.test.cpp

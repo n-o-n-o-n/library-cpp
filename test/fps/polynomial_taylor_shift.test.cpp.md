@@ -366,16 +366,17 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 6 \"test/fps/polynomial_taylor_shift.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    int N, c;\n    cin >> N >> c;\n    fps<mint> f(N);\n\
-    \    for (auto &e : f) { int a; cin >> a; e = a; }\n    f = f.taylor_shift(c);\n\
-    \    for (int i = 0; i < N; i++) cout << f[i].val() << \" \\n\"[i + 1 == N];\n\
-    }\n"
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n\nusing modint998244353\
+    \ = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 6\
+    \ \"test/fps/polynomial_taylor_shift.test.cpp\"\n\nusing mint = modint998244353;\n\
+    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N, c;\n    cin >> N >> c;\n    fps<mint> f(N);\n    for (auto &e : f) { int\
+    \ a; cin >> a; e = a; }\n    f = f.taylor_shift(c);\n    for (int i = 0; i < N;\
+    \ i++) cout << f[i].val() << \" \\n\"[i + 1 == N];\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \n\n#include \"../../src/template.hpp\"\n#include \"../../src/fps/polynomial_taylor_shift.hpp\"\
-    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\
-    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint998244353;\n\n\
+    int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N, c;\n    cin >> N >> c;\n    fps<mint> f(N);\n    for (auto &e : f) { int\
     \ a; cin >> a; e = a; }\n    f = f.taylor_shift(c);\n    for (int i = 0; i < N;\
     \ i++) cout << f[i].val() << \" \\n\"[i + 1 == N];\n}"
@@ -391,7 +392,7 @@ data:
   isVerificationFile: true
   path: test/fps/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/polynomial_taylor_shift.test.cpp

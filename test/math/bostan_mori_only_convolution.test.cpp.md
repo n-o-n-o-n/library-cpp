@@ -75,15 +75,16 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/random/xor_shift.hpp\"\n\ntemplate<typename\
-    \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
-    \ constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr\
-    \ U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n            x ^=\
-    \ x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n        } else\
-    \ {\n            x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x <<\
-    \ 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T lo, T\
-    \ hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n   \
-    \ U x;\n};\n#line 4 \"src/math/number_theory/prime.hpp\"\n\n\nnamespace prime\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/random/xor_shift.hpp\"\
+    \n\ntemplate<typename T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n\
+    \    constexpr xor_shift(U seed = 0) : x(seed == 0 ? 987139873 : seed) {}\n  \
+    \  constexpr U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n     \
+    \       x ^= x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n \
+    \       } else {\n            x ^= x << 13;\n            x ^= x >> 7;\n      \
+    \      x ^= x << 17;\n        }\n        return x;\n    }\n    constexpr T operator()(T\
+    \ lo, T hi) {\n        return lo + (*this)() % (hi - lo + 1);\n    }\nprivate:\n\
+    \    U x;\n};\n#line 4 \"src/math/number_theory/prime.hpp\"\n\n\nnamespace prime\
     \ {\n\ntemplate<typename T>\nstruct montgomery_modint {\n    using U = conditional_t<(sizeof(T)\
     \ <= 4), uint32_t, uint64_t>;\n    using W = conditional_t<(sizeof(T) <= 4), uint64_t,\
     \ unsigned __int128>;\n    constexpr explicit montgomery_modint(U _mod, U v =\
@@ -286,7 +287,7 @@ data:
     \ long k, const C &conv) {\n    assert(a.size() == c.size());\n    int n = a.size();\n\
     \    for (auto &e : c) e = -e;\n    c.insert(c.begin(), 1);\n    a = conv(a, c);\n\
     \    a.resize(n);\n    return Bostan_Mori<mint, C>(a, c, k, conv);\n}\n#line 7\
-    \ \"test/math/bostan_mori_only_convolution.test.cpp\"\n\nusing mint = modint<998244353>;\n\
+    \ \"test/math/bostan_mori_only_convolution.test.cpp\"\n\nusing mint = modint998244353;\n\
     \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N;\n    long long K;\n    cin >> N >> K;\n    vector<mint> A(N), C(N);\n   \
     \ for (auto &e : A) {int x; cin >> x; e = x; }\n    for (auto &e : C) {int x;\
@@ -296,7 +297,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n\n#include \"../../src/template.hpp\"\n#include \"../../src/modint/modint.hpp\"\
     \n#include \"../../src/convolution/convolution.hpp\"\n#include \"../../src/math/bostan_mori_only_convolution.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N;\n    long long K;\n    cin >> N >> K;\n   \
     \ vector<mint> A(N), C(N);\n    for (auto &e : A) {int x; cin >> x; e = x; }\n\
     \    for (auto &e : C) {int x; cin >> x; e = x; }\n    auto conv = [] (const vector<mint>\
@@ -313,7 +314,7 @@ data:
   isVerificationFile: true
   path: test/math/bostan_mori_only_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/bostan_mori_only_convolution.test.cpp

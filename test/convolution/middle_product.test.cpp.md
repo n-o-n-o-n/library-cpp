@@ -276,21 +276,23 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 6 \"test/convolution/middle_product.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\n\nvector<mint> naive(vector<mint> f, vector<mint>\
-    \ g) {\n    int n = f.size(), m = g.size();\n    vector<mint> h(n);\n    for (int\
-    \ i = 0; i < n; i++) {\n        for (int j = 0; j <= i && j < m; j++) h[i - j]\
-    \ += f[i] * g[j];\n    }\n    return h;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n\
-    \    cin.tie(nullptr);\n    {\n        int A, B;\n        cin >> A >> B;\n   \
-    \     cout << A + B << '\\n';\n    }\n    mt19937 eng(353442899);\n    for (int\
-    \ t = 0; t < 20; t++) {\n        int N = eng() % 2000 + 1;\n        int M = eng()\
-    \ % 2000 + 1;\n        vector<mint> f(N), g(M);\n        for (auto &e : f) e =\
-    \ eng() % mint::mod();\n        for (auto &e : g) e = eng() % mint::mod();\n \
-    \       assert(naive(f, g) == middle_product(f, g));\n    }\n}\n"
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n\nusing modint998244353\
+    \ = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 6\
+    \ \"test/convolution/middle_product.test.cpp\"\n\nusing mint = modint998244353;\n\
+    \n\nvector<mint> naive(vector<mint> f, vector<mint> g) {\n    int n = f.size(),\
+    \ m = g.size();\n    vector<mint> h(n);\n    for (int i = 0; i < n; i++) {\n \
+    \       for (int j = 0; j <= i && j < m; j++) h[i - j] += f[i] * g[j];\n    }\n\
+    \    return h;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    {\n        int A, B;\n        cin >> A >> B;\n        cout << A + B << '\\\
+    n';\n    }\n    mt19937 eng(353442899);\n    for (int t = 0; t < 20; t++) {\n\
+    \        int N = eng() % 2000 + 1;\n        int M = eng() % 2000 + 1;\n      \
+    \  vector<mint> f(N), g(M);\n        for (auto &e : f) e = eng() % mint::mod();\n\
+    \        for (auto &e : g) e = eng() % mint::mod();\n        assert(naive(f, g)\
+    \ == middle_product(f, g));\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../../src/template.hpp\"\n#include \"../../src/convolution/middle_product.hpp\"\
-    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\
-    \n\nvector<mint> naive(vector<mint> f, vector<mint> g) {\n    int n = f.size(),\
+    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint998244353;\n\n\
+    \nvector<mint> naive(vector<mint> f, vector<mint> g) {\n    int n = f.size(),\
     \ m = g.size();\n    vector<mint> h(n);\n    for (int i = 0; i < n; i++) {\n \
     \       for (int j = 0; j <= i && j < m; j++) h[i - j] += f[i] * g[j];\n    }\n\
     \    return h;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
@@ -311,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/convolution/middle_product.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution/middle_product.test.cpp

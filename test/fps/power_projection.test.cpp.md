@@ -90,66 +90,67 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 5 \"test/fps/power_projection.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nnamespace AC {\n// https://atcoder.jp/contests/abc439/submissions/72457854\
-    \ \n\nnamespace combination {\n\ntemplate<typename mint>\nstruct container {\n\
-    \    static vector<mint> fac, finv;\n    static void init(int n) {\n        int\
-    \ sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n, 2 * sz,\
-    \ min<int>(1 << 27, mint::mod() - 1));\n        fac.resize(n + 1);\n        finv.resize(n\
-    \ + 1);\n        for (int i = sz; i <= n; i++) {\n            fac[i] = i * fac[i\
-    \ - 1];\n        }\n        finv[n] = fac[n].inv();\n        for (int i = n; i\
-    \ >= sz; i--) {\n            finv[i - 1] = i * finv[i];\n        }\n    }\n};\n\
-    \ntemplate<typename mint>\nvector<mint> container<mint>::fac(1, 1);\ntemplate<typename\
-    \ mint>\nvector<mint> container<mint>::finv(1, 1);\ntemplate<typename mint>\n\
-    mint fac(int n) {\n    container<mint>::init(n);\n    if (n < 0) return 0;\n \
-    \   return container<mint>::fac[n];\n}\ntemplate<typename mint>\nmint finv(int\
-    \ n) {\n    container<mint>::init(n);\n    if (n < 0) return 0;\n    return container<mint>::finv[n];\n\
-    }\ntemplate<typename mint>\nmint mod_inv(int n) {\n    assert(n > 0);\n    return\
-    \ finv<mint>(n) * fac<mint>(n - 1);\n}\ntemplate<typename mint>\nmint nCk(int\
-    \ n, int k) {\n    if (n < 0) {\n        n = -n;\n        return nCk<mint>(n +\
-    \ k - 1, n - 1);\n    }\n    if (n < k || k < 0) return 0;\n    return fac<mint>(n)\
-    \ * finv<mint>(n - k) * finv<mint>(k);\n}\ntemplate<typename mint>\nmint multi_C(const\
-    \ vector<int> &v) {\n    int n = 0;\n    for (const int &k : v) n += k;\n    mint\
-    \ res = fac<mint>(n);\n    for (const int &k : v) res *= finv<mint>(k);\n    return\
-    \ res;\n}\ntemplate<typename mint>\nmint nPk(int n, int k) {\n    if (n < 0 ||\
-    \ n < k || k < 0) return 0;\n    return fac<mint>(n) * finv<mint>(n - k);\n}\n\
-    template<typename mint>\nmint catalan(int n) {\n    return fac<mint>(2 * n) *\
-    \ finv<mint>(n) * finv<mint>(n + 1);\n}\ntemplate<typename mint>\nmint grid_path(int\
-    \ n, int m) {\n    return nCk<mint>(n + m, n);\n}\n\n} // namespace combination\n\
-    \nstruct dynamic_montgomery_modint {\n    using i64 = __uint64_t;\n    using i128\
-    \ = __uint128_t;\n    using modint = dynamic_montgomery_modint;\n    dynamic_montgomery_modint()\
-    \ : x(0) {}\n    dynamic_montgomery_modint(long long v) : x(reduce((i128(v) +\
-    \ MOD) * R)) {}\n    static void set_mod(long long _m) {\n        MOD = _m;\n\
-    \        R = -i128(MOD) % MOD;\n        INV = get_inv_mod(); \n    }\n    static\
-    \ long long mod() { return MOD; }\n    long long val() const {\n        i64 res\
-    \ = reduce(x);\n        return res >= MOD ? res - MOD : res;\n    }\n    modint&\
-    \ operator+=(const modint &r) {\n        x += r.x;\n        if (x >= (MOD << 1))\
-    \ x -= (MOD << 1);\n        return *this;\n    }\n    modint& operator-=(const\
-    \ modint &r) {\n        x += (MOD << 1) - r.x;\n        if (x >= (MOD << 1)) x\
-    \ -= (MOD << 1);\n        return *this;\n    }\n    modint& operator*=(const modint\
-    \ &r) {\n        x = reduce(i128(x) * r.x);\n        return *this;\n    }\n  \
-    \  modint& operator/=(const modint &r) {\n        *this *= r.inv();\n        return\
-    \ *this;\n    }\n    friend modint operator+(const modint &a, const modint &b)\
-    \ {\n        return modint(a) += b;\n    }\n    friend modint operator-(const\
-    \ modint &a, const modint &b) {\n        return modint(a) -= b;\n    }\n    friend\
-    \ modint operator*(const modint &a, const modint &b) {\n        return modint(a)\
-    \ *= b;\n    }\n    friend modint operator/(const modint &a, const modint &b)\
-    \ {\n        return modint(a) /= b;\n    }\n    friend bool operator==(const modint\
-    \ &a, const modint &b) {\n        return a.val() == b.val();\n    }\n    friend\
-    \ bool operator!=(const modint &a, const modint &b) {\n        return a.val()\
-    \ != b.val();\n    }\n    modint operator+() const { return *this; }\n    modint\
-    \ operator-() const { return modint() - *this; }\n    modint inv() const { return\
-    \ pow(MOD - 2); }\n    modint pow(i128 k) const {\n        modint a = *this;\n\
-    \        modint res = 1;\n        while (k > 0) {\n            if (k & 1) res\
-    \ *= a;\n            a *= a;\n            k >>= 1;\n        }\n        return\
-    \ res;\n    }\nprivate:\n    i64 x;\n    static i64 MOD, INV, R;\n    static i64\
-    \ get_inv_mod() {\n        i64 res = MOD;\n        for (int t = 0; t < 5; t++)\
-    \ res *= 2 - MOD * res;\n        return res;\n    }\n    static i64 reduce(const\
-    \ i128 &v) {\n        return (v + i128(i64(v) * i64(-INV)) * MOD) >> 64;\n   \
-    \ }\n};\ntypename dynamic_montgomery_modint::i64\ndynamic_montgomery_modint::MOD,\n\
-    dynamic_montgomery_modint::INV,\ndynamic_montgomery_modint::R;\n\ntemplate<typename\
-    \ T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n   \
-    \ constexpr xor_shift(U seed) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr\
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n\nusing modint998244353\
+    \ = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 5\
+    \ \"test/fps/power_projection.test.cpp\"\n\nusing mint = modint998244353;\n\n\
+    namespace AC {\n// https://atcoder.jp/contests/abc439/submissions/72457854 \n\n\
+    namespace combination {\n\ntemplate<typename mint>\nstruct container {\n    static\
+    \ vector<mint> fac, finv;\n    static void init(int n) {\n        int sz = fac.size();\n\
+    \        if (n < sz) return;\n        n = clamp(n, 2 * sz, min<int>(1 << 27, mint::mod()\
+    \ - 1));\n        fac.resize(n + 1);\n        finv.resize(n + 1);\n        for\
+    \ (int i = sz; i <= n; i++) {\n            fac[i] = i * fac[i - 1];\n        }\n\
+    \        finv[n] = fac[n].inv();\n        for (int i = n; i >= sz; i--) {\n  \
+    \          finv[i - 1] = i * finv[i];\n        }\n    }\n};\n\ntemplate<typename\
+    \ mint>\nvector<mint> container<mint>::fac(1, 1);\ntemplate<typename mint>\nvector<mint>\
+    \ container<mint>::finv(1, 1);\ntemplate<typename mint>\nmint fac(int n) {\n \
+    \   container<mint>::init(n);\n    if (n < 0) return 0;\n    return container<mint>::fac[n];\n\
+    }\ntemplate<typename mint>\nmint finv(int n) {\n    container<mint>::init(n);\n\
+    \    if (n < 0) return 0;\n    return container<mint>::finv[n];\n}\ntemplate<typename\
+    \ mint>\nmint mod_inv(int n) {\n    assert(n > 0);\n    return finv<mint>(n) *\
+    \ fac<mint>(n - 1);\n}\ntemplate<typename mint>\nmint nCk(int n, int k) {\n  \
+    \  if (n < 0) {\n        n = -n;\n        return nCk<mint>(n + k - 1, n - 1);\n\
+    \    }\n    if (n < k || k < 0) return 0;\n    return fac<mint>(n) * finv<mint>(n\
+    \ - k) * finv<mint>(k);\n}\ntemplate<typename mint>\nmint multi_C(const vector<int>\
+    \ &v) {\n    int n = 0;\n    for (const int &k : v) n += k;\n    mint res = fac<mint>(n);\n\
+    \    for (const int &k : v) res *= finv<mint>(k);\n    return res;\n}\ntemplate<typename\
+    \ mint>\nmint nPk(int n, int k) {\n    if (n < 0 || n < k || k < 0) return 0;\n\
+    \    return fac<mint>(n) * finv<mint>(n - k);\n}\ntemplate<typename mint>\nmint\
+    \ catalan(int n) {\n    return fac<mint>(2 * n) * finv<mint>(n) * finv<mint>(n\
+    \ + 1);\n}\ntemplate<typename mint>\nmint grid_path(int n, int m) {\n    return\
+    \ nCk<mint>(n + m, n);\n}\n\n} // namespace combination\n\nstruct dynamic_montgomery_modint\
+    \ {\n    using i64 = __uint64_t;\n    using i128 = __uint128_t;\n    using modint\
+    \ = dynamic_montgomery_modint;\n    dynamic_montgomery_modint() : x(0) {}\n  \
+    \  dynamic_montgomery_modint(long long v) : x(reduce((i128(v) + MOD) * R)) {}\n\
+    \    static void set_mod(long long _m) {\n        MOD = _m;\n        R = -i128(MOD)\
+    \ % MOD;\n        INV = get_inv_mod(); \n    }\n    static long long mod() { return\
+    \ MOD; }\n    long long val() const {\n        i64 res = reduce(x);\n        return\
+    \ res >= MOD ? res - MOD : res;\n    }\n    modint& operator+=(const modint &r)\
+    \ {\n        x += r.x;\n        if (x >= (MOD << 1)) x -= (MOD << 1);\n      \
+    \  return *this;\n    }\n    modint& operator-=(const modint &r) {\n        x\
+    \ += (MOD << 1) - r.x;\n        if (x >= (MOD << 1)) x -= (MOD << 1);\n      \
+    \  return *this;\n    }\n    modint& operator*=(const modint &r) {\n        x\
+    \ = reduce(i128(x) * r.x);\n        return *this;\n    }\n    modint& operator/=(const\
+    \ modint &r) {\n        *this *= r.inv();\n        return *this;\n    }\n    friend\
+    \ modint operator+(const modint &a, const modint &b) {\n        return modint(a)\
+    \ += b;\n    }\n    friend modint operator-(const modint &a, const modint &b)\
+    \ {\n        return modint(a) -= b;\n    }\n    friend modint operator*(const\
+    \ modint &a, const modint &b) {\n        return modint(a) *= b;\n    }\n    friend\
+    \ modint operator/(const modint &a, const modint &b) {\n        return modint(a)\
+    \ /= b;\n    }\n    friend bool operator==(const modint &a, const modint &b) {\n\
+    \        return a.val() == b.val();\n    }\n    friend bool operator!=(const modint\
+    \ &a, const modint &b) {\n        return a.val() != b.val();\n    }\n    modint\
+    \ operator+() const { return *this; }\n    modint operator-() const { return modint()\
+    \ - *this; }\n    modint inv() const { return pow(MOD - 2); }\n    modint pow(i128\
+    \ k) const {\n        modint a = *this;\n        modint res = 1;\n        while\
+    \ (k > 0) {\n            if (k & 1) res *= a;\n            a *= a;\n         \
+    \   k >>= 1;\n        }\n        return res;\n    }\nprivate:\n    i64 x;\n  \
+    \  static i64 MOD, INV, R;\n    static i64 get_inv_mod() {\n        i64 res =\
+    \ MOD;\n        for (int t = 0; t < 5; t++) res *= 2 - MOD * res;\n        return\
+    \ res;\n    }\n    static i64 reduce(const i128 &v) {\n        return (v + i128(i64(v)\
+    \ * i64(-INV)) * MOD) >> 64;\n    }\n};\ntypename dynamic_montgomery_modint::i64\n\
+    dynamic_montgomery_modint::MOD,\ndynamic_montgomery_modint::INV,\ndynamic_montgomery_modint::R;\n\
+    \ntemplate<typename T>\nstruct xor_shift {\n    using U = typename make_unsigned<T>::type;\n\
+    \    constexpr xor_shift(U seed) : x(seed == 0 ? 987139873 : seed) {}\n    constexpr\
     \ U operator()() {\n        if constexpr (sizeof(T) <= 4) {\n            x ^=\
     \ x << 13;\n            x ^= x >> 17;\n            x ^= x << 5;\n        } else\
     \ {\n            x ^= x << 13;\n            x ^= x >> 7;\n            x ^= x <<\
@@ -825,7 +826,7 @@ data:
     \ + L) == AC::solve(N, M, L, oriA));\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../../src/template.hpp\"\n#include \"../../src/modint/modint.hpp\"\n\nusing mint\
-    \ = modint<998244353>;\n\nnamespace AC {\n// https://atcoder.jp/contests/abc439/submissions/72457854\
+    \ = modint998244353;\n\nnamespace AC {\n// https://atcoder.jp/contests/abc439/submissions/72457854\
     \ \n\nnamespace combination {\n\ntemplate<typename mint>\nstruct container {\n\
     \    static vector<mint> fac, finv;\n    static void init(int n) {\n        int\
     \ sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n, 2 * sz,\
@@ -1192,7 +1193,7 @@ data:
   isVerificationFile: true
   path: test/fps/power_projection.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/power_projection.test.cpp

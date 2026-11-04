@@ -63,28 +63,30 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/berlekamp_massey.hpp\"\n\ntemplate<typename\
-    \ mint>\nvector<mint> Berlekamp_Massey(const vector<mint> &a) {\n    int n = a.size();\n\
-    \    vector<mint> b = {1}, c = {1};\n    b.reserve(n + 1);\n    c.reserve(n +\
-    \ 1);\n    mint y = 1;\n    for (int d = 1; d <= n; d ++) {\n        int k = b.size(),\
-    \ l = c.size();\n        mint x = 0;\n        for (int i = 0; i < l; i++) {\n\
-    \            x += c[i] * a[d - l + i];\n        }\n        b.push_back(0);\n \
-    \       k++;\n        if (x == 0) continue;\n        mint buf = x / y;\n     \
-    \   if (l < k) {\n            auto tmp = c;\n            c.insert(c.begin(), k\
-    \ - l, 0);\n            for (int i = 0; i < k; i++) {\n                c[k - 1\
-    \ - i] -= buf * b[k - 1 - i];\n            }\n            b = tmp;\n         \
-    \   y = x;\n        } else {\n            for (int i = 0; i < k; i++) {\n    \
-    \            c[l - 1 - i] -= buf * b[k - 1 - i];\n            }\n        }\n \
-    \   }\n    reverse(c.begin(), c.end());\n    for (mint &x : c) x = -x;\n    return\
-    \ c;\n}\n#line 6 \"test/math/berlekamp_massey.test.cpp\"\n\nusing mint = modint<998244353>;\n\
-    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
-    \ N;\n    cin >> N;\n    vector<mint> A(N);\n    for (mint &e : A) { int x; cin\
-    \ >> x; e = x; }\n    auto C = Berlekamp_Massey(A);\n    C.erase(C.begin());\n\
-    \    cout << ssize(C) << '\\n';\n    for (int i = 0; i < ssize(C); i++) {\n  \
-    \      cout << C[i].val() << \" \\n\"[i + 1 == ssize(C)];\n    }\n}\n"
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/berlekamp_massey.hpp\"\
+    \n\ntemplate<typename mint>\nvector<mint> Berlekamp_Massey(const vector<mint>\
+    \ &a) {\n    int n = a.size();\n    vector<mint> b = {1}, c = {1};\n    b.reserve(n\
+    \ + 1);\n    c.reserve(n + 1);\n    mint y = 1;\n    for (int d = 1; d <= n; d\
+    \ ++) {\n        int k = b.size(), l = c.size();\n        mint x = 0;\n      \
+    \  for (int i = 0; i < l; i++) {\n            x += c[i] * a[d - l + i];\n    \
+    \    }\n        b.push_back(0);\n        k++;\n        if (x == 0) continue;\n\
+    \        mint buf = x / y;\n        if (l < k) {\n            auto tmp = c;\n\
+    \            c.insert(c.begin(), k - l, 0);\n            for (int i = 0; i < k;\
+    \ i++) {\n                c[k - 1 - i] -= buf * b[k - 1 - i];\n            }\n\
+    \            b = tmp;\n            y = x;\n        } else {\n            for (int\
+    \ i = 0; i < k; i++) {\n                c[l - 1 - i] -= buf * b[k - 1 - i];\n\
+    \            }\n        }\n    }\n    reverse(c.begin(), c.end());\n    for (mint\
+    \ &x : c) x = -x;\n    return c;\n}\n#line 6 \"test/math/berlekamp_massey.test.cpp\"\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \    cin.tie(nullptr);\n    int N;\n    cin >> N;\n    vector<mint> A(N);\n  \
+    \  for (mint &e : A) { int x; cin >> x; e = x; }\n    auto C = Berlekamp_Massey(A);\n\
+    \    C.erase(C.begin());\n    cout << ssize(C) << '\\n';\n    for (int i = 0;\
+    \ i < ssize(C); i++) {\n        cout << C[i].val() << \" \\n\"[i + 1 == ssize(C)];\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/find_linear_recurrence\"\
     \n\n#include \"../../src/template.hpp\"\n#include \"../../src/modint/modint.hpp\"\
-    \n#include \"../../src/math/berlekamp_massey.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \n#include \"../../src/math/berlekamp_massey.hpp\"\n\nusing mint = modint998244353;\n\
     \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N;\n    cin >> N;\n    vector<mint> A(N);\n    for (mint &e : A) { int x; cin\
     \ >> x; e = x; }\n    auto C = Berlekamp_Massey(A);\n    C.erase(C.begin());\n\
@@ -97,7 +99,7 @@ data:
   isVerificationFile: true
   path: test/math/berlekamp_massey.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/berlekamp_massey.test.cpp

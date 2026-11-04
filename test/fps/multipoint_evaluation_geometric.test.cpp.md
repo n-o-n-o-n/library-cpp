@@ -78,7 +78,8 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/enumerative_combinatorics/combination.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/enumerative_combinatorics/combination.hpp\"\
     \n\nnamespace combination {\n\ntemplate<typename mint>\nstruct container {\n \
     \   static vector<mint> fac, finv;\n    static void init(int n) {\n        int\
     \ sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n, 2 * sz,\
@@ -376,7 +377,7 @@ data:
     \ 0; i < n + m; i++) {\n        q[i] = powrt[i];\n    }\n    fps<mint> pq = p\
     \ * q;\n    vector<mint> res(m);\n    for (int i = 0; i < m; i++) {\n        res[i]\
     \ = pq[n - 1 + i] * powinvrt[i];\n    }\n    return res;\n}\n#line 6 \"test/fps/multipoint_evaluation_geometric.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, M, a, r;\n    cin >> N >> M >> a >> r;\n  \
     \  fps<mint> f(N);\n    for (int i = 0; i < N; i++) {\n        int c;\n      \
     \  cin >> c;\n        f[i] = c;\n    }\n    vector<mint> ans = multipoint_evaluation_geometric(f,\
@@ -385,12 +386,12 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\"\
     \n\n#include \"../../src/template.hpp\"\n#include \"../../src/modint/modint.hpp\"\
     \n#include \"../../src/fps/multipoint_evaluation_geometric.hpp\"\n\nusing mint\
-    \ = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n   \
-    \ cin.tie(nullptr);\n    int N, M, a, r;\n    cin >> N >> M >> a >> r;\n    fps<mint>\
-    \ f(N);\n    for (int i = 0; i < N; i++) {\n        int c;\n        cin >> c;\n\
-    \        f[i] = c;\n    }\n    vector<mint> ans = multipoint_evaluation_geometric(f,\
-    \ M, mint(a), mint(r));\n    for (int i = 0; i < M; i++) {\n        cout << ans[i].val()\
-    \ << \" \\n\"[i + 1 == M];\n    }\n}"
+    \ = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
+    \    int N, M, a, r;\n    cin >> N >> M >> a >> r;\n    fps<mint> f(N);\n    for\
+    \ (int i = 0; i < N; i++) {\n        int c;\n        cin >> c;\n        f[i] =\
+    \ c;\n    }\n    vector<mint> ans = multipoint_evaluation_geometric(f, M, mint(a),\
+    \ mint(r));\n    for (int i = 0; i < M; i++) {\n        cout << ans[i].val() <<\
+    \ \" \\n\"[i + 1 == M];\n    }\n}"
   dependsOn:
   - src/template.hpp
   - src/modint/modint.hpp
@@ -403,7 +404,7 @@ data:
   isVerificationFile: true
   path: test/fps/multipoint_evaluation_geometric.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/fps/multipoint_evaluation_geometric.test.cpp

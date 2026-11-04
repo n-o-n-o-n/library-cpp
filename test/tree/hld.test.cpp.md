@@ -218,30 +218,32 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 3 \"src/math/affine.hpp\"\
-    \n\ntemplate<typename mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1),\
-    \ b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint\
-    \ operator()(const mint &x) const {\n        return a * x + b;\n    }\n    affine\
-    \ operator()(const affine &f) const {\n        mint c = a * f.a;\n        mint\
-    \ d = a * f.b + b;\n        return affine(c, d);\n    }\n};\n#line 9 \"test/tree/hld.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
-    \    static S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n\
-    };\n\nusing SegTree = directed_range_query<segtree<Monoid>>;\n\nint main() {\n\
-    \    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n    cin\
-    \ >> N >> Q;\n    vector<int> A(N), B(N);\n    for (int i = 0; i < N; i++) cin\
-    \ >> A[i] >> B[i];\n    heavy_light_decomposition<SegTree, false, false> G(N);\n\
-    \    for (int i = 1, u, v; i < N; i++) {\n        cin >> u >> v;\n        G.add_edge(u,\
-    \ v);\n    }\n    for (int i = 0; i < N; i++) {\n        G.set(i, affine<mint>(A[i],\
-    \ B[i]));\n    }\n    while (Q--) {\n        int t;\n        cin >> t;\n     \
-    \   if (t == 0) {\n            int u, a, b;\n            cin >> u >> a >> b;\n\
-    \            G.set(u, affine<mint>(a, b));\n        } else {\n            int\
-    \ u, v, x;\n            cin >> u >> v >> x;\n            auto f = G.prod(u, v);\n\
-    \            cout << f(x).val() << '\\n';\n        }\n    }\n}\n"
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n\nusing modint998244353\
+    \ = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 3\
+    \ \"src/math/affine.hpp\"\n\ntemplate<typename mint>\nstruct affine {\n    mint\
+    \ a, b;\n    affine() : a(1), b(0) {}\n    affine(const mint &_a, const mint &_b)\
+    \ : a(_a), b(_b) {}\n    mint operator()(const mint &x) const {\n        return\
+    \ a * x + b;\n    }\n    affine operator()(const affine &f) const {\n        mint\
+    \ c = a * f.a;\n        mint d = a * f.b + b;\n        return affine(c, d);\n\
+    \    }\n};\n#line 9 \"test/tree/hld.test.cpp\"\n\nusing mint = modint998244353;\n\
+    \nstruct Monoid {\n    using S = affine<mint>;\n    static S op(S f, S g) { return\
+    \ g(f); }\n    static S e() { return S(); }\n};\n\nusing SegTree = directed_range_query<segtree<Monoid>>;\n\
+    \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
+    \ N, Q;\n    cin >> N >> Q;\n    vector<int> A(N), B(N);\n    for (int i = 0;\
+    \ i < N; i++) cin >> A[i] >> B[i];\n    heavy_light_decomposition<SegTree, false,\
+    \ false> G(N);\n    for (int i = 1, u, v; i < N; i++) {\n        cin >> u >> v;\n\
+    \        G.add_edge(u, v);\n    }\n    for (int i = 0; i < N; i++) {\n       \
+    \ G.set(i, affine<mint>(A[i], B[i]));\n    }\n    while (Q--) {\n        int t;\n\
+    \        cin >> t;\n        if (t == 0) {\n            int u, a, b;\n        \
+    \    cin >> u >> a >> b;\n            G.set(u, affine<mint>(a, b));\n        }\
+    \ else {\n            int u, v, x;\n            cin >> u >> v >> x;\n        \
+    \    auto f = G.prod(u, v);\n            cout << f(x).val() << '\\n';\n      \
+    \  }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n\n#include \"../../src/template.hpp\"\n#include \"../../src/tree/hld.hpp\"\n\
     #include \"../../src/data_structure/range_query/segtree.hpp\"\n#include \"../../src/data_structure/range_query/directed_range_query.hpp\"\
     \n#include \"../../src/modint/modint.hpp\"\n#include \"../../src/math/affine.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \n\nusing mint = modint998244353;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n\
     };\n\nusing SegTree = directed_range_query<segtree<Monoid>>;\n\nint main() {\n\
     \    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int N, Q;\n    cin\
@@ -264,7 +266,7 @@ data:
   isVerificationFile: true
   path: test/tree/hld.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/tree/hld.test.cpp

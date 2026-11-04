@@ -86,7 +86,8 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/enumerative_combinatorics/combination.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/enumerative_combinatorics/combination.hpp\"\
     \n\nnamespace combination {\n\ntemplate<typename mint>\nstruct container {\n \
     \   static vector<mint> fac, finv;\n    static void init(int n) {\n        int\
     \ sz = fac.size();\n        if (n < sz) return;\n        n = clamp(n, 2 * sz,\
@@ -411,7 +412,7 @@ data:
     \ long long k) {\n    auto tmp = Berlekamp_Massey(x);\n    int n = tmp.size()\
     \ - 1;\n    fps<mint> a(n), c(n);\n    for (int i = 0; i < n; i++) {\n       \
     \ a[i] = x[i];\n        c[i] = tmp[i + 1];\n    }\n    return linear_recurrence(a,\
-    \ c, k);\n}\n#line 6 \"test/math/bmbm.test.cpp\"\n\nusing mint = modint<998244353>;\n\
+    \ c, k);\n}\n#line 6 \"test/math/bmbm.test.cpp\"\n\nusing mint = modint998244353;\n\
     \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    long\
     \ long N;\n    int K;\n    cin >> N >> K;\n    int M = 4 * K;\n    vector<mint>\
     \ F(M), A(M);\n    F[0] = F[1] = 1;\n    A[0] = 1, A[1] = 2;\n    for (int i =\
@@ -419,9 +420,9 @@ data:
     \ 1] + F[i].pow(K);\n    }\n    cout << BMBM(A, N - 1).val() << endl;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/2883\"\n\n#include \"\
     ../../src/template.hpp\"\n#include \"../../src/modint/modint.hpp\"\n#include \"\
-    ../../src/math/bmbm.hpp\"\n\nusing mint = modint<998244353>;\n\nint main() {\n\
-    \    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    long long N;\n \
-    \   int K;\n    cin >> N >> K;\n    int M = 4 * K;\n    vector<mint> F(M), A(M);\n\
+    ../../src/math/bmbm.hpp\"\n\nusing mint = modint998244353;\n\nint main() {\n \
+    \   ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    long long N;\n  \
+    \  int K;\n    cin >> N >> K;\n    int M = 4 * K;\n    vector<mint> F(M), A(M);\n\
     \    F[0] = F[1] = 1;\n    A[0] = 1, A[1] = 2;\n    for (int i = 2; i < M; i++)\
     \ {\n        F[i] = F[i - 1] + F[i - 2];\n        A[i] = A[i - 1] + F[i].pow(K);\n\
     \    }\n    cout << BMBM(A, N - 1).val() << endl;\n}"
@@ -440,7 +441,7 @@ data:
   isVerificationFile: true
   path: test/math/bmbm.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/bmbm.test.cpp

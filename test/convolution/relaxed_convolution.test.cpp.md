@@ -283,21 +283,22 @@ data:
     \ {\n        long long a = x, b = mod(), u = 1, v = 0;\n        while (b > 0)\
     \ {\n            long long t = a / b;\n            a -= t * b;\n            swap(a,\
     \ b);\n            u -= t * v;\n            swap(u, v);\n        }\n        return\
-    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n#line 6 \"test/convolution/relaxed_convolution.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    int N, M;\n    cin >>\
-    \ N >> M;\n    int L = N + M - 1;\n    vector<mint> A(L), B(L);\n    for (int\
-    \ i = 0; i < N; i++) { int e; cin >> e; A[i] = e; }\n    for (int i = 0; i < M;\
-    \ i++) { int e; cin >> e; B[i] = e; }\n    relaxed_convolution<mint> RC(L);\n\
-    \    for (int i = 0; i < L; i++) {\n        cout << RC.get(A[i], B[i]).val() <<\
-    \ \" \\n\"[i + 1 == L];\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
-    \ \"../../src/template.hpp\"\n#include \"../../src/convolution/relaxed_convolution.hpp\"\
-    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \ modint(u);\n    }\nprivate:\n    unsigned int x;\n};\n\nusing modint998244353\
+    \ = modint<998244353>;\nusing modint1000000007 = modint<1000000007>;\n#line 6\
+    \ \"test/convolution/relaxed_convolution.test.cpp\"\n\nusing mint = modint998244353;\n\
     \nint main() {\n    int N, M;\n    cin >> N >> M;\n    int L = N + M - 1;\n  \
     \  vector<mint> A(L), B(L);\n    for (int i = 0; i < N; i++) { int e; cin >> e;\
     \ A[i] = e; }\n    for (int i = 0; i < M; i++) { int e; cin >> e; B[i] = e; }\n\
     \    relaxed_convolution<mint> RC(L);\n    for (int i = 0; i < L; i++) {\n   \
-    \     cout << RC.get(A[i], B[i]).val() << \" \\n\"[i + 1 == L];\n    }\n}"
+    \     cout << RC.get(A[i], B[i]).val() << \" \\n\"[i + 1 == L];\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
+    \ \"../../src/template.hpp\"\n#include \"../../src/convolution/relaxed_convolution.hpp\"\
+    \n#include \"../../src/modint/modint.hpp\"\n\nusing mint = modint998244353;\n\n\
+    int main() {\n    int N, M;\n    cin >> N >> M;\n    int L = N + M - 1;\n    vector<mint>\
+    \ A(L), B(L);\n    for (int i = 0; i < N; i++) { int e; cin >> e; A[i] = e; }\n\
+    \    for (int i = 0; i < M; i++) { int e; cin >> e; B[i] = e; }\n    relaxed_convolution<mint>\
+    \ RC(L);\n    for (int i = 0; i < L; i++) {\n        cout << RC.get(A[i], B[i]).val()\
+    \ << \" \\n\"[i + 1 == L];\n    }\n}"
   dependsOn:
   - src/template.hpp
   - src/convolution/relaxed_convolution.hpp
@@ -308,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/convolution/relaxed_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution/relaxed_convolution.test.cpp

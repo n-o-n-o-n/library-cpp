@@ -69,12 +69,13 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/affine.hpp\"\n\ntemplate<typename\
-    \ mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
-    \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
-    \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
-    \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
-    \    return affine(c, d);\n    }\n};\n#line 4 \"src/monoid/range_affine_range_sum.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/affine.hpp\"\n\n\
+    template<typename mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1),\
+    \ b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint\
+    \ operator()(const mint &x) const {\n        return a * x + b;\n    }\n    affine\
+    \ operator()(const affine &f) const {\n        mint c = a * f.a;\n        mint\
+    \ d = a * f.b + b;\n        return affine(c, d);\n    }\n};\n#line 4 \"src/monoid/range_affine_range_sum.hpp\"\
     \n\ntemplate<typename mint, typename T = int>\nstruct range_affine_range_sum {\n\
     \    struct S {\n        mint x;\n        T l;\n        S(mint _x = 0, T _l =\
     \ 0) : x(_x), l(_l) {}\n        int val() { return x.val(); }\n    };\n    using\
@@ -122,7 +123,7 @@ data:
     \ <= l) return M::e();\n        if (ql <= l && r <= qr) return d[t].x;\n     \
     \   push(t, l, r);\n        T m = (l + r) / 2;\n        return M::op(prod(d[t].l,\
     \ l, m, ql, qr), prod(d[t].r, m, r, ql, qr));\n    }\n};\n#line 7 \"test/data_structure/range_query/dynamic_lazysegtree.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    dynamic_lazysegtree<range_affine_range_sum<mint>>\
     \ seg(N, Q);\n    while (Q--) {\n        int t, l, r;\n        cin >> t >> l >>\
     \ r;\n        if (t == 0) {\n            int a, b;\n            cin >> a >> b;\n\
@@ -131,7 +132,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\"\
     \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
     \n#include \"../../../src/monoid/range_affine_range_sum.hpp\"\n#include \"../../../src/data_structure/range_query/dynamic_lazysegtree.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    dynamic_lazysegtree<range_affine_range_sum<mint>>\
     \ seg(N, Q);\n    while (Q--) {\n        int t, l, r;\n        cin >> t >> l >>\
     \ r;\n        if (t == 0) {\n            int a, b;\n            cin >> a >> b;\n\
@@ -146,7 +147,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/range_query/dynamic_lazysegtree.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/dynamic_lazysegtree.test.cpp

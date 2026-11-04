@@ -69,7 +69,8 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/data_structure/range_query/lazysegtree.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/data_structure/range_query/lazysegtree.hpp\"\
     \n\ntemplate<typename ActMonoid>\nstruct lazysegtree {\n    using M = ActMonoid;\n\
     \    using S = typename M::S;\n    using F = typename M::F;\n    lazysegtree()\
     \ : lazysegtree(0) {}\n    lazysegtree(int _n) : lazysegtree(vector<S>(_n, M::e()))\
@@ -145,7 +146,7 @@ data:
     \ f(g); }\n    static F id() { return F(); }\n    static S map(F f, S x) {\n \
     \       x.x = f.a * x.x + f.b * x.l;\n        return x;\n    }\n    static S init(T\
     \ l, T r) { return S(0, r - l); }\n};\n#line 7 \"test/data_structure/range_query/lazysegtree.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    vector<range_affine_range_sum<mint>::S>\
     \ init(N);\n    for (int i = 0, a; i < N; i++) {\n        cin >> a;\n        init[i]\
     \ = range_affine_range_sum<mint>::S(a, 1);\n    }\n    lazysegtree<range_affine_range_sum<mint>>\
@@ -156,7 +157,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
     \n#include \"../../../src/data_structure/range_query/lazysegtree.hpp\"\n#include\
-    \ \"../../../src/monoid/range_affine_range_sum.hpp\"\n\nusing mint = modint<998244353>;\n\
+    \ \"../../../src/monoid/range_affine_range_sum.hpp\"\n\nusing mint = modint998244353;\n\
     \nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N, Q;\n    cin >> N >> Q;\n    vector<range_affine_range_sum<mint>::S> init(N);\n\
     \    for (int i = 0, a; i < N; i++) {\n        cin >> a;\n        init[i] = range_affine_range_sum<mint>::S(a,\
@@ -174,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/range_query/lazysegtree.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/lazysegtree.test.cpp

@@ -66,12 +66,13 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/affine.hpp\"\n\ntemplate<typename\
-    \ mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
-    \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
-    \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
-    \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
-    \    return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/range_query/segtree.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/affine.hpp\"\n\n\
+    template<typename mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1),\
+    \ b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint\
+    \ operator()(const mint &x) const {\n        return a * x + b;\n    }\n    affine\
+    \ operator()(const affine &f) const {\n        mint c = a * f.a;\n        mint\
+    \ d = a * f.b + b;\n        return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/range_query/segtree.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct segtree {\n    using M = Monoid;\n    using\
     \ S = typename M::S;\n    segtree() : segtree(0) {}\n    segtree(int _n) : segtree(vector<S>(_n,\
     \ M::e())) {}\n    segtree(const vector<S> &v) : n(v.size()) {\n        log =\
@@ -112,7 +113,7 @@ data:
     \    int min_left(const C &check) const {\n        return min_left(n, check);\n\
     \    }\nprivate:\n    int n, log, sz;\n    vector<S> d;\n    void update(int p)\
     \ {\n        d[p] = M::op(d[2 * p], d[2 * p + 1]);\n    }\n};\n#line 7 \"test/data_structure/range_query/segtree.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \n\nusing mint = modint998244353;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n\
     };\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \    int N, Q;\n    cin >> N >> Q;\n    vector<Monoid::S> init(N);\n    for (int\
@@ -126,7 +127,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
     \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
     \n#include \"../../../src/math/affine.hpp\"\n#include \"../../../src/data_structure/range_query/segtree.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \n\nusing mint = modint998244353;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n\
     };\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \    int N, Q;\n    cin >> N >> Q;\n    vector<Monoid::S> init(N);\n    for (int\
@@ -145,7 +146,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/range_query/segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/range_query/segtree.test.cpp

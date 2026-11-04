@@ -66,12 +66,13 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/math/affine.hpp\"\n\ntemplate<typename\
-    \ mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1), b(0) {}\n    affine(const\
-    \ mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint operator()(const mint\
-    \ &x) const {\n        return a * x + b;\n    }\n    affine operator()(const affine\
-    \ &f) const {\n        mint c = a * f.a;\n        mint d = a * f.b + b;\n    \
-    \    return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/misc/dswag.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/math/affine.hpp\"\n\n\
+    template<typename mint>\nstruct affine {\n    mint a, b;\n    affine() : a(1),\
+    \ b(0) {}\n    affine(const mint &_a, const mint &_b) : a(_a), b(_b) {}\n    mint\
+    \ operator()(const mint &x) const {\n        return a * x + b;\n    }\n    affine\
+    \ operator()(const affine &f) const {\n        mint c = a * f.a;\n        mint\
+    \ d = a * f.b + b;\n        return affine(c, d);\n    }\n};\n#line 3 \"src/data_structure/misc/dswag.hpp\"\
     \n\ntemplate<typename Monoid>\nstruct dswag {\n    using S = typename Monoid::S;\n\
     \    dswag() = default;\n    size_t size() const { return f1.size() + b1.size();\
     \ }\n    bool empty() const { return size() == 0; }\n    S get() const { return\
@@ -94,7 +95,7 @@ data:
     \        b2.push(Monoid::op(y, x));\n    }\n    void pop_f() {\n        f1.pop();\n\
     \        f2.pop();\n    }\n    void pop_b() {\n        b1.pop();\n        b2.pop();\n\
     \    }\n};\n#line 7 \"test/data_structure/misc/dswag.test.cpp\"\n\nusing mint\
-    \ = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n    static\
+    \ = modint998244353;\n\nstruct Monoid {\n    using S = affine<mint>;\n    static\
     \ S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n};\n\nint\
     \ main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    dswag<Monoid>\
     \ q;\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int t;\n        cin\
@@ -108,7 +109,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
     \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
     \n#include \"../../../src/math/affine.hpp\"\n#include \"../../../src/data_structure/misc/dswag.hpp\"\
-    \n\nusing mint = modint<998244353>;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
+    \n\nusing mint = modint998244353;\n\nstruct Monoid {\n    using S = affine<mint>;\n\
     \    static S op(S f, S g) { return g(f); }\n    static S e() { return S(); }\n\
     };\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\
     \    dswag<Monoid> q;\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int\
@@ -127,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/misc/dswag.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/misc/dswag.test.cpp

@@ -66,7 +66,8 @@ data:
     \ = mod(), u = 1, v = 0;\n        while (b > 0) {\n            long long t = a\
     \ / b;\n            a -= t * b;\n            swap(a, b);\n            u -= t *\
     \ v;\n            swap(u, v);\n        }\n        return modint(u);\n    }\nprivate:\n\
-    \    unsigned int x;\n};\n#line 3 \"src/data_structure/union_find/weighted_union_find.hpp\"\
+    \    unsigned int x;\n};\n\nusing modint998244353 = modint<998244353>;\nusing\
+    \ modint1000000007 = modint<1000000007>;\n#line 3 \"src/data_structure/union_find/weighted_union_find.hpp\"\
     \n\ntemplate<typename Abelian_Group>\nstruct weighted_union_find {\n    using\
     \ S = Abelian_Group::S;\n    weighted_union_find(int _n) : n(_n), p(n, -1), cyc(n),\
     \ d(n, Abelian_Group::e()) {\n        iota(cyc.begin(), cyc.end(), 0);\n    }\n\
@@ -98,7 +99,7 @@ data:
     \ T>\nstruct sum_monoid {\n    using S = T;\n    static S op(S a, S b) { return\
     \ a + b; }\n    static S e() { return 0; }\n    static S inv(S x) { return -x;\
     \ }\n};\n#line 7 \"test/data_structure/union_find/weighted_union_find.test.cpp\"\
-    \n\nusing mint = modint<998244353>;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
+    \n\nusing mint = modint998244353;\n\nint main() {\n    ios::sync_with_stdio(false);\n\
     \    cin.tie(nullptr);\n    int N, Q;\n    cin >> N >> Q;\n    weighted_union_find<sum_monoid<mint>>\
     \ wuf(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
     \        if (t == 0) {\n            int x;\n            cin >> x;\n          \
@@ -109,7 +110,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
     \n\n#include \"../../../src/template.hpp\"\n#include \"../../../src/modint/modint.hpp\"\
     \n#include \"../../../src/data_structure/union_find/weighted_union_find.hpp\"\n\
-    #include \"../../../src/monoid/sum.hpp\"\n\nusing mint = modint<998244353>;\n\n\
+    #include \"../../../src/monoid/sum.hpp\"\n\nusing mint = modint998244353;\n\n\
     int main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    int\
     \ N, Q;\n    cin >> N >> Q;\n    weighted_union_find<sum_monoid<mint>> wuf(N);\n\
     \    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n      \
@@ -126,7 +127,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/union_find/weighted_union_find.test.cpp
   requiredBy: []
-  timestamp: '2026-11-02 21:52:14+09:00'
+  timestamp: '2026-11-04 23:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/union_find/weighted_union_find.test.cpp
