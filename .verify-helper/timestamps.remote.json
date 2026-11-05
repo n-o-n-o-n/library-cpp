@@ -11,6 +11,7 @@
 "test/convolution/min_plus_convolution_convex_arbitrary.test.cpp": "2026-11-02 21:52:14 +0900",
 "test/convolution/relaxed_convolution.test.cpp": "2026-11-04 23:53:12 +0900",
 "test/data_structure/cht/line_add_get_min.test.cpp": "2026-11-02 21:52:14 +0900",
+"test/data_structure/cht/monotone_cht.test.cpp": "2026-11-05 23:32:00 +0900",
 "test/data_structure/cht/segment_add_get_min.test.cpp": "2026-11-02 21:52:14 +0900",
 "test/data_structure/misc/binary_trie.test.cpp": "2026-11-02 21:52:14 +0900",
 "test/data_structure/misc/binary_trie_ordered_set.test.cpp": "2026-11-02 21:52:14 +0900",
