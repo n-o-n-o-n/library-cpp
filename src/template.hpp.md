@@ -60,6 +60,9 @@ data:
     path: src/data_structure/cht/li_chao_tree.hpp
     title: Li Chao Tree
   - icon: ':heavy_check_mark:'
+    path: src/data_structure/cht/monotone_cht.hpp
+    title: Monotone Convex Hull Trick
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/misc/binary_trie.hpp
     title: Binary Trie
   - icon: ':heavy_check_mark:'
@@ -552,6 +555,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data_structure/cht/line_add_get_min.test.cpp
     title: test/data_structure/cht/line_add_get_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data_structure/cht/monotone_cht.test.cpp
+    title: test/data_structure/cht/monotone_cht.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data_structure/cht/segment_add_get_min.test.cpp
     title: test/data_structure/cht/segment_add_get_min.test.cpp
@@ -1141,6 +1147,7 @@ data:
   - src/data_structure/range_query/segtree.hpp
   - src/data_structure/persistent_ds/persistent_segtree.hpp
   - src/data_structure/cht/li_chao_tree.hpp
+  - src/data_structure/cht/monotone_cht.hpp
   - src/data_structure/bst/treap.hpp
   - src/data_structure/rectangle_query/rectangle_sum.hpp
   - src/data_structure/rectangle_query/rectangle_union.hpp
@@ -1306,6 +1313,7 @@ data:
   - test/data_structure/persistent_ds/persistent_segtree.test.cpp
   - test/data_structure/cht/segment_add_get_min.test.cpp
   - test/data_structure/cht/line_add_get_min.test.cpp
+  - test/data_structure/cht/monotone_cht.test.cpp
   - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
   - test/data_structure/rectangle_query/rectangle_union.test.cpp
   - test/data_structure/rectangle_query/rectangle_sum.test.cpp

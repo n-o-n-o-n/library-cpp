@@ -64,6 +64,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/data_structure/cht/li_chao_tree.hpp
       title: Li Chao Tree
+    - icon: ':heavy_check_mark:'
+      path: src/data_structure/cht/monotone_cht.hpp
+      title: Monotone Convex Hull Trick
   - name: src/data_structure/misc
     pages:
     - icon: ':heavy_check_mark:'
@@ -604,6 +607,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data_structure/cht/line_add_get_min.test.cpp
       title: test/data_structure/cht/line_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/cht/monotone_cht.test.cpp
+      title: test/data_structure/cht/monotone_cht.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/data_structure/cht/segment_add_get_min.test.cpp
       title: test/data_structure/cht/segment_add_get_min.test.cpp
