@@ -378,19 +378,19 @@ data:
   isVerificationFile: false
   path: src/fps/fps_log.hpp
   requiredBy:
-  - src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
   - src/math/enumerative_combinatorics/stirling2_k_fixed.hpp
+  - src/math/enumerative_combinatorics/enumerate_powers_of_sums.hpp
   - src/fps/fps_pow.hpp
-  - src/fps/fps_all.hpp
   - src/fps/fps_compositional_inverse.hpp
+  - src/fps/fps_all.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
   - test/math/enumerative_combinatorics/enumerate_powers_of_sums.test.cpp
-  - test/fps/fps_all.test.cpp
-  - test/fps/fps_log.test.cpp
+  - test/math/enumerative_combinatorics/stirling2_k_fixed.test.cpp
   - test/fps/fps_compositional_inverse.test.cpp
+  - test/fps/fps_log.test.cpp
+  - test/fps/fps_all.test.cpp
   - test/fps/fps_pow.test.cpp
 documentation_of: src/fps/fps_log.hpp
 layout: document

@@ -130,18 +130,18 @@ data:
   isVerificationFile: false
   path: src/data_structure/range_query/segtree.hpp
   requiredBy:
-  - src/data_structure/rectangle_query/rectangle_sum.hpp
   - src/data_structure/rectangle_query/dynamic_rectangle_sum.hpp
-  - src/string/rolling_hash_dynamic.hpp
+  - src/data_structure/rectangle_query/rectangle_sum.hpp
   - src/string/numeric_rolling_hash_dynamic.hpp
+  - src/string/rolling_hash_dynamic.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/tree/hld.test.cpp
-  - test/tree/range_contour_aggregator.test.cpp
-  - test/data_structure/range_query/segtree.test.cpp
   - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
   - test/data_structure/rectangle_query/rectangle_sum.test.cpp
+  - test/data_structure/range_query/segtree.test.cpp
+  - test/tree/hld.test.cpp
+  - test/tree/range_contour_aggregator.test.cpp
 documentation_of: src/data_structure/range_query/segtree.hpp
 layout: document
 title: Segtree

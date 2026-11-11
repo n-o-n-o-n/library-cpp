@@ -183,13 +183,13 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/best_theorem.test.cpp
   - test/graph/matrix_tree_theorem.test.cpp
-  - test/math/matrix/matrix_prod.test.cpp
+  - test/graph/best_theorem.test.cpp
   - test/math/matrix/matrix_inv.test.cpp
+  - test/math/matrix/matrix_det.test.cpp
+  - test/math/matrix/matrix_prod.test.cpp
   - test/math/matrix/matrix_pow.test.cpp
   - test/math/matrix/matrix_rank.test.cpp
-  - test/math/matrix/matrix_det.test.cpp
 documentation_of: src/math/matrix/matrix.hpp
 layout: document
 redirect_from:

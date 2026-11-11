@@ -67,15 +67,15 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/number_theory/discrete_logarithm.test.cpp
-  - test/tree/hld.test.cpp
-  - test/data_structure/range_query/lazysegtree.test.cpp
-  - test/data_structure/range_query/segtree.test.cpp
-  - test/data_structure/range_query/dualsegtree.test.cpp
-  - test/data_structure/range_query/dynamic_segtree.test.cpp
-  - test/data_structure/range_query/dynamic_lazysegtree.test.cpp
-  - test/data_structure/misc/swag.test.cpp
   - test/data_structure/misc/dswag.test.cpp
+  - test/data_structure/misc/swag.test.cpp
+  - test/data_structure/range_query/lazysegtree.test.cpp
+  - test/data_structure/range_query/dynamic_segtree.test.cpp
+  - test/data_structure/range_query/dualsegtree.test.cpp
+  - test/data_structure/range_query/dynamic_lazysegtree.test.cpp
+  - test/data_structure/range_query/segtree.test.cpp
+  - test/tree/hld.test.cpp
+  - test/math/number_theory/discrete_logarithm.test.cpp
 documentation_of: src/math/affine.hpp
 layout: document
 redirect_from:

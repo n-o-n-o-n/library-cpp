@@ -436,14 +436,14 @@ data:
   isVerificationFile: false
   path: src/fps/power_projection.hpp
   requiredBy:
-  - src/fps/fps_all.hpp
   - src/fps/fps_compositional_inverse.hpp
+  - src/fps/fps_all.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/fps_all.test.cpp
   - test/fps/power_projection.test.cpp
   - test/fps/fps_compositional_inverse.test.cpp
+  - test/fps/fps_all.test.cpp
 documentation_of: src/fps/power_projection.hpp
 layout: document
 redirect_from:

@@ -80,11 +80,11 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graph/functional_graph.test.cpp
-  - test/graph/weighted_functional_graph.test.cpp
-  - test/data_structure/persistent_ds/persistent_segtree.test.cpp
   - test/misc/mo_static_range_count_distinct.test.cpp
   - test/misc/inversion_number.test.cpp
+  - test/data_structure/persistent_ds/persistent_segtree.test.cpp
+  - test/graph/functional_graph.test.cpp
+  - test/graph/weighted_functional_graph.test.cpp
 documentation_of: src/misc/compress.hpp
 layout: document
 title: Compress

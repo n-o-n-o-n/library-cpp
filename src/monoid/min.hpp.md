@@ -45,15 +45,15 @@ data:
   isVerificationFile: false
   path: src/monoid/min.hpp
   requiredBy:
-  - src/tree/static_tree.hpp
   - src/data_structure/range_query/static_rmq.hpp
+  - src/tree/static_tree.hpp
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/tree/static_tree.lca.test.cpp
-  - test/tree/static_tree.jump.test.cpp
   - test/data_structure/union_find/uf_merge_tree.test.cpp
   - test/data_structure/range_query/sparse_table.test.cpp
+  - test/tree/static_tree.lca.test.cpp
+  - test/tree/static_tree.jump.test.cpp
 documentation_of: src/monoid/min.hpp
 layout: document
 redirect_from:

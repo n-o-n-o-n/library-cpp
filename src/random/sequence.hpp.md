@@ -79,8 +79,8 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/power_projection.test.cpp
   - test/data_structure/set/median_set.test.cpp
+  - test/fps/power_projection.test.cpp
 documentation_of: src/random/sequence.hpp
 layout: document
 title: Random Sequence

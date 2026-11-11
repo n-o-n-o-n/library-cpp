@@ -409,8 +409,8 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/fps/fps_all.test.cpp
   - test/fps/fps_composition.test.cpp
+  - test/fps/fps_all.test.cpp
 documentation_of: src/fps/fps_composition.hpp
 layout: document
 redirect_from:

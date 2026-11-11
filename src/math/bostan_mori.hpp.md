@@ -383,8 +383,8 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/math/bostan_mori.test.cpp
   - test/math/bmbm.test.cpp
+  - test/math/bostan_mori.test.cpp
 documentation_of: src/math/bostan_mori.hpp
 layout: document
 redirect_from:

@@ -177,14 +177,14 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/monoid/range_add_range_min.test.cpp
-  - test/monoid/range_update_range_min.test.cpp
-  - test/monoid/range_update_range_max.test.cpp
+  - test/data_structure/rectangle_query/rectangle_union.test.cpp
+  - test/data_structure/range_query/lazysegtree.test.cpp
   - test/monoid/range_add_range_max.test.cpp
   - test/monoid/range_update_range_sum.test.cpp
+  - test/monoid/range_update_range_min.test.cpp
+  - test/monoid/range_update_range_max.test.cpp
   - test/monoid/range_add_range_sum.test.cpp
-  - test/data_structure/range_query/lazysegtree.test.cpp
-  - test/data_structure/rectangle_query/rectangle_union.test.cpp
+  - test/monoid/range_add_range_min.test.cpp
 documentation_of: src/data_structure/range_query/lazysegtree.hpp
 layout: document
 title: Lazysegtree

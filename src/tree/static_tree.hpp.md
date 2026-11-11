@@ -215,9 +215,9 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/data_structure/union_find/uf_merge_tree.test.cpp
   - test/tree/static_tree.lca.test.cpp
   - test/tree/static_tree.jump.test.cpp
-  - test/data_structure/union_find/uf_merge_tree.test.cpp
 documentation_of: src/tree/static_tree.hpp
 layout: document
 title: Static Tree

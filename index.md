@@ -878,6 +878,9 @@ data:
       path: test/graph/shortest_path.test.cpp
       title: test/graph/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/graph/shortest_path_dial.test.cpp
+      title: test/graph/shortest_path_dial.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/graph/weighted_functional_graph.test.cpp
       title: test/graph/weighted_functional_graph.test.cpp
   - name: test/math

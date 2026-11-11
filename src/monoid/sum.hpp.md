@@ -57,15 +57,15 @@ data:
   timestamp: '2026-11-02 21:52:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/tree/range_contour_aggregator.test.cpp
-  - test/data_structure/union_find/weighted_union_find.test.cpp
+  - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
+  - test/data_structure/rectangle_query/rectangle_sum.test.cpp
   - test/data_structure/union_find/offline_dynamic_connectivity.test.cpp
+  - test/data_structure/union_find/weighted_union_find.test.cpp
   - test/data_structure/union_find/foldable_union_find.test.cpp
   - test/data_structure/union_find/undoable_foldable_union_find.test.cpp
   - test/data_structure/range_query/disjoint_sparse_table.test.cpp
   - test/data_structure/persistent_ds/persistent_segtree.test.cpp
-  - test/data_structure/rectangle_query/dynamic_rectangle_sum.test.cpp
-  - test/data_structure/rectangle_query/rectangle_sum.test.cpp
+  - test/tree/range_contour_aggregator.test.cpp
 documentation_of: src/monoid/sum.hpp
 layout: document
 redirect_from:
