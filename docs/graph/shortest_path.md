@@ -5,7 +5,12 @@ documentation_of: //src/graph/shortest_path.hpp
 
 非負辺重みの有向グラフの最短経路を求める.
 
-内部でいい感じに BFS と Dijkstra を使い分ける.
+内部で BFS, Dial 法, Dijkstra を使い分ける.
+使い分けは次のとおり:
+
+- 全ての辺重みが $1$ であれば BFS
+- そうでなく, 全ての辺重みが$16$ 以下であれば Dial 法
+- そうでなければ Dijkstra
 
 ## Constructor
 

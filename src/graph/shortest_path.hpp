@@ -3,8 +3,8 @@
 
 template<typename T = int>
 struct shortest_path {
-    shortest_path(int _n) : n(_n), r(-1), g(_n), wt(false) {}
-    shortest_path(const vector<vector<int>> &_g) : n(_g.size()), r(-1), g(n), wt(false) {
+    shortest_path(int _n) : n(_n), r(-1), g(_n), wt(false), dial(true) {}
+    shortest_path(const vector<vector<int>> &_g) : n(_g.size()), r(-1), g(n), wt(false), dial(true) {
         for (int u = 0; u < n; u++) {
             g[u].reserve(_g[u].size());
             for (int v : _g[u]) {
@@ -14,13 +14,14 @@ struct shortest_path {
         }
     }
     template<typename T2>
-    shortest_path(const vector<vector<pair<int, T2>>> &_g) : n(_g.size()), r(-1), g(n), wt(true) {
+    shortest_path(const vector<vector<pair<int, T2>>> &_g) : n(_g.size()), r(-1), g(n), wt(true), dial(true) {
         for (int u = 0; u < n; u++) {
             g[u].reserve(_g[u].size());
             for (auto [v, w] : _g[u]) {
                 assert(0 <= v && v < n);
                 assert(w >= 0);
                 g[u].emplace_back(v, w);
+                dial = dial && (w <= k);
             }
         }
     }
@@ -30,6 +31,7 @@ struct shortest_path {
         assert(w >= 0);
         g[u].emplace_back(v, w);
         wt = wt || (w != 1);
+        dial = dial && (w <= k);
         r = -1;
     }
     vector<T> table(int s) {
@@ -54,9 +56,10 @@ struct shortest_path {
         return d[t];
     }
 private:
+    static constexpr int k = 16;
     int n, r;
     vector<vector<pair<int, T>>> g;
-    bool wt;
+    bool wt, dial;
     vector<T> d;
     vector<int> p;
     template<class P>
@@ -82,14 +85,34 @@ private:
                 q.pop();
                 upd(u, d[u], [&] (int v) { q.push(v); });
             }
+        } else if (dial) {
+            array<queue<pair<T, int>>, k + 1> qs;
+            qs[0].emplace(0, s);
+            int sz = 1;
+            T w = 0;
+            while (sz) {
+                auto &q = qs[w % (k + 1)];
+                if (q.empty()) {
+                    w++;
+                    continue;
+                }
+                auto [du, u] = q.front();
+                q.pop();
+                sz--;
+                if (du > d[u]) continue;
+                upd(u, du, [&] (int v) {
+                    qs[d[v] % (k + 1)].emplace(d[v], v);
+                    sz++;
+                });
+            }
         } else {
             priority_queue<pair<T, int>, vector<pair<T, int>>, greater<>> q;
             q.emplace(0, s);
             while (!q.empty()) {
-                auto [cur, u] = q.top();
+                auto [du, u] = q.top();
                 q.pop();
-                if (cur > d[u]) continue;
-                upd(u, cur, [&] (int v) { q.emplace(d[v], v); });
+                if (du > d[u]) continue;
+                upd(u, du, [&] (int v) { q.emplace(d[v], v); });
             }
         }
         for (auto &e : d) {
